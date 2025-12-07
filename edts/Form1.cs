@@ -33,7 +33,7 @@ namespace edts
             }
             else
              {
-                a
+                
                  hatalipsw.Visible = true;
              }
         }
