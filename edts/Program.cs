@@ -21,7 +21,7 @@ namespace edts
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using (var login = new Form1())
+            using (var login = new FormLogin())
             {
                 if (login.ShowDialog() == DialogResult.OK)
                 {
