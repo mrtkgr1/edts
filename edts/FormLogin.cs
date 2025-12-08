@@ -1,11 +1,14 @@
-namespace EnvanterDepoSistemitaslak2
+namespace edts
 {
-    public partial class Form1 : Form
+    public partial class FormLogin : Form
     {
-        public Form1()
+        public string Username = "";
+        public FormLogin()
         {
             InitializeComponent();
         }
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (loginpsw.PasswordChar == '*')
@@ -30,10 +33,8 @@ namespace EnvanterDepoSistemitaslak2
             }
             else
              {
-                
                  hatalipsw.Visible = true;
              }
         }
-
     }
 }
