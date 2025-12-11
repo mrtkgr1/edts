@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace edts
 {
-    public partial class frmKullaniciYonetimi : Form
+    public partial class frmSupport : Form
     {
-        public frmKullaniciYonetimi()
+        public frmSupport()
         {
             InitializeComponent();
         }
 
-        private void txtKullaniciAdi_TextChanged(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

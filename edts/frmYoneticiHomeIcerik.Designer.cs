@@ -30,42 +30,42 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmYoneticiHomeIcerik));
             panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            panel5 = new Panel();
-            panel6 = new Panel();
-            panel7 = new Panel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            groupBox2 = new GroupBox();
             pnlKritikDurum = new Panel();
-            prbKritikStok = new ProgressBar();
-            lblKritikBaslik = new Label();
             lblYuzdeDeger = new Label();
+            lblKritikBaslik = new Label();
+            prbKritikStok = new ProgressBar();
+            panel2 = new Panel();
+            panel5 = new Panel();
+            pictureBox3 = new PictureBox();
+            label4 = new Label();
+            panel6 = new Panel();
+            pictureBox2 = new PictureBox();
+            label2 = new Label();
+            panel7 = new Panel();
+            pictureBox4 = new PictureBox();
+            label3 = new Label();
+            panel4 = new Panel();
+            pictureBox1 = new PictureBox();
+            label1 = new Label();
+            panel3 = new Panel();
+            groupBox2 = new GroupBox();
             groupBox1 = new GroupBox();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            panel4.SuspendLayout();
-            panel5.SuspendLayout();
-            panel6.SuspendLayout();
-            panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            groupBox2.SuspendLayout();
             pnlKritikDurum.SuspendLayout();
+            panel2.SuspendLayout();
+            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel3.SuspendLayout();
+            groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,6 +77,42 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1239, 256);
             panel1.TabIndex = 1;
+            // 
+            // pnlKritikDurum
+            // 
+            pnlKritikDurum.BackColor = SystemColors.ControlLightLight;
+            pnlKritikDurum.Controls.Add(lblYuzdeDeger);
+            pnlKritikDurum.Controls.Add(lblKritikBaslik);
+            pnlKritikDurum.Controls.Add(prbKritikStok);
+            pnlKritikDurum.Location = new Point(193, 138);
+            pnlKritikDurum.Name = "pnlKritikDurum";
+            pnlKritikDurum.Size = new Size(305, 102);
+            pnlKritikDurum.TabIndex = 1;
+            // 
+            // lblYuzdeDeger
+            // 
+            lblYuzdeDeger.AutoSize = true;
+            lblYuzdeDeger.Location = new Point(9, 62);
+            lblYuzdeDeger.Name = "lblYuzdeDeger";
+            lblYuzdeDeger.Size = new Size(0, 20);
+            lblYuzdeDeger.TabIndex = 2;
+            // 
+            // lblKritikBaslik
+            // 
+            lblKritikBaslik.AutoSize = true;
+            lblKritikBaslik.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblKritikBaslik.Location = new Point(58, 10);
+            lblKritikBaslik.Name = "lblKritikBaslik";
+            lblKritikBaslik.Size = new Size(189, 28);
+            lblKritikBaslik.TabIndex = 1;
+            lblKritikBaslik.Text = "Kritik Stok Yüzdesi";
+            // 
+            // prbKritikStok
+            // 
+            prbKritikStok.Location = new Point(145, 51);
+            prbKritikStok.Name = "prbKritikStok";
+            prbKritikStok.Size = new Size(125, 31);
+            prbKritikStok.TabIndex = 0;
             // 
             // panel2
             // 
@@ -91,27 +127,6 @@
             panel2.Size = new Size(1239, 186);
             panel2.TabIndex = 2;
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(groupBox2);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 442);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1239, 250);
-            panel3.TabIndex = 3;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.DarkOliveGreen;
-            panel4.Controls.Add(pictureBox1);
-            panel4.Controls.Add(label1);
-            panel4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            panel4.ForeColor = SystemColors.ControlLightLight;
-            panel4.Location = new Point(3, 22);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(303, 145);
-            panel4.TabIndex = 0;
-            // 
             // panel5
             // 
             panel5.BackColor = Color.DarkOliveGreen;
@@ -123,6 +138,25 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(300, 145);
             panel5.TabIndex = 1;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
+            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox3.Location = new Point(3, 15);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(125, 62);
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 80);
+            label4.Name = "label4";
+            label4.Size = new Size(165, 20);
+            label4.TabIndex = 0;
+            label4.Text = "Tanımlı Tedarikçi Sayısı";
             // 
             // panel6
             // 
@@ -136,6 +170,25 @@
             panel6.Size = new Size(303, 145);
             panel6.TabIndex = 1;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(3, 15);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(125, 62);
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(0, 80);
+            label2.Name = "label2";
+            label2.Size = new Size(167, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Toplam Kayıtlı Kullanıcı";
+            // 
             // panel7
             // 
             panel7.BackColor = Color.DarkOliveGreen;
@@ -148,23 +201,15 @@
             panel7.Size = new Size(300, 145);
             panel7.TabIndex = 1;
             // 
-            // label1
+            // pictureBox4
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 80);
-            label1.Name = "label1";
-            label1.Size = new Size(174, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Toplam Envanter Değeri";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(0, 80);
-            label2.Name = "label2";
-            label2.Size = new Size(167, 20);
-            label2.TabIndex = 0;
-            label2.Text = "Toplam Kayıtlı Kullanıcı";
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox4.Location = new Point(3, 15);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(125, 62);
+            pictureBox4.TabIndex = 3;
+            pictureBox4.TabStop = false;
             // 
             // label3
             // 
@@ -175,14 +220,17 @@
             label3.TabIndex = 0;
             label3.Text = "Son 7 Gün Giriş/Çıkış Farkı";
             // 
-            // label4
+            // panel4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(3, 80);
-            label4.Name = "label4";
-            label4.Size = new Size(165, 20);
-            label4.TabIndex = 0;
-            label4.Text = "Tanımlı Tedarikçi Sayısı";
+            panel4.BackColor = Color.DarkOliveGreen;
+            panel4.Controls.Add(pictureBox1);
+            panel4.Controls.Add(label1);
+            panel4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            panel4.ForeColor = SystemColors.ControlLightLight;
+            panel4.Location = new Point(3, 22);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(303, 145);
+            panel4.TabIndex = 0;
             // 
             // pictureBox1
             // 
@@ -194,35 +242,23 @@
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // label1
             // 
-            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(3, 15);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(125, 62);
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 80);
+            label1.Name = "label1";
+            label1.Size = new Size(174, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Toplam Envanter Değeri";
             // 
-            // pictureBox3
+            // panel3
             // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(3, 15);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(125, 62);
-            pictureBox3.TabIndex = 2;
-            pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(3, 15);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(125, 62);
-            pictureBox4.TabIndex = 3;
-            pictureBox4.TabStop = false;
+            panel3.Controls.Add(groupBox2);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 442);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1239, 250);
+            panel3.TabIndex = 3;
             // 
             // groupBox2
             // 
@@ -236,42 +272,6 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "groupBox2";
             groupBox2.Enter += groupBox2_Enter;
-            // 
-            // pnlKritikDurum
-            // 
-            pnlKritikDurum.BackColor = SystemColors.ControlLightLight;
-            pnlKritikDurum.Controls.Add(lblYuzdeDeger);
-            pnlKritikDurum.Controls.Add(lblKritikBaslik);
-            pnlKritikDurum.Controls.Add(prbKritikStok);
-            pnlKritikDurum.Location = new Point(193, 138);
-            pnlKritikDurum.Name = "pnlKritikDurum";
-            pnlKritikDurum.Size = new Size(305, 102);
-            pnlKritikDurum.TabIndex = 1;
-            // 
-            // prbKritikStok
-            // 
-            prbKritikStok.Location = new Point(145, 51);
-            prbKritikStok.Name = "prbKritikStok";
-            prbKritikStok.Size = new Size(125, 31);
-            prbKritikStok.TabIndex = 0;
-            // 
-            // lblKritikBaslik
-            // 
-            lblKritikBaslik.AutoSize = true;
-            lblKritikBaslik.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblKritikBaslik.Location = new Point(58, 10);
-            lblKritikBaslik.Name = "lblKritikBaslik";
-            lblKritikBaslik.Size = new Size(189, 28);
-            lblKritikBaslik.TabIndex = 1;
-            lblKritikBaslik.Text = "Kritik Stok Yüzdesi";
-            // 
-            // lblYuzdeDeger
-            // 
-            lblYuzdeDeger.AutoSize = true;
-            lblYuzdeDeger.Location = new Point(9, 62);
-            lblYuzdeDeger.Name = "lblYuzdeDeger";
-            lblYuzdeDeger.Size = new Size(0, 20);
-            lblYuzdeDeger.TabIndex = 2;
             // 
             // groupBox1
             // 
@@ -336,23 +336,23 @@
             Name = "frmYoneticiHomeIcerik";
             Text = "frmYoneticiHomeIcerik";
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            groupBox2.ResumeLayout(false);
             pnlKritikDurum.ResumeLayout(false);
             pnlKritikDurum.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel3.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             ResumeLayout(false);
         }

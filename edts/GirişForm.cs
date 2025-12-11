@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace edts
 {
-    public partial class frmKullaniciYonetimi : Form
+    public partial class GirişForm : Form
     {
-        public frmKullaniciYonetimi()
+        public GirişForm()
         {
             InitializeComponent();
-        }
-
-        private void txtKullaniciAdi_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
