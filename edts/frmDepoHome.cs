@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace edts
 {
-    public partial class frmKullaniciYonetimi : Form
+    public partial class frmDepoHome : Form
     {
-        public frmKullaniciYonetimi()
+        public frmDepoHome()
         {
             InitializeComponent();
-        }
-
-        private void txtKullaniciAdi_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
