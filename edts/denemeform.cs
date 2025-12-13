@@ -8,23 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EnvanterDepoSistemitaslak2
+namespace edts
 {
-    public partial class Form3 : Form
+    public partial class denemeform : Form
     {
-        public Form3()
+        public denemeform()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
