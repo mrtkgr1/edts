@@ -1,4 +1,7 @@
-﻿namespace edts
+﻿using System.Windows.Forms;
+using System.Data.SqlClient; // SQL Server ile iletişim için
+using System.Configuration;
+namespace edts
 {
     partial class GirişForm
     {
@@ -34,12 +37,12 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            lblHata = new Label();
+            txtSifre = new TextBox();
+            txtKullaniciAdi = new TextBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
-            button1 = new Button();
-            label2 = new Label();
+            btnGiris = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -69,6 +72,7 @@
             linkLabel1.TabIndex = 5;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Bir sorun mu yaşıyorsunuz?";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // label1
             // 
@@ -93,32 +97,42 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(textBox2);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(lblHata);
+            panel2.Controls.Add(txtSifre);
+            panel2.Controls.Add(txtKullaniciAdi);
             panel2.Controls.Add(pictureBox3);
             panel2.Controls.Add(pictureBox2);
-            panel2.Controls.Add(button1);
+            panel2.Controls.Add(btnGiris);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(576, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(645, 684);
             panel2.TabIndex = 1;
             // 
-            // textBox2
+            // lblHata
             // 
-            textBox2.Location = new Point(240, 290);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(165, 27);
-            textBox2.TabIndex = 4;
+            lblHata.AutoSize = true;
+            lblHata.ForeColor = Color.Crimson;
+            lblHata.Location = new Point(105, 365);
+            lblHata.Name = "lblHata";
+            lblHata.Size = new Size(210, 20);
+            lblHata.TabIndex = 5;
+            lblHata.Text = "*Kullanıcı Adı veya Şifre Hatalı";
             // 
-            // textBox1
+            // txtSifre
             // 
-            textBox1.Location = new Point(240, 210);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(165, 27);
-            textBox1.TabIndex = 3;
+            txtSifre.Location = new Point(240, 290);
+            txtSifre.Name = "txtSifre";
+            txtSifre.PasswordChar = '*';
+            txtSifre.Size = new Size(165, 27);
+            txtSifre.TabIndex = 4;
+            // 
+            // txtKullaniciAdi
+            // 
+            txtKullaniciAdi.Location = new Point(240, 210);
+            txtKullaniciAdi.Name = "txtKullaniciAdi";
+            txtKullaniciAdi.Size = new Size(165, 27);
+            txtKullaniciAdi.TabIndex = 3;
             // 
             // pictureBox3
             // 
@@ -140,29 +154,20 @@
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
-            // button1
+            // btnGiris
             // 
-            button1.BackColor = Color.DarkOliveGreen;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(324, 352);
-            button1.Name = "button1";
-            button1.Size = new Size(81, 44);
-            button1.TabIndex = 0;
-            button1.Text = "Giriş";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.Crimson;
-            label2.Location = new Point(105, 365);
-            label2.Name = "label2";
-            label2.Size = new Size(210, 20);
-            label2.TabIndex = 5;
-            label2.Text = "*Kullanıcı Adı veya Şifre Hatalı";
+            btnGiris.BackColor = Color.DarkOliveGreen;
+            btnGiris.FlatAppearance.BorderSize = 0;
+            btnGiris.FlatStyle = FlatStyle.Flat;
+            btnGiris.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            btnGiris.ForeColor = SystemColors.ControlLightLight;
+            btnGiris.Location = new Point(324, 352);
+            btnGiris.Name = "btnGiris";
+            btnGiris.Size = new Size(81, 44);
+            btnGiris.TabIndex = 0;
+            btnGiris.Text = "Giriş";
+            btnGiris.UseVisualStyleBackColor = false;
+            btnGiris.Click += btnGiris_Click;
             // 
             // GirişForm
             // 
@@ -191,10 +196,10 @@
         private Panel panel2;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
-        private Button button1;
+        private Button btnGiris;
         private LinkLabel linkLabel1;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private Label label2;
+        private TextBox txtSifre;
+        private TextBox txtKullaniciAdi;
+        private Label lblHata;
     }
 }

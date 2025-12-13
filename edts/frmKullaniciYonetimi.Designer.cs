@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            chkAktifMi = new CheckBox();
             btnHesapSil = new Button();
             btnHesapGuncelle = new Button();
             btnKullaniciKaydet = new Button();
@@ -50,6 +51,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkOliveGreen;
+            panel1.Controls.Add(chkAktifMi);
             panel1.Controls.Add(btnHesapSil);
             panel1.Controls.Add(btnHesapGuncelle);
             panel1.Controls.Add(btnKullaniciKaydet);
@@ -67,6 +69,18 @@
             panel1.Size = new Size(404, 655);
             panel1.TabIndex = 0;
             // 
+            // chkAktifMi
+            // 
+            chkAktifMi.AutoSize = true;
+            chkAktifMi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            chkAktifMi.ForeColor = SystemColors.ControlLightLight;
+            chkAktifMi.Location = new Point(210, 246);
+            chkAktifMi.Name = "chkAktifMi";
+            chkAktifMi.Size = new Size(112, 27);
+            chkAktifMi.TabIndex = 11;
+            chkAktifMi.Text = "checkBox1";
+            chkAktifMi.UseVisualStyleBackColor = true;
+            // 
             // btnHesapSil
             // 
             btnHesapSil.BackColor = Color.Crimson;
@@ -78,6 +92,7 @@
             btnHesapSil.TabIndex = 10;
             btnHesapSil.Text = "Hesap Sil";
             btnHesapSil.UseVisualStyleBackColor = false;
+            btnHesapSil.Click += btnHesapSil_Click;
             // 
             // btnHesapGuncelle
             // 
@@ -90,6 +105,7 @@
             btnHesapGuncelle.TabIndex = 9;
             btnHesapGuncelle.Text = "Hesap Güncelle";
             btnHesapGuncelle.UseVisualStyleBackColor = false;
+            btnHesapGuncelle.Click += btnHesapGuncelle_Click;
             // 
             // btnKullaniciKaydet
             // 
@@ -102,19 +118,20 @@
             btnKullaniciKaydet.TabIndex = 8;
             btnKullaniciKaydet.Text = "Kullanıcı Kaydet";
             btnKullaniciKaydet.UseVisualStyleBackColor = false;
+            btnKullaniciKaydet.Click += btnKullaniciKaydet_Click;
             // 
             // cmbRolSecim
             // 
             cmbRolSecim.FormattingEnabled = true;
             cmbRolSecim.Items.AddRange(new object[] { "Yönetici", "Depo Personeli", "" });
-            cmbRolSecim.Location = new Point(168, 243);
+            cmbRolSecim.Location = new Point(210, 198);
             cmbRolSecim.Name = "cmbRolSecim";
             cmbRolSecim.Size = new Size(151, 28);
             cmbRolSecim.TabIndex = 7;
             // 
             // txtSifre
             // 
-            txtSifre.Location = new Point(168, 196);
+            txtSifre.Location = new Point(210, 151);
             txtSifre.Name = "txtSifre";
             txtSifre.PasswordChar = '*';
             txtSifre.Size = new Size(151, 27);
@@ -122,7 +139,7 @@
             // 
             // txtKullaniciAdi
             // 
-            txtKullaniciAdi.Location = new Point(168, 144);
+            txtKullaniciAdi.Location = new Point(210, 99);
             txtKullaniciAdi.Name = "txtKullaniciAdi";
             txtKullaniciAdi.Size = new Size(151, 27);
             txtKullaniciAdi.TabIndex = 5;
@@ -130,7 +147,7 @@
             // 
             // txtAdSoyad
             // 
-            txtAdSoyad.Location = new Point(168, 103);
+            txtAdSoyad.Location = new Point(210, 58);
             txtAdSoyad.Name = "txtAdSoyad";
             txtAdSoyad.Size = new Size(151, 27);
             txtAdSoyad.TabIndex = 4;
@@ -140,7 +157,7 @@
             lblRol.AutoSize = true;
             lblRol.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblRol.ForeColor = SystemColors.ControlLightLight;
-            lblRol.Location = new Point(12, 244);
+            lblRol.Location = new Point(54, 199);
             lblRol.Name = "lblRol";
             lblRol.Size = new Size(157, 23);
             lblRol.TabIndex = 3;
@@ -151,7 +168,7 @@
             lblSifre.AutoSize = true;
             lblSifre.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblSifre.ForeColor = SystemColors.ControlLightLight;
-            lblSifre.Location = new Point(12, 197);
+            lblSifre.Location = new Point(54, 152);
             lblSifre.Name = "lblSifre";
             lblSifre.Size = new Size(48, 23);
             lblSifre.TabIndex = 2;
@@ -162,7 +179,7 @@
             lblKullaniciAdi.AutoSize = true;
             lblKullaniciAdi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblKullaniciAdi.ForeColor = SystemColors.ControlLightLight;
-            lblKullaniciAdi.Location = new Point(12, 148);
+            lblKullaniciAdi.Location = new Point(54, 103);
             lblKullaniciAdi.Name = "lblKullaniciAdi";
             lblKullaniciAdi.Size = new Size(107, 23);
             lblKullaniciAdi.TabIndex = 1;
@@ -173,7 +190,7 @@
             lblAdSoyad.AutoSize = true;
             lblAdSoyad.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblAdSoyad.ForeColor = SystemColors.ControlLightLight;
-            lblAdSoyad.Location = new Point(12, 104);
+            lblAdSoyad.Location = new Point(54, 59);
             lblAdSoyad.Name = "lblAdSoyad";
             lblAdSoyad.Size = new Size(87, 23);
             lblAdSoyad.TabIndex = 0;
@@ -197,6 +214,7 @@
             dgvKullaniciListesi.RowHeadersWidth = 51;
             dgvKullaniciListesi.Size = new Size(577, 655);
             dgvKullaniciListesi.TabIndex = 0;
+            dgvKullaniciListesi.CellClick += dgvKullaniciListesi_CellClick;
             // 
             // frmKullaniciYonetimi
             // 
@@ -207,6 +225,7 @@
             Controls.Add(panel1);
             Name = "frmKullaniciYonetimi";
             Text = "frmKullaniciYonetimi";
+            Load += frmKullaniciYonetimi_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -230,5 +249,8 @@
         private Button btnKullaniciKaydet;
         private ComboBox cmbRolSecim;
         private DataGridView dgvKullaniciListesi;
+        private CheckBox chkAktifMi;
+
     }
+
 }
