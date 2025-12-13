@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EnvanterDepoSistemitaslak2
+namespace edts
 {
-    public partial class Form2 : Form
+    public partial class frmTBLDeneme : Form
     {
-        public Form2()
+        public frmTBLDeneme()
         {
             InitializeComponent();
         }
