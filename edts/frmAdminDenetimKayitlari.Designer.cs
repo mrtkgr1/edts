@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel2 = new Panel();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             btnExcelAktar = new Button();
             btnKayitlariGetir = new Button();
             cmbHareketTipi = new ComboBox();
             cmbKullaniciSecim = new ComboBox();
             dtpBitis = new DateTimePicker();
             dtpBaslangic = new DateTimePicker();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
+            panel2 = new Panel();
             dgvDenetimKayitlari = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -64,14 +64,41 @@
             panel1.Size = new Size(1100, 181);
             panel1.TabIndex = 0;
             // 
-            // panel2
+            // label4
             // 
-            panel2.Controls.Add(dgvDenetimKayitlari);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 181);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1100, 496);
-            panel2.TabIndex = 1;
+            label4.AutoSize = true;
+            label4.Location = new Point(513, 77);
+            label4.Name = "label4";
+            label4.Size = new Size(109, 20);
+            label4.TabIndex = 15;
+            label4.Text = "Kullanıcı Seçim";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(513, 30);
+            label3.Name = "label3";
+            label3.Size = new Size(90, 20);
+            label3.TabIndex = 14;
+            label3.Text = "Hareket Tipi";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(80, 74);
+            label2.Name = "label2";
+            label2.Size = new Size(76, 20);
+            label2.TabIndex = 13;
+            label2.Text = "Bitiş Tarihi";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(80, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(111, 20);
+            label1.TabIndex = 12;
+            label1.Text = "Başlangıç Tarihi";
             // 
             // btnExcelAktar
             // 
@@ -86,6 +113,7 @@
             btnExcelAktar.TabIndex = 11;
             btnExcelAktar.Text = "Excel'e Aktar";
             btnExcelAktar.UseVisualStyleBackColor = false;
+            btnExcelAktar.Click += btnExcelAktar_Click;
             // 
             // btnKayitlariGetir
             // 
@@ -132,41 +160,14 @@
             dtpBaslangic.Size = new Size(250, 27);
             dtpBaslangic.TabIndex = 6;
             // 
-            // label1
+            // panel2
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(80, 32);
-            label1.Name = "label1";
-            label1.Size = new Size(111, 20);
-            label1.TabIndex = 12;
-            label1.Text = "Başlangıç Tarihi";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(80, 74);
-            label2.Name = "label2";
-            label2.Size = new Size(76, 20);
-            label2.TabIndex = 13;
-            label2.Text = "Bitiş Tarihi";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(513, 30);
-            label3.Name = "label3";
-            label3.Size = new Size(90, 20);
-            label3.TabIndex = 14;
-            label3.Text = "Hareket Tipi";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(513, 77);
-            label4.Name = "label4";
-            label4.Size = new Size(109, 20);
-            label4.TabIndex = 15;
-            label4.Text = "Kullanıcı Seçim";
+            panel2.Controls.Add(dgvDenetimKayitlari);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 181);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1100, 496);
+            panel2.TabIndex = 1;
             // 
             // dgvDenetimKayitlari
             // 
@@ -187,6 +188,7 @@
             Controls.Add(panel1);
             Name = "frmAdminDenetimKayitlari";
             Text = "frmAdminDenetimKayitlari";
+            Load += frmAdminDenetimKayitlari_Load_1;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

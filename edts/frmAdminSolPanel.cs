@@ -12,6 +12,7 @@ namespace edts
 {
     public partial class frmAdminSolPanel : Form
     {
+        private const int CikisHareketID = 2;
         private bool isMenuAcik = true;
         private frmAdminAnaMenu? GetParentAdminForm()
         {
@@ -140,15 +141,31 @@ namespace edts
         }
 
 
-        private void pbCikisYap_Click(object sender, EventArgs e)
+           private void pbCikisYap_Click(object sender, EventArgs e)
         {
-            // Mevcut (Sol Panel) formu tutan Ana Çerçeveyi kapat
-            this.ParentForm.Close();
+            // Bu kodun içini, label5_Click'teki loglama bloğuyla aynı şekilde doldurun.
+            try
+            {
+                VeritabaniYardimcisi.LogKaydet(
+                    kullaniciID: AktifKullanici.ID,
+                    hareketID: CikisHareketID,
+                    tabloAdi: "tblKullanicilar",
+                    aciklama: AktifKullanici.KullaniciAdi + " ikon üzerinden çıkış yaptı."
+                );
 
-            // Yeni Giriş Formunu aç (Parametresiz constructor'ı kullanır)
+                AktifKullanici.ID = 0;
+                AktifKullanici.KullaniciAdi = "";
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Çıkış logu kaydedilirken hata oluştu: " + ex.Message);
+            }
+
+            this.ParentForm.Close();
             edts.GirişForm girisFormu = new edts.GirişForm();
             girisFormu.Show();
         }
+        
 
         private void pbDestek_Click(object sender, EventArgs e)
         {
@@ -207,14 +224,37 @@ namespace edts
 
         private void label5_Click(object sender, EventArgs e)
         {
-            // Mevcut (Sol Panel) formu tutan Ana Çerçeveyi kapat
-            this.ParentForm.Close();
+           
+            // 1. LOG KAYDINI YAP (Veritabanı bağlantı kütüphanelerini kullan)
+            try
+            {
+                // KullanıcıID: Çıkış yapan kullanıcının ID'si
+                // HareketID: 2 (Çıkış)
 
-            // Yeni Giriş Formunu aç (Parametresiz constructor'ı kullanır)
+                VeritabaniYardimcisi.LogKaydet(
+                    kullaniciID: AktifKullanici.ID,
+                    hareketID: CikisHareketID,
+                    tabloAdi: "tblKullanicilar", // Uygulamadan çıkış olduğu için genelde bu tablo verilir.
+                    aciklama: AktifKullanici.KullaniciAdi + " menüden çıkış yaptı."
+                );
+
+                // Önemli: Loglama başarılı olduktan sonra aktif kullanıcı bilgilerini temizlemek isteyebilirsiniz.
+                AktifKullanici.ID = 0;
+                AktifKullanici.KullaniciAdi = "";
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Çıkış logu kaydedilirken hata oluştu: " + ex.Message);
+            }
+
+            // 2. FORMU KAPAT ve Giriş Formunu Aç
+            this.ParentForm.Close();
             edts.GirişForm girisFormu = new edts.GirişForm();
             girisFormu.Show();
         }
     }
-}
+    }
+
 
 
