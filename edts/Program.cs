@@ -14,7 +14,7 @@ namespace edts
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Uygulama artýk GirisForm ile baþlayacak
-            Application.Run(new GiriþForm());
+            Application.Run(new frmYoneticiAna());
         }
     }
 }
