@@ -26,9 +26,13 @@ namespace edts
         private void SayfaGoster(Form yeniForm) {
             panel2.Controls.Clear();
 
+            panel2.AutoScroll = true;
+
             yeniForm.TopLevel = false;
 
             yeniForm.FormBorderStyle = FormBorderStyle.None;
+
+            yeniForm.Dock = DockStyle.Fill;
 
             panel2.Controls.Add(yeniForm);
 
