@@ -29,45 +29,45 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            textBox2 = new TextBox();
+            txtVarsayilanDepoKonum = new TextBox();
             label6 = new Label();
-            comboBox2 = new ComboBox();
+            cmbVarsayilanBirimTip = new ComboBox();
             label5 = new Label();
             label1 = new Label();
-            numericUpDown1 = new NumericUpDown();
+            numKritikStok = new NumericUpDown();
             groupBox2 = new GroupBox();
-            numericUpDown4 = new NumericUpDown();
+            numSifreDegistirmeSuresi = new NumericUpDown();
             label4 = new Label();
-            numericUpDown3 = new NumericUpDown();
+            numOturumZamanAsimi = new NumericUpDown();
             label3 = new Label();
-            numericUpDown2 = new NumericUpDown();
+            numMaksimumGirisDenemesi = new NumericUpDown();
             label2 = new Label();
             btnAyarlariKaydet = new Button();
             groupBox3 = new GroupBox();
-            btnTipSil = new Button();
-            comboBox1 = new ComboBox();
-            btnTipEkle = new Button();
-            dgvIslemTipleri = new DataGridView();
-            textBox1 = new TextBox();
+            btnHareketTipiSil = new Button();
+            cmbHareketYonu = new ComboBox();
+            btnHareketTipiEkle = new Button();
+            dgvHareketTipleri = new DataGridView();
+            txtHareketTipiAd = new TextBox();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numKritikStok).BeginInit();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numSifreDegistirmeSuresi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numOturumZamanAsimi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numMaksimumGirisDenemesi).BeginInit();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvIslemTipleri).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvHareketTipleri).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.DarkCyan;
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtVarsayilanDepoKonum);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(comboBox2);
+            groupBox1.Controls.Add(cmbVarsayilanBirimTip);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(numericUpDown1);
+            groupBox1.Controls.Add(numKritikStok);
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox1.ForeColor = SystemColors.ControlLightLight;
             groupBox1.Location = new Point(72, 12);
@@ -77,12 +77,12 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Genel Stok Yönetimi Ayarları";
             // 
-            // textBox2
+            // txtVarsayilanDepoKonum
             // 
-            textBox2.Location = new Point(261, 119);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(151, 30);
-            textBox2.TabIndex = 5;
+            txtVarsayilanDepoKonum.Location = new Point(261, 119);
+            txtVarsayilanDepoKonum.Name = "txtVarsayilanDepoKonum";
+            txtVarsayilanDepoKonum.Size = new Size(151, 30);
+            txtVarsayilanDepoKonum.TabIndex = 5;
             // 
             // label6
             // 
@@ -94,13 +94,13 @@
             label6.TabIndex = 4;
             label6.Text = "Varsayılan Depo Konumu";
             // 
-            // comboBox2
+            // cmbVarsayilanBirimTip
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(261, 74);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 31);
-            comboBox2.TabIndex = 3;
+            cmbVarsayilanBirimTip.FormattingEnabled = true;
+            cmbVarsayilanBirimTip.Location = new Point(261, 74);
+            cmbVarsayilanBirimTip.Name = "cmbVarsayilanBirimTip";
+            cmbVarsayilanBirimTip.Size = new Size(151, 31);
+            cmbVarsayilanBirimTip.TabIndex = 3;
             // 
             // label5
             // 
@@ -122,21 +122,21 @@
             label1.TabIndex = 1;
             label1.Text = "Kritik Stok Eşiği";
             // 
-            // numericUpDown1
+            // numKritikStok
             // 
-            numericUpDown1.Location = new Point(261, 38);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(151, 30);
-            numericUpDown1.TabIndex = 0;
+            numKritikStok.Location = new Point(261, 38);
+            numKritikStok.Name = "numKritikStok";
+            numKritikStok.Size = new Size(151, 30);
+            numKritikStok.TabIndex = 0;
             // 
             // groupBox2
             // 
             groupBox2.BackColor = Color.DarkCyan;
-            groupBox2.Controls.Add(numericUpDown4);
+            groupBox2.Controls.Add(numSifreDegistirmeSuresi);
             groupBox2.Controls.Add(label4);
-            groupBox2.Controls.Add(numericUpDown3);
+            groupBox2.Controls.Add(numOturumZamanAsimi);
             groupBox2.Controls.Add(label3);
-            groupBox2.Controls.Add(numericUpDown2);
+            groupBox2.Controls.Add(numMaksimumGirisDenemesi);
             groupBox2.Controls.Add(label2);
             groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox2.ForeColor = SystemColors.ControlLightLight;
@@ -147,12 +147,12 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Kullanıcı Güvenlik Ayarları";
             // 
-            // numericUpDown4
+            // numSifreDegistirmeSuresi
             // 
-            numericUpDown4.Location = new Point(259, 71);
-            numericUpDown4.Name = "numericUpDown4";
-            numericUpDown4.Size = new Size(150, 30);
-            numericUpDown4.TabIndex = 5;
+            numSifreDegistirmeSuresi.Location = new Point(259, 71);
+            numSifreDegistirmeSuresi.Name = "numSifreDegistirmeSuresi";
+            numSifreDegistirmeSuresi.Size = new Size(150, 30);
+            numSifreDegistirmeSuresi.TabIndex = 5;
             // 
             // label4
             // 
@@ -164,12 +164,12 @@
             label4.TabIndex = 4;
             label4.Text = "Şifre Değiştirme Süresi";
             // 
-            // numericUpDown3
+            // numOturumZamanAsimi
             // 
-            numericUpDown3.Location = new Point(259, 153);
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new Size(150, 30);
-            numericUpDown3.TabIndex = 3;
+            numOturumZamanAsimi.Location = new Point(259, 153);
+            numOturumZamanAsimi.Name = "numOturumZamanAsimi";
+            numOturumZamanAsimi.Size = new Size(150, 30);
+            numOturumZamanAsimi.TabIndex = 3;
             // 
             // label3
             // 
@@ -181,12 +181,12 @@
             label3.TabIndex = 2;
             label3.Text = "Oturum Zaman Aşımı";
             // 
-            // numericUpDown2
+            // numMaksimumGirisDenemesi
             // 
-            numericUpDown2.Location = new Point(259, 115);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(150, 30);
-            numericUpDown2.TabIndex = 1;
+            numMaksimumGirisDenemesi.Location = new Point(259, 115);
+            numMaksimumGirisDenemesi.Name = "numMaksimumGirisDenemesi";
+            numMaksimumGirisDenemesi.Size = new Size(150, 30);
+            numMaksimumGirisDenemesi.TabIndex = 1;
             // 
             // label2
             // 
@@ -211,15 +211,16 @@
             btnAyarlariKaydet.TabIndex = 2;
             btnAyarlariKaydet.Text = "Kaydet";
             btnAyarlariKaydet.UseVisualStyleBackColor = false;
+            btnAyarlariKaydet.Click += btnAyarlariKaydet_Click;
             // 
             // groupBox3
             // 
             groupBox3.BackColor = Color.DarkCyan;
-            groupBox3.Controls.Add(btnTipSil);
-            groupBox3.Controls.Add(comboBox1);
-            groupBox3.Controls.Add(btnTipEkle);
-            groupBox3.Controls.Add(dgvIslemTipleri);
-            groupBox3.Controls.Add(textBox1);
+            groupBox3.Controls.Add(btnHareketTipiSil);
+            groupBox3.Controls.Add(cmbHareketYonu);
+            groupBox3.Controls.Add(btnHareketTipiEkle);
+            groupBox3.Controls.Add(dgvHareketTipleri);
+            groupBox3.Controls.Add(txtHareketTipiAd);
             groupBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox3.ForeColor = SystemColors.ControlLightLight;
             groupBox3.Location = new Point(72, 446);
@@ -229,58 +230,60 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Stok Hareket Tipleri Tanımlama";
             // 
-            // btnTipSil
+            // btnHareketTipiSil
             // 
-            btnTipSil.BackColor = Color.Crimson;
-            btnTipSil.FlatAppearance.BorderSize = 0;
-            btnTipSil.FlatStyle = FlatStyle.Flat;
-            btnTipSil.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            btnTipSil.ForeColor = SystemColors.ControlLightLight;
-            btnTipSil.Location = new Point(418, 64);
-            btnTipSil.Name = "btnTipSil";
-            btnTipSil.Size = new Size(132, 36);
-            btnTipSil.TabIndex = 5;
-            btnTipSil.Text = "Sil";
-            btnTipSil.UseVisualStyleBackColor = false;
+            btnHareketTipiSil.BackColor = Color.Crimson;
+            btnHareketTipiSil.FlatAppearance.BorderSize = 0;
+            btnHareketTipiSil.FlatStyle = FlatStyle.Flat;
+            btnHareketTipiSil.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            btnHareketTipiSil.ForeColor = SystemColors.ControlLightLight;
+            btnHareketTipiSil.Location = new Point(418, 64);
+            btnHareketTipiSil.Name = "btnHareketTipiSil";
+            btnHareketTipiSil.Size = new Size(132, 36);
+            btnHareketTipiSil.TabIndex = 5;
+            btnHareketTipiSil.Text = "Sil";
+            btnHareketTipiSil.UseVisualStyleBackColor = false;
+            btnHareketTipiSil.Click += btnHareketTipiSil_Click;
             // 
-            // comboBox1
+            // cmbHareketYonu
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Giriş, Çıkış" });
-            comboBox1.Location = new Point(261, 64);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 31);
-            comboBox1.TabIndex = 8;
+            cmbHareketYonu.FormattingEnabled = true;
+            cmbHareketYonu.Items.AddRange(new object[] { "Giriş, Çıkış" });
+            cmbHareketYonu.Location = new Point(261, 64);
+            cmbHareketYonu.Name = "cmbHareketYonu";
+            cmbHareketYonu.Size = new Size(151, 31);
+            cmbHareketYonu.TabIndex = 8;
             // 
-            // btnTipEkle
+            // btnHareketTipiEkle
             // 
-            btnTipEkle.BackColor = Color.DarkOliveGreen;
-            btnTipEkle.FlatAppearance.BorderSize = 0;
-            btnTipEkle.FlatStyle = FlatStyle.Flat;
-            btnTipEkle.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            btnTipEkle.ForeColor = SystemColors.ControlLightLight;
-            btnTipEkle.Location = new Point(418, 25);
-            btnTipEkle.Name = "btnTipEkle";
-            btnTipEkle.Size = new Size(132, 36);
-            btnTipEkle.TabIndex = 4;
-            btnTipEkle.Text = "Ekle";
-            btnTipEkle.UseVisualStyleBackColor = false;
+            btnHareketTipiEkle.BackColor = Color.DarkOliveGreen;
+            btnHareketTipiEkle.FlatAppearance.BorderSize = 0;
+            btnHareketTipiEkle.FlatStyle = FlatStyle.Flat;
+            btnHareketTipiEkle.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            btnHareketTipiEkle.ForeColor = SystemColors.ControlLightLight;
+            btnHareketTipiEkle.Location = new Point(418, 25);
+            btnHareketTipiEkle.Name = "btnHareketTipiEkle";
+            btnHareketTipiEkle.Size = new Size(132, 36);
+            btnHareketTipiEkle.TabIndex = 4;
+            btnHareketTipiEkle.Text = "Ekle";
+            btnHareketTipiEkle.UseVisualStyleBackColor = false;
+            btnHareketTipiEkle.Click += btnHareketTipiEkle_Click;
             // 
-            // dgvIslemTipleri
+            // dgvHareketTipleri
             // 
-            dgvIslemTipleri.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvIslemTipleri.Location = new Point(261, 101);
-            dgvIslemTipleri.Name = "dgvIslemTipleri";
-            dgvIslemTipleri.RowHeadersWidth = 51;
-            dgvIslemTipleri.Size = new Size(289, 188);
-            dgvIslemTipleri.TabIndex = 7;
+            dgvHareketTipleri.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvHareketTipleri.Location = new Point(6, 101);
+            dgvHareketTipleri.Name = "dgvHareketTipleri";
+            dgvHareketTipleri.RowHeadersWidth = 51;
+            dgvHareketTipleri.Size = new Size(909, 188);
+            dgvHareketTipleri.TabIndex = 7;
             // 
-            // textBox1
+            // txtHareketTipiAd
             // 
-            textBox1.Location = new Point(261, 29);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(151, 30);
-            textBox1.TabIndex = 6;
+            txtHareketTipiAd.Location = new Point(261, 29);
+            txtHareketTipiAd.Name = "txtHareketTipiAd";
+            txtHareketTipiAd.Size = new Size(151, 30);
+            txtHareketTipiAd.TabIndex = 6;
             // 
             // frmAdminSistemAyarlari
             // 
@@ -294,17 +297,18 @@
             Controls.Add(groupBox1);
             Name = "frmAdminSistemAyarlari";
             Text = "frmAdminSistemAyarlari";
+            Load += frmAdminSistemAyarlari_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numKritikStok).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numSifreDegistirmeSuresi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numOturumZamanAsimi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numMaksimumGirisDenemesi).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvIslemTipleri).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvHareketTipleri).EndInit();
             ResumeLayout(false);
         }
 
@@ -314,22 +318,22 @@
         private GroupBox groupBox2;
         private Button btnAyarlariKaydet;
         private GroupBox groupBox3;
-        private ComboBox comboBox1;
-        private DataGridView dgvIslemTipleri;
-        private TextBox textBox1;
-        private Button btnTipEkle;
-        private Button btnTipSil;
+        private ComboBox cmbHareketYonu;
+        private DataGridView dgvHareketTipleri;
+        private TextBox txtHareketTipiAd;
+        private Button btnHareketTipiEkle;
+        private Button btnHareketTipiSil;
         private Label label1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numKritikStok;
         private Label label6;
-        private ComboBox comboBox2;
+        private ComboBox cmbVarsayilanBirimTip;
         private Label label5;
-        private NumericUpDown numericUpDown4;
+        private NumericUpDown numSifreDegistirmeSuresi;
         private Label label4;
-        private NumericUpDown numericUpDown3;
+        private NumericUpDown numOturumZamanAsimi;
         private Label label3;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown numMaksimumGirisDenemesi;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txtVarsayilanDepoKonum;
     }
 }
