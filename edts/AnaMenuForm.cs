@@ -21,29 +21,41 @@ namespace edts
             // ... switch (aktifRolID) bloğu ...
             switch (aktifRolID)
             {
-                case 1: // Admin Rolü
+                case 1: // Admin Rolü (ID: 1)
                     acilacakForm = new frmAdminAnaMenu();
                     break;
-                    // ...
+
+                case 2: // Yönetici Rolü (ID: 2)
+                        // Eğer Yönetici formu (frmYoneticiHome) hazırsa bunu kullanın
+                    acilacakForm = new frmYoneticiHomeIcerik();
+                    break;
+
+                case 3: // Depo Personeli Rolü (ID: 3)
+                        // *** ARADIĞINIZ ÇÖZÜM BURADA! ***
+                    acilacakForm = new frmDepoHome();
+                    break;
+
+                default:
+                    // Tanımlanmamış rol ID'si için
+                    MessageBox.Show("Rol ID'niz sisteme tanımlı değildir.", "Yetki Hatası", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    this.Close();
+                    return; // Formu kapattıktan sonra daha fazla işlem yapma
             }
 
             if (acilacakForm != null)
             {
-                // frmAdminAnaMenu'yu modal (diyalog) olarak aç. 
-                // Bu, frmAdminAnaMenu kapanana kadar kodun burada beklemesini sağlar.
-                acilacakForm.ShowDialog(); // <-- Düzeltme: Show() yerine ShowDialog()
+                // Hedef formu modal (diyalog) olarak aç
+                acilacakForm.ShowDialog();
 
-                // frmAdminAnaMenu kapandığında kod buraya döner.
-
+                // Hedef form (frmDepoHome, frmAdminAnaMenu vb.) kapandığında buraya döner.
                 // Yönlendirme görevini tamamladığı için kendini kapat.
                 this.Close();
             }
             else
             {
-                // Yetkisiz girişte kapatma
-                MessageBox.Show("Yetkiniz bulunmamaktadır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                // Application.Exit(); yerine sadece formu kapatarak kontrolü GirişForm'a geri verin
-                this.Close(); // <-- Sadece bu formu kapatır.
+                // Rol ID'si tanımlı ama form açılmadıysa
+                MessageBox.Show("Yetkiniz bulunmamaktadır veya hedef form oluşturulmamıştır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                this.Close();
             }
         }
         public AnaMenuForm(int gelenRolID)
