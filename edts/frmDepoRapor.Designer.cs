@@ -1,6 +1,6 @@
 ﻿namespace edts
 {
-    partial class frmDeporRapor
+    partial class frmDepoRapor
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel2 = new Panel();
             panel3 = new Panel();
+            dateTimePicker2 = new DateTimePicker();
+            dateTimePicker1 = new DateTimePicker();
             comboBox2 = new ComboBox();
             label4 = new Label();
             label3 = new Label();
@@ -39,12 +40,11 @@
             button1 = new Button();
             label1 = new Label();
             comboBox1 = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            panel2 = new Panel();
             dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             panel3.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -57,15 +57,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1114, 317);
             panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(dataGridView1);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 317);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1114, 418);
-            panel2.TabIndex = 1;
             // 
             // panel3
             // 
@@ -84,6 +75,20 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(871, 215);
             panel3.TabIndex = 0;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Location = new Point(181, 116);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(250, 27);
+            dateTimePicker2.TabIndex = 17;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(181, 72);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 16;
             // 
             // comboBox2
             // 
@@ -169,19 +174,14 @@
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 8;
             // 
-            // dateTimePicker1
+            // panel2
             // 
-            dateTimePicker1.Location = new Point(181, 72);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 16;
-            // 
-            // dateTimePicker2
-            // 
-            dateTimePicker2.Location = new Point(181, 116);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 27);
-            dateTimePicker2.TabIndex = 17;
+            panel2.Controls.Add(dataGridView1);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 317);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1114, 418);
+            panel2.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -193,19 +193,19 @@
             dataGridView1.Size = new Size(1114, 418);
             dataGridView1.TabIndex = 1;
             // 
-            // frmDeporRapor
+            // frmDepoRapor
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1114, 735);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "frmDeporRapor";
-            Text = "frmDeporRapor";
+            Name = "frmDepoRapor";
+            Text = "frmDepoRapor";
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

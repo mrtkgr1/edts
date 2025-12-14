@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace edts
 {
-    public partial class frmTBLDeneme : Form
+    public partial class frmDepoRapor : Form
     {
-        public frmTBLDeneme()
+        public frmDepoRapor()
         {
             InitializeComponent();
         }
