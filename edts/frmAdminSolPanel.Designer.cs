@@ -54,6 +54,7 @@
             panel3 = new Panel();
             pbKategori = new PictureBox();
             panel2 = new Panel();
+            tableLayoutPanel1 = new TableLayoutPanel();
             panel1.SuspendLayout();
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbKullaniciKayit).BeginInit();
@@ -71,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)pbAnasayfa).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbKategori).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -83,10 +85,12 @@
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel3);
-            panel1.Dock = DockStyle.Left;
+            panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(0);
+            panel1.MinimumSize = new Size(250, 250);
             panel1.Name = "panel1";
-            panel1.Size = new Size(316, 656);
+            panel1.Size = new Size(280, 656);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -98,7 +102,6 @@
             panel9.Name = "panel9";
             panel9.Size = new Size(257, 57);
             panel9.TabIndex = 4;
-            panel9.Paint += panel9_Paint;
             // 
             // pbKullaniciKayit
             // 
@@ -356,19 +359,36 @@
             // 
             // panel2
             // 
+            panel2.AutoScroll = true;
+            panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(316, 0);
+            panel2.Location = new Point(280, 0);
+            panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(570, 656);
+            panel2.Size = new Size(606, 656);
             panel2.TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 280F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(panel2, 1, 0);
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(886, 656);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // frmAdminSolPanel
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(886, 656);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(tableLayoutPanel1);
             Name = "frmAdminSolPanel";
             Text = "frmAdminSolPanel";
             panel1.ResumeLayout(false);
@@ -394,6 +414,7 @@
             ((System.ComponentModel.ISupportInitialize)pbAnasayfa).EndInit();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbKategori).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -425,5 +446,6 @@
         private Panel panel9;
         private PictureBox pbKullaniciKayit;
         private Label lblKullaniciKayit;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

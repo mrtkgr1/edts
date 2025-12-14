@@ -29,6 +29,9 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmYoneticiAna));
             panel1 = new Panel();
+            panel5 = new Panel();
+            pbAnasayfa = new PictureBox();
+            lblAnasayfa = new Label();
             panel7 = new Panel();
             label6 = new Label();
             label5 = new Label();
@@ -50,6 +53,8 @@
             panel2 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1.SuspendLayout();
+            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbAnasayfa).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -68,6 +73,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkOliveGreen;
+            panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel8);
             panel1.Controls.Add(panel6);
@@ -79,6 +85,39 @@
             panel1.Size = new Size(339, 616);
             panel1.TabIndex = 0;
             // 
+            // panel5
+            // 
+            panel5.BackColor = Color.DarkOliveGreen;
+            panel5.Controls.Add(pbAnasayfa);
+            panel5.Controls.Add(lblAnasayfa);
+            panel5.Location = new Point(9, 200);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(257, 58);
+            panel5.TabIndex = 3;
+            panel5.Click += anaMet;
+            // 
+            // pbAnasayfa
+            // 
+            pbAnasayfa.BackgroundImage = (Image)resources.GetObject("pbAnasayfa.BackgroundImage");
+            pbAnasayfa.BackgroundImageLayout = ImageLayout.Zoom;
+            pbAnasayfa.Location = new Point(3, 0);
+            pbAnasayfa.Name = "pbAnasayfa";
+            pbAnasayfa.Size = new Size(62, 53);
+            pbAnasayfa.TabIndex = 2;
+            pbAnasayfa.TabStop = false;
+            pbAnasayfa.Click += pbAnasayfa_Click;
+            // 
+            // lblAnasayfa
+            // 
+            lblAnasayfa.AutoSize = true;
+            lblAnasayfa.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblAnasayfa.ForeColor = SystemColors.ControlLightLight;
+            lblAnasayfa.Location = new Point(73, 17);
+            lblAnasayfa.Name = "lblAnasayfa";
+            lblAnasayfa.Size = new Size(75, 21);
+            lblAnasayfa.TabIndex = 1;
+            lblAnasayfa.Text = "Anasayfa";
+            // 
             // panel7
             // 
             panel7.Controls.Add(label6);
@@ -87,7 +126,7 @@
             panel7.Controls.Add(pictureBox4);
             panel7.Controls.Add(pictureBox6);
             panel7.Controls.Add(label3);
-            panel7.Location = new Point(9, 381);
+            panel7.Location = new Point(9, 395);
             panel7.Name = "panel7";
             panel7.Size = new Size(259, 202);
             panel7.TabIndex = 1;
@@ -134,6 +173,7 @@
             pictureBox4.Size = new Size(65, 53);
             pictureBox4.TabIndex = 9;
             pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
             // 
             // pictureBox6
             // 
@@ -161,11 +201,11 @@
             // 
             panel8.Controls.Add(pictureBox3);
             panel8.Controls.Add(label2);
-            panel8.Location = new Point(9, 312);
+            panel8.Location = new Point(9, 326);
             panel8.Name = "panel8";
             panel8.Size = new Size(259, 63);
             panel8.TabIndex = 1;
-            panel8.Paint += panel8_Paint;
+            panel8.Click += raporMet;
             // 
             // pictureBox3
             // 
@@ -188,17 +228,16 @@
             label2.Size = new Size(118, 21);
             label2.TabIndex = 2;
             label2.Text = "Genel Raporlar";
-            label2.Click += label2_Click;
             // 
             // panel6
             // 
             panel6.Controls.Add(pictureBox5);
             panel6.Controls.Add(label1);
-            panel6.Location = new Point(9, 240);
+            panel6.Location = new Point(9, 264);
             panel6.Name = "panel6";
             panel6.Size = new Size(259, 63);
             panel6.TabIndex = 1;
-            panel6.Paint += panel6_Paint;
+            panel6.Click += urunMet;
             // 
             // pictureBox5
             // 
@@ -263,7 +302,7 @@
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(3, 8);
+            pictureBox2.Location = new Point(-3, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(65, 53);
             pictureBox2.TabIndex = 3;
@@ -305,6 +344,9 @@
             Name = "frmYoneticiAna";
             Text = "frmYoneticiAna";
             panel1.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbAnasayfa).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
@@ -348,5 +390,8 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox4;
         private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel5;
+        private PictureBox pbAnasayfa;
+        private Label lblAnasayfa;
     }
 }
