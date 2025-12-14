@@ -29,65 +29,66 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepoHome));
-            pictureBox2 = new PictureBox();
+            pbxKategori = new PictureBox();
             pictureBox1 = new PictureBox();
             label4 = new Label();
-            panel2 = new Panel();
-            pictureBox5 = new PictureBox();
-            label1 = new Label();
-            pictureBox3 = new PictureBox();
-            label2 = new Label();
+            pnlAnaIcerik = new Panel();
+            pbxAnasayfa = new PictureBox();
+            lblAnaSayfa = new Label();
+            pbxStokGiris = new PictureBox();
+            lblStokGiris = new Label();
             panel8 = new Panel();
             panel6 = new Panel();
             panel4 = new Panel();
             panel1 = new Panel();
-            panel3 = new Panel();
-            pictureBox6 = new PictureBox();
-            label3 = new Label();
-            panel5 = new Panel();
-            panel7 = new Panel();
-            pictureBox7 = new PictureBox();
-            label6 = new Label();
-            panel11 = new Panel();
-            pictureBox9 = new PictureBox();
-            label8 = new Label();
             panel9 = new Panel();
-            label5 = new Label();
-            label7 = new Label();
-            pictureBox4 = new PictureBox();
-            pictureBox8 = new PictureBox();
-            pictureBox10 = new PictureBox();
-            label9 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            lblDestek = new Label();
+            lblCikisYap = new Label();
+            pbxDestek = new PictureBox();
+            pbxCikisYap = new PictureBox();
+            pbxAyarlar = new PictureBox();
+            lblAyarlar = new Label();
+            panel11 = new Panel();
+            pbxRapor = new PictureBox();
+            lblRapor = new Label();
+            panel5 = new Panel();
+            pbxStokCikis = new PictureBox();
+            lblStokCikis = new Label();
+            panel7 = new Panel();
+            pbxStokListele = new PictureBox();
+            lblStokListele = new Label();
+            panel3 = new Panel();
+            ((System.ComponentModel.ISupportInitialize)pbxKategori).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxAnasayfa).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxStokGiris).BeginInit();
             panel8.SuspendLayout();
             panel6.SuspendLayout();
             panel4.SuspendLayout();
             panel1.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            panel5.SuspendLayout();
-            panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxDestek).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxCikisYap).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxAyarlar).BeginInit();
+            panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbxRapor).BeginInit();
+            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbxStokCikis).BeginInit();
+            panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbxStokListele).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
-            // pictureBox2
+            // pbxKategori
             // 
-            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(3, 9);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(74, 62);
-            pictureBox2.TabIndex = 3;
-            pictureBox2.TabStop = false;
+            pbxKategori.BackgroundImage = (Image)resources.GetObject("pbxKategori.BackgroundImage");
+            pbxKategori.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxKategori.Location = new Point(3, 9);
+            pbxKategori.Name = "pbxKategori";
+            pbxKategori.Size = new Size(74, 62);
+            pbxKategori.TabIndex = 3;
+            pbxKategori.TabStop = false;
+            pbxKategori.Click += pbxKategori_Click;
             // 
             // pictureBox1
             // 
@@ -109,60 +110,64 @@
             label4.TabIndex = 9;
             label4.Text = "Hoşgeldiniz,[KullanıcıAdı]";
             // 
-            // panel2
+            // pnlAnaIcerik
             // 
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(416, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(767, 858);
-            panel2.TabIndex = 3;
+            pnlAnaIcerik.Dock = DockStyle.Fill;
+            pnlAnaIcerik.Location = new Point(416, 0);
+            pnlAnaIcerik.Name = "pnlAnaIcerik";
+            pnlAnaIcerik.Size = new Size(767, 858);
+            pnlAnaIcerik.TabIndex = 3;
             // 
-            // pictureBox5
+            // pbxAnasayfa
             // 
-            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
-            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox5.Location = new Point(3, 3);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(74, 62);
-            pictureBox5.TabIndex = 6;
-            pictureBox5.TabStop = false;
+            pbxAnasayfa.BackgroundImage = (Image)resources.GetObject("pbxAnasayfa.BackgroundImage");
+            pbxAnasayfa.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxAnasayfa.Location = new Point(3, 3);
+            pbxAnasayfa.Name = "pbxAnasayfa";
+            pbxAnasayfa.Size = new Size(74, 62);
+            pbxAnasayfa.TabIndex = 6;
+            pbxAnasayfa.TabStop = false;
+            pbxAnasayfa.Click += pbxAnasayfa_Click;
             // 
-            // label1
+            // lblAnaSayfa
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(83, 24);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 23);
-            label1.TabIndex = 0;
-            label1.Text = "Anasayfa";
+            lblAnaSayfa.AutoSize = true;
+            lblAnaSayfa.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblAnaSayfa.ForeColor = SystemColors.ControlLightLight;
+            lblAnaSayfa.Location = new Point(83, 24);
+            lblAnaSayfa.Name = "lblAnaSayfa";
+            lblAnaSayfa.Size = new Size(80, 23);
+            lblAnaSayfa.TabIndex = 0;
+            lblAnaSayfa.Text = "Anasayfa";
+            lblAnaSayfa.Click += lblAnaSayfa_Click;
             // 
-            // pictureBox3
+            // pbxStokGiris
             // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(0, 3);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(74, 62);
-            pictureBox3.TabIndex = 4;
-            pictureBox3.TabStop = false;
+            pbxStokGiris.BackgroundImage = (Image)resources.GetObject("pbxStokGiris.BackgroundImage");
+            pbxStokGiris.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxStokGiris.Location = new Point(0, 3);
+            pbxStokGiris.Name = "pbxStokGiris";
+            pbxStokGiris.Size = new Size(74, 62);
+            pbxStokGiris.TabIndex = 4;
+            pbxStokGiris.TabStop = false;
+            pbxStokGiris.Click += pbxStokGiris_Click;
             // 
-            // label2
+            // lblStokGiris
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label2.ForeColor = SystemColors.ControlLightLight;
-            label2.Location = new Point(83, 25);
-            label2.Name = "label2";
-            label2.Size = new Size(82, 23);
-            label2.TabIndex = 2;
-            label2.Text = "Stok Giriş";
+            lblStokGiris.AutoSize = true;
+            lblStokGiris.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblStokGiris.ForeColor = SystemColors.ControlLightLight;
+            lblStokGiris.Location = new Point(83, 25);
+            lblStokGiris.Name = "lblStokGiris";
+            lblStokGiris.Size = new Size(82, 23);
+            lblStokGiris.TabIndex = 2;
+            lblStokGiris.Text = "Stok Giriş";
+            lblStokGiris.Click += lblStokGiris_Click;
             // 
             // panel8
             // 
-            panel8.Controls.Add(pictureBox3);
-            panel8.Controls.Add(label2);
+            panel8.Controls.Add(pbxStokGiris);
+            panel8.Controls.Add(lblStokGiris);
             panel8.Location = new Point(55, 326);
             panel8.Name = "panel8";
             panel8.Size = new Size(296, 74);
@@ -170,8 +175,8 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(pictureBox5);
-            panel6.Controls.Add(label1);
+            panel6.Controls.Add(pbxAnasayfa);
+            panel6.Controls.Add(lblAnaSayfa);
             panel6.Location = new Point(55, 246);
             panel6.Name = "panel6";
             panel6.Size = new Size(296, 74);
@@ -203,194 +208,206 @@
             panel1.Size = new Size(416, 858);
             panel1.TabIndex = 2;
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(pictureBox2);
-            panel3.Location = new Point(55, 166);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(296, 74);
-            panel3.TabIndex = 0;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
-            pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox6.Location = new Point(0, 3);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(74, 62);
-            pictureBox6.TabIndex = 9;
-            pictureBox6.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label3.ForeColor = SystemColors.ControlLightLight;
-            label3.Location = new Point(83, 25);
-            label3.Name = "label3";
-            label3.Size = new Size(84, 23);
-            label3.TabIndex = 10;
-            label3.Text = "Stok Çıkış";
-            // 
-            // panel5
-            // 
-            panel5.Controls.Add(pictureBox6);
-            panel5.Controls.Add(label3);
-            panel5.Location = new Point(55, 397);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(296, 74);
-            panel5.TabIndex = 5;
-            // 
-            // panel7
-            // 
-            panel7.Controls.Add(pictureBox7);
-            panel7.Controls.Add(label6);
-            panel7.Location = new Point(55, 477);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(296, 74);
-            panel7.TabIndex = 5;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
-            pictureBox7.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox7.Location = new Point(0, 3);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(74, 62);
-            pictureBox7.TabIndex = 4;
-            pictureBox7.TabStop = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label6.ForeColor = SystemColors.ControlLightLight;
-            label6.Location = new Point(83, 25);
-            label6.Name = "label6";
-            label6.Size = new Size(96, 23);
-            label6.TabIndex = 2;
-            label6.Text = "Stok Listele";
-            // 
-            // panel11
-            // 
-            panel11.Controls.Add(pictureBox9);
-            panel11.Controls.Add(label8);
-            panel11.Location = new Point(55, 557);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(296, 74);
-            panel11.TabIndex = 5;
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.BackgroundImage = (Image)resources.GetObject("pictureBox9.BackgroundImage");
-            pictureBox9.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox9.Location = new Point(0, 3);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(74, 62);
-            pictureBox9.TabIndex = 4;
-            pictureBox9.TabStop = false;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label8.ForeColor = SystemColors.ControlLightLight;
-            label8.Location = new Point(83, 22);
-            label8.Name = "label8";
-            label8.Size = new Size(56, 23);
-            label8.TabIndex = 2;
-            label8.Text = "Rapor";
-            // 
             // panel9
             // 
             panel9.BackColor = Color.DarkOliveGreen;
-            panel9.Controls.Add(label5);
-            panel9.Controls.Add(label7);
-            panel9.Controls.Add(pictureBox4);
-            panel9.Controls.Add(pictureBox8);
-            panel9.Controls.Add(pictureBox10);
-            panel9.Controls.Add(label9);
+            panel9.Controls.Add(lblDestek);
+            panel9.Controls.Add(lblCikisYap);
+            panel9.Controls.Add(pbxDestek);
+            panel9.Controls.Add(pbxCikisYap);
+            panel9.Controls.Add(pbxAyarlar);
+            panel9.Controls.Add(lblAyarlar);
             panel9.Location = new Point(55, 637);
             panel9.Name = "panel9";
             panel9.Size = new Size(296, 181);
             panel9.TabIndex = 6;
             // 
-            // label5
+            // lblDestek
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            label5.ForeColor = SystemColors.ControlLightLight;
-            label5.Location = new Point(80, 127);
-            label5.Name = "label5";
-            label5.Size = new Size(55, 20);
-            label5.TabIndex = 5;
-            label5.Text = "Destek";
+            lblDestek.AutoSize = true;
+            lblDestek.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblDestek.ForeColor = SystemColors.ControlLightLight;
+            lblDestek.Location = new Point(80, 127);
+            lblDestek.Name = "lblDestek";
+            lblDestek.Size = new Size(55, 20);
+            lblDestek.TabIndex = 5;
+            lblDestek.Text = "Destek";
+            lblDestek.Click += lblDestek_Click;
             // 
-            // label7
+            // lblCikisYap
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            label7.ForeColor = SystemColors.ControlLightLight;
-            label7.Location = new Point(77, 77);
-            label7.Name = "label7";
-            label7.Size = new Size(69, 20);
-            label7.TabIndex = 4;
-            label7.Text = "Çıkış Yap";
+            lblCikisYap.AutoSize = true;
+            lblCikisYap.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblCikisYap.ForeColor = SystemColors.ControlLightLight;
+            lblCikisYap.Location = new Point(77, 77);
+            lblCikisYap.Name = "lblCikisYap";
+            lblCikisYap.Size = new Size(69, 20);
+            lblCikisYap.TabIndex = 4;
+            lblCikisYap.Text = "Çıkış Yap";
+            lblCikisYap.Click += lblCikisYap_Click;
             // 
-            // pictureBox4
+            // pbxDestek
             // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(0, 117);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(74, 43);
-            pictureBox4.TabIndex = 3;
-            pictureBox4.TabStop = false;
+            pbxDestek.BackgroundImage = (Image)resources.GetObject("pbxDestek.BackgroundImage");
+            pbxDestek.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxDestek.Location = new Point(0, 117);
+            pbxDestek.Name = "pbxDestek";
+            pbxDestek.Size = new Size(74, 43);
+            pbxDestek.TabIndex = 3;
+            pbxDestek.TabStop = false;
+            pbxDestek.Click += pbxDestek_Click;
             // 
-            // pictureBox8
+            // pbxCikisYap
             // 
-            pictureBox8.BackgroundImage = (Image)resources.GetObject("pictureBox8.BackgroundImage");
-            pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox8.Location = new Point(0, 68);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(74, 43);
-            pictureBox8.TabIndex = 2;
-            pictureBox8.TabStop = false;
+            pbxCikisYap.BackgroundImage = (Image)resources.GetObject("pbxCikisYap.BackgroundImage");
+            pbxCikisYap.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxCikisYap.Location = new Point(0, 68);
+            pbxCikisYap.Name = "pbxCikisYap";
+            pbxCikisYap.Size = new Size(74, 43);
+            pbxCikisYap.TabIndex = 2;
+            pbxCikisYap.TabStop = false;
+            pbxCikisYap.Click += pbxCikisYap_Click;
             // 
-            // pictureBox10
+            // pbxAyarlar
             // 
-            pictureBox10.BackgroundImage = (Image)resources.GetObject("pictureBox10.BackgroundImage");
-            pictureBox10.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox10.Location = new Point(0, 0);
-            pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(74, 62);
-            pictureBox10.TabIndex = 1;
-            pictureBox10.TabStop = false;
+            pbxAyarlar.BackgroundImage = (Image)resources.GetObject("pbxAyarlar.BackgroundImage");
+            pbxAyarlar.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxAyarlar.Location = new Point(0, 0);
+            pbxAyarlar.Name = "pbxAyarlar";
+            pbxAyarlar.Size = new Size(74, 62);
+            pbxAyarlar.TabIndex = 1;
+            pbxAyarlar.TabStop = false;
+            pbxAyarlar.Click += pbxAyarlar_Click;
             // 
-            // label9
+            // lblAyarlar
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label9.ForeColor = SystemColors.ControlLightLight;
-            label9.Location = new Point(83, 16);
-            label9.Name = "label9";
-            label9.Size = new Size(64, 23);
-            label9.TabIndex = 0;
-            label9.Text = "Ayarlar";
+            lblAyarlar.AutoSize = true;
+            lblAyarlar.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblAyarlar.ForeColor = SystemColors.ControlLightLight;
+            lblAyarlar.Location = new Point(83, 16);
+            lblAyarlar.Name = "lblAyarlar";
+            lblAyarlar.Size = new Size(64, 23);
+            lblAyarlar.TabIndex = 0;
+            lblAyarlar.Text = "Ayarlar";
+            // 
+            // panel11
+            // 
+            panel11.Controls.Add(pbxRapor);
+            panel11.Controls.Add(lblRapor);
+            panel11.Location = new Point(55, 557);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(296, 74);
+            panel11.TabIndex = 5;
+            // 
+            // pbxRapor
+            // 
+            pbxRapor.BackgroundImage = (Image)resources.GetObject("pbxRapor.BackgroundImage");
+            pbxRapor.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxRapor.Location = new Point(0, 3);
+            pbxRapor.Name = "pbxRapor";
+            pbxRapor.Size = new Size(74, 62);
+            pbxRapor.TabIndex = 4;
+            pbxRapor.TabStop = false;
+            pbxRapor.Click += pbxRapor_Click;
+            // 
+            // lblRapor
+            // 
+            lblRapor.AutoSize = true;
+            lblRapor.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblRapor.ForeColor = SystemColors.ControlLightLight;
+            lblRapor.Location = new Point(83, 22);
+            lblRapor.Name = "lblRapor";
+            lblRapor.Size = new Size(56, 23);
+            lblRapor.TabIndex = 2;
+            lblRapor.Text = "Rapor";
+            lblRapor.Click += lblRapor_Click;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(pbxStokCikis);
+            panel5.Controls.Add(lblStokCikis);
+            panel5.Location = new Point(55, 397);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(296, 74);
+            panel5.TabIndex = 5;
+            // 
+            // pbxStokCikis
+            // 
+            pbxStokCikis.BackgroundImage = (Image)resources.GetObject("pbxStokCikis.BackgroundImage");
+            pbxStokCikis.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxStokCikis.Location = new Point(0, 3);
+            pbxStokCikis.Name = "pbxStokCikis";
+            pbxStokCikis.Size = new Size(74, 62);
+            pbxStokCikis.TabIndex = 9;
+            pbxStokCikis.TabStop = false;
+            pbxStokCikis.Click += pbxStokCikis_Click;
+            // 
+            // lblStokCikis
+            // 
+            lblStokCikis.AutoSize = true;
+            lblStokCikis.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblStokCikis.ForeColor = SystemColors.ControlLightLight;
+            lblStokCikis.Location = new Point(83, 25);
+            lblStokCikis.Name = "lblStokCikis";
+            lblStokCikis.Size = new Size(84, 23);
+            lblStokCikis.TabIndex = 10;
+            lblStokCikis.Text = "Stok Çıkış";
+            lblStokCikis.Click += lblStokCikis_Click;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(pbxStokListele);
+            panel7.Controls.Add(lblStokListele);
+            panel7.Location = new Point(55, 477);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(296, 74);
+            panel7.TabIndex = 5;
+            // 
+            // pbxStokListele
+            // 
+            pbxStokListele.BackgroundImage = (Image)resources.GetObject("pbxStokListele.BackgroundImage");
+            pbxStokListele.BackgroundImageLayout = ImageLayout.Zoom;
+            pbxStokListele.Location = new Point(0, 3);
+            pbxStokListele.Name = "pbxStokListele";
+            pbxStokListele.Size = new Size(74, 62);
+            pbxStokListele.TabIndex = 4;
+            pbxStokListele.TabStop = false;
+            pbxStokListele.Click += pbxStokListele_Click;
+            // 
+            // lblStokListele
+            // 
+            lblStokListele.AutoSize = true;
+            lblStokListele.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblStokListele.ForeColor = SystemColors.ControlLightLight;
+            lblStokListele.Location = new Point(83, 25);
+            lblStokListele.Name = "lblStokListele";
+            lblStokListele.Size = new Size(96, 23);
+            lblStokListele.TabIndex = 2;
+            lblStokListele.Text = "Stok Listele";
+            lblStokListele.Click += lblStokListele_Click;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(pbxKategori);
+            panel3.Location = new Point(55, 166);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(296, 74);
+            panel3.TabIndex = 0;
             // 
             // frmDepoHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1183, 858);
-            Controls.Add(panel2);
+            Controls.Add(pnlAnaIcerik);
             Controls.Add(panel1);
             Name = "frmDepoHome";
             Text = "frmDepoHome";
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            Load += frmDepoHome_Load;
+            ((System.ComponentModel.ISupportInitialize)pbxKategori).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxAnasayfa).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxStokGiris).EndInit();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
             panel6.ResumeLayout(false);
@@ -398,54 +415,54 @@
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel1.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            panel11.ResumeLayout(false);
-            panel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxDestek).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxCikisYap).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxAyarlar).EndInit();
+            panel11.ResumeLayout(false);
+            panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbxRapor).EndInit();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbxStokCikis).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbxStokListele).EndInit();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private PictureBox pictureBox2;
+        private PictureBox pbxKategori;
         private PictureBox pictureBox1;
         private Label label4;
-        private Panel panel2;
-        private PictureBox pictureBox5;
-        private Label label1;
-        private PictureBox pictureBox3;
-        private Label label2;
+        private Panel pnlAnaIcerik;
+        private PictureBox pbxAnasayfa;
+        private Label lblAnaSayfa;
+        private PictureBox pbxStokGiris;
+        private Label lblStokGiris;
         private Panel panel8;
         private Panel panel6;
         private Panel panel4;
         private Panel panel1;
         private Panel panel3;
         private Panel panel11;
-        private PictureBox pictureBox9;
-        private Label label8;
+        private PictureBox pbxRapor;
+        private Label lblRapor;
         private Panel panel5;
-        private PictureBox pictureBox6;
-        private Label label3;
+        private PictureBox pbxStokCikis;
+        private Label lblStokCikis;
         private Panel panel7;
-        private PictureBox pictureBox7;
-        private Label label6;
+        private PictureBox pbxStokListele;
+        private Label lblStokListele;
         private Panel panel9;
-        private Label label5;
-        private Label label7;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox8;
-        private PictureBox pictureBox10;
-        private Label label9;
+        private Label lblDestek;
+        private Label lblCikisYap;
+        private PictureBox pbxDestek;
+        private PictureBox pbxCikisYap;
+        private PictureBox pbxAyarlar;
+        private Label lblAyarlar;
     }
 }

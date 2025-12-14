@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace edts
 {
-    public partial class denemeform : Form
+    public partial class frmAnaSayfa : Form
     {
-        public denemeform()
+        public frmAnaSayfa()
         {
             InitializeComponent();
         }

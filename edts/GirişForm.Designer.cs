@@ -33,11 +33,10 @@ namespace edts
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GirişForm));
             panel1 = new Panel();
-            linkLabel1 = new LinkLabel();
+            linkSupport = new LinkLabel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            lblHata = new Label();
             txtSifre = new TextBox();
             txtKullaniciAdi = new TextBox();
             pictureBox3 = new PictureBox();
@@ -53,7 +52,7 @@ namespace edts
             // panel1
             // 
             panel1.BackColor = Color.DarkOliveGreen;
-            panel1.Controls.Add(linkLabel1);
+            panel1.Controls.Add(linkSupport);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Left;
@@ -62,17 +61,17 @@ namespace edts
             panel1.Size = new Size(576, 684);
             panel1.TabIndex = 0;
             // 
-            // linkLabel1
+            // linkSupport
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.LinkColor = Color.White;
-            linkLabel1.Location = new Point(184, 655);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(186, 20);
-            linkLabel1.TabIndex = 5;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Bir sorun mu yaşıyorsunuz?";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            linkSupport.AutoSize = true;
+            linkSupport.LinkColor = Color.White;
+            linkSupport.Location = new Point(184, 655);
+            linkSupport.Name = "linkSupport";
+            linkSupport.Size = new Size(186, 20);
+            linkSupport.TabIndex = 5;
+            linkSupport.TabStop = true;
+            linkSupport.Text = "Bir sorun mu yaşıyorsunuz?";
+            linkSupport.LinkClicked += linkLabel1_LinkClicked;
             // 
             // label1
             // 
@@ -97,7 +96,6 @@ namespace edts
             // 
             // panel2
             // 
-            panel2.Controls.Add(lblHata);
             panel2.Controls.Add(txtSifre);
             panel2.Controls.Add(txtKullaniciAdi);
             panel2.Controls.Add(pictureBox3);
@@ -108,16 +106,6 @@ namespace edts
             panel2.Name = "panel2";
             panel2.Size = new Size(645, 684);
             panel2.TabIndex = 1;
-            // 
-            // lblHata
-            // 
-            lblHata.AutoSize = true;
-            lblHata.ForeColor = Color.Crimson;
-            lblHata.Location = new Point(105, 365);
-            lblHata.Name = "lblHata";
-            lblHata.Size = new Size(210, 20);
-            lblHata.TabIndex = 5;
-            lblHata.Text = "*Kullanıcı Adı veya Şifre Hatalı";
             // 
             // txtSifre
             // 
@@ -197,9 +185,8 @@ namespace edts
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
         private Button btnGiris;
-        private LinkLabel linkLabel1;
+        private LinkLabel linkSupport;
         private TextBox txtSifre;
         private TextBox txtKullaniciAdi;
-        private Label lblHata;
     }
 }
