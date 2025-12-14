@@ -87,7 +87,7 @@
             panel7.Controls.Add(pictureBox4);
             panel7.Controls.Add(pictureBox6);
             panel7.Controls.Add(label3);
-            panel7.Location = new Point(12, 378);
+            panel7.Location = new Point(9, 381);
             panel7.Name = "panel7";
             panel7.Size = new Size(259, 202);
             panel7.TabIndex = 1;
@@ -161,7 +161,7 @@
             // 
             panel8.Controls.Add(pictureBox3);
             panel8.Controls.Add(label2);
-            panel8.Location = new Point(9, 309);
+            panel8.Location = new Point(9, 312);
             panel8.Name = "panel8";
             panel8.Size = new Size(259, 63);
             panel8.TabIndex = 1;
@@ -171,7 +171,7 @@
             // 
             pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
             pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(0, 3);
+            pictureBox3.Location = new Point(3, 7);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(65, 53);
             pictureBox3.TabIndex = 4;
@@ -204,7 +204,7 @@
             // 
             pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
             pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox5.Location = new Point(3, 3);
+            pictureBox5.Location = new Point(0, 10);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(65, 53);
             pictureBox5.TabIndex = 6;
@@ -276,7 +276,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(348, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(684, 616);
+            panel2.Size = new Size(1023, 616);
             panel2.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -292,15 +292,16 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1035, 622);
+            tableLayoutPanel1.Size = new Size(1374, 622);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // frmYoneticiAna
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1035, 622);
+            ClientSize = new Size(1374, 622);
             Controls.Add(tableLayoutPanel1);
+            MinimumSize = new Size(1200, 500);
             Name = "frmYoneticiAna";
             Text = "frmYoneticiAna";
             panel1.ResumeLayout(false);
