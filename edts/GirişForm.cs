@@ -66,30 +66,48 @@ namespace edts
 
             try
             {
-              
 
 
+                string girisHash = GuvenlikYardimcisi.HashSifre(sifre);
                 // Bağlantı dizesini App.config'den okur
                 string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
                 // 1. GÜNCELLENMİŞ SORGUNUZ: @pSifreHash parametresini kullanmalı
-                string sorgu = "SELECT RolID, AdSoyad FROM tblKullanicilar WHERE KullaniciAdi=@pKullaniciAdi AND SifreHash=@pSifreHash AND AktifMi=1";
+                string sorgu = "SELECT KullaniciID, RolID, AdSoyad FROM tblKullanicilar WHERE KullaniciAdi=@pKullaniciAdi AND SifreHash=@pSifreHash AND AktifMi=1";
 
                 using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
                 {
                     using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
                     {
                         komut.Parameters.AddWithValue("@pKullaniciAdi", kullaniciAdi);
-                        komut.Parameters.AddWithValue("@pSifreHash", sifre);
+                        // 🟢 KRİTİK DÜZELTME: SQL'e HASH'lenmiş değeri gönderiyoruz.
+                        komut.Parameters.AddWithValue("@pSifreHash", girisHash); // <-- Düzeltildi!
 
                         baglanti.Open();
                         SqlDataReader okuyucu = komut.ExecuteReader();
 
                         if (okuyucu.Read())
                         {
-                            int rolID = (int)okuyucu["RolID"];
+                                // Veritabanından kritik bilgileri al
+                                int kullaniciID = (int)okuyucu["KullaniciID"];
+                                int rolID = (int)okuyucu["RolID"];
+                                string adSoyad = okuyucu["AdSoyad"].ToString(); // Sorgunuzda AdSoyad çektiğiniz için kullanıyoruz
 
-                            AnaMenuForm anaForm = new AnaMenuForm(rolID);
+                                // 🟢 KRİTİK LOGLAMA ADIMI 1: Aktif Kullanıcı ID'sini global olarak yakalama
+                                AktifKullanici.ID = kullaniciID;
+                                AktifKullanici.KullaniciAdi = kullaniciAdi;
+
+                                // 🟢 KRİTİK LOGLAMA ADIMI 2: Giriş Başarısını Denetim Kaydına Ekleme
+                                int girisHareketID = 1; // Artık biliyoruz: GİRİŞ'in HareketID'si 1.
+
+                                VeritabaniYardimcisi.LogKaydet(
+                                    kullaniciID: AktifKullanici.ID,
+                                    hareketID: girisHareketID,
+                                    tabloAdi: "tblKullanicilar",
+                                    aciklama: adSoyad + " (" + kullaniciAdi + ") başarılı bir şekilde sisteme giriş yaptı."
+                                );
+
+                                AnaMenuForm anaForm = new AnaMenuForm(rolID);
 
                             // Göz yanılmasını engellemek için Giriş Formunu gizle
                             this.Visible = false;
@@ -123,8 +141,16 @@ namespace edts
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // 1. Yeni Destek/Yardım formunun bir örneğini oluştur
+            frmSupport supportForm = new frmSupport();
 
+            // 2. Destek formunu göster
+            supportForm.Show();
+
+            // Not: Bu formu (frmLogin) kapatmak/gizlemek isteyip istemediğiniz size kalmış.
+            // Eğer kullanıcının giriş yapana kadar Login ekranını görmesini istiyorsanız, 
+            // alttaki satırı KULLANMAYIN.
         }
-   
+
     }
 } 
