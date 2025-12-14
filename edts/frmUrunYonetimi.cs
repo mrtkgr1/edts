@@ -1,14 +1,16 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
-using System.Configuration;
 
 namespace edts {
     public partial class frmUrunYonetimi : Form {
@@ -17,7 +19,7 @@ namespace edts {
         public frmUrunYonetimi() {
             InitializeComponent();
             UrunListeGuncelle();
-                    KategorileriYukle();
+            KategorileriYukle();
 
         }
 
@@ -31,6 +33,7 @@ namespace edts {
                     KategoriListeGuncelle();
                     break;
                 case 2:
+                    TedarikcileriListele();
                     break;
                 default:
                     break;
@@ -223,7 +226,10 @@ namespace edts {
         private void btnKategoriGuncelle_Click(object sender, EventArgs e) {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
                 try {
-                    if (dataGridView1.SelectedRows.Count == 0) return;
+                    if (dataGridView1.SelectedRows.Count == 0) {
+                        MessageBox.Show("Kategori güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
+                        return;
+                    }
                     int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["KategoriID"].Value);
                     baglan.Open();
                     SqlCommand cmd = new SqlCommand("UPDATE tblKategoriler SET KategoriAd = @ad, KategoriAcıklama = @aciklama WHERE KategoriID = @id", baglan);
@@ -241,13 +247,17 @@ namespace edts {
         private void btnKategoriSil_Click(object sender, EventArgs e) {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
                 try {
+                    if (dataGridView1.SelectedRows.Count == 0) {
+                        MessageBox.Show("Kategori güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
+                        return;
+                    }
                     if (dataGridView1.SelectedRows.Count == 0) return;
                     int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["KategoriID"].Value);
                     baglan.Open();
                     SqlCommand cmd = new SqlCommand("DELETE FROM tblKategoriler WHERE KategoriID = @id", baglan);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteNonQuery();
-                }catch (SqlException sqlEx) when (sqlEx.Number == 547) {
+                } catch (SqlException sqlEx) when (sqlEx.Number == 547) {
                     MessageBox.Show("Bu kategori silinemedi çünkü bu kategoriye ait ürünler mevcut. Lütfen önce ilgili ürünleri silin veya başka bir kategoriye taşıyın.");
                 } catch (Exception ex) {
                     MessageBox.Show("Kategori silinemedi. Hata: " + ex.Message);
@@ -295,27 +305,191 @@ namespace edts {
             }
         }
 
+        //------------------- Tedarikçi İşlemleri ------------------//
+
+        private void btnTedarikciEkle_Click(object sender, EventArgs e) {
+            if (txtFirmaAdi.Text.Trim() == "") { 
+                MessageBox.Show("Firma Adı boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
+                try {
+                    baglan.Open();
+
+                    string sorgu = @"INSERT INTO tblTedarikciler 
+                             (TedarikciAd, VergiDairesi, VergiNo, IletisimTel) 
+                             VALUES (@Ad, @VD, @VN, @Tel)";
+
+                    SqlCommand cmd = new SqlCommand(sorgu, baglan);
+
+                    // Parametreleri ekliyoruz
+                    cmd.Parameters.AddWithValue("@Ad", txtFirmaAdi.Text);
+                    cmd.Parameters.AddWithValue("@VD", txtVergiDairesi.Text);
+                    cmd.Parameters.AddWithValue("@VN", txtVergiNo.Text);
+                    cmd.Parameters.AddWithValue("@Tel", txtTelefon.Text);
+
+                    cmd.ExecuteNonQuery();
+
+                } catch (Exception ex) {
+                    MessageBox.Show("Ekleme Hatası: " + ex.Message);
+                }
+            }
+            TedarikcileriListele();
+        }
+
+        private void btnTedarikciGuncelle_Click(object sender, EventArgs e) {
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
+                try {
+                    baglan.Open();
+
+                    if (dataGridView1.SelectedRows.Count == 0) {
+                        MessageBox.Show("Tedarikçi güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
+                        return;
+                    }
+                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["TedarikciID"].Value);
+
+                    string sorgu = @"UPDATE tblTedarikciler 
+                             SET TedarikciAd = @Ad, 
+                                 VergiDairesi = @VD, 
+                                 VergiNo = @VN, 
+                                 IletisimTel = @Tel 
+                             WHERE TedarikciID = @ID";
+
+                    SqlCommand cmd = new SqlCommand(sorgu, baglan);
+
+                    cmd.Parameters.AddWithValue("@ID", id); 
+                    cmd.Parameters.AddWithValue("@Ad", txtFirmaAdi.Text);
+                    cmd.Parameters.AddWithValue("@VD", txtVergiDairesi.Text);
+                    cmd.Parameters.AddWithValue("@VN", txtVergiNo.Text);
+                    cmd.Parameters.AddWithValue("@Tel", txtTelefon.Text);
+
+                    cmd.ExecuteNonQuery();
+
+                } catch (Exception ex) {
+                    MessageBox.Show("Güncelleme Hatası: " + ex.Message);
+                }
+            }
+            TedarikcileriListele();
+        }
+
+        private void btnTedarikciSil_Click(object sender, EventArgs e) {
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
+                try {
+                    baglan.Open();
+
+                    if (dataGridView1.SelectedRows.Count == 0) {
+                        MessageBox.Show("Tedarikçi güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
+                        return;
+                    }
+                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["TedarikciID"].Value);
+
+                    string sorgu = "DELETE FROM tblTedarikciler WHERE TedarikciID = @ID";
+
+                    SqlCommand cmd = new SqlCommand(sorgu, baglan);
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Tedarikçi silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } catch (SqlException ex) {
+                    if (ex.Number == 547) {
+                        MessageBox.Show("Bu tedarikçiyi silemezsiniz çünkü sistemde kayıtlı ürünleri var. Önce ürünleri silmeli veya başka tedarikçiye aktarmalısınız.", "İlişki Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    } else {
+                        MessageBox.Show("Silme Hatası: " + ex.Message);
+                    }
+                }
+            }
+            TedarikcileriListele();
+        }
+
+        public void TedarikcileriListele() {
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
+                try {
+                    baglan.Open();
+
+                    string sorgu = "SELECT TedarikciID, TedarikciAd, VergiDairesi, VergiNo, IletisimTel FROM tblTedarikciler";
+
+                    SqlDataAdapter da = new SqlDataAdapter(sorgu, baglan);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dataGridView1.DataSource = dt;
+
+                    // --- KOZMETİK AYARLAR ---
+
+                    if (dataGridView1.Columns["TedarikciID"] != null)
+                        dataGridView1.Columns["TedarikciID"].Visible = false;
+
+                    dataGridView1.Columns["TedarikciAd"].HeaderText = "Firma Adı";
+                    dataGridView1.Columns["VergiDairesi"].HeaderText = "Vergi Dairesi";
+                    dataGridView1.Columns["VergiNo"].HeaderText = "Vergi No";
+                    dataGridView1.Columns["IletisimTel"].HeaderText = "Telefon";
+
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                } catch (Exception ex) {
+                    MessageBox.Show("Listeleme Hatası: " + ex.Message);
+                }
+            }
+        }
+
+        private void TedarikciBigiAl(int id, out string ad, out string verigiNo, out string vergiDairesi, out string tel) {
+            ad = string.Empty;
+            verigiNo = string.Empty;
+            vergiDairesi = string.Empty;
+            tel = string.Empty;
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
+                try {
+                    baglan.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT TedarikciAd, VergiDairesi, VergiNo, IletisimTel FROM tblTedarikciler WHERE TedarikciID = @id", baglan);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (SqlDataReader dr = cmd.ExecuteReader()) {
+                        if (dr.Read()) {
+                            ad = dr["TedarikciAd"].ToString();
+                            vergiDairesi = dr["VergiDairesi"].ToString();
+                            verigiNo = dr["VergiNo"].ToString();
+                            tel = dr["IletisimTel"].ToString();
+                        }
+                    }
+                } catch (Exception ex) {
+                    MessageBox.Show("Kategoriler yüklenirken hata: " + ex.Message);
+                }
+            }
+        }
+
         //------------------- DataGridView Seçim İşlemleri ------------------//
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e) {
             switch (tabControl1.SelectedIndex) {
                 case 0:
-                    if (e.RowIndex >= 0) { 
+                    if (e.RowIndex >= 0) {
                         UrunBilgileriniGetir(Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["UrunID"].Value));
                     }
                     break;
                 case 1:
-                    if (e.RowIndex>=0) {
-                        string ad = "", aciklama="";
+                    if (e.RowIndex >= 0) {
+                        string ad = "", aciklama = "";
                         kategoriBigiAl(Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["KategoriID"].Value), out ad, out aciklama);
                         txtKategoriAdi.Text = ad;
                         txtKategoriAciklama.Text = aciklama;
                     }
                     break;
                 case 2:
+                    if (e.RowIndex >= 0) {
+                        string ad = "", aciklama = "";
+                        TedarikciBigiAl(Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["TedarikciID"].Value), out ad, out string vergiNo, out string vergiDairesi, out string tel);
+                        txtFirmaAdi.Text = ad;
+                        txtVergiDairesi.Text = vergiDairesi;
+                        txtVergiNo.Text = vergiNo;
+                        txtTelefon.Text = tel;
+                    }
                     break;
                 default:
                     break;
             }
+        }
+
+        private void lblAdres_Click(object sender, EventArgs e) {
+
         }
     }
 }

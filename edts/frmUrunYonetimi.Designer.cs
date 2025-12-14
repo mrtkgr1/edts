@@ -56,9 +56,9 @@
             btnTedarikciSil = new Button();
             btnTedarikciKaydet = new Button();
             lblAdres = new Label();
-            textBox4 = new TextBox();
             txtTelefon = new TextBox();
-            txtYetkiliKisi = new TextBox();
+            txtVergiDairesi = new TextBox();
+            txtVergiNo = new TextBox();
             txtFirmaAdi = new TextBox();
             lblTelefon = new Label();
             lblYetkiliKisi = new Label();
@@ -279,7 +279,7 @@
             btnKategoriSil.FlatAppearance.BorderSize = 0;
             btnKategoriSil.FlatStyle = FlatStyle.Flat;
             btnKategoriSil.ForeColor = SystemColors.ControlLightLight;
-            btnKategoriSil.Location = new Point(130, 213);
+            btnKategoriSil.Location = new Point(130, 276);
             btnKategoriSil.Name = "btnKategoriSil";
             btnKategoriSil.Size = new Size(82, 25);
             btnKategoriSil.TabIndex = 6;
@@ -293,7 +293,7 @@
             btnKategoriGuncelle.FlatAppearance.BorderSize = 0;
             btnKategoriGuncelle.FlatStyle = FlatStyle.Flat;
             btnKategoriGuncelle.ForeColor = SystemColors.ControlLightLight;
-            btnKategoriGuncelle.Location = new Point(220, 184);
+            btnKategoriGuncelle.Location = new Point(218, 232);
             btnKategoriGuncelle.Name = "btnKategoriGuncelle";
             btnKategoriGuncelle.Size = new Size(82, 25);
             btnKategoriGuncelle.TabIndex = 5;
@@ -307,7 +307,7 @@
             btnKategoriKaydet.FlatAppearance.BorderSize = 0;
             btnKategoriKaydet.FlatStyle = FlatStyle.Flat;
             btnKategoriKaydet.ForeColor = SystemColors.ControlLightLight;
-            btnKategoriKaydet.Location = new Point(130, 184);
+            btnKategoriKaydet.Location = new Point(130, 232);
             btnKategoriKaydet.Name = "btnKategoriKaydet";
             btnKategoriKaydet.Size = new Size(82, 25);
             btnKategoriKaydet.TabIndex = 4;
@@ -318,8 +318,9 @@
             // txtKategoriAciklama
             // 
             txtKategoriAciklama.Location = new Point(130, 109);
+            txtKategoriAciklama.Multiline = true;
             txtKategoriAciklama.Name = "txtKategoriAciklama";
-            txtKategoriAciklama.Size = new Size(165, 25);
+            txtKategoriAciklama.Size = new Size(165, 90);
             txtKategoriAciklama.TabIndex = 3;
             // 
             // lblAciklama
@@ -358,9 +359,9 @@
             tabPage3.Controls.Add(btnTedarikciSil);
             tabPage3.Controls.Add(btnTedarikciKaydet);
             tabPage3.Controls.Add(lblAdres);
-            tabPage3.Controls.Add(textBox4);
             tabPage3.Controls.Add(txtTelefon);
-            tabPage3.Controls.Add(txtYetkiliKisi);
+            tabPage3.Controls.Add(txtVergiDairesi);
+            tabPage3.Controls.Add(txtVergiNo);
             tabPage3.Controls.Add(txtFirmaAdi);
             tabPage3.Controls.Add(lblTelefon);
             tabPage3.Controls.Add(lblYetkiliKisi);
@@ -381,6 +382,7 @@
             btnTedarikciGuncelle.TabIndex = 10;
             btnTedarikciGuncelle.Text = "Güncelle";
             btnTedarikciGuncelle.UseVisualStyleBackColor = true;
+            btnTedarikciGuncelle.Click += btnTedarikciGuncelle_Click;
             // 
             // btnTedarikciSil
             // 
@@ -391,6 +393,7 @@
             btnTedarikciSil.TabIndex = 9;
             btnTedarikciSil.Text = "Sil";
             btnTedarikciSil.UseVisualStyleBackColor = true;
+            btnTedarikciSil.Click += btnTedarikciSil_Click;
             // 
             // btnTedarikciKaydet
             // 
@@ -401,43 +404,45 @@
             btnTedarikciKaydet.TabIndex = 8;
             btnTedarikciKaydet.Text = "Kaydet";
             btnTedarikciKaydet.UseVisualStyleBackColor = true;
+            btnTedarikciKaydet.Click += btnTedarikciEkle_Click;
             // 
             // lblAdres
             // 
             lblAdres.AutoSize = true;
             lblAdres.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblAdres.ForeColor = SystemColors.ControlLightLight;
-            lblAdres.Location = new Point(35, 184);
+            lblAdres.Location = new Point(35, 185);
             lblAdres.Name = "lblAdres";
-            lblAdres.Size = new Size(61, 21);
+            lblAdres.Size = new Size(72, 21);
             lblAdres.TabIndex = 7;
-            lblAdres.Text = "Adres :";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(124, 178);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(110, 30);
-            textBox4.TabIndex = 6;
+            lblAdres.Text = "Telefon: ";
+            lblAdres.Click += lblAdres_Click;
             // 
             // txtTelefon
             // 
-            txtTelefon.Location = new Point(124, 132);
+            txtTelefon.Location = new Point(142, 184);
+            txtTelefon.Multiline = true;
             txtTelefon.Name = "txtTelefon";
-            txtTelefon.Size = new Size(110, 25);
-            txtTelefon.TabIndex = 5;
+            txtTelefon.Size = new Size(110, 30);
+            txtTelefon.TabIndex = 6;
             // 
-            // txtYetkiliKisi
+            // txtVergiDairesi
             // 
-            txtYetkiliKisi.Location = new Point(124, 85);
-            txtYetkiliKisi.Name = "txtYetkiliKisi";
-            txtYetkiliKisi.Size = new Size(110, 25);
-            txtYetkiliKisi.TabIndex = 4;
+            txtVergiDairesi.Location = new Point(142, 132);
+            txtVergiDairesi.Name = "txtVergiDairesi";
+            txtVergiDairesi.Size = new Size(110, 25);
+            txtVergiDairesi.TabIndex = 5;
+            // 
+            // txtVergiNo
+            // 
+            txtVergiNo.Location = new Point(142, 87);
+            txtVergiNo.Name = "txtVergiNo";
+            txtVergiNo.Size = new Size(110, 25);
+            txtVergiNo.TabIndex = 4;
             // 
             // txtFirmaAdi
             // 
-            txtFirmaAdi.Location = new Point(124, 42);
+            txtFirmaAdi.Location = new Point(142, 46);
             txtFirmaAdi.Name = "txtFirmaAdi";
             txtFirmaAdi.Size = new Size(110, 25);
             txtFirmaAdi.TabIndex = 3;
@@ -447,22 +452,22 @@
             lblTelefon.AutoSize = true;
             lblTelefon.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblTelefon.ForeColor = SystemColors.ControlLightLight;
-            lblTelefon.Location = new Point(35, 138);
+            lblTelefon.Location = new Point(35, 133);
             lblTelefon.Name = "lblTelefon";
-            lblTelefon.Size = new Size(68, 21);
+            lblTelefon.Size = new Size(105, 21);
             lblTelefon.TabIndex = 2;
-            lblTelefon.Text = "Telefon:";
+            lblTelefon.Text = "Vergi Dairesi:";
             // 
             // lblYetkiliKisi
             // 
             lblYetkiliKisi.AutoSize = true;
             lblYetkiliKisi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblYetkiliKisi.ForeColor = SystemColors.ControlLightLight;
-            lblYetkiliKisi.Location = new Point(35, 91);
+            lblYetkiliKisi.Location = new Point(35, 88);
             lblYetkiliKisi.Name = "lblYetkiliKisi";
-            lblYetkiliKisi.Size = new Size(82, 21);
+            lblYetkiliKisi.Size = new Size(78, 21);
             lblYetkiliKisi.TabIndex = 1;
-            lblYetkiliKisi.Text = "Yetkili Kişi";
+            lblYetkiliKisi.Text = "Vergi No:";
             // 
             // lblFirmaAdi
             // 
@@ -567,9 +572,9 @@
         private Label lblKategoriAdi;
         private Button btnKategoriSil;
         private Label lblAdres;
-        private TextBox textBox4;
         private TextBox txtTelefon;
-        private TextBox txtYetkiliKisi;
+        private TextBox txtVergiDairesi;
+        private TextBox txtVergiNo;
         private TextBox txtFirmaAdi;
         private Label lblTelefon;
         private Label lblYetkiliKisi;

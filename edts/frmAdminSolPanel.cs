@@ -83,20 +83,13 @@ namespace edts
 
         private void pbKategori_Click(object sender, EventArgs e)
         {
-            if (isMenuAcik)
-            {
-                // 1. MENÜYÜ KAPAT
-                this.Width = KapaliMenuGenislik;
-                LabellariGizle();
-                isMenuAcik = false; // Durumu Kapatıldı olarak ayarla
-
-            }
-            else
-            {
-                // 2. MENÜYÜ AÇ
-                LabellariGoster();
-                this.Width = AcikMenuGenislik;
-                isMenuAcik = true; // Durumu Açık olarak ayarla
+            frmAdminAnaMenu? anaForm = GetParentAdminForm();
+            if (anaForm != null) {
+                if (anaForm.SolPanelDurumunuDegistir()) {
+                    LabellariGoster();
+                } else {
+                    LabellariGizle();
+                }
             }
         }
         private void LabellariGizle()
@@ -110,8 +103,8 @@ namespace edts
             lblSupport.Visible = false;
             lblAyarlar.Visible = false;
             // Opsiyonel: "Hoşgeldiniz" ve kullanıcı adı etiketlerini de gizleyebilirsiniz
-            // lblHosgeldiniz.Visible = false; 
-            // lblKullaniciAdi.Visible = false;
+            label1.Visible = false; 
+            pictureBox1.Visible = false;
         }
 
         private void LabellariGoster()
@@ -123,10 +116,10 @@ namespace edts
             lblKullaniciKayit.Visible = true;
             lblCikis.Visible = true;
             lblSupport.Visible = true;
-            lblAyarlar.Visible = true;  
+            lblAyarlar.Visible = true;
             // Opsiyonel: "Hoşgeldiniz" ve kullanıcı adı etiketlerini de gösterin
-            // lblHosgeldiniz.Visible = true; 
-            // lblKullaniciAdi.Visible = true;
+            label1.Visible = true;
+            pictureBox1.Visible = true;
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)

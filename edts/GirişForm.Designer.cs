@@ -29,8 +29,7 @@ namespace edts
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GirişForm));
             panel1 = new Panel();
             linkSupport = new LinkLabel();
@@ -58,18 +57,17 @@ namespace edts
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(576, 684);
+            panel1.Size = new Size(504, 581);
             panel1.TabIndex = 0;
             // 
             // linkSupport
             // 
             linkSupport.AutoSize = true;
             linkSupport.LinkColor = Color.White;
-            linkSupport.Location = new Point(184, 655);
+            linkSupport.Location = new Point(161, 557);
             linkSupport.Name = "linkSupport";
-            linkSupport.Size = new Size(186, 20);
-            linkSupport.TabIndex = 5;
-            linkSupport.TabStop = true;
+            linkSupport.Size = new Size(166, 17);
+            linkSupport.TabIndex = 6;
             linkSupport.Text = "Bir sorun mu yaşıyorsunuz?";
             linkSupport.LinkClicked += linkLabel1_LinkClicked;
             // 
@@ -78,9 +76,9 @@ namespace edts
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(119, 306);
+            label1.Location = new Point(104, 260);
             label1.Name = "label1";
-            label1.Size = new Size(325, 31);
+            label1.Size = new Size(298, 30);
             label1.TabIndex = 1;
             label1.Text = "Envanter Depo Takip Sistemi ";
             // 
@@ -88,9 +86,9 @@ namespace edts
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(171, 139);
+            pictureBox1.Location = new Point(150, 118);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(199, 146);
+            pictureBox1.Size = new Size(174, 124);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -102,33 +100,33 @@ namespace edts
             panel2.Controls.Add(pictureBox2);
             panel2.Controls.Add(btnGiris);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(576, 0);
+            panel2.Location = new Point(504, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(645, 684);
+            panel2.Size = new Size(564, 581);
             panel2.TabIndex = 1;
             // 
             // txtSifre
             // 
-            txtSifre.Location = new Point(240, 290);
+            txtSifre.Location = new Point(210, 246);
             txtSifre.Name = "txtSifre";
             txtSifre.PasswordChar = '*';
-            txtSifre.Size = new Size(165, 27);
+            txtSifre.Size = new Size(145, 25);
             txtSifre.TabIndex = 4;
             // 
             // txtKullaniciAdi
             // 
-            txtKullaniciAdi.Location = new Point(240, 210);
+            txtKullaniciAdi.Location = new Point(210, 178);
             txtKullaniciAdi.Name = "txtKullaniciAdi";
-            txtKullaniciAdi.Size = new Size(165, 27);
+            txtKullaniciAdi.Size = new Size(145, 25);
             txtKullaniciAdi.TabIndex = 3;
             // 
             // pictureBox3
             // 
             pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
             pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(144, 278);
+            pictureBox3.Location = new Point(126, 236);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(90, 50);
+            pictureBox3.Size = new Size(79, 42);
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
@@ -136,9 +134,9 @@ namespace edts
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(144, 197);
+            pictureBox2.Location = new Point(126, 167);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(90, 51);
+            pictureBox2.Size = new Size(79, 43);
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
@@ -149,19 +147,19 @@ namespace edts
             btnGiris.FlatStyle = FlatStyle.Flat;
             btnGiris.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             btnGiris.ForeColor = SystemColors.ControlLightLight;
-            btnGiris.Location = new Point(324, 352);
+            btnGiris.Location = new Point(284, 299);
             btnGiris.Name = "btnGiris";
-            btnGiris.Size = new Size(81, 44);
-            btnGiris.TabIndex = 0;
+            btnGiris.Size = new Size(71, 37);
+            btnGiris.TabIndex = 5;
             btnGiris.Text = "Giriş";
             btnGiris.UseVisualStyleBackColor = false;
             btnGiris.Click += btnGiris_Click;
             // 
             // GirişForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1221, 684);
+            ClientSize = new Size(1068, 581);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "GirişForm";

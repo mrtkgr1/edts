@@ -11,15 +11,21 @@ using System.Windows.Forms;
 namespace edts
 {
     public partial class frmYoneticiAna : Form {
+        private const int CikisHareketID = 2;
+        private bool isMenuAcik = true;
         public frmYoneticiAna() {
             InitializeComponent();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e) {
-            if (tableLayoutPanel1.ColumnStyles[0].Width > 150) {
+            if (isMenuAcik) {
                 tableLayoutPanel1.ColumnStyles[0].Width = 90;
+                isMenuAcik = false;
+                label4.Visible = false;
             } else {
                 tableLayoutPanel1.ColumnStyles[0].Width = 300;
+                isMenuAcik = true;
+                label4.Visible = true;
             }
         }
 
@@ -40,7 +46,7 @@ namespace edts
         }
 
         private void pictureBox6_Click(object sender, EventArgs e) {
-            SayfaGoster(new frmAdminSistemAyarlari());
+            //SayfaGoster(new frmAdminSistemAyarlari());
         }
 
         private void pictureBox7_Click(object sender, EventArgs e) {
@@ -51,20 +57,44 @@ namespace edts
             SayfaGoster(new frmUrunYonetimi());
         }
 
-        private void panel6_Paint(object sender, PaintEventArgs e) {
+        private void pictureBox3_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmGenelRaporlar());
+        }
+
+        private void pbAnasayfa_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmYoneticiHomeIcerik());
+        }
+
+        private void anaMet(object sender, EventArgs e) {
+            SayfaGoster(new frmYoneticiHomeIcerik());
+        }
+
+        private void urunMet(object sender, EventArgs e) {
             SayfaGoster(new frmUrunYonetimi());
         }
 
-        private void label2_Click(object sender, EventArgs e) {
-
-        }
-
-        private void panel8_Paint(object sender, PaintEventArgs e) {
+        private void raporMet(object sender, EventArgs e) {
             SayfaGoster(new frmGenelRaporlar());
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e) {
-            SayfaGoster(new frmGenelRaporlar());
+        private void pictureBox4_Click(object sender, EventArgs e) {
+            try {
+                VeritabaniYardimcisi.LogKaydet(
+                    kullaniciID: AktifKullanici.ID,
+                    hareketID: CikisHareketID,
+                    tabloAdi: "tblKullanicilar",
+                    aciklama: AktifKullanici.KullaniciAdi + " ikon üzerinden çıkış yaptı."
+                );
+
+                AktifKullanici.ID = 0;
+                AktifKullanici.KullaniciAdi = "";
+            } catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine("Çıkış logu kaydedilirken hata oluştu: " + ex.Message);
+            }
+
+            this.Close();
+            edts.GirişForm girisFormu = new edts.GirişForm();
+            girisFormu.Show();
         }
     }
 }
