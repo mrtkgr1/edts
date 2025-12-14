@@ -65,6 +65,7 @@
             lblFirmaAdi = new Label();
             panel2 = new Panel();
             dataGridView1 = new DataGridView();
+            tableLayoutPanel1 = new TableLayoutPanel();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -72,6 +73,7 @@
             tabPage3.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -80,8 +82,9 @@
             panel1.Controls.Add(tabControl1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(431, 516);
+            panel1.Size = new Size(390, 516);
             panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -474,31 +477,51 @@
             // 
             // panel2
             // 
+            panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel2.Controls.Add(dataGridView1);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(431, 0);
+            panel2.Location = new Point(390, 0);
+            panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(512, 516);
+            panel2.Size = new Size(553, 516);
             panel2.TabIndex = 1;
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(512, 516);
+            dataGridView1.Size = new Size(553, 516);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 390F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.Controls.Add(panel2, 1, 0);
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(943, 516);
+            tableLayoutPanel1.TabIndex = 1;
             // 
             // frmUrunYonetimi
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(943, 516);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(tableLayoutPanel1);
             Name = "frmUrunYonetimi";
             Text = "frmUrunYonetimi";
             panel1.ResumeLayout(false);
@@ -511,6 +534,7 @@
             tabPage3.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -554,5 +578,6 @@
         private Button btnTedarikciGuncelle;
         private Button btnTedarikciSil;
         private Button btnTedarikciKaydet;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

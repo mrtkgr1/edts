@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdminSolPanel));
             panel1 = new Panel();
             panel9 = new Panel();
@@ -87,7 +86,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(361, 772);
+            panel1.Size = new Size(316, 656);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -95,10 +94,11 @@
             // 
             panel9.Controls.Add(pbKullaniciKayit);
             panel9.Controls.Add(lblKullaniciKayit);
-            panel9.Location = new Point(0, 468);
+            panel9.Location = new Point(0, 398);
             panel9.Name = "panel9";
-            panel9.Size = new Size(294, 67);
+            panel9.Size = new Size(257, 57);
             panel9.TabIndex = 4;
+            panel9.Paint += panel9_Paint;
             // 
             // pbKullaniciKayit
             // 
@@ -106,7 +106,7 @@
             pbKullaniciKayit.BackgroundImageLayout = ImageLayout.Zoom;
             pbKullaniciKayit.Location = new Point(0, 0);
             pbKullaniciKayit.Name = "pbKullaniciKayit";
-            pbKullaniciKayit.Size = new Size(125, 62);
+            pbKullaniciKayit.Size = new Size(109, 53);
             pbKullaniciKayit.TabIndex = 1;
             pbKullaniciKayit.TabStop = false;
             pbKullaniciKayit.Click += pbKullaniciKayit_Click;
@@ -116,9 +116,9 @@
             lblKullaniciKayit.AutoSize = true;
             lblKullaniciKayit.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblKullaniciKayit.ForeColor = SystemColors.ControlLightLight;
-            lblKullaniciKayit.Location = new Point(131, 20);
+            lblKullaniciKayit.Location = new Point(115, 17);
             lblKullaniciKayit.Name = "lblKullaniciKayit";
-            lblKullaniciKayit.Size = new Size(116, 23);
+            lblKullaniciKayit.Size = new Size(110, 21);
             lblKullaniciKayit.TabIndex = 0;
             lblKullaniciKayit.Text = "Kullanıcı Kayıt";
             lblKullaniciKayit.Click += lblKullaniciKayit_Click;
@@ -127,9 +127,9 @@
             // 
             panel8.Controls.Add(pbDenetimKayitlari);
             panel8.Controls.Add(lblDenetimKayitlari);
-            panel8.Location = new Point(0, 395);
+            panel8.Location = new Point(0, 336);
             panel8.Name = "panel8";
-            panel8.Size = new Size(294, 67);
+            panel8.Size = new Size(257, 57);
             panel8.TabIndex = 3;
             // 
             // pbDenetimKayitlari
@@ -138,7 +138,7 @@
             pbDenetimKayitlari.BackgroundImageLayout = ImageLayout.Zoom;
             pbDenetimKayitlari.Location = new Point(0, 0);
             pbDenetimKayitlari.Name = "pbDenetimKayitlari";
-            pbDenetimKayitlari.Size = new Size(125, 62);
+            pbDenetimKayitlari.Size = new Size(109, 53);
             pbDenetimKayitlari.TabIndex = 1;
             pbDenetimKayitlari.TabStop = false;
             pbDenetimKayitlari.Click += pbDenetimKayitlari_Click;
@@ -148,9 +148,9 @@
             lblDenetimKayitlari.AutoSize = true;
             lblDenetimKayitlari.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblDenetimKayitlari.ForeColor = SystemColors.ControlLightLight;
-            lblDenetimKayitlari.Location = new Point(131, 20);
+            lblDenetimKayitlari.Location = new Point(115, 17);
             lblDenetimKayitlari.Name = "lblDenetimKayitlari";
-            lblDenetimKayitlari.Size = new Size(141, 23);
+            lblDenetimKayitlari.Size = new Size(134, 21);
             lblDenetimKayitlari.TabIndex = 0;
             lblDenetimKayitlari.Text = "Denetim Kayıtları";
             lblDenetimKayitlari.Click += lblDenetimKayitlari_Click;
@@ -160,18 +160,18 @@
             panel7.BackColor = Color.DarkOliveGreen;
             panel7.Controls.Add(pictureBox1);
             panel7.Controls.Add(label1);
-            panel7.Location = new Point(0, 12);
+            panel7.Location = new Point(0, 10);
             panel7.Name = "panel7";
-            panel7.Size = new Size(294, 157);
+            panel7.Size = new Size(257, 133);
             panel7.TabIndex = 2;
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(63, 36);
+            pictureBox1.Location = new Point(55, 31);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(148, 88);
+            pictureBox1.Size = new Size(130, 75);
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
@@ -180,9 +180,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(34, 127);
+            label1.Location = new Point(30, 108);
             label1.Name = "label1";
-            label1.Size = new Size(208, 23);
+            label1.Size = new Size(199, 21);
             label1.TabIndex = 3;
             label1.Text = "Hoşgeldiniz,[Kullanıcı Adı]";
             // 
@@ -195,9 +195,9 @@
             panel6.Controls.Add(pbCikisYap);
             panel6.Controls.Add(pictureBox5);
             panel6.Controls.Add(lblAyarlar);
-            panel6.Location = new Point(0, 541);
+            panel6.Location = new Point(0, 460);
             panel6.Name = "panel6";
-            panel6.Size = new Size(294, 181);
+            panel6.Size = new Size(257, 154);
             panel6.TabIndex = 2;
             // 
             // lblSupport
@@ -205,9 +205,9 @@
             lblSupport.AutoSize = true;
             lblSupport.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblSupport.ForeColor = SystemColors.ControlLightLight;
-            lblSupport.Location = new Point(138, 142);
+            lblSupport.Location = new Point(121, 121);
             lblSupport.Name = "lblSupport";
-            lblSupport.Size = new Size(62, 23);
+            lblSupport.Size = new Size(60, 21);
             lblSupport.TabIndex = 5;
             lblSupport.Text = "Destek";
             lblSupport.Click += lblDestek_Click;
@@ -217,9 +217,9 @@
             lblCikis.AutoSize = true;
             lblCikis.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblCikis.ForeColor = SystemColors.ControlLightLight;
-            lblCikis.Location = new Point(134, 93);
+            lblCikis.Location = new Point(117, 79);
             lblCikis.Name = "lblCikis";
-            lblCikis.Size = new Size(77, 23);
+            lblCikis.Size = new Size(73, 21);
             lblCikis.TabIndex = 4;
             lblCikis.Text = "Çıkış Yap";
             lblCikis.Click += label5_Click;
@@ -228,9 +228,9 @@
             // 
             pbDestek.BackgroundImage = (Image)resources.GetObject("pbDestek.BackgroundImage");
             pbDestek.BackgroundImageLayout = ImageLayout.Zoom;
-            pbDestek.Location = new Point(3, 133);
+            pbDestek.Location = new Point(3, 113);
             pbDestek.Name = "pbDestek";
-            pbDestek.Size = new Size(125, 43);
+            pbDestek.Size = new Size(109, 37);
             pbDestek.TabIndex = 3;
             pbDestek.TabStop = false;
             pbDestek.Click += pbDestek_Click;
@@ -239,9 +239,9 @@
             // 
             pbCikisYap.BackgroundImage = (Image)resources.GetObject("pbCikisYap.BackgroundImage");
             pbCikisYap.BackgroundImageLayout = ImageLayout.Zoom;
-            pbCikisYap.Location = new Point(3, 84);
+            pbCikisYap.Location = new Point(3, 71);
             pbCikisYap.Name = "pbCikisYap";
-            pbCikisYap.Size = new Size(125, 43);
+            pbCikisYap.Size = new Size(109, 37);
             pbCikisYap.TabIndex = 2;
             pbCikisYap.TabStop = false;
             pbCikisYap.Click += pbCikisYap_Click;
@@ -250,9 +250,9 @@
             // 
             pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
             pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox5.Location = new Point(3, 16);
+            pictureBox5.Location = new Point(3, 14);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(125, 62);
+            pictureBox5.Size = new Size(109, 53);
             pictureBox5.TabIndex = 1;
             pictureBox5.TabStop = false;
             pictureBox5.Click += pictureBox5_Click;
@@ -262,9 +262,9 @@
             lblAyarlar.AutoSize = true;
             lblAyarlar.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblAyarlar.ForeColor = SystemColors.ControlLightLight;
-            lblAyarlar.Location = new Point(138, 36);
+            lblAyarlar.Location = new Point(121, 31);
             lblAyarlar.Name = "lblAyarlar";
-            lblAyarlar.Size = new Size(64, 23);
+            lblAyarlar.Size = new Size(61, 21);
             lblAyarlar.TabIndex = 0;
             lblAyarlar.Text = "Ayarlar";
             // 
@@ -273,9 +273,9 @@
             panel4.BackColor = Color.DarkOliveGreen;
             panel4.Controls.Add(pbSistemAyarlari);
             panel4.Controls.Add(lblSistemAyarlari);
-            panel4.Location = new Point(0, 322);
+            panel4.Location = new Point(0, 274);
             panel4.Name = "panel4";
-            panel4.Size = new Size(294, 67);
+            panel4.Size = new Size(257, 57);
             panel4.TabIndex = 2;
             // 
             // pbSistemAyarlari
@@ -284,7 +284,7 @@
             pbSistemAyarlari.BackgroundImageLayout = ImageLayout.Zoom;
             pbSistemAyarlari.Location = new Point(3, 0);
             pbSistemAyarlari.Name = "pbSistemAyarlari";
-            pbSistemAyarlari.Size = new Size(125, 62);
+            pbSistemAyarlari.Size = new Size(109, 53);
             pbSistemAyarlari.TabIndex = 1;
             pbSistemAyarlari.TabStop = false;
             pbSistemAyarlari.Click += pbSistemAyarlari_Click;
@@ -294,9 +294,9 @@
             lblSistemAyarlari.AutoSize = true;
             lblSistemAyarlari.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblSistemAyarlari.ForeColor = SystemColors.ControlLightLight;
-            lblSistemAyarlari.Location = new Point(134, 17);
+            lblSistemAyarlari.Location = new Point(117, 14);
             lblSistemAyarlari.Name = "lblSistemAyarlari";
-            lblSistemAyarlari.Size = new Size(123, 23);
+            lblSistemAyarlari.Size = new Size(118, 21);
             lblSistemAyarlari.TabIndex = 2;
             lblSistemAyarlari.Text = "Sistem Ayarları";
             lblSistemAyarlari.Click += lblSistemAyarlari_Click;
@@ -306,9 +306,9 @@
             panel5.BackColor = Color.DarkOliveGreen;
             panel5.Controls.Add(pbAnasayfa);
             panel5.Controls.Add(lblAnasayfa);
-            panel5.Location = new Point(0, 248);
+            panel5.Location = new Point(0, 211);
             panel5.Name = "panel5";
-            panel5.Size = new Size(294, 68);
+            panel5.Size = new Size(257, 58);
             panel5.TabIndex = 2;
             // 
             // pbAnasayfa
@@ -317,7 +317,7 @@
             pbAnasayfa.BackgroundImageLayout = ImageLayout.Zoom;
             pbAnasayfa.Location = new Point(3, 0);
             pbAnasayfa.Name = "pbAnasayfa";
-            pbAnasayfa.Size = new Size(125, 62);
+            pbAnasayfa.Size = new Size(109, 53);
             pbAnasayfa.TabIndex = 2;
             pbAnasayfa.TabStop = false;
             pbAnasayfa.Click += pbAnasayfa_Click;
@@ -327,9 +327,9 @@
             lblAnasayfa.AutoSize = true;
             lblAnasayfa.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblAnasayfa.ForeColor = SystemColors.ControlLightLight;
-            lblAnasayfa.Location = new Point(138, 18);
+            lblAnasayfa.Location = new Point(121, 15);
             lblAnasayfa.Name = "lblAnasayfa";
-            lblAnasayfa.Size = new Size(80, 23);
+            lblAnasayfa.Size = new Size(75, 21);
             lblAnasayfa.TabIndex = 1;
             lblAnasayfa.Text = "Anasayfa";
             lblAnasayfa.Click += lblAnasayfa_Click;
@@ -338,9 +338,9 @@
             // 
             panel3.BackColor = Color.DarkOliveGreen;
             panel3.Controls.Add(pbKategori);
-            panel3.Location = new Point(0, 175);
+            panel3.Location = new Point(0, 149);
             panel3.Name = "panel3";
-            panel3.Size = new Size(294, 67);
+            panel3.Size = new Size(257, 57);
             panel3.TabIndex = 1;
             // 
             // pbKategori
@@ -349,7 +349,7 @@
             pbKategori.BackgroundImageLayout = ImageLayout.Zoom;
             pbKategori.Location = new Point(3, 0);
             pbKategori.Name = "pbKategori";
-            pbKategori.Size = new Size(125, 62);
+            pbKategori.Size = new Size(109, 53);
             pbKategori.TabIndex = 0;
             pbKategori.TabStop = false;
             pbKategori.Click += pbKategori_Click;
@@ -357,16 +357,16 @@
             // panel2
             // 
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(361, 0);
+            panel2.Location = new Point(316, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(651, 772);
+            panel2.Size = new Size(570, 656);
             panel2.TabIndex = 1;
             // 
             // frmAdminSolPanel
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1012, 772);
+            ClientSize = new Size(886, 656);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmAdminSolPanel";
