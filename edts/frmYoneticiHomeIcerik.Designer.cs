@@ -26,14 +26,14 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmYoneticiHomeIcerik));
             panel1 = new Panel();
             pnlKritikDurum = new Panel();
+            lblKritikBilgi = new Label();
             lblYuzdeDeger = new Label();
-            lblKritikBaslik = new Label();
             prbKritikStok = new ProgressBar();
+            lblKritikBaslik = new Label();
             panel2 = new Panel();
             panel5 = new Panel();
             pictureBox3 = new PictureBox();
@@ -75,44 +75,53 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1239, 256);
+            panel1.Size = new Size(1084, 218);
             panel1.TabIndex = 1;
             // 
             // pnlKritikDurum
             // 
             pnlKritikDurum.BackColor = SystemColors.ControlLightLight;
+            pnlKritikDurum.Controls.Add(lblKritikBilgi);
             pnlKritikDurum.Controls.Add(lblYuzdeDeger);
-            pnlKritikDurum.Controls.Add(lblKritikBaslik);
             pnlKritikDurum.Controls.Add(prbKritikStok);
-            pnlKritikDurum.Location = new Point(193, 138);
+            pnlKritikDurum.Controls.Add(lblKritikBaslik);
+            pnlKritikDurum.Location = new Point(6, 110);
             pnlKritikDurum.Name = "pnlKritikDurum";
-            pnlKritikDurum.Size = new Size(305, 102);
+            pnlKritikDurum.Size = new Size(262, 87);
             pnlKritikDurum.TabIndex = 1;
+            // 
+            // lblKritikBilgi
+            // 
+            lblKritikBilgi.AutoSize = true;
+            lblKritikBilgi.Location = new Point(8, 53);
+            lblKritikBilgi.Name = "lblKritikBilgi";
+            lblKritikBilgi.Size = new Size(0, 17);
+            lblKritikBilgi.TabIndex = 3;
             // 
             // lblYuzdeDeger
             // 
             lblYuzdeDeger.AutoSize = true;
-            lblYuzdeDeger.Location = new Point(9, 62);
+            lblYuzdeDeger.Location = new Point(8, 53);
             lblYuzdeDeger.Name = "lblYuzdeDeger";
-            lblYuzdeDeger.Size = new Size(0, 20);
+            lblYuzdeDeger.Size = new Size(0, 17);
             lblYuzdeDeger.TabIndex = 2;
+            // 
+            // prbKritikStok
+            // 
+            prbKritikStok.Location = new Point(132, 53);
+            prbKritikStok.Name = "prbKritikStok";
+            prbKritikStok.Size = new Size(127, 26);
+            prbKritikStok.TabIndex = 0;
             // 
             // lblKritikBaslik
             // 
             lblKritikBaslik.AutoSize = true;
             lblKritikBaslik.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblKritikBaslik.Location = new Point(58, 10);
+            lblKritikBaslik.Location = new Point(44, 13);
             lblKritikBaslik.Name = "lblKritikBaslik";
-            lblKritikBaslik.Size = new Size(189, 28);
+            lblKritikBaslik.Size = new Size(170, 25);
             lblKritikBaslik.TabIndex = 1;
             lblKritikBaslik.Text = "Kritik Stok Yüzdesi";
-            // 
-            // prbKritikStok
-            // 
-            prbKritikStok.Location = new Point(145, 51);
-            prbKritikStok.Name = "prbKritikStok";
-            prbKritikStok.Size = new Size(125, 31);
-            prbKritikStok.TabIndex = 0;
             // 
             // panel2
             // 
@@ -122,9 +131,9 @@
             panel2.Controls.Add(panel7);
             panel2.Controls.Add(panel4);
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 256);
+            panel2.Location = new Point(0, 218);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1239, 186);
+            panel2.Size = new Size(1084, 158);
             panel2.TabIndex = 2;
             // 
             // panel5
@@ -134,27 +143,27 @@
             panel5.Controls.Add(label4);
             panel5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             panel5.ForeColor = SystemColors.ControlLightLight;
-            panel5.Location = new Point(927, 22);
+            panel5.Location = new Point(811, 19);
             panel5.Name = "panel5";
-            panel5.Size = new Size(300, 145);
+            panel5.Size = new Size(262, 123);
             panel5.TabIndex = 1;
             // 
             // pictureBox3
             // 
             pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
             pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(3, 15);
+            pictureBox3.Location = new Point(3, 13);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(125, 62);
+            pictureBox3.Size = new Size(109, 53);
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(3, 80);
+            label4.Location = new Point(3, 68);
             label4.Name = "label4";
-            label4.Size = new Size(165, 20);
+            label4.Size = new Size(155, 19);
             label4.TabIndex = 0;
             label4.Text = "Tanımlı Tedarikçi Sayısı";
             // 
@@ -165,27 +174,27 @@
             panel6.Controls.Add(label2);
             panel6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             panel6.ForeColor = SystemColors.ControlLightLight;
-            panel6.Location = new Point(312, 22);
+            panel6.Location = new Point(273, 19);
             panel6.Name = "panel6";
-            panel6.Size = new Size(303, 145);
+            panel6.Size = new Size(265, 123);
             panel6.TabIndex = 1;
             // 
             // pictureBox2
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(3, 15);
+            pictureBox2.Location = new Point(3, 13);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(125, 62);
+            pictureBox2.Size = new Size(109, 53);
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(0, 80);
+            label2.Location = new Point(0, 68);
             label2.Name = "label2";
-            label2.Size = new Size(167, 20);
+            label2.Size = new Size(158, 19);
             label2.TabIndex = 0;
             label2.Text = "Toplam Kayıtlı Kullanıcı";
             // 
@@ -196,27 +205,27 @@
             panel7.Controls.Add(label3);
             panel7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             panel7.ForeColor = SystemColors.ControlLightLight;
-            panel7.Location = new Point(621, 22);
+            panel7.Location = new Point(543, 19);
             panel7.Name = "panel7";
-            panel7.Size = new Size(300, 145);
+            panel7.Size = new Size(262, 123);
             panel7.TabIndex = 1;
             // 
             // pictureBox4
             // 
             pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
             pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(3, 15);
+            pictureBox4.Location = new Point(3, 13);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(125, 62);
+            pictureBox4.Size = new Size(109, 53);
             pictureBox4.TabIndex = 3;
             pictureBox4.TabStop = false;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(0, 80);
+            label3.Location = new Point(0, 68);
             label3.Name = "label3";
-            label3.Size = new Size(187, 20);
+            label3.Size = new Size(178, 19);
             label3.TabIndex = 0;
             label3.Text = "Son 7 Gün Giriş/Çıkış Farkı";
             // 
@@ -227,27 +236,27 @@
             panel4.Controls.Add(label1);
             panel4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             panel4.ForeColor = SystemColors.ControlLightLight;
-            panel4.Location = new Point(3, 22);
+            panel4.Location = new Point(3, 19);
             panel4.Name = "panel4";
-            panel4.Size = new Size(303, 145);
+            panel4.Size = new Size(265, 123);
             panel4.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(3, 15);
+            pictureBox1.Location = new Point(3, 13);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(125, 62);
+            pictureBox1.Size = new Size(109, 53);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 80);
+            label1.Location = new Point(3, 68);
             label1.Name = "label1";
-            label1.Size = new Size(174, 20);
+            label1.Size = new Size(158, 19);
             label1.TabIndex = 0;
             label1.Text = "Toplam Envanter Değeri";
             // 
@@ -255,9 +264,9 @@
             // 
             panel3.Controls.Add(groupBox2);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 442);
+            panel3.Location = new Point(0, 376);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1239, 250);
+            panel3.Size = new Size(1084, 212);
             panel3.TabIndex = 3;
             // 
             // groupBox2
@@ -265,9 +274,9 @@
             groupBox2.BackColor = SystemColors.ControlLightLight;
             groupBox2.Controls.Add(groupBox1);
             groupBox2.ForeColor = SystemColors.ControlLightLight;
-            groupBox2.Location = new Point(332, 6);
+            groupBox2.Location = new Point(290, 5);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(589, 138);
+            groupBox2.Size = new Size(515, 117);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "groupBox2";
@@ -279,9 +288,9 @@
             groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(button1);
-            groupBox1.Location = new Point(6, 13);
+            groupBox1.Location = new Point(5, 11);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(577, 110);
+            groupBox1.Size = new Size(505, 94);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Hızlı Eylemler";
@@ -292,9 +301,9 @@
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
             button3.ForeColor = SystemColors.ControlLightLight;
-            button3.Location = new Point(364, 26);
+            button3.Location = new Point(318, 22);
             button3.Name = "button3";
-            button3.Size = new Size(164, 58);
+            button3.Size = new Size(144, 49);
             button3.TabIndex = 5;
             button3.Text = "Kategori Tanımla";
             button3.UseVisualStyleBackColor = false;
@@ -305,12 +314,13 @@
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(194, 26);
+            button2.Location = new Point(170, 22);
             button2.Name = "button2";
-            button2.Size = new Size(164, 58);
+            button2.Size = new Size(144, 49);
             button2.TabIndex = 4;
             button2.Text = "Envanter Raporunu Görüntüle";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -318,18 +328,19 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(24, 26);
+            button1.Location = new Point(21, 22);
             button1.Name = "button1";
-            button1.Size = new Size(164, 58);
+            button1.Size = new Size(144, 49);
             button1.TabIndex = 3;
             button1.Text = "Yeni Kullanıcı Ekle";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // frmYoneticiHomeIcerik
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1239, 692);
+            ClientSize = new Size(1084, 588);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -382,5 +393,6 @@
         private Button button3;
         private Button button2;
         private Button button1;
+        private Label lblKritikBilgi;
     }
 }

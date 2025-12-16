@@ -1,4 +1,4 @@
-﻿namespace edts
+namespace edts
 {
     partial class frmAdminSistemAyarlari
     {

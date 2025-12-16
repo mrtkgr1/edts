@@ -12,27 +12,21 @@ using System.Configuration;
 using edts;
 namespace edts
 {
-    public partial class frmKullaniciYonetimi : Form
-
-    {
-        public frmKullaniciYonetimi()
-        {
+    public partial class frmKullaniciYonetimi : Form {
+        public frmKullaniciYonetimi() {
             InitializeComponent();
             // Diğer başlangıç ayarları buraya gelebilir
         }
         private int aktifKullaniciID = 0; // Seçili kullanıcının ID'sini tutar.
-        private void KullanicilariListele()
-        {
-            try
-            {
+        private void KullanicilariListele() {
+            try {
                 // App.config dosyanızdaki "baglanti" adlı bağlantı dizesini okur.
                 string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
                 // NOT: Şifre (SifreHash) alanını güvenlik nedeniyle listelemiyoruz.
                 string sorgu = "SELECT KullaniciID, AdSoyad, KullaniciAdi, RolID, AktifMi FROM tblKullanicilar ORDER BY KullaniciID DESC";
 
-                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-                {
+                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
                     SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
                     DataTable dt = new DataTable();
 
@@ -52,27 +46,20 @@ namespace edts
                     // İsteğe bağlı: ID sütununu gizleyebiliriz veya en başta tutabiliriz.
                     // dgvKullaniciListesi.Columns["KullaniciID"].Visible = false;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show("Kullanıcılar listelenirken bir hata oluştu: " + ex.Message, "Veritabanı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void txtKullaniciAdi_TextChanged(object sender, EventArgs e)
-        {
+        private void txtKullaniciAdi_TextChanged(object sender, EventArgs e) {
 
         }
 
-        private void frmKullaniciYonetimi_Load(object sender, EventArgs e)
-        {
-            try
-            {
+        private void frmKullaniciYonetimi_Load(object sender, EventArgs e) {
+            try {
                 RolleriDoldur();
                 KullanicilariListele();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 // BU MESAJ KUTUSUNU GÖRMENİZ GEREKİYOR!
                 MessageBox.Show("Form yüklenirken kritik bir hata oluştu: " + ex.Message,
                                 "Kullanıcı Yönetimi Yükleme Hatası",
@@ -80,14 +67,12 @@ namespace edts
                                 MessageBoxIcon.Error);
             }
         }
-        private void RolleriDoldur()
-        {
+        private void RolleriDoldur() {
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
             string sorgu = "SELECT RolID, RolAd FROM tblRoller ORDER BY RolID";
 
-            using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-            {
+            using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
                 SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -100,30 +85,26 @@ namespace edts
                 cmbRolSecim.SelectedIndex = -1; // Başlangıçta seçili olmasın
             }
         }
-        
 
-        private void btnKullaniciKaydet_Click(object sender, EventArgs e)
-        {
+
+        private void btnKullaniciKaydet_Click(object sender, EventArgs e) {
             // Zorunlu alan kontrolü
             if (string.IsNullOrEmpty(txtAdSoyad.Text) ||
                 string.IsNullOrEmpty(txtKullaniciAdi.Text) ||
                 string.IsNullOrEmpty(txtSifre.Text) ||
-                cmbRolSecim.SelectedValue == null)
-
-            {
+                cmbRolSecim.SelectedValue == null) {
                 MessageBox.Show("Lütfen tüm zorunlu alanları doldurun.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            try
-            {
+            try {
                 // 1. Şifreyi Hashle (Çok Önemli Güvenlik Adımı)
                 string sifreHash = GuvenlikYardimcisi.HashSifre(txtSifre.Text);
 
                 // 2. Kontrollerden verileri al
                 string adSoyad = txtAdSoyad.Text;
                 string kullaniciAdi = txtKullaniciAdi.Text;
-             
+
                 int rolID = Convert.ToInt32(cmbRolSecim.SelectedValue);
                 // CheckBox durumunu al (true ise 1, false ise 0)
                 bool aktifMi = chkAktifMi.Checked;
@@ -135,10 +116,8 @@ namespace edts
                          (AdSoyad, KullaniciAdi, SifreHash, RolID, AktifMi) 
                          VALUES (@pAdSoyad, @pKullaniciAdi, @pSifreHash, @pRolID, @pAktifMi)";
 
-                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-                {
-                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
-                    {
+                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
+                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti)) {
                         // SQL Injection'ı önlemek için parametreleri kullan
                         komut.Parameters.AddWithValue("@pAdSoyad", adSoyad);
                         komut.Parameters.AddWithValue("@pKullaniciAdi", kullaniciAdi);
@@ -158,14 +137,11 @@ namespace edts
                 // Giriş alanlarını temizle
                 AlanlariTemizle();
 
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show("Kayıt sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void AlanlariTemizle()
-        {
+        private void AlanlariTemizle() {
             txtAdSoyad.Clear();
             txtKullaniciAdi.Clear();
             txtSifre.Clear();
@@ -174,11 +150,9 @@ namespace edts
             txtAdSoyad.Focus();
         }
 
-        private void dgvKullaniciListesi_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        private void dgvKullaniciListesi_CellClick(object sender, DataGridViewCellEventArgs e) {
             // Başlık satırına tıklamayı veya geçersiz bir satıra tıklamayı kontrol et
-            if (e.RowIndex >= 0)
-            {
+            if (e.RowIndex >= 0) {
                 // Seçilen satırdaki tüm verileri al
                 DataGridViewRow secilenSatir = dgvKullaniciListesi.Rows[e.RowIndex];
 
@@ -204,11 +178,9 @@ namespace edts
             }
         }
 
-        private void btnHesapGuncelle_Click(object sender, EventArgs e)
-        {
+        private void btnHesapGuncelle_Click(object sender, EventArgs e) {
             // Güncellenecek bir kullanıcı seçilmiş mi?
-            if (aktifKullaniciID == 0)
-            {
+            if (aktifKullaniciID == 0) {
                 MessageBox.Show("Lütfen önce listeden bir kullanıcı seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -216,21 +188,18 @@ namespace edts
             // Zorunlu alan kontrolü (Şifre hariç)
             if (string.IsNullOrEmpty(txtAdSoyad.Text) ||
                 string.IsNullOrEmpty(txtKullaniciAdi.Text) ||
-                cmbRolSecim.SelectedValue == null)
-            {
+                cmbRolSecim.SelectedValue == null) {
                 MessageBox.Show("Ad Soyad, Kullanıcı Adı ve Rol alanları boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            try
-            {
+            try {
                 string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
                 string sorgu = "";
                 string sifreHash = "";
 
                 // 1. Şifre Alanı Kontrolü: Kullanıcı şifreyi değiştirmek istiyor mu?
-                if (!string.IsNullOrEmpty(txtSifre.Text))
-                {
+                if (!string.IsNullOrEmpty(txtSifre.Text)) {
                     // Yeni şifreyi hashle
                     sifreHash = GuvenlikYardimcisi.HashSifre(txtSifre.Text);
 
@@ -239,9 +208,7 @@ namespace edts
                       AdSoyad = @pAdSoyad, KullaniciAdi = @pKullaniciAdi, SifreHash = @pSifreHash, 
                       RolID = @pRolID, AktifMi = @pAktifMi 
                       WHERE KullaniciID = @pID";
-                }
-                else
-                {
+                } else {
                     // Şifreyi değiştirmeyen (mevcut hash'i koruyan) sorgu
                     sorgu = @"UPDATE tblKullanicilar SET 
                       AdSoyad = @pAdSoyad, KullaniciAdi = @pKullaniciAdi, 
@@ -252,10 +219,8 @@ namespace edts
                 // 2. Kontrollerden verileri al
                 bool aktifMi = chkAktifMi.Checked;
 
-                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-                {
-                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
-                    {
+                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
+                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti)) {
                         // Ortak Parametreler
                         komut.Parameters.AddWithValue("@pAdSoyad", txtAdSoyad.Text);
                         komut.Parameters.AddWithValue("@pKullaniciAdi", txtKullaniciAdi.Text);
@@ -264,8 +229,7 @@ namespace edts
                         komut.Parameters.AddWithValue("@pID", aktifKullaniciID); // KRİTİK ID
 
                         // Şifre parametresi sadece şifre değiştiriliyorsa eklenir
-                        if (!string.IsNullOrEmpty(txtSifre.Text))
-                        {
+                        if (!string.IsNullOrEmpty(txtSifre.Text)) {
                             komut.Parameters.AddWithValue("@pSifreHash", sifreHash);
                         }
 
@@ -281,18 +245,14 @@ namespace edts
                 AlanlariTemizle();
                 aktifKullaniciID = 0; // ID'yi sıfırla, böylece yanlışlıkla tekrar güncelleme yapılmaz.
 
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show("Güncelleme sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnHesapSil_Click(object sender, EventArgs e)
-        {
+        private void btnHesapSil_Click(object sender, EventArgs e) {
             // Silinecek bir kullanıcı seçilmiş mi kontrol et.
-            if (aktifKullaniciID == 0)
-            {
+            if (aktifKullaniciID == 0) {
                 MessageBox.Show("Lütfen silmek istediğiniz kullanıcıyı listeden seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -305,18 +265,14 @@ namespace edts
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
+            if (result == DialogResult.Yes) {
+                try {
                     // Bağlantı dizesini App.config'den al
                     string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
                     string sorgu = "DELETE FROM tblKullanicilar WHERE KullaniciID = @pID";
 
-                    using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-                    {
-                        using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
-                        {
+                    using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
+                        using (SqlCommand komut = new SqlCommand(sorgu, baglanti)) {
                             // Güvenli silme için parametre kullan
                             komut.Parameters.AddWithValue("@pID", aktifKullaniciID);
 
@@ -332,9 +288,7 @@ namespace edts
                     AlanlariTemizle();
                     aktifKullaniciID = 0; // ID'yi sıfırla
 
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     MessageBox.Show("Silme işlemi sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
