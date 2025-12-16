@@ -27,7 +27,7 @@ namespace edts
 
                 case 2: // Yönetici Rolü (ID: 2)
                         // Eğer Yönetici formu (frmYoneticiHome) hazırsa bunu kullanın
-                    acilacakForm = new frmYoneticiHomeIcerik();
+                    acilacakForm = new frmYoneticiAna();
                     break;
 
                 case 3: // Depo Personeli Rolü (ID: 3)

@@ -5,6 +5,7 @@ namespace edts
 {
     public partial class frmAdminAnaMenu : Form
     {
+        private bool isMenuAcik = true; 
         // Constructor, formun başlatıldığı yerdir ve tüm kritik yüklemeler burada olmalıdır.
         public frmAdminAnaMenu()
         {
@@ -48,16 +49,19 @@ namespace edts
         }
 
         // Sol Panel Büyüt/Küçült İşlevi
-        public void SolPanelDurumunuDegistir()
+        public bool SolPanelDurumunuDegistir()
         {
-            if (pnlSolMenu.Width == 250) // Varsayılan genişliğin 250 olduğunu varsayıyorum
-            {
-                pnlSolMenu.Width = 50;
+            if (isMenuAcik) {
+                // 1. MENÜYÜ KAPAT
+                tableLayoutPanel1.ColumnStyles[0].Width = 100;
+                isMenuAcik = false; // Durumu Kapatıldı olarak ayarla
+
+            } else {
+                // 2. MENÜYÜ AÇ
+                tableLayoutPanel1.ColumnStyles[0].Width = 280;
+                isMenuAcik = true; // Durumu Açık olarak ayarla
             }
-            else
-            {
-                pnlSolMenu.Width = 250;
-            }
+            return isMenuAcik;
         }
 
         // Form kapandığında tüm uygulamayı sonlandırma.
