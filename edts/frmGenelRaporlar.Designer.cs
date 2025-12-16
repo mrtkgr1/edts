@@ -185,9 +185,9 @@
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label6.Location = new Point(3, 18);
             label6.Name = "label6";
-            label6.Size = new Size(202, 21);
+            label6.Size = new Size(130, 21);
             label6.TabIndex = 0;
-            label6.Text = "Toplam Envanter Değeri :";
+            label6.Text = "Toplam Değeri :";
             // 
             // panel5
             // 
@@ -262,6 +262,8 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);

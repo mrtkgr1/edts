@@ -12,7 +12,7 @@ namespace edts
 {
     public partial class frmAdminSolPanel : Form
     {
-        private const int CikisHareketID = 2;
+        private const int CikisHareketID = 11;
         private bool isMenuAcik = true;
         private frmAdminAnaMenu? GetParentAdminForm()
         {
