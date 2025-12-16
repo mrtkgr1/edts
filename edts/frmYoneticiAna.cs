@@ -11,10 +11,11 @@ using System.Windows.Forms;
 namespace edts
 {
     public partial class frmYoneticiAna : Form {
-        private const int CikisHareketID = 2;
+        private const int CikisHareketID = 11;
         private bool isMenuAcik = true;
         public frmYoneticiAna() {
             InitializeComponent();
+            SayfaGoster(new frmYoneticiHomeIcerik());
         }
 
         private void pictureBox2_Click(object sender, EventArgs e) {

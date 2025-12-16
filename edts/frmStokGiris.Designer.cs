@@ -100,6 +100,8 @@
             // 
             // cmbUrunSecimi
             // 
+            cmbUrunSecimi.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbUrunSecimi.AutoCompleteSource = AutoCompleteSource.ListItems;
             cmbUrunSecimi.FormattingEnabled = true;
             cmbUrunSecimi.Location = new Point(139, 317);
             cmbUrunSecimi.Name = "cmbUrunSecimi";

@@ -131,6 +131,8 @@
             // 
             // cmbUrun
             // 
+            cmbUrun.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbUrun.AutoCompleteSource = AutoCompleteSource.ListItems;
             cmbUrun.FormattingEnabled = true;
             cmbUrun.Location = new Point(78, 43);
             cmbUrun.Name = "cmbUrun";
