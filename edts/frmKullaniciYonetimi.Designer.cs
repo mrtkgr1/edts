@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             panel1 = new Panel();
             chkAktifMi = new CheckBox();
             btnHesapSil = new Button();
@@ -66,7 +65,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(404, 655);
+            panel1.Size = new Size(310, 557);
             panel1.TabIndex = 0;
             // 
             // chkAktifMi
@@ -74,11 +73,11 @@
             chkAktifMi.AutoSize = true;
             chkAktifMi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             chkAktifMi.ForeColor = SystemColors.ControlLightLight;
-            chkAktifMi.Location = new Point(210, 246);
+            chkAktifMi.Location = new Point(159, 208);
             chkAktifMi.Name = "chkAktifMi";
-            chkAktifMi.Size = new Size(112, 27);
+            chkAktifMi.Size = new Size(64, 25);
             chkAktifMi.TabIndex = 11;
-            chkAktifMi.Text = "checkBox1";
+            chkAktifMi.Text = "Aktif";
             chkAktifMi.UseVisualStyleBackColor = true;
             // 
             // btnHesapSil
@@ -86,9 +85,9 @@
             btnHesapSil.BackColor = Color.Crimson;
             btnHesapSil.FlatAppearance.BorderSize = 0;
             btnHesapSil.FlatStyle = FlatStyle.Flat;
-            btnHesapSil.Location = new Point(187, 313);
+            btnHesapSil.Location = new Point(139, 265);
             btnHesapSil.Name = "btnHesapSil";
-            btnHesapSil.Size = new Size(127, 29);
+            btnHesapSil.Size = new Size(111, 25);
             btnHesapSil.TabIndex = 10;
             btnHesapSil.Text = "Hesap Sil";
             btnHesapSil.UseVisualStyleBackColor = false;
@@ -99,9 +98,9 @@
             btnHesapGuncelle.BackColor = Color.DarkOrange;
             btnHesapGuncelle.FlatAppearance.BorderSize = 0;
             btnHesapGuncelle.FlatStyle = FlatStyle.Flat;
-            btnHesapGuncelle.Location = new Point(54, 348);
+            btnHesapGuncelle.Location = new Point(22, 295);
             btnHesapGuncelle.Name = "btnHesapGuncelle";
-            btnHesapGuncelle.Size = new Size(127, 29);
+            btnHesapGuncelle.Size = new Size(111, 25);
             btnHesapGuncelle.TabIndex = 9;
             btnHesapGuncelle.Text = "Hesap Güncelle";
             btnHesapGuncelle.UseVisualStyleBackColor = false;
@@ -112,9 +111,9 @@
             btnKullaniciKaydet.BackColor = Color.LightSeaGreen;
             btnKullaniciKaydet.FlatAppearance.BorderSize = 0;
             btnKullaniciKaydet.FlatStyle = FlatStyle.Flat;
-            btnKullaniciKaydet.Location = new Point(54, 313);
+            btnKullaniciKaydet.Location = new Point(22, 265);
             btnKullaniciKaydet.Name = "btnKullaniciKaydet";
-            btnKullaniciKaydet.Size = new Size(127, 29);
+            btnKullaniciKaydet.Size = new Size(111, 25);
             btnKullaniciKaydet.TabIndex = 8;
             btnKullaniciKaydet.Text = "Kullanıcı Kaydet";
             btnKullaniciKaydet.UseVisualStyleBackColor = false;
@@ -123,33 +122,33 @@
             // cmbRolSecim
             // 
             cmbRolSecim.FormattingEnabled = true;
-            cmbRolSecim.Items.AddRange(new object[] { "Yönetici", "Depo Personeli", "" });
-            cmbRolSecim.Location = new Point(210, 198);
+            cmbRolSecim.Items.AddRange(new object[] { "Yönetici", "Depo Personeli" });
+            cmbRolSecim.Location = new Point(159, 167);
             cmbRolSecim.Name = "cmbRolSecim";
-            cmbRolSecim.Size = new Size(151, 28);
+            cmbRolSecim.Size = new Size(133, 25);
             cmbRolSecim.TabIndex = 7;
             // 
             // txtSifre
             // 
-            txtSifre.Location = new Point(210, 151);
+            txtSifre.Location = new Point(159, 127);
             txtSifre.Name = "txtSifre";
             txtSifre.PasswordChar = '*';
-            txtSifre.Size = new Size(151, 27);
+            txtSifre.Size = new Size(133, 25);
             txtSifre.TabIndex = 6;
             // 
             // txtKullaniciAdi
             // 
-            txtKullaniciAdi.Location = new Point(210, 99);
+            txtKullaniciAdi.Location = new Point(159, 83);
             txtKullaniciAdi.Name = "txtKullaniciAdi";
-            txtKullaniciAdi.Size = new Size(151, 27);
+            txtKullaniciAdi.Size = new Size(133, 25);
             txtKullaniciAdi.TabIndex = 5;
             txtKullaniciAdi.TextChanged += txtKullaniciAdi_TextChanged;
             // 
             // txtAdSoyad
             // 
-            txtAdSoyad.Location = new Point(210, 58);
+            txtAdSoyad.Location = new Point(159, 48);
             txtAdSoyad.Name = "txtAdSoyad";
-            txtAdSoyad.Size = new Size(151, 27);
+            txtAdSoyad.Size = new Size(133, 25);
             txtAdSoyad.TabIndex = 4;
             // 
             // lblRol
@@ -157,9 +156,9 @@
             lblRol.AutoSize = true;
             lblRol.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblRol.ForeColor = SystemColors.ControlLightLight;
-            lblRol.Location = new Point(54, 199);
+            lblRol.Location = new Point(22, 168);
             lblRol.Name = "lblRol";
-            lblRol.Size = new Size(157, 23);
+            lblRol.Size = new Size(150, 21);
             lblRol.TabIndex = 3;
             lblRol.Text = "Rol / Yetki Seviyesi:";
             // 
@@ -168,9 +167,9 @@
             lblSifre.AutoSize = true;
             lblSifre.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblSifre.ForeColor = SystemColors.ControlLightLight;
-            lblSifre.Location = new Point(54, 152);
+            lblSifre.Location = new Point(22, 128);
             lblSifre.Name = "lblSifre";
-            lblSifre.Size = new Size(48, 23);
+            lblSifre.Size = new Size(48, 21);
             lblSifre.TabIndex = 2;
             lblSifre.Text = "Şifre:";
             // 
@@ -179,9 +178,9 @@
             lblKullaniciAdi.AutoSize = true;
             lblKullaniciAdi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblKullaniciAdi.ForeColor = SystemColors.ControlLightLight;
-            lblKullaniciAdi.Location = new Point(54, 103);
+            lblKullaniciAdi.Location = new Point(22, 87);
             lblKullaniciAdi.Name = "lblKullaniciAdi";
-            lblKullaniciAdi.Size = new Size(107, 23);
+            lblKullaniciAdi.Size = new Size(103, 21);
             lblKullaniciAdi.TabIndex = 1;
             lblKullaniciAdi.Text = "Kullanıcı Adı:";
             // 
@@ -190,9 +189,9 @@
             lblAdSoyad.AutoSize = true;
             lblAdSoyad.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             lblAdSoyad.ForeColor = SystemColors.ControlLightLight;
-            lblAdSoyad.Location = new Point(54, 59);
+            lblAdSoyad.Location = new Point(22, 49);
             lblAdSoyad.Name = "lblAdSoyad";
-            lblAdSoyad.Size = new Size(87, 23);
+            lblAdSoyad.Size = new Size(84, 21);
             lblAdSoyad.TabIndex = 0;
             lblAdSoyad.Text = "Ad Soyad:";
             // 
@@ -200,27 +199,30 @@
             // 
             panel2.Controls.Add(dgvKullaniciListesi);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(404, 0);
+            panel2.Location = new Point(310, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(577, 655);
+            panel2.Size = new Size(548, 557);
             panel2.TabIndex = 1;
             // 
             // dgvKullaniciListesi
             // 
+            dgvKullaniciListesi.AllowUserToAddRows = false;
+            dgvKullaniciListesi.AllowUserToDeleteRows = false;
             dgvKullaniciListesi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvKullaniciListesi.Dock = DockStyle.Fill;
             dgvKullaniciListesi.Location = new Point(0, 0);
             dgvKullaniciListesi.Name = "dgvKullaniciListesi";
+            dgvKullaniciListesi.ReadOnly = true;
             dgvKullaniciListesi.RowHeadersWidth = 51;
-            dgvKullaniciListesi.Size = new Size(577, 655);
+            dgvKullaniciListesi.Size = new Size(548, 557);
             dgvKullaniciListesi.TabIndex = 0;
             dgvKullaniciListesi.CellClick += dgvKullaniciListesi_CellClick;
             // 
             // frmKullaniciYonetimi
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(981, 655);
+            ClientSize = new Size(858, 557);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmKullaniciYonetimi";
