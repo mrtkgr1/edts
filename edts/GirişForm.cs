@@ -13,6 +13,8 @@ namespace edts
         {
             InitializeComponent();
             // Diğer kodlar veya atamalar BURAYA GELMEZ. Sadece başlatma yapılır.
+            button2.Image = Properties.Resources.eyek;
+
         }
         public GirişForm(int gelenRolID)
         {
@@ -53,8 +55,8 @@ namespace edts
             // lblHata.Visible = false;
 
             // 1. Kullanıcıdan alınan değerler
-            string kullaniciAdi = txtKullaniciAdi.Text;
-            string sifre = txtSifre.Text; // Şifrenizi hash'lemeyi unutmayın!
+            string kullaniciAdi = textBox1.Text;
+            string sifre = loginpsw.Text; // Şifrenizi hash'lemeyi unutmayın!
 
             if (string.IsNullOrEmpty(kullaniciAdi) || string.IsNullOrEmpty(sifre))
             {
@@ -150,6 +152,16 @@ namespace edts
             // Not: Bu formu (frmLogin) kapatmak/gizlemek isteyip istemediğiniz size kalmış.
             // Eğer kullanıcının giriş yapana kadar Login ekranını görmesini istiyorsanız, 
             // alttaki satırı KULLANMAYIN.
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            if (loginpsw.PasswordChar == '*') {
+                button2.Image = Properties.Resources.eye;
+                loginpsw.PasswordChar = '\0';
+            } else {
+                button2.Image = Properties.Resources.eyek;
+                loginpsw.PasswordChar = '*';
+            }
         }
 
     }

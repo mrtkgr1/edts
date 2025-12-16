@@ -22,6 +22,7 @@ namespace edts
         {
             InitializeComponent();
             // Gelen ID'yi sınıf değişkenine atayın
+            IcerikYukle(new frmAnaSayfa());
             
         }
         private void IcerikYukle(Form yeniForm)
@@ -67,6 +68,12 @@ namespace edts
 
         private void lblCikisYap_Click(object sender, EventArgs e)
         {
+            VeritabaniYardimcisi.LogKaydet(
+         kullaniciID: AktifKullanici.ID,
+         hareketID: 11,
+         tabloAdi: "tblKullanicilar",
+         aciklama: AktifKullanici.KullaniciAdi + " ikon üzerinden çıkış yaptı."
+     );
             // frmDepoHome'u gizle ve kapat
             this.Hide();
             this.Close();

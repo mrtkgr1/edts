@@ -233,7 +233,7 @@ namespace EnvanterDepoSistemitaslak2
             // Varsayım: Oturum açan kullanıcının ID'si 'aktifKullaniciID' sınıf değişkeninde tutuluyor.
             // Eğer Depo seçimi combobox'ta yoksa, Ana Depo ID'sini (1) varsayın.
 
-            int hareketID_GIRIS = 1; // 💡 Lütfen veritabanınızdaki Stok Giriş HareketID'sini buraya yazın!
+            int hareketID_GIRIS = 4; // 💡 Lütfen veritabanınızdaki Stok Giriş HareketID'sini buraya yazın!
             int tedarikciID = (int)cmbTedarikci.SelectedValue;
             string faturaNo = txtFaturaNo.Text.Trim();
             string girisNedeni = cmbGirisNedeni.Text; // ComboBox text'i olarak alalım
