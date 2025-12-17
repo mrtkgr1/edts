@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Diagnostics; // Debug için ekledik
+using System.Diagnostics;
 
 public static class VeritabaniYardimcisi
 {
-    // ... LogKaydet metodu (değişmedi) ...
+
     public static void LogKaydet(int kullaniciID, int hareketID, string tabloAdi, string aciklama)
     {
         try
@@ -33,7 +33,7 @@ public static class VeritabaniYardimcisi
         }
     }
 
-    // ... KayitSayisiGetir metodu (değişmedi) ...
+
     public static int KayitSayisiGetir(string tabloAdi, string sart = null)
     {
         string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;

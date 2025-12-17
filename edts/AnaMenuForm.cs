@@ -21,17 +21,15 @@ namespace edts
             // ... switch (aktifRolID) bloğu ...
             switch (aktifRolID)
             {
-                case 1: // Admin Rolü (ID: 1)
+                case 1: 
                     acilacakForm = new frmAdminAnaMenu();
                     break;
 
-                case 2: // Yönetici Rolü (ID: 2)
-                        // Eğer Yönetici formu (frmYoneticiHome) hazırsa bunu kullanın
+                case 2: 
                     acilacakForm = new frmYoneticiAna();
                     break;
 
-                case 3: // Depo Personeli Rolü (ID: 3)
-                        // *** ARADIĞINIZ ÇÖZÜM BURADA! ***
+                case 3: 
                     acilacakForm = new frmDepoHome();
                     break;
 
@@ -44,11 +42,8 @@ namespace edts
 
             if (acilacakForm != null)
             {
-                // Hedef formu modal (diyalog) olarak aç
                 acilacakForm.ShowDialog();
 
-                // Hedef form (frmDepoHome, frmAdminAnaMenu vb.) kapandığında buraya döner.
-                // Yönlendirme görevini tamamladığı için kendini kapat.
                 this.Close();
             }
             else
