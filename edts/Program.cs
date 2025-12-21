@@ -15,6 +15,7 @@ namespace edts
 
             // Uygulama artýk GirisForm ile baþlayacak
             Application.Run(new GiriþForm());
+            //Application.Run(new AnaForm());
         }
     }
 }
