@@ -9,6 +9,7 @@ namespace edts
     public static class AktifKullanici
     {
         public static int ID { get; set; }
+        public static int RolID { get; set; }
         public static string KullaniciAdi { get; set; } = string.Empty;
         // Diğer gerekli bilgiler (RolID, AdSoyad vb.) de eklenebilir.
     }
