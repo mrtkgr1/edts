@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnvanterDepoSistemitaslak2;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,35 @@ namespace edts {
             InitializeProfilePopup();
             SolMenuButtonAyarla();
             KontrolFormGoster();
+            SolPanelScroll();
+        }
+
+        private void SolPanelScroll() {
+            SolHPanel.MouseWheel += Panel_MouseWheel;
+
+            SolHPanel.MouseEnter += (s, e) => SolHPanel.Focus();
+            yanMenuPanel.MouseEnter += (s, e) => SolHPanel.Focus();
+        }
+
+        private void Panel_MouseWheel(object sender, MouseEventArgs e) {
+
+            if (yanMenuPanel.Height <= SolHPanel.Height) return;
+
+            int yeniY;
+
+            if (e.Delta > 0) {
+                yeniY = yanMenuPanel.Top + 20;
+            } else {
+                yeniY = yanMenuPanel.Top - 20;
+            }
+
+            if (yeniY > 0) yeniY = 0;
+
+
+            int minY = SolHPanel.Height - yanMenuPanel.Height;
+            if (yeniY < minY) yeniY = minY;
+
+            yanMenuPanel.Top = yeniY;
         }
 
         //-----Sayfa gösterme işlemleri -----
@@ -45,7 +75,17 @@ namespace edts {
             panelKontrol.Visible = true;
 
             kayitMenuPanel.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici;
-            panelRapor.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici;
+            panelRapor.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici ||
+                AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
+
+            panelSolSistemA.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Admin;
+            panelSolDenetinK.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Admin;
+            panelSolKullaniciA.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Admin;
+
+            panelSolStokG.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
+            panelSolStokC.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
+            panelSolStokL.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
+
 
         }
 
@@ -70,14 +110,15 @@ namespace edts {
         bool yanMenuAcik = true;
         private void yanPanel_Tick(object sender, EventArgs e) {
             if (yanMenuAcik) {
-                yanMenuPanel.Width -= 10;
-                if (yanMenuPanel.Width <= 53) {
+                SolHPanel.Width -= 10;
+                if (SolHPanel.Width <= 53) {
+                    SolHPanel.Width = 53;
                     yanMenuAcik = false;
                     yanPanelHareket.Stop();
                 }
             } else {
-                yanMenuPanel.Width += 10;
-                if (yanMenuPanel.Width >= 172) {
+                SolHPanel.Width += 10;
+                if (SolHPanel.Width >= 172) {
                     yanMenuAcik = true;
                     yanPanelHareket.Stop();
                 }
@@ -118,7 +159,7 @@ namespace edts {
                 prefPictureBox.Image = Properties.Resources.kayan_liste_assa;
                 isListeAcik = false;
             } else {
-                popup.Show(senderControl, popup.Size.Width/2*-1+16, senderControl.Height);
+                popup.Show(senderControl, popup.Size.Width / 2 * -1 + 16, senderControl.Height);
                 prefPictureBox.Image = Properties.Resources.kayan_liste_yukari;
                 isListeAcik = true;
             }
@@ -140,6 +181,7 @@ namespace edts {
             }
         }
 
+        //-----Hesap popup işlemleri -----
         private void kullaniciAyarlari_Tiklandi() {
             MessageBox.Show("Kullanıcı ayarları tıklandı.");
         }
@@ -239,7 +281,7 @@ namespace edts {
                     break;
 
                 case (int)Sabitler.Rol.Personel:
-                    SayfaGoster(new frmYoneticiHomeIcerik());
+                    SayfaGoster(new frmAnaSayfa());
                     break;
                 default:
                     break;
@@ -256,7 +298,35 @@ namespace edts {
 
         private void pictureBox3_Click(object sender, EventArgs e) {
             Control senderControl = (Control)sender;
-            popupHesap.Show(senderControl, popupHesap.Size.Width/2*-1+16, senderControl.Height);
+            popupHesap.Show(senderControl, popupHesap.Size.Width / 2 * -1 + 16, senderControl.Height);
+        }
+
+        private void buttonSistemAyar_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmAdminSistemAyarlari());
+        }
+
+        private void buttonDenetimKayit_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmAdminDenetimKayitlari());
+        }
+
+        private void buttonKullaniciAyar_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmKullaniciYonetimi());
+        }
+
+        private void buttonSolStokG_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmStokGiris());
+        }
+
+        private void buttonStokList_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmStokListele());
+        }
+
+        private void buttonSolStokCıkış_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmStokCikis());
+        }
+
+        private void buttonDestek_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmSupport());
         }
     }
 }
