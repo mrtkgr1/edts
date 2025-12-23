@@ -92,9 +92,11 @@ namespace edts
                                 // 🟢 KRİTİK LOGLAMA ADIMI 1: Aktif Kullanıcı ID'sini global olarak yakalama
                                 AktifKullanici.ID = kullaniciID;
                                 AktifKullanici.KullaniciAdi = kullaniciAdi;
+                                AktifKullanici.RolID = rolID;
+                                AktifKullanici.TamAd = adSoyad;
 
-                                // 🟢 KRİTİK LOGLAMA ADIMI 2: Giriş Başarısını Denetim Kaydına Ekleme
-                                int girisHareketID = 1; // Artık biliyoruz: GİRİŞ'in HareketID'si 1.
+                            // 🟢 KRİTİK LOGLAMA ADIMI 2: Giriş Başarısını Denetim Kaydına Ekleme
+                            int girisHareketID = 1; // Artık biliyoruz: GİRİŞ'in HareketID'si 1.
 
                                 VeritabaniYardimcisi.LogKaydet(
                                     kullaniciID: AktifKullanici.ID,

@@ -15,6 +15,13 @@ namespace edts {
 
         public ProfilMenuControl() {
             InitializeComponent();
+            AdlariYaz();
+        }
+
+        private void AdlariYaz() {
+            fullAd.Text = (AktifKullanici.TamAd != null ? AktifKullanici.TamAd : "");
+            userAd.Text = AktifKullanici.KullaniciAdi;
+            rolAd.Text = ((Sabitler.Rol)AktifKullanici.RolID).ToString();
         }
         private void btnProfile_Click(object sender, EventArgs e) {
             ProfilDuzenleTiklandi?.Invoke(this, EventArgs.Empty);

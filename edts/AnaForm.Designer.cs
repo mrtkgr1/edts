@@ -36,24 +36,39 @@
             pictureBox1 = new PictureBox();
             yanMenuPanel = new FlowLayoutPanel();
             panelKontrol = new Panel();
-            buttonKontrol = new Button();
+            buttonSolKontrol = new Button();
             kayitMenuPanel = new FlowLayoutPanel();
             panelMenuKayit = new Panel();
-            buttonMenuKayit = new Button();
+            buttonSolMenuKayit = new Button();
             panelUrunK = new Panel();
-            buttonUrunK = new Button();
+            buttonSolUrunK = new Button();
             panelKategoriK = new Panel();
-            buttonKategoriK = new Button();
+            buttonSolKategoriK = new Button();
             panelMusteriK = new Panel();
-            buttonMusteriK = new Button();
+            buttonSolMusteriK = new Button();
             panelTedarikciK = new Panel();
-            buttonTedarikciK = new Button();
+            buttonSolTedarikciK = new Button();
             panelRapor = new Panel();
-            buttonRapor = new Button();
+            buttonSolRapor = new Button();
+            panelSolSistemA = new Panel();
+            buttonSolSistemAyar = new Button();
+            panelSolDenetinK = new Panel();
+            buttonSolDenetimKayit = new Button();
+            panelSolKullaniciA = new Panel();
+            buttonSolKullaniciAyar = new Button();
+            panelSolStokG = new Panel();
+            buttonSolStokG = new Button();
+            panelSolStokC = new Panel();
+            buttonSolStokCıkış = new Button();
+            panelSolStokL = new Panel();
+            buttonStokList = new Button();
+            panelDestek = new Panel();
+            buttonDestek = new Button();
             menuKayitHareket = new System.Windows.Forms.Timer(components);
             yanPanelHareket = new System.Windows.Forms.Timer(components);
             AnaHPanel = new Panel();
             panelForm = new Panel();
+            SolHPanel = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -68,7 +83,15 @@
             panelMusteriK.SuspendLayout();
             panelTedarikciK.SuspendLayout();
             panelRapor.SuspendLayout();
+            panelSolSistemA.SuspendLayout();
+            panelSolDenetinK.SuspendLayout();
+            panelSolKullaniciA.SuspendLayout();
+            panelSolStokG.SuspendLayout();
+            panelSolStokC.SuspendLayout();
+            panelSolStokL.SuspendLayout();
+            panelDestek.SuspendLayout();
             AnaHPanel.SuspendLayout();
+            SolHPanel.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -197,41 +220,49 @@
             // 
             // yanMenuPanel
             // 
+            yanMenuPanel.AutoSize = true;
+            yanMenuPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             yanMenuPanel.BackColor = Color.FromArgb(23, 24, 29);
             yanMenuPanel.Controls.Add(panelKontrol);
             yanMenuPanel.Controls.Add(kayitMenuPanel);
             yanMenuPanel.Controls.Add(panelRapor);
-            yanMenuPanel.Dock = DockStyle.Left;
+            yanMenuPanel.Controls.Add(panelSolSistemA);
+            yanMenuPanel.Controls.Add(panelSolDenetinK);
+            yanMenuPanel.Controls.Add(panelSolKullaniciA);
+            yanMenuPanel.Controls.Add(panelSolStokG);
+            yanMenuPanel.Controls.Add(panelSolStokC);
+            yanMenuPanel.Controls.Add(panelSolStokL);
+            yanMenuPanel.Controls.Add(panelDestek);
             yanMenuPanel.FlowDirection = FlowDirection.TopDown;
-            yanMenuPanel.Location = new Point(0, 33);
-            yanMenuPanel.Margin = new Padding(3, 3, 3, 0);
+            yanMenuPanel.Location = new Point(0, 0);
+            yanMenuPanel.Margin = new Padding(0);
             yanMenuPanel.Name = "yanMenuPanel";
-            yanMenuPanel.Size = new Size(172, 420);
+            yanMenuPanel.Size = new Size(175, 540);
             yanMenuPanel.TabIndex = 1;
             // 
             // panelKontrol
             // 
-            panelKontrol.Controls.Add(buttonKontrol);
+            panelKontrol.Controls.Add(buttonSolKontrol);
             panelKontrol.Location = new Point(3, 3);
             panelKontrol.Name = "panelKontrol";
             panelKontrol.Size = new Size(169, 48);
             panelKontrol.TabIndex = 3;
             // 
-            // buttonKontrol
+            // buttonSolKontrol
             // 
-            buttonKontrol.BackColor = Color.FromArgb(23, 24, 29);
-            buttonKontrol.ForeColor = Color.AliceBlue;
-            buttonKontrol.Image = (Image)resources.GetObject("buttonKontrol.Image");
-            buttonKontrol.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonKontrol.Location = new Point(-9, -6);
-            buttonKontrol.Name = "buttonKontrol";
-            buttonKontrol.Padding = new Padding(10, 0, 0, 0);
-            buttonKontrol.Size = new Size(250, 62);
-            buttonKontrol.TabIndex = 2;
-            buttonKontrol.Text = "           Kontrol Paneli";
-            buttonKontrol.TextAlign = ContentAlignment.MiddleLeft;
-            buttonKontrol.UseVisualStyleBackColor = false;
-            buttonKontrol.Click += buttonKontrol_Click;
+            buttonSolKontrol.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSolKontrol.ForeColor = Color.AliceBlue;
+            buttonSolKontrol.Image = (Image)resources.GetObject("buttonSolKontrol.Image");
+            buttonSolKontrol.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolKontrol.Location = new Point(-9, -6);
+            buttonSolKontrol.Name = "buttonSolKontrol";
+            buttonSolKontrol.Padding = new Padding(10, 0, 0, 0);
+            buttonSolKontrol.Size = new Size(250, 62);
+            buttonSolKontrol.TabIndex = 2;
+            buttonSolKontrol.Text = "           Kontrol Paneli";
+            buttonSolKontrol.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolKontrol.UseVisualStyleBackColor = false;
+            buttonSolKontrol.Click += buttonKontrol_Click;
             // 
             // kayitMenuPanel
             // 
@@ -250,150 +281,318 @@
             // 
             // panelMenuKayit
             // 
-            panelMenuKayit.Controls.Add(buttonMenuKayit);
+            panelMenuKayit.Controls.Add(buttonSolMenuKayit);
             panelMenuKayit.Location = new Point(3, 0);
             panelMenuKayit.Margin = new Padding(3, 0, 0, 0);
             panelMenuKayit.Name = "panelMenuKayit";
             panelMenuKayit.Size = new Size(169, 48);
             panelMenuKayit.TabIndex = 6;
             // 
-            // buttonMenuKayit
+            // buttonSolMenuKayit
             // 
-            buttonMenuKayit.BackColor = Color.FromArgb(23, 24, 29);
-            buttonMenuKayit.ForeColor = Color.AliceBlue;
-            buttonMenuKayit.Image = (Image)resources.GetObject("buttonMenuKayit.Image");
-            buttonMenuKayit.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonMenuKayit.Location = new Point(-9, -6);
-            buttonMenuKayit.Margin = new Padding(3, 0, 3, 0);
-            buttonMenuKayit.Name = "buttonMenuKayit";
-            buttonMenuKayit.Padding = new Padding(10, 0, 0, 0);
-            buttonMenuKayit.Size = new Size(250, 62);
-            buttonMenuKayit.TabIndex = 2;
-            buttonMenuKayit.Text = "           Kayıtlar";
-            buttonMenuKayit.TextAlign = ContentAlignment.MiddleLeft;
-            buttonMenuKayit.UseVisualStyleBackColor = false;
-            buttonMenuKayit.Click += button4_Click;
+            buttonSolMenuKayit.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSolMenuKayit.ForeColor = Color.AliceBlue;
+            buttonSolMenuKayit.Image = (Image)resources.GetObject("buttonSolMenuKayit.Image");
+            buttonSolMenuKayit.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolMenuKayit.Location = new Point(-9, -6);
+            buttonSolMenuKayit.Margin = new Padding(3, 0, 3, 0);
+            buttonSolMenuKayit.Name = "buttonSolMenuKayit";
+            buttonSolMenuKayit.Padding = new Padding(10, 0, 0, 0);
+            buttonSolMenuKayit.Size = new Size(250, 62);
+            buttonSolMenuKayit.TabIndex = 2;
+            buttonSolMenuKayit.Text = "           Kayıtlar";
+            buttonSolMenuKayit.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolMenuKayit.UseVisualStyleBackColor = false;
+            buttonSolMenuKayit.Click += button4_Click;
             // 
             // panelUrunK
             // 
-            panelUrunK.Controls.Add(buttonUrunK);
+            panelUrunK.Controls.Add(buttonSolUrunK);
             panelUrunK.Location = new Point(175, 0);
             panelUrunK.Margin = new Padding(3, 0, 3, 0);
             panelUrunK.Name = "panelUrunK";
             panelUrunK.Size = new Size(169, 48);
             panelUrunK.TabIndex = 4;
             // 
-            // buttonUrunK
+            // buttonSolUrunK
             // 
-            buttonUrunK.BackColor = Color.FromArgb(32, 32, 36);
-            buttonUrunK.ForeColor = Color.AliceBlue;
-            buttonUrunK.Image = (Image)resources.GetObject("buttonUrunK.Image");
-            buttonUrunK.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonUrunK.Location = new Point(-6, -6);
-            buttonUrunK.Name = "buttonUrunK";
-            buttonUrunK.Padding = new Padding(10, 0, 0, 0);
-            buttonUrunK.Size = new Size(250, 62);
-            buttonUrunK.TabIndex = 2;
-            buttonUrunK.Text = "          Ürün";
-            buttonUrunK.TextAlign = ContentAlignment.MiddleLeft;
-            buttonUrunK.UseVisualStyleBackColor = false;
-            buttonUrunK.Click += buttonUrunK_Click;
+            buttonSolUrunK.BackColor = Color.FromArgb(32, 32, 36);
+            buttonSolUrunK.ForeColor = Color.AliceBlue;
+            buttonSolUrunK.Image = (Image)resources.GetObject("buttonSolUrunK.Image");
+            buttonSolUrunK.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolUrunK.Location = new Point(-6, -6);
+            buttonSolUrunK.Name = "buttonSolUrunK";
+            buttonSolUrunK.Padding = new Padding(10, 0, 0, 0);
+            buttonSolUrunK.Size = new Size(250, 62);
+            buttonSolUrunK.TabIndex = 2;
+            buttonSolUrunK.Text = "          Ürün";
+            buttonSolUrunK.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolUrunK.UseVisualStyleBackColor = false;
+            buttonSolUrunK.Click += buttonUrunK_Click;
             // 
             // panelKategoriK
             // 
-            panelKategoriK.Controls.Add(buttonKategoriK);
+            panelKategoriK.Controls.Add(buttonSolKategoriK);
             panelKategoriK.Location = new Point(350, 0);
             panelKategoriK.Margin = new Padding(3, 0, 3, 0);
             panelKategoriK.Name = "panelKategoriK";
             panelKategoriK.Size = new Size(169, 48);
             panelKategoriK.TabIndex = 5;
             // 
-            // buttonKategoriK
+            // buttonSolKategoriK
             // 
-            buttonKategoriK.BackColor = Color.FromArgb(32, 32, 36);
-            buttonKategoriK.ForeColor = Color.AliceBlue;
-            buttonKategoriK.Image = (Image)resources.GetObject("buttonKategoriK.Image");
-            buttonKategoriK.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonKategoriK.Location = new Point(-6, -6);
-            buttonKategoriK.Name = "buttonKategoriK";
-            buttonKategoriK.Padding = new Padding(10, 0, 0, 0);
-            buttonKategoriK.Size = new Size(250, 62);
-            buttonKategoriK.TabIndex = 2;
-            buttonKategoriK.Text = "          Kategori";
-            buttonKategoriK.TextAlign = ContentAlignment.MiddleLeft;
-            buttonKategoriK.UseVisualStyleBackColor = false;
+            buttonSolKategoriK.BackColor = Color.FromArgb(32, 32, 36);
+            buttonSolKategoriK.ForeColor = Color.AliceBlue;
+            buttonSolKategoriK.Image = (Image)resources.GetObject("buttonSolKategoriK.Image");
+            buttonSolKategoriK.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolKategoriK.Location = new Point(-6, -6);
+            buttonSolKategoriK.Name = "buttonSolKategoriK";
+            buttonSolKategoriK.Padding = new Padding(10, 0, 0, 0);
+            buttonSolKategoriK.Size = new Size(250, 62);
+            buttonSolKategoriK.TabIndex = 2;
+            buttonSolKategoriK.Text = "          Kategori";
+            buttonSolKategoriK.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolKategoriK.UseVisualStyleBackColor = false;
             // 
             // panelMusteriK
             // 
-            panelMusteriK.Controls.Add(buttonMusteriK);
+            panelMusteriK.Controls.Add(buttonSolMusteriK);
             panelMusteriK.Location = new Point(525, 0);
             panelMusteriK.Margin = new Padding(3, 0, 3, 0);
             panelMusteriK.Name = "panelMusteriK";
             panelMusteriK.Size = new Size(169, 48);
             panelMusteriK.TabIndex = 8;
             // 
-            // buttonMusteriK
+            // buttonSolMusteriK
             // 
-            buttonMusteriK.BackColor = Color.FromArgb(32, 32, 36);
-            buttonMusteriK.ForeColor = Color.AliceBlue;
-            buttonMusteriK.Image = (Image)resources.GetObject("buttonMusteriK.Image");
-            buttonMusteriK.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonMusteriK.Location = new Point(-6, -6);
-            buttonMusteriK.Name = "buttonMusteriK";
-            buttonMusteriK.Padding = new Padding(10, 0, 0, 0);
-            buttonMusteriK.Size = new Size(250, 62);
-            buttonMusteriK.TabIndex = 2;
-            buttonMusteriK.Text = "          Müsteri";
-            buttonMusteriK.TextAlign = ContentAlignment.MiddleLeft;
-            buttonMusteriK.UseVisualStyleBackColor = false;
+            buttonSolMusteriK.BackColor = Color.FromArgb(32, 32, 36);
+            buttonSolMusteriK.ForeColor = Color.AliceBlue;
+            buttonSolMusteriK.Image = (Image)resources.GetObject("buttonSolMusteriK.Image");
+            buttonSolMusteriK.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolMusteriK.Location = new Point(-6, -6);
+            buttonSolMusteriK.Name = "buttonSolMusteriK";
+            buttonSolMusteriK.Padding = new Padding(10, 0, 0, 0);
+            buttonSolMusteriK.Size = new Size(250, 62);
+            buttonSolMusteriK.TabIndex = 2;
+            buttonSolMusteriK.Text = "          Müsteri";
+            buttonSolMusteriK.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolMusteriK.UseVisualStyleBackColor = false;
             // 
             // panelTedarikciK
             // 
-            panelTedarikciK.Controls.Add(buttonTedarikciK);
+            panelTedarikciK.Controls.Add(buttonSolTedarikciK);
             panelTedarikciK.Location = new Point(700, 0);
             panelTedarikciK.Margin = new Padding(3, 0, 3, 0);
             panelTedarikciK.Name = "panelTedarikciK";
             panelTedarikciK.Size = new Size(169, 48);
             panelTedarikciK.TabIndex = 8;
             // 
-            // buttonTedarikciK
+            // buttonSolTedarikciK
             // 
-            buttonTedarikciK.BackColor = Color.FromArgb(32, 32, 36);
-            buttonTedarikciK.ForeColor = Color.AliceBlue;
-            buttonTedarikciK.Image = (Image)resources.GetObject("buttonTedarikciK.Image");
-            buttonTedarikciK.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonTedarikciK.Location = new Point(-6, -6);
-            buttonTedarikciK.Name = "buttonTedarikciK";
-            buttonTedarikciK.Padding = new Padding(10, 0, 0, 0);
-            buttonTedarikciK.Size = new Size(250, 62);
-            buttonTedarikciK.TabIndex = 2;
-            buttonTedarikciK.Text = "          Tedarikçi";
-            buttonTedarikciK.TextAlign = ContentAlignment.MiddleLeft;
-            buttonTedarikciK.UseVisualStyleBackColor = false;
+            buttonSolTedarikciK.BackColor = Color.FromArgb(32, 32, 36);
+            buttonSolTedarikciK.ForeColor = Color.AliceBlue;
+            buttonSolTedarikciK.Image = (Image)resources.GetObject("buttonSolTedarikciK.Image");
+            buttonSolTedarikciK.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolTedarikciK.Location = new Point(-6, -6);
+            buttonSolTedarikciK.Name = "buttonSolTedarikciK";
+            buttonSolTedarikciK.Padding = new Padding(10, 0, 0, 0);
+            buttonSolTedarikciK.Size = new Size(250, 62);
+            buttonSolTedarikciK.TabIndex = 2;
+            buttonSolTedarikciK.Text = "          Tedarikçi";
+            buttonSolTedarikciK.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolTedarikciK.UseVisualStyleBackColor = false;
             // 
             // panelRapor
             // 
-            panelRapor.Controls.Add(buttonRapor);
+            panelRapor.Controls.Add(buttonSolRapor);
             panelRapor.Location = new Point(3, 111);
             panelRapor.Name = "panelRapor";
             panelRapor.Size = new Size(169, 48);
             panelRapor.TabIndex = 7;
             // 
-            // buttonRapor
+            // buttonSolRapor
             // 
-            buttonRapor.BackColor = Color.FromArgb(23, 24, 29);
-            buttonRapor.ForeColor = Color.AliceBlue;
-            buttonRapor.Image = (Image)resources.GetObject("buttonRapor.Image");
-            buttonRapor.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonRapor.Location = new Point(-9, -6);
-            buttonRapor.Name = "buttonRapor";
-            buttonRapor.Padding = new Padding(10, 0, 0, 0);
-            buttonRapor.Size = new Size(250, 62);
-            buttonRapor.TabIndex = 2;
-            buttonRapor.Text = "           Rapor";
-            buttonRapor.TextAlign = ContentAlignment.MiddleLeft;
-            buttonRapor.UseVisualStyleBackColor = false;
-            buttonRapor.Click += buttonRapor_Click;
+            buttonSolRapor.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSolRapor.ForeColor = Color.AliceBlue;
+            buttonSolRapor.Image = (Image)resources.GetObject("buttonSolRapor.Image");
+            buttonSolRapor.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolRapor.Location = new Point(-9, -6);
+            buttonSolRapor.Name = "buttonSolRapor";
+            buttonSolRapor.Padding = new Padding(10, 0, 0, 0);
+            buttonSolRapor.Size = new Size(250, 62);
+            buttonSolRapor.TabIndex = 2;
+            buttonSolRapor.Text = "           Rapor";
+            buttonSolRapor.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolRapor.UseVisualStyleBackColor = false;
+            buttonSolRapor.Click += buttonRapor_Click;
+            // 
+            // panelSolSistemA
+            // 
+            panelSolSistemA.Controls.Add(buttonSolSistemAyar);
+            panelSolSistemA.Location = new Point(3, 165);
+            panelSolSistemA.Name = "panelSolSistemA";
+            panelSolSistemA.Size = new Size(169, 48);
+            panelSolSistemA.TabIndex = 9;
+            // 
+            // buttonSolSistemAyar
+            // 
+            buttonSolSistemAyar.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSolSistemAyar.ForeColor = Color.AliceBlue;
+            buttonSolSistemAyar.Image = (Image)resources.GetObject("buttonSolSistemAyar.Image");
+            buttonSolSistemAyar.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolSistemAyar.Location = new Point(-9, -6);
+            buttonSolSistemAyar.Name = "buttonSolSistemAyar";
+            buttonSolSistemAyar.Padding = new Padding(10, 0, 0, 0);
+            buttonSolSistemAyar.Size = new Size(250, 62);
+            buttonSolSistemAyar.TabIndex = 2;
+            buttonSolSistemAyar.Text = "           Sistem Ayarları";
+            buttonSolSistemAyar.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolSistemAyar.UseVisualStyleBackColor = false;
+            buttonSolSistemAyar.Click += buttonSistemAyar_Click;
+            // 
+            // panelSolDenetinK
+            // 
+            panelSolDenetinK.Controls.Add(buttonSolDenetimKayit);
+            panelSolDenetinK.Location = new Point(3, 219);
+            panelSolDenetinK.Name = "panelSolDenetinK";
+            panelSolDenetinK.Size = new Size(169, 48);
+            panelSolDenetinK.TabIndex = 8;
+            // 
+            // buttonSolDenetimKayit
+            // 
+            buttonSolDenetimKayit.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSolDenetimKayit.ForeColor = Color.AliceBlue;
+            buttonSolDenetimKayit.Image = (Image)resources.GetObject("buttonSolDenetimKayit.Image");
+            buttonSolDenetimKayit.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolDenetimKayit.Location = new Point(-9, -6);
+            buttonSolDenetimKayit.Name = "buttonSolDenetimKayit";
+            buttonSolDenetimKayit.Padding = new Padding(10, 0, 0, 0);
+            buttonSolDenetimKayit.Size = new Size(250, 62);
+            buttonSolDenetimKayit.TabIndex = 2;
+            buttonSolDenetimKayit.Text = "           Denetim Kayıtları";
+            buttonSolDenetimKayit.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolDenetimKayit.UseVisualStyleBackColor = false;
+            buttonSolDenetimKayit.Click += buttonDenetimKayit_Click;
+            // 
+            // panelSolKullaniciA
+            // 
+            panelSolKullaniciA.Controls.Add(buttonSolKullaniciAyar);
+            panelSolKullaniciA.Location = new Point(3, 273);
+            panelSolKullaniciA.Name = "panelSolKullaniciA";
+            panelSolKullaniciA.Size = new Size(169, 48);
+            panelSolKullaniciA.TabIndex = 10;
+            // 
+            // buttonSolKullaniciAyar
+            // 
+            buttonSolKullaniciAyar.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSolKullaniciAyar.ForeColor = Color.AliceBlue;
+            buttonSolKullaniciAyar.Image = (Image)resources.GetObject("buttonSolKullaniciAyar.Image");
+            buttonSolKullaniciAyar.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolKullaniciAyar.Location = new Point(-9, -6);
+            buttonSolKullaniciAyar.Name = "buttonSolKullaniciAyar";
+            buttonSolKullaniciAyar.Padding = new Padding(10, 0, 0, 0);
+            buttonSolKullaniciAyar.Size = new Size(250, 62);
+            buttonSolKullaniciAyar.TabIndex = 2;
+            buttonSolKullaniciAyar.Text = "           Kullanıcı Yönetimi";
+            buttonSolKullaniciAyar.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolKullaniciAyar.UseVisualStyleBackColor = false;
+            buttonSolKullaniciAyar.Click += buttonKullaniciAyar_Click;
+            // 
+            // panelSolStokG
+            // 
+            panelSolStokG.Controls.Add(buttonSolStokG);
+            panelSolStokG.Location = new Point(3, 327);
+            panelSolStokG.Name = "panelSolStokG";
+            panelSolStokG.Size = new Size(169, 48);
+            panelSolStokG.TabIndex = 11;
+            // 
+            // buttonSolStokG
+            // 
+            buttonSolStokG.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSolStokG.ForeColor = Color.AliceBlue;
+            buttonSolStokG.Image = (Image)resources.GetObject("buttonSolStokG.Image");
+            buttonSolStokG.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolStokG.Location = new Point(-9, -6);
+            buttonSolStokG.Name = "buttonSolStokG";
+            buttonSolStokG.Padding = new Padding(10, 0, 0, 0);
+            buttonSolStokG.Size = new Size(250, 62);
+            buttonSolStokG.TabIndex = 2;
+            buttonSolStokG.Text = "           Stok Giriş";
+            buttonSolStokG.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolStokG.UseVisualStyleBackColor = false;
+            buttonSolStokG.Click += buttonSolStokG_Click;
+            // 
+            // panelSolStokC
+            // 
+            panelSolStokC.Controls.Add(buttonSolStokCıkış);
+            panelSolStokC.Location = new Point(3, 381);
+            panelSolStokC.Name = "panelSolStokC";
+            panelSolStokC.Size = new Size(169, 48);
+            panelSolStokC.TabIndex = 11;
+            // 
+            // buttonSolStokCıkış
+            // 
+            buttonSolStokCıkış.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSolStokCıkış.ForeColor = Color.AliceBlue;
+            buttonSolStokCıkış.Image = (Image)resources.GetObject("buttonSolStokCıkış.Image");
+            buttonSolStokCıkış.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSolStokCıkış.Location = new Point(-9, -6);
+            buttonSolStokCıkış.Name = "buttonSolStokCıkış";
+            buttonSolStokCıkış.Padding = new Padding(10, 0, 0, 0);
+            buttonSolStokCıkış.Size = new Size(250, 62);
+            buttonSolStokCıkış.TabIndex = 2;
+            buttonSolStokCıkış.Text = "           Stok ÇıkıŞ";
+            buttonSolStokCıkış.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSolStokCıkış.UseVisualStyleBackColor = false;
+            buttonSolStokCıkış.Click += buttonSolStokCıkış_Click;
+            // 
+            // panelSolStokL
+            // 
+            panelSolStokL.Controls.Add(buttonStokList);
+            panelSolStokL.Location = new Point(3, 435);
+            panelSolStokL.Name = "panelSolStokL";
+            panelSolStokL.Size = new Size(169, 48);
+            panelSolStokL.TabIndex = 12;
+            // 
+            // buttonStokList
+            // 
+            buttonStokList.BackColor = Color.FromArgb(23, 24, 29);
+            buttonStokList.ForeColor = Color.AliceBlue;
+            buttonStokList.Image = (Image)resources.GetObject("buttonStokList.Image");
+            buttonStokList.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonStokList.Location = new Point(-9, -6);
+            buttonStokList.Name = "buttonStokList";
+            buttonStokList.Padding = new Padding(10, 0, 0, 0);
+            buttonStokList.Size = new Size(250, 62);
+            buttonStokList.TabIndex = 2;
+            buttonStokList.Text = "           Stok Listele";
+            buttonStokList.TextAlign = ContentAlignment.MiddleLeft;
+            buttonStokList.UseVisualStyleBackColor = false;
+            buttonStokList.Click += buttonStokList_Click;
+            // 
+            // panelDestek
+            // 
+            panelDestek.Controls.Add(buttonDestek);
+            panelDestek.Location = new Point(3, 489);
+            panelDestek.Name = "panelDestek";
+            panelDestek.Size = new Size(169, 48);
+            panelDestek.TabIndex = 13;
+            // 
+            // buttonDestek
+            // 
+            buttonDestek.BackColor = Color.FromArgb(23, 24, 29);
+            buttonDestek.ForeColor = Color.AliceBlue;
+            buttonDestek.Image = (Image)resources.GetObject("buttonDestek.Image");
+            buttonDestek.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonDestek.Location = new Point(-9, -6);
+            buttonDestek.Name = "buttonDestek";
+            buttonDestek.Padding = new Padding(10, 0, 0, 0);
+            buttonDestek.Size = new Size(250, 62);
+            buttonDestek.TabIndex = 2;
+            buttonDestek.Text = "           Destek";
+            buttonDestek.TextAlign = ContentAlignment.MiddleLeft;
+            buttonDestek.UseVisualStyleBackColor = false;
+            buttonDestek.Click += buttonDestek_Click;
             // 
             // menuKayitHareket
             // 
@@ -408,7 +607,7 @@
             // AnaHPanel
             // 
             AnaHPanel.Controls.Add(panelForm);
-            AnaHPanel.Controls.Add(yanMenuPanel);
+            AnaHPanel.Controls.Add(SolHPanel);
             AnaHPanel.Controls.Add(panel1);
             AnaHPanel.Dock = DockStyle.Fill;
             AnaHPanel.Location = new Point(4, 2);
@@ -419,11 +618,22 @@
             // panelForm
             // 
             panelForm.Dock = DockStyle.Fill;
-            panelForm.Location = new Point(172, 33);
+            panelForm.Location = new Point(178, 33);
             panelForm.Margin = new Padding(0);
             panelForm.Name = "panelForm";
-            panelForm.Size = new Size(874, 420);
+            panelForm.Size = new Size(868, 420);
             panelForm.TabIndex = 2;
+            // 
+            // SolHPanel
+            // 
+            SolHPanel.BackColor = Color.FromArgb(23, 24, 29);
+            SolHPanel.Controls.Add(yanMenuPanel);
+            SolHPanel.Dock = DockStyle.Left;
+            SolHPanel.Location = new Point(0, 33);
+            SolHPanel.Margin = new Padding(0);
+            SolHPanel.Name = "SolHPanel";
+            SolHPanel.Size = new Size(178, 420);
+            SolHPanel.TabIndex = 0;
             // 
             // AnaForm
             // 
@@ -453,7 +663,16 @@
             panelMusteriK.ResumeLayout(false);
             panelTedarikciK.ResumeLayout(false);
             panelRapor.ResumeLayout(false);
+            panelSolSistemA.ResumeLayout(false);
+            panelSolDenetinK.ResumeLayout(false);
+            panelSolKullaniciA.ResumeLayout(false);
+            panelSolStokG.ResumeLayout(false);
+            panelSolStokC.ResumeLayout(false);
+            panelSolStokL.ResumeLayout(false);
+            panelDestek.ResumeLayout(false);
             AnaHPanel.ResumeLayout(false);
+            SolHPanel.ResumeLayout(false);
+            SolHPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -525,21 +744,21 @@
         private Panel panel1;
         private PictureBox pictureBox1;
         private FlowLayoutPanel yanMenuPanel;
-        private Button buttonKontrol;
+        private Button buttonSolKontrol;
         private Panel panelKontrol;
         private Panel panelUrunK;
-        private Button buttonUrunK;
+        private Button buttonSolUrunK;
         private Panel panelKategoriK;
-        private Button buttonKategoriK;
+        private Button buttonSolKategoriK;
         private Panel panelMenuKayit;
-        private Button buttonMenuKayit;
+        private Button buttonSolMenuKayit;
         private Panel panelRapor;
-        private Button buttonRapor;
+        private Button buttonSolRapor;
         private FlowLayoutPanel kayitMenuPanel;
         private Panel panelMusteriK;
-        private Button buttonMusteriK;
+        private Button buttonSolMusteriK;
         private Panel panelTedarikciK;
-        private Button buttonTedarikciK;
+        private Button buttonSolTedarikciK;
         private System.Windows.Forms.Timer menuKayitHareket;
         private System.Windows.Forms.Timer yanPanelHareket;
         private Button button8;
@@ -553,5 +772,20 @@
         private ToolStripDropDown popupHesap;
         private Label labelBaslik;
         private Panel panelForm;
+        private Panel SolHPanel;
+        private Panel panelSolSistemA;
+        private Button buttonSolSistemAyar;
+        private Panel panelSolDenetinK;
+        private Button buttonSolDenetimKayit;
+        private Panel panelSolKullaniciA;
+        private Button buttonSolKullaniciAyar;
+        private Panel panelSolStokG;
+        private Button buttonSolStokG;
+        private Panel panelSolStokC;
+        private Button buttonSolStokCıkış;
+        private Panel panelSolStokL;
+        private Button buttonStokList;
+        private Panel panelDestek;
+        private Button buttonDestek;
     }
 }
