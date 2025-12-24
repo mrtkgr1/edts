@@ -51,18 +51,13 @@ namespace edts
         }
         private void btnGiris_Click(object sender, EventArgs e)
         {
-            // Hata etiketini temizle (lblHata kontrolünün adını kontrol edin)
-            // Eğer etiketiniz yoksa aşağıdaki satırı yorum satırı yapabilirsiniz.
-            // lblHata.Visible = false;
 
-            // 1. Kullanıcıdan alınan değerler
             string kullaniciAdi = textBox1.Text;
-            string sifre = loginpsw.Text; // Şifrenizi hash'lemeyi unutmayın!
+            string sifre = loginpsw.Text; 
 
             if (string.IsNullOrEmpty(kullaniciAdi) || string.IsNullOrEmpty(sifre))
             {
-                // lblHata.Text = "Kullanıcı adı ve şifre boş bırakılamaz.";
-                // lblHata.Visible = true;
+
                 MessageBox.Show("Kullanıcı adı ve şifre boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -72,10 +67,9 @@ namespace edts
 
 
                 string girisHash = GuvenlikYardimcisi.HashSifre(sifre);
-                // Bağlantı dizesini App.config'den okur
                 string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
-                // 1. GÜNCELLENMİŞ SORGUNUZ: @pSifreHash parametresini kullanmalı
+
                 string sorgu = "SELECT KullaniciID, RolID, AdSoyad FROM tblKullanicilar WHERE KullaniciAdi=@pKullaniciAdi AND SifreHash=@pSifreHash AND AktifMi=1";
 
                 using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
@@ -94,9 +88,11 @@ namespace edts
                             int rolID = (int)okuyucu["RolID"];
                             string adSoyad = okuyucu["AdSoyad"].ToString();
 
-                            AktifKullanici.ID = kullaniciID;
-                            AktifKullanici.KullaniciAdi = kullaniciAdi;
-                            AktifKullanici.RolID = rolID;   // *** BURASI ZORUNLU! ***
+
+                                AktifKullanici.ID = kullaniciID;
+                                AktifKullanici.KullaniciAdi = kullaniciAdi;
+                                AktifKullanici.RolID = rolID;
+                                AktifKullanici.TamAd = adSoyad;
 
                             // 🟢 KRİTİK LOGLAMA ADIMI 2: Giriş Başarısını Denetim Kaydına Ekleme
                             int girisHareketID = 1; // Artık biliyoruz: GİRİŞ'in HareketID'si 1.

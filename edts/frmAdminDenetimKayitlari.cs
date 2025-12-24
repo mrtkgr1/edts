@@ -54,87 +54,62 @@ namespace edts
 
         private void HareketTipleriniDoldur()
         {
-            try
-            {
-                string baglantiDizesi = System.Configuration.ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-                // HareketID ve HareketAd çekiliyor
-                string sorgu = "SELECT HareketID, HareketAd FROM tblHareketTipleri ORDER BY HareketAd";
+            var veriListesi = Enum.GetValues(typeof(Sabitler.IslemTuru))
+            .Cast<Sabitler.IslemTuru>() 
+            .Select(x => new {
+                HareketAd = x.ToString(),
+                HareketID = (int)x    
+            })
+            .ToList();
 
-                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-                {
-                    SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+            veriListesi.Insert(0, new { HareketAd = "Tümü", HareketID = 0 });
 
-                    // "Tümü" seçeneğini ekle (ID=0 ile filtreleme kolaylığı için)
-                    DataRow tumuRow = dt.NewRow();
-                    tumuRow["HareketID"] = 0;
-                    tumuRow["HareketAd"] = "Tümü";
-                    dt.Rows.InsertAt(tumuRow, 0);
-
-                    cmbHareketTipi.DisplayMember = "HareketAd";
-                    cmbHareketTipi.ValueMember = "HareketID";
-                    cmbHareketTipi.DataSource = dt;
-                    cmbHareketTipi.SelectedIndex = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hareket tipleri yüklenirken hata: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            cmbHareketTipi.DataSource = veriListesi;
+            cmbHareketTipi.DisplayMember = "HareketAd";
+            cmbHareketTipi.ValueMember = "HareketID"; 
         }
+
+
         private void KayitlariGetir()
         {
             try
             {
-                // Bağlantı dizesini App.config'den okur
                 string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
-                // Başlangıç ve Bitiş Tarihlerini al
-                // Başlangıç tarihi için günün en başı (00:00:00)
                 DateTime baslangicTarihi = dtpBaslangic.Value.Date;
-                // Bitiş tarihi için günün en sonu (23:59:59)
                 DateTime bitisTarihi = dtpBitis.Value.Date.AddDays(1).AddSeconds(-1);
 
-                // Hareket Tipi ID'sini ComboBox'tan al
-                // Eğer "Tümü" seçiliyse (SelectedIndex 0 ise) veya seçili bir şey yoksa, null/boş ID kullanırız.
                 int? hareketID = null;
                 if (cmbHareketTipi.SelectedIndex > 0 && cmbHareketTipi.SelectedValue != null)
                 {
-                    // SelectedValue, HareketID'yi tutar
                     if (int.TryParse(cmbHareketTipi.SelectedValue.ToString(), out int id))
                     {
                         hareketID = id;
                     }
                 }
 
-                // 1. SQL Sorgusu: Şartlı WHERE koşulları için başlangıç ve bitiş tarihini ekliyoruz.
-                // Ayrıca tblKullanicilar ve tblHareketTipleri ile JOIN yapıyoruz.
                 string sorgu = @"
                 SELECT
                     D.LogID,
                     D.IslemTarihi,
                     K.KullaniciAdi,
-                    H.HareketAd,
+                    D.HareketID,
                     D.TabloAdi,
                     D.Aciklama
                 FROM 
                     tblDenetimKayitlari D
                 INNER JOIN 
                     tblKullanicilar K ON D.KullaniciID = K.KullaniciID
-                INNER JOIN 
-                    tblHareketTipleri H ON D.HareketID = H.HareketID
                 WHERE 
                     D.IslemTarihi >= @pBaslangicTarihi 
                     AND D.IslemTarihi <= @pBitisTarihi";
 
-                // Hareket ID filtresi varsa sorguya ekle
                 if (hareketID.HasValue)
                 {
                     sorgu += " AND D.HareketID = @pHareketID";
                 }
 
-                sorgu += " ORDER BY D.IslemTarihi DESC"; // Son kayıtlar üstte çıksın
+                sorgu += " ORDER BY D.IslemTarihi DESC"; 
 
                 using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
                 {
@@ -153,16 +128,27 @@ namespace edts
                         DataTable dt = new DataTable();
                         da.Fill(dt);
 
-                        // 3. DataGridView'ı doldur
+                        dt.Columns.Add("IslemAdi", typeof(string));
+
+                        foreach (DataRow row in dt.Rows) {
+                            if (row["HareketID"] != DBNull.Value) {
+                                int id = Convert.ToInt32(row["HareketID"]);
+                                row["IslemAdi"] = Sabitler.IslemAl(id);
+                            }
+                        }
+
                         dgvDenetimKayitlari.DataSource = dt;
 
-                        // Başlıkları yeniden düzenle (isteğe bağlı)
+                        dgvDenetimKayitlari.Columns["IslemAdi"].DisplayIndex = 3;
+                        dgvDenetimKayitlari.Columns["HareketID"].Visible = false;
+                        dgvDenetimKayitlari.Columns["TabloAdi"].Visible = false;
+
                         if (dgvDenetimKayitlari.Columns.Count > 0)
                         {
                             dgvDenetimKayitlari.Columns["LogID"].Visible = false; // LogID'yi gizle
                             dgvDenetimKayitlari.Columns["IslemTarihi"].HeaderText = "İşlem Tarihi";
                             dgvDenetimKayitlari.Columns["KullaniciAdi"].HeaderText = "Kullanıcı Adı";
-                            dgvDenetimKayitlari.Columns["HareketAd"].HeaderText = "Hareket Tipi";
+                            //dgvDenetimKayitlari.Columns["HareketID"].HeaderText = "Hareket Tipi";
                             dgvDenetimKayitlari.Columns["TabloAdi"].HeaderText = "Tablo";
                             dgvDenetimKayitlari.Columns["Aciklama"].HeaderText = "Açıklama";
 
