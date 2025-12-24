@@ -26,7 +26,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             pnlSolMenu = new Panel();
             pnlIcerik = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -35,45 +36,47 @@
             // 
             // pnlSolMenu
             // 
-            pnlSolMenu.BackColor = Color.DarkOliveGreen;
+            pnlSolMenu.BackColor = Color.LightSlateGray;
             pnlSolMenu.Dock = DockStyle.Fill;
             pnlSolMenu.Location = new Point(0, 0);
             pnlSolMenu.Margin = new Padding(0);
             pnlSolMenu.Name = "pnlSolMenu";
-            pnlSolMenu.Size = new Size(280, 572);
+            pnlSolMenu.Size = new Size(320, 673);
             pnlSolMenu.TabIndex = 0;
             // 
             // pnlIcerik
             // 
-            pnlIcerik.BackColor = Color.DarkOliveGreen;
+            pnlIcerik.BackColor = Color.LightSlateGray;
             pnlIcerik.Dock = DockStyle.Fill;
-            pnlIcerik.Location = new Point(280, 0);
+            pnlIcerik.Location = new Point(320, 0);
             pnlIcerik.Margin = new Padding(0);
             pnlIcerik.Name = "pnlIcerik";
-            pnlIcerik.Size = new Size(824, 572);
+            pnlIcerik.Size = new Size(942, 673);
             pnlIcerik.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 280F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 320F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.Controls.Add(pnlIcerik, 1, 0);
             tableLayoutPanel1.Controls.Add(pnlSolMenu, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1104, 572);
+            tableLayoutPanel1.Size = new Size(1262, 673);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // frmAdminAnaMenu
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1104, 572);
+            ClientSize = new Size(1262, 673);
             Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmAdminAnaMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAdminAnaMenu";
