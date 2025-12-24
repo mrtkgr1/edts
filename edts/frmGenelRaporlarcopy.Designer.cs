@@ -1,6 +1,6 @@
 ﻿namespace edts
 {
-    partial class frmGenelRaporlar
+    partial class frmGenelRaporlarcopy
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel7 = new Panel();
-            btnExcelAktar = new KavisliButon();
-            btnRaporGetir = new KavisliButon();
+            btnExcelAktar = new Button();
+            btnRaporuGetir = new Button();
             cmbRaporTipi = new ComboBox();
             label2 = new Label();
             label1 = new Label();
@@ -65,65 +66,63 @@
             panel1.Controls.Add(panel3);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1182, 196);
-            panel1.TabIndex = 2;
+            panel1.Size = new Size(1202, 279);
+            panel1.TabIndex = 0;
             // 
             // panel7
             // 
             panel7.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel7.BackColor = SystemColors.ControlLightLight;
             panel7.Controls.Add(btnExcelAktar);
-            panel7.Controls.Add(btnRaporGetir);
+            panel7.Controls.Add(btnRaporuGetir);
             panel7.Controls.Add(cmbRaporTipi);
             panel7.Controls.Add(label2);
             panel7.Controls.Add(label1);
             panel7.Controls.Add(dtpBaslangic);
             panel7.Controls.Add(dtpBitis);
-            panel7.Location = new Point(3, 9);
+            panel7.Location = new Point(12, 43);
             panel7.Margin = new Padding(3, 4, 3, 4);
             panel7.Name = "panel7";
             panel7.Size = new Size(1177, 74);
-            panel7.TabIndex = 8;
+            panel7.TabIndex = 10;
             // 
             // btnExcelAktar
             // 
             btnExcelAktar.BackColor = Color.LightSlateGray;
-            btnExcelAktar.BorderRadius = 30;
             btnExcelAktar.FlatAppearance.BorderSize = 0;
             btnExcelAktar.FlatStyle = FlatStyle.Flat;
-            btnExcelAktar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnExcelAktar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             btnExcelAktar.ForeColor = SystemColors.ControlLightLight;
-            btnExcelAktar.Location = new Point(593, 38);
+            btnExcelAktar.Location = new Point(594, 39);
+            btnExcelAktar.Margin = new Padding(3, 4, 3, 4);
             btnExcelAktar.Name = "btnExcelAktar";
-            btnExcelAktar.Size = new Size(140, 29);
-            btnExcelAktar.TabIndex = 15;
+            btnExcelAktar.Size = new Size(123, 29);
+            btnExcelAktar.TabIndex = 13;
             btnExcelAktar.Text = "Excel'e Aktar";
             btnExcelAktar.UseVisualStyleBackColor = false;
-            btnExcelAktar.Click += btnExcelAktar_Click_1;
+            btnExcelAktar.Click += btnExcelAktar_Click;
             // 
-            // btnRaporGetir
+            // btnRaporuGetir
             // 
-            btnRaporGetir.BackColor = Color.LightSlateGray;
-            btnRaporGetir.BorderRadius = 30;
-            btnRaporGetir.FlatAppearance.BorderSize = 0;
-            btnRaporGetir.FlatStyle = FlatStyle.Flat;
-            btnRaporGetir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnRaporGetir.ForeColor = SystemColors.ControlLightLight;
-            btnRaporGetir.Location = new Point(593, 3);
-            btnRaporGetir.Name = "btnRaporGetir";
-            btnRaporGetir.Size = new Size(140, 29);
-            btnRaporGetir.TabIndex = 14;
-            btnRaporGetir.Text = "Raporu Getir";
-            btnRaporGetir.UseVisualStyleBackColor = false;
-            btnRaporGetir.Click += kavisliButon1_Click;
+            btnRaporuGetir.BackColor = Color.LightSlateGray;
+            btnRaporuGetir.FlatAppearance.BorderSize = 0;
+            btnRaporuGetir.FlatStyle = FlatStyle.Flat;
+            btnRaporuGetir.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnRaporuGetir.ForeColor = SystemColors.ControlLightLight;
+            btnRaporuGetir.Location = new Point(594, 6);
+            btnRaporuGetir.Margin = new Padding(3, 4, 3, 4);
+            btnRaporuGetir.Name = "btnRaporuGetir";
+            btnRaporuGetir.Size = new Size(123, 29);
+            btnRaporuGetir.TabIndex = 12;
+            btnRaporuGetir.Text = "Raporu Getir";
+            btnRaporuGetir.UseVisualStyleBackColor = false;
             // 
             // cmbRaporTipi
             // 
             cmbRaporTipi.FormattingEnabled = true;
             cmbRaporTipi.Items.AddRange(new object[] { "Stok Değerleri, Giriş/Çıkış Özeti, Kritik Durum" });
-            cmbRaporTipi.Location = new Point(765, 8);
+            cmbRaporTipi.Location = new Point(845, 8);
             cmbRaporTipi.Margin = new Padding(3, 4, 3, 4);
             cmbRaporTipi.Name = "cmbRaporTipi";
             cmbRaporTipi.Size = new Size(151, 28);
@@ -172,11 +171,11 @@
             panel3.Controls.Add(panel5);
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(pnlOzetGiris);
-            panel3.Location = new Point(3, 89);
+            panel3.Location = new Point(12, 123);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
             panel3.Size = new Size(1175, 98);
-            panel3.TabIndex = 7;
+            panel3.TabIndex = 9;
             // 
             // panel6
             // 
@@ -237,7 +236,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label5.ForeColor = SystemColors.ControlLightLight;
-            label5.Location = new Point(21, 21);
+            label5.Location = new Point(3, 21);
             label5.Name = "label5";
             label5.Size = new Size(135, 23);
             label5.TabIndex = 0;
@@ -269,35 +268,34 @@
             // 
             panel2.Controls.Add(dataGridView1);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 196);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(0, 279);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1182, 397);
-            panel2.TabIndex = 3;
+            panel2.Size = new Size(1202, 352);
+            panel2.TabIndex = 1;
             // 
             // dataGridView1
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.AliceBlue;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1182, 397);
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1202, 352);
             dataGridView1.TabIndex = 0;
             // 
-            // frmGenelRaporlar
+            // frmGenelRaporlarcopy
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1182, 593);
+            ClientSize = new Size(1202, 631);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "frmGenelRaporlar";
-            Text = "frmGenelRaporlar";
+            Name = "frmGenelRaporlarcopy";
+            Text = "frmGenelRaporlarcopy";
             panel1.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
@@ -316,26 +314,26 @@
         }
 
         #endregion
+
         private Panel panel1;
         private Panel panel2;
-        private Panel pnlOzetGiris;
         private DataGridView dataGridView1;
-        private Panel panel3;
-        private Panel panel4;
-        private Label label3;
-        private Panel panel6;
-        private Label label6;
-        private Panel panel5;
-        private Label label4;
-        private Label label5;
         private Panel panel7;
+        private Button btnExcelAktar;
+        private Button btnRaporuGetir;
         private ComboBox cmbRaporTipi;
         private Label label2;
         private Label label1;
         private DateTimePicker dtpBaslangic;
         private DateTimePicker dtpBitis;
-        private KavisliButon kavisliButon2;
-        private KavisliButon btnRaporGetir;
-        private KavisliButon btnExcelAktar;
+        private Panel panel3;
+        private Panel panel6;
+        private Label label6;
+        private Panel panel5;
+        private Label label4;
+        private Panel panel4;
+        private Label label5;
+        private Panel pnlOzetGiris;
+        private Label label3;
     }
 }

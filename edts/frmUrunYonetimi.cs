@@ -72,12 +72,12 @@ namespace edts {
         private void btnSil_Click(object sender, EventArgs e) {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
                 try {
-                    if (dataGridView1.SelectedRows.Count == 0) {
+                    if (dataGridView2.SelectedRows.Count == 0) {
                         MessageBox.Show("Kategori güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
                         return;
                     }
-                    if (dataGridView1.SelectedRows.Count == 0) return;
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["UrunID"].Value);
+                    if (dataGridView2.SelectedRows.Count == 0) return;
+                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["UrunID"].Value);
                     baglan.Open();
                     SqlCommand cmd = new SqlCommand("DELETE FROM tblUrunler WHERE UrunID = @id", baglan);
                     cmd.Parameters.AddWithValue("@id", id);
@@ -93,11 +93,11 @@ namespace edts {
         private void btnGuncelle_Click(object sender, EventArgs e) {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
                 try {
-                    if (dataGridView1.SelectedRows.Count == 0) {
+                    if (dataGridView2.SelectedRows.Count == 0) {
                         MessageBox.Show("Ürün güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
                         return;
                     }
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["UrunID"].Value);
+                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["UrunID"].Value);
                     baglan.Open();
 
                     // SQL Sorgusu: ID'si eşleşen satırı bul ve diğer sütunları değiştir
@@ -151,17 +151,17 @@ namespace edts {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dataGridView1.DataSource = dt;
+                    dataGridView2.DataSource = dt;
 
-                    if (dataGridView1.Columns["UrunID"] != null) {
-                        dataGridView1.Columns["UrunID"].Visible = false;
+                    if (dataGridView2.Columns["UrunID"] != null) {
+                        dataGridView2.Columns["UrunID"].Visible = false;
                     }
 
-                    dataGridView1.Columns["UrunKodu"].HeaderText = "Ürün Kodu";
-                    dataGridView1.Columns["UrunAd"].HeaderText = "Ürün Adı";
-                    dataGridView1.Columns["KategoriAd"].HeaderText = "Kategori";
+                    dataGridView2.Columns["UrunKodu"].HeaderText = "Ürün Kodu";
+                    dataGridView2.Columns["UrunAd"].HeaderText = "Ürün Adı";
+                    dataGridView2.Columns["KategoriAd"].HeaderText = "Kategori";
 
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                 } catch (Exception ex) {
                     MessageBox.Show("Veri çekilemedi: " + ex.Message);
@@ -244,11 +244,11 @@ namespace edts {
         private void btnKategoriGuncelle_Click(object sender, EventArgs e) {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
                 try {
-                    if (dataGridView1.SelectedRows.Count == 0) {
+                    if (dataGridView2.SelectedRows.Count == 0) {
                         MessageBox.Show("Kategori güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
                         return;
                     }
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["KategoriID"].Value);
+                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["KategoriID"].Value);
                     baglan.Open();
                     SqlCommand cmd = new SqlCommand("UPDATE tblKategoriler SET KategoriAd = @ad, KategoriAcıklama = @aciklama WHERE KategoriID = @id", baglan);
                     cmd.Parameters.AddWithValue("@ad", txtKategoriAdi);
@@ -271,12 +271,12 @@ namespace edts {
         private void btnKategoriSil_Click(object sender, EventArgs e) {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
                 try {
-                    if (dataGridView1.SelectedRows.Count == 0) {
+                    if (dataGridView2.SelectedRows.Count == 0) {
                         MessageBox.Show("Kategori güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
                         return;
                     }
-                    if (dataGridView1.SelectedRows.Count == 0) return;
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["KategoriID"].Value);
+                    if (dataGridView2.SelectedRows.Count == 0) return;
+                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["KategoriID"].Value);
                     baglan.Open();
                     SqlCommand cmd = new SqlCommand("DELETE FROM tblKategoriler WHERE KategoriID = @id", baglan);
                     cmd.Parameters.AddWithValue("@id", id);
@@ -307,7 +307,7 @@ namespace edts {
 
                     da.Fill(dt);
 
-                    dataGridView1.DataSource = dt;
+                    dataGridView2.DataSource = dt;
                 } catch (Exception ex) {
                     MessageBox.Show("Veri çekilemedi: " + ex.Message);
                 }
@@ -378,11 +378,11 @@ namespace edts {
                 try {
                     baglan.Open();
 
-                    if (dataGridView1.SelectedRows.Count == 0) {
+                    if (dataGridView2.SelectedRows.Count == 0) {
                         MessageBox.Show("Tedarikçi güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
                         return;
                     }
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["TedarikciID"].Value);
+                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["TedarikciID"].Value);
 
                     string sorgu = @"UPDATE tblTedarikciler 
                              SET TedarikciAd = @Ad, 
@@ -419,11 +419,11 @@ namespace edts {
                 try {
                     baglan.Open();
 
-                    if (dataGridView1.SelectedRows.Count == 0) {
+                    if (dataGridView2.SelectedRows.Count == 0) {
                         MessageBox.Show("Tedarikçi güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
                         return;
                     }
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["TedarikciID"].Value);
+                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["TedarikciID"].Value);
 
                     string sorgu = "DELETE FROM tblTedarikciler WHERE TedarikciID = @ID";
 
@@ -461,19 +461,19 @@ namespace edts {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dataGridView1.DataSource = dt;
+                    dataGridView2.DataSource = dt;
 
                     // --- KOZMETİK AYARLAR ---
 
-                    if (dataGridView1.Columns["TedarikciID"] != null)
-                        dataGridView1.Columns["TedarikciID"].Visible = false;
+                    if (dataGridView2.Columns["TedarikciID"] != null)
+                        dataGridView2.Columns["TedarikciID"].Visible = false;
 
-                    dataGridView1.Columns["TedarikciAd"].HeaderText = "Firma Adı";
-                    dataGridView1.Columns["VergiDairesi"].HeaderText = "Vergi Dairesi";
-                    dataGridView1.Columns["VergiNo"].HeaderText = "Vergi No";
-                    dataGridView1.Columns["IletisimTel"].HeaderText = "Telefon";
+                    dataGridView2.Columns["TedarikciAd"].HeaderText = "Firma Adı";
+                    dataGridView2.Columns["VergiDairesi"].HeaderText = "Vergi Dairesi";
+                    dataGridView2.Columns["VergiNo"].HeaderText = "Vergi No";
+                    dataGridView2.Columns["IletisimTel"].HeaderText = "Telefon";
 
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 } catch (Exception ex) {
                     MessageBox.Show("Listeleme Hatası: " + ex.Message);
                 }
@@ -546,11 +546,11 @@ namespace edts {
                 try {
                     baglan.Open();
 
-                    if (dataGridView1.SelectedRows.Count == 0) {
+                    if (dataGridView2.SelectedRows.Count == 0) {
                         MessageBox.Show("Müsteri güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
                         return;
                     }
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MusteriID"].Value);
+                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["MusteriID"].Value);
 
                     string sorgu = @"UPDATE tblMusteriler 
                              SET MusteriAd = @Ad, 
@@ -586,11 +586,11 @@ namespace edts {
                 try {
                     baglan.Open();
 
-                    if (dataGridView1.SelectedRows.Count == 0) {
+                    if (dataGridView2.SelectedRows.Count == 0) {
                         MessageBox.Show("Müsteri güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
                         return;
                     }
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MusteriID"].Value);
+                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["MusteriID"].Value);
 
                     string sorgu = "DELETE FROM tblMusteriler WHERE MusteriID = @ID";
 
@@ -627,19 +627,19 @@ namespace edts {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dataGridView1.DataSource = dt;
+                    dataGridView2.DataSource = dt;
 
                     // --- KOZMETİK AYARLAR ---
 
-                    if (dataGridView1.Columns["MusteriID"] != null)
-                        dataGridView1.Columns["MusteriID"].Visible = false;
+                    if (dataGridView2.Columns["MusteriID"] != null)
+                        dataGridView2.Columns["MusteriID"].Visible = false;
 
-                    dataGridView1.Columns["MusteriAd"].HeaderText = "Müsteri Adı";
-                    dataGridView1.Columns["VergiDairesi"].HeaderText = "Vergi Dairesi";
-                    dataGridView1.Columns["VergiNo"].HeaderText = "Vergi No";
-                    dataGridView1.Columns["Telefon"].HeaderText = "Telefon";
+                    dataGridView2.Columns["MusteriAd"].HeaderText = "Müsteri Adı";
+                    dataGridView2.Columns["VergiDairesi"].HeaderText = "Vergi Dairesi";
+                    dataGridView2.Columns["VergiNo"].HeaderText = "Vergi No";
+                    dataGridView2.Columns["Telefon"].HeaderText = "Telefon";
 
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 } catch (Exception ex) {
                     MessageBox.Show("Listeleme Hatası: " + ex.Message);
                 }
@@ -676,20 +676,20 @@ namespace edts {
             switch (tabControl1.SelectedIndex) {
                 case 0:
                     if (e.RowIndex >= 0) {
-                        UrunBilgileriniGetir(Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["UrunID"].Value));
+                        UrunBilgileriniGetir(Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["UrunID"].Value));
                     }
                     break;
                 case 1:
                     if (e.RowIndex >= 0) {
                         string ad = "", aciklama = "";
-                        kategoriBigiAl(Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["KategoriID"].Value), out ad, out aciklama);
+                        kategoriBigiAl(Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["KategoriID"].Value), out ad, out aciklama);
                         txtKategoriAdi.Text = ad;
                         txtKategoriAciklama.Text = aciklama;
                     }
                     break;
                 case 2:
                     if (e.RowIndex >= 0) {
-                        TedarikciBigiAl(Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["TedarikciID"].Value), out string ad, out string vergiNo, out string vergiDairesi, out string tel);
+                        TedarikciBigiAl(Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["TedarikciID"].Value), out string ad, out string vergiNo, out string vergiDairesi, out string tel);
                         txtFirmaAdi.Text = ad;
                         txtVergiDairesi.Text = vergiDairesi;
                         txtVergiNo.Text = vergiNo;
@@ -698,7 +698,7 @@ namespace edts {
                     break;
                 case 3:
                     if (e.RowIndex >= 0) {
-                        musteriBilgiAl(Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["MusteriID"].Value), out string ad, out string vergiNo, out string vergiDairesi, out string tel);
+                        musteriBilgiAl(Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["MusteriID"].Value), out string ad, out string vergiNo, out string vergiDairesi, out string tel);
                         textMusteriAd.Text = ad;
                         textMusteriVd.Text = vergiDairesi;
                         textMusteriVNo.Text = vergiNo;
