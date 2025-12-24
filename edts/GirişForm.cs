@@ -27,7 +27,8 @@ namespace edts
 
         private void AnaMenuForm_Load(object sender, EventArgs e)
         {
-            Form acilacakForm = null;
+            Form? acilacakForm = null;
+
 
             switch (aktifRolID)
             {
@@ -81,15 +82,13 @@ namespace edts
 
                         baglanti.Open();
                         SqlDataReader okuyucu = komut.ExecuteReader();
-
                         if (okuyucu.Read())
                         {
-                                // Veritabanından kritik bilgileri al
-                                int kullaniciID = (int)okuyucu["KullaniciID"];
-                                int rolID = (int)okuyucu["RolID"];
-                                string adSoyad = okuyucu["AdSoyad"].ToString(); // Sorgunuzda AdSoyad çektiğiniz için kullanıyoruz
+                            int kullaniciID = (int)okuyucu["KullaniciID"];
+                            int rolID = (int)okuyucu["RolID"];
+                            string adSoyad = okuyucu["AdSoyad"].ToString();
 
-                                // 🟢 KRİTİK LOGLAMA ADIMI 1: Aktif Kullanıcı ID'sini global olarak yakalama
+
                                 AktifKullanici.ID = kullaniciID;
                                 AktifKullanici.KullaniciAdi = kullaniciAdi;
                                 AktifKullanici.RolID = rolID;
@@ -136,6 +135,7 @@ namespace edts
             }
 
         }
+
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

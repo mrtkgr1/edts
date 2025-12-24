@@ -13,7 +13,7 @@ namespace edts
     public partial class frmAdminSolPanel : Form
     {
         private const int CikisHareketID = 11;
-        private bool isMenuAcik = true;
+       
         private frmAdminAnaMenu? GetParentAdminForm()
         {
             return this.ParentForm as frmAdminAnaMenu;
@@ -23,6 +23,7 @@ namespace edts
         {
             InitializeComponent();
         }
+      
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -33,7 +34,6 @@ namespace edts
         {
 
         }
-
 
         private void pbAnasayfa_Click(object sender, EventArgs e)
         {
@@ -84,10 +84,14 @@ namespace edts
         private void pbKategori_Click(object sender, EventArgs e)
         {
             frmAdminAnaMenu? anaForm = GetParentAdminForm();
-            if (anaForm != null) {
-                if (anaForm.SolPanelDurumunuDegistir()) {
+            if (anaForm != null)
+            {
+                if (anaForm.SolPanelDurumunuDegistir())
+                {
                     LabellariGoster();
-                } else {
+                }
+                else
+                {
                     LabellariGizle();
                 }
             }
@@ -103,7 +107,7 @@ namespace edts
             lblSupport.Visible = false;
             lblAyarlar.Visible = false;
             // Opsiyonel: "Hoşgeldiniz" ve kullanıcı adı etiketlerini de gizleyebilirsiniz
-            label1.Visible = false; 
+            label1.Visible = false;
             pictureBox1.Visible = false;
         }
 
@@ -134,7 +138,7 @@ namespace edts
         }
 
 
-           private void pbCikisYap_Click(object sender, EventArgs e)
+        private void pbCikisYap_Click(object sender, EventArgs e)
         {
             // Bu kodun içini, label5_Click'teki loglama bloğuyla aynı şekilde doldurun.
             try
@@ -154,11 +158,11 @@ namespace edts
                 System.Diagnostics.Debug.WriteLine("Çıkış logu kaydedilirken hata oluştu: " + ex.Message);
             }
 
-            this.ParentForm.Close();
+            this.ParentForm?.Close();
             edts.GirişForm girisFormu = new edts.GirişForm();
             girisFormu.Show();
         }
-        
+
 
         private void pbDestek_Click(object sender, EventArgs e)
         {
@@ -173,16 +177,28 @@ namespace edts
         private void IcerikAc(Type formTipi)
         {
             // 1. Ana formu (frmAdminAnaMenu) bulma
-            frmAdminAnaMenu anaForm = this.ParentForm as frmAdminAnaMenu;
+            frmAdminAnaMenu? anaForm = this.ParentForm as frmAdminAnaMenu;
+
+            if (anaForm == null)
+            {
+                // Hata yönetimi veya return
+                return;
+            }
+
+            // Buradan sonra anaForm'un null olmadığından emin olarak işlem yapabilirsin.
 
             if (anaForm != null)
             {
                 // 2. Dinamik olarak form örneği oluşturma
                 // (Not: Activator.CreateInstance() kullanmak, formları daha esnek açmanızı sağlar)
-                Form yeniIcerikFormu = (Form)Activator.CreateInstance(formTipi);
+                var instance = Activator.CreateInstance(formTipi);
 
-                // 3. Ana formdaki IcerikDegistir metodunu çağırarak içeriği değiştirme
-                anaForm.IcerikDegistir(yeniIcerikFormu);
+                if (instance is Form yeniIcerikFormu)
+                {
+                    // Form başarıyla oluşturuldu, burada kullanabilirsin
+                    yeniIcerikFormu.TopLevel = false;
+                    yeniIcerikFormu.Show();
+                }
             }
         }
         // 1. ANASAYFA Label'ı
@@ -217,7 +233,7 @@ namespace edts
 
         private void label5_Click(object sender, EventArgs e)
         {
-           
+
             // 1. LOG KAYDINI YAP (Veritabanı bağlantı kütüphanelerini kullan)
             try
             {
@@ -242,11 +258,26 @@ namespace edts
             }
 
             // 2. FORMU KAPAT ve Giriş Formunu Aç
-            this.ParentForm.Close();
+            this.ParentForm?.Close();
             edts.GirişForm girisFormu = new edts.GirişForm();
             girisFormu.Show();
         }
+
+        private void pictureBoxChatbot_Click(object sender, EventArgs e)
+        {
+            frmAdminAnaMenu? anaForm = GetParentAdminForm();
+            if (anaForm != null)
+            {
+                anaForm.IcerikDegistir(new ChatbotForm());
+            }
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            IcerikAc(typeof(ChatbotForm));
+        }
     }
-    }
+}
 
 

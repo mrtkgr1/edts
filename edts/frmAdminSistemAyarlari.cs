@@ -244,7 +244,7 @@ namespace edts
             // 2. Hareket ID'sini alma
             // DataGridView'da "HareketID" sütununun gizli olduğunu varsayıyoruz.
             int hareketID = Convert.ToInt32(dgvHareketTipleri.SelectedRows[0].Cells["HareketID"].Value);
-            string hareketAd = dgvHareketTipleri.SelectedRows[0].Cells["HareketAd"].Value.ToString();
+            string hareketAd = dgvHareketTipleri.SelectedRows[0].Cells["HareketAd"].Value?.ToString() ?? string.Empty;
 
             // 3. Kullanıcıdan Onay Alma
             DialogResult onay = MessageBox.Show(
@@ -316,6 +316,11 @@ namespace edts
                 // ya da genel bir hata mesajı verilir.
                 MessageBox.Show("Ayarlar kaydedilirken bir sorun oluştu. Detaylar için 'VeritabaniYardimcisi.cs' dosyasındaki hata mesajlarını kontrol edin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dgvHareketTipleri_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
