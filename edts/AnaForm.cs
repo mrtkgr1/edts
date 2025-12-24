@@ -78,8 +78,7 @@ namespace edts {
             panelKontrol.Visible = true;
 
             kayitMenuPanel.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici;
-            panelRapor.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici ||
-                AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
+            panelRapor.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici;
 
             panelSolSistemA.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Admin;
             panelSolDenetinK.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Admin;
@@ -88,14 +87,14 @@ namespace edts {
             panelSolStokG.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
             panelSolStokC.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
             panelSolStokL.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
-
+            panelRaporDepo.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Personel;
 
         }
-        
+
         //----Ayarlar ----
         public void UstBarTemaDegistir() {
 
-        }         
+        }
 
         //-----Menü açma kapama işlemleri -----
         bool isKayitMenuAcik = false;
@@ -335,6 +334,28 @@ namespace edts {
 
         private void buttonDestek_Click(object sender, EventArgs e) {
             SayfaGoster(new frmSupport());
+        }
+
+        private void buttonChatBot_Click(object sender, EventArgs e) {
+            switch (AktifKullanici.RolID) {
+                case (int)Sabitler.Rol.Admin:
+                    SayfaGoster(new ChatbotForm());
+                    break;
+
+                case (int)Sabitler.Rol.Yonetici:
+                    SayfaGoster(new ChatbotYonetici());
+                    break;
+
+                case (int)Sabitler.Rol.Personel:
+                    SayfaGoster(new ChatbotDepo());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void buttonRaporDEpo_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmDepoRapor());
         }
     }
 }
