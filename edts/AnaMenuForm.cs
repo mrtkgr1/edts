@@ -40,6 +40,8 @@ namespace edts
                     return; // Formu kapattıktan sonra daha fazla işlem yapma
             }
 
+            acilacakForm = new AnaForm();
+
             if (acilacakForm != null)
             {
                 acilacakForm.ShowDialog();
