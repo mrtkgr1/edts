@@ -58,7 +58,7 @@
             // panel1
             // 
             panel1.Controls.Add(txtSoru);
-            panel1.Location = new Point(90, 335);
+            panel1.Location = new Point(211, 400);
             panel1.Name = "panel1";
             panel1.Size = new Size(430, 27);
             panel1.TabIndex = 4;
@@ -77,7 +77,7 @@
             // panel2
             // 
             panel2.Controls.Add(btnSesliOkuma);
-            panel2.Location = new Point(526, 321);
+            panel2.Location = new Point(647, 386);
             panel2.Name = "panel2";
             panel2.Size = new Size(82, 41);
             panel2.TabIndex = 5;
@@ -85,7 +85,7 @@
             // panel3
             // 
             panel3.Controls.Add(btnGonder);
-            panel3.Location = new Point(614, 321);
+            panel3.Location = new Point(735, 386);
             panel3.Name = "panel3";
             panel3.Size = new Size(84, 41);
             panel3.TabIndex = 6;
@@ -104,19 +104,21 @@
             // 
             // panel4
             // 
+            panel4.AutoSize = true;
             panel4.Controls.Add(flowChat);
-            panel4.Location = new Point(90, 26);
+            panel4.Location = new Point(205, 88);
             panel4.Name = "panel4";
-            panel4.Size = new Size(611, 289);
-            panel4.TabIndex = 7;
+            panel4.Size = new Size(614, 296);
+            panel4.TabIndex = 8;
+            panel4.Paint += panel4_Paint_1;
             // 
             // flowChat
             // 
             flowChat.Dock = DockStyle.Bottom;
             flowChat.Location = new Point(0, 0);
             flowChat.Name = "flowChat";
-            flowChat.Size = new Size(611, 289);
-            flowChat.TabIndex = 3;
+            flowChat.Size = new Size(614, 296);
+            flowChat.TabIndex = 0;
             // 
             // ChatbotForm
             // 
@@ -135,6 +137,7 @@
             panel3.ResumeLayout(false);
             panel4.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -144,10 +147,9 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
-        private Panel panel4;
-        private FlowLayoutPanel flowChat;
         private RichTextBox txtSoru;
         private Button btnGonder;
-      
+        private Panel panel4;
+        private FlowLayoutPanel flowChat;
     }
 }
