@@ -80,8 +80,8 @@ namespace edts
                     using (SqlDataReader dr = cmd.ExecuteReader()) {
                         if (dr.Read()) {
                             // Değerleri okuyoruz
-                            string toplam = dr["ToplamSayi"].ToString();
-                            string kritik = dr["KritikSayi"].ToString();
+                            string toplam = dr["ToplamSayi"]?.ToString() ?? "0";
+                            string kritik = dr["KritikSayi"].ToString() ?? "0";
 
                             // Label'lara yazdırıyoruz
                             label3.Text = "Kritik Stok Adeti: "+toplam;

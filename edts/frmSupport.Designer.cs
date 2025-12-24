@@ -32,16 +32,16 @@
             label1 = new Label();
             label4 = new Label();
             panel1 = new Panel();
-            panel2 = new Panel();
             pictureBox2 = new PictureBox();
+            lblDestekMail = new Label();
+            panel2 = new Panel();
             pictureBox1 = new PictureBox();
-            label3 = new Label();
             label2 = new Label();
             panel3 = new Panel();
             panel4 = new Panel();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
@@ -50,42 +50,34 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label1.ForeColor = SystemColors.ControlLightLight;
             label1.Location = new Point(17, 16);
             label1.Name = "label1";
-            label1.Size = new Size(176, 28);
+            label1.Size = new Size(198, 31);
             label1.TabIndex = 0;
             label1.Text = "Yardım ve Destek";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label4.ForeColor = SystemColors.ControlLightLight;
-            label4.Location = new Point(53, 18);
+            label4.Location = new Point(52, 16);
             label4.Name = "label4";
             label4.Size = new Size(53, 23);
             label4.TabIndex = 3;
-            label4.Text = "v1.0.0";
+            label4.Text = "v2.0.0";
             // 
             // panel1
             // 
             panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(lblDestekMail);
             panel1.Location = new Point(40, 105);
             panel1.Name = "panel1";
             panel1.Size = new Size(458, 125);
             panel1.TabIndex = 6;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(pictureBox1);
-            panel2.Controls.Add(label2);
-            panel2.Location = new Point(44, 275);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(454, 125);
-            panel2.TabIndex = 7;
             // 
             // pictureBox2
             // 
@@ -96,6 +88,28 @@
             pictureBox2.Size = new Size(125, 62);
             pictureBox2.TabIndex = 9;
             pictureBox2.TabStop = false;
+            // 
+            // lblDestekMail
+            // 
+            lblDestekMail.AutoSize = true;
+            lblDestekMail.Cursor = Cursors.Hand;
+            lblDestekMail.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblDestekMail.ForeColor = SystemColors.ControlLightLight;
+            lblDestekMail.Location = new Point(138, 49);
+            lblDestekMail.Name = "lblDestekMail";
+            lblDestekMail.Size = new Size(275, 23);
+            lblDestekMail.TabIndex = 7;
+            lblDestekMail.Text = "E-posta: destek@stokyönetim.com";
+            lblDestekMail.Click += lblDestekMail_Click;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(label2);
+            panel2.Location = new Point(44, 275);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(454, 125);
+            panel2.TabIndex = 7;
             // 
             // pictureBox1
             // 
@@ -108,20 +122,10 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label3.ForeColor = SystemColors.ControlLightLight;
-            label3.Location = new Point(138, 47);
-            label3.Name = "label3";
-            label3.Size = new Size(275, 23);
-            label3.TabIndex = 7;
-            label3.Text = "E-posta: destek@stokyönetim.com";
-            // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label2.ForeColor = SystemColors.ControlLightLight;
             label2.Location = new Point(134, 53);
@@ -141,7 +145,7 @@
             // panel4
             // 
             panel4.Controls.Add(label4);
-            panel4.Location = new Point(363, 420);
+            panel4.Location = new Point(363, 430);
             panel4.Name = "panel4";
             panel4.Size = new Size(164, 48);
             panel4.TabIndex = 9;
@@ -150,7 +154,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkOliveGreen;
+            BackColor = Color.LightSlateGray;
             ClientSize = new Size(863, 523);
             Controls.Add(panel4);
             Controls.Add(panel3);
@@ -160,9 +164,9 @@
             Text = "frmSupport";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -178,7 +182,7 @@
         private Panel panel1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
-        private Label label3;
+        private Label lblDestekMail;
         private Label label2;
         private Panel panel2;
         private Panel panel3;

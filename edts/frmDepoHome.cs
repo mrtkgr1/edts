@@ -13,8 +13,8 @@ namespace edts
 {
 
     public partial class frmDepoHome : Form
-    {    
-        
+    {
+
         // <<< BURAYA EKLEYİN: Aktif Kullanıcı ID'sini tutacak değişken >>>
         private int aktifKullaniciID;
 
@@ -23,7 +23,7 @@ namespace edts
             InitializeComponent();
             // Gelen ID'yi sınıf değişkenine atayın
             IcerikYukle(new frmAnaSayfa());
-            
+
         }
         private void IcerikYukle(Form yeniForm)
         {
@@ -208,6 +208,16 @@ namespace edts
         private void pbxAnasayfa_Click(object sender, EventArgs e)
         {
             lblAnaSayfa_Click(sender, e); // Label olayına yönlendir
+        }
+
+        private void pbChatbott_Click(object sender, EventArgs e)
+        {
+            lblChatBott_Click(sender, e);
+        }
+
+        private void lblChatBott_Click(object sender, EventArgs e)
+        {
+            IcerikYukle(new ChatbotDepo());
         }
     }
 }

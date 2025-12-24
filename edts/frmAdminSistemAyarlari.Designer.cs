@@ -48,6 +48,7 @@ namespace edts
             cmbHareketYonu = new ComboBox();
             btnHareketTipiEkle = new Button();
             dgvHareketTipleri = new DataGridView();
+            btnDuzenle = new DataGridViewButtonColumn();
             txtHareketTipiAd = new TextBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numKritikStok).BeginInit();
@@ -61,7 +62,7 @@ namespace edts
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = Color.DarkCyan;
+            groupBox1.BackColor = Color.LightSlateGray;
             groupBox1.Controls.Add(txtVarsayilanDepoKonum);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(cmbVarsayilanBirimTip);
@@ -131,7 +132,7 @@ namespace edts
             // 
             // groupBox2
             // 
-            groupBox2.BackColor = Color.DarkCyan;
+            groupBox2.BackColor = Color.LightSlateGray;
             groupBox2.Controls.Add(numSifreDegistirmeSuresi);
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(numOturumZamanAsimi);
@@ -205,9 +206,9 @@ namespace edts
             btnAyarlariKaydet.FlatStyle = FlatStyle.Flat;
             btnAyarlariKaydet.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             btnAyarlariKaydet.ForeColor = SystemColors.ControlLightLight;
-            btnAyarlariKaydet.Location = new Point(431, 747);
+            btnAyarlariKaydet.Location = new Point(423, 747);
             btnAyarlariKaydet.Name = "btnAyarlariKaydet";
-            btnAyarlariKaydet.Size = new Size(225, 36);
+            btnAyarlariKaydet.Size = new Size(232, 41);
             btnAyarlariKaydet.TabIndex = 2;
             btnAyarlariKaydet.Text = "Kaydet";
             btnAyarlariKaydet.UseVisualStyleBackColor = false;
@@ -215,7 +216,7 @@ namespace edts
             // 
             // groupBox3
             // 
-            groupBox3.BackColor = Color.DarkCyan;
+            groupBox3.BackColor = Color.LightSlateGray;
             groupBox3.Controls.Add(btnHareketTipiSil);
             groupBox3.Controls.Add(cmbHareketYonu);
             groupBox3.Controls.Add(btnHareketTipiEkle);
@@ -232,12 +233,12 @@ namespace edts
             // 
             // btnHareketTipiSil
             // 
-            btnHareketTipiSil.BackColor = Color.Crimson;
+            btnHareketTipiSil.BackColor = Color.IndianRed;
             btnHareketTipiSil.FlatAppearance.BorderSize = 0;
             btnHareketTipiSil.FlatStyle = FlatStyle.Flat;
             btnHareketTipiSil.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             btnHareketTipiSil.ForeColor = SystemColors.ControlLightLight;
-            btnHareketTipiSil.Location = new Point(418, 64);
+            btnHareketTipiSil.Location = new Point(418, 65);
             btnHareketTipiSil.Name = "btnHareketTipiSil";
             btnHareketTipiSil.Size = new Size(132, 36);
             btnHareketTipiSil.TabIndex = 5;
@@ -256,12 +257,12 @@ namespace edts
             // 
             // btnHareketTipiEkle
             // 
-            btnHareketTipiEkle.BackColor = Color.DarkOliveGreen;
+            btnHareketTipiEkle.BackColor = Color.LightSteelBlue;
             btnHareketTipiEkle.FlatAppearance.BorderSize = 0;
             btnHareketTipiEkle.FlatStyle = FlatStyle.Flat;
             btnHareketTipiEkle.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             btnHareketTipiEkle.ForeColor = SystemColors.ControlLightLight;
-            btnHareketTipiEkle.Location = new Point(418, 25);
+            btnHareketTipiEkle.Location = new Point(418, 23);
             btnHareketTipiEkle.Name = "btnHareketTipiEkle";
             btnHareketTipiEkle.Size = new Size(132, 36);
             btnHareketTipiEkle.TabIndex = 4;
@@ -272,11 +273,23 @@ namespace edts
             // dgvHareketTipleri
             // 
             dgvHareketTipleri.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvHareketTipleri.Location = new Point(6, 101);
+            dgvHareketTipleri.Columns.AddRange(new DataGridViewColumn[] { btnDuzenle });
+            dgvHareketTipleri.Location = new Point(6, 107);
             dgvHareketTipleri.Name = "dgvHareketTipleri";
             dgvHareketTipleri.RowHeadersWidth = 51;
             dgvHareketTipleri.Size = new Size(909, 188);
             dgvHareketTipleri.TabIndex = 7;
+            dgvHareketTipleri.CellContentClick += dgvHareketTipleri_CellContentClick;
+            // 
+            // btnDuzenle
+            // 
+            btnDuzenle.FlatStyle = FlatStyle.Flat;
+            btnDuzenle.HeaderText = "İşlem";
+            btnDuzenle.MinimumWidth = 6;
+            btnDuzenle.Name = "btnDuzenle";
+            btnDuzenle.Text = "Düzenle";
+            btnDuzenle.UseColumnTextForButtonValue = true;
+            btnDuzenle.Width = 125;
             // 
             // txtHareketTipiAd
             // 
@@ -289,7 +302,7 @@ namespace edts
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkOliveGreen;
+            BackColor = Color.LightSlateGray;
             ClientSize = new Size(1170, 812);
             Controls.Add(groupBox3);
             Controls.Add(btnAyarlariKaydet);
@@ -335,5 +348,6 @@ namespace edts
         private NumericUpDown numMaksimumGirisDenemesi;
         private Label label2;
         private TextBox txtVarsayilanDepoKonum;
+        private DataGridViewButtonColumn btnDuzenle;
     }
 }
