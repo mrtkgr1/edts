@@ -4,9 +4,31 @@ using System.Configuration;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Diagnostics;
+using edts;
 
 public static class VeritabaniYardimcisi
 {
+
+    public static void LogKaydet(int kullaniciID, Sabitler.IslemTuru hareket, string tabloAdi, string aciklama)
+    {
+        try {
+            string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+            string sorgu = @"INSERT INTO tblDenetimKayitlari (KullaniciID, HareketID, TabloAdi, Aciklama) 
+                             VALUES (@pKullaniciID, @pHareketID, @pTabloAdi, @pAciklama)";
+
+            using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
+            using (SqlCommand komut = new SqlCommand(sorgu, baglanti)) {
+                komut.Parameters.AddWithValue("@pKullaniciID", kullaniciID);
+                komut.Parameters.AddWithValue("@pHareketID", (int)hareket);
+                komut.Parameters.AddWithValue("@pTabloAdi", tabloAdi);
+                komut.Parameters.AddWithValue("@pAciklama", aciklama);
+                baglanti.Open();
+                komut.ExecuteNonQuery();
+            }
+        } catch (Exception ex) {
+            Console.WriteLine("Denetim Kaydı Sırasında Hata Oluştu: " + ex.Message);
+        }
+    }
 
     public static void LogKaydet(int kullaniciID, int hareketID, string tabloAdi, string aciklama)
     {

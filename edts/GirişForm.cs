@@ -88,9 +88,11 @@ namespace edts
                             int rolID = (int)okuyucu["RolID"];
                             string adSoyad = okuyucu["AdSoyad"].ToString();
 
-                            AktifKullanici.ID = kullaniciID;
-                            AktifKullanici.KullaniciAdi = kullaniciAdi;
-                            AktifKullanici.RolID = rolID;   // *** BURASI ZORUNLU! ***
+
+                                AktifKullanici.ID = kullaniciID;
+                                AktifKullanici.KullaniciAdi = kullaniciAdi;
+                                AktifKullanici.RolID = rolID;
+                                AktifKullanici.TamAd = adSoyad;
 
                             // 🟢 KRİTİK LOGLAMA ADIMI 2: Giriş Başarısını Denetim Kaydına Ekleme
                             int girisHareketID = 1; // Artık biliyoruz: GİRİŞ'in HareketID'si 1.
