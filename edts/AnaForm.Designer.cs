@@ -62,6 +62,10 @@
             buttonSolStokCıkış = new Button();
             panelSolStokL = new Panel();
             buttonStokList = new Button();
+            panelRaporDepo = new Panel();
+            buttonRaporDEpo = new Button();
+            panelChatBot = new Panel();
+            buttonChatBot = new Button();
             panelDestek = new Panel();
             buttonDestek = new Button();
             menuKayitHareket = new System.Windows.Forms.Timer(components);
@@ -89,6 +93,8 @@
             panelSolStokG.SuspendLayout();
             panelSolStokC.SuspendLayout();
             panelSolStokL.SuspendLayout();
+            panelRaporDepo.SuspendLayout();
+            panelChatBot.SuspendLayout();
             panelDestek.SuspendLayout();
             AnaHPanel.SuspendLayout();
             SolHPanel.SuspendLayout();
@@ -232,12 +238,14 @@
             yanMenuPanel.Controls.Add(panelSolStokG);
             yanMenuPanel.Controls.Add(panelSolStokC);
             yanMenuPanel.Controls.Add(panelSolStokL);
+            yanMenuPanel.Controls.Add(panelRaporDepo);
+            yanMenuPanel.Controls.Add(panelChatBot);
             yanMenuPanel.Controls.Add(panelDestek);
             yanMenuPanel.FlowDirection = FlowDirection.TopDown;
             yanMenuPanel.Location = new Point(0, 0);
             yanMenuPanel.Margin = new Padding(0);
             yanMenuPanel.Name = "yanMenuPanel";
-            yanMenuPanel.Size = new Size(175, 540);
+            yanMenuPanel.Size = new Size(175, 648);
             yanMenuPanel.TabIndex = 1;
             // 
             // panelKontrol
@@ -570,10 +578,58 @@
             buttonStokList.UseVisualStyleBackColor = false;
             buttonStokList.Click += buttonStokList_Click;
             // 
+            // panelRaporDepo
+            // 
+            panelRaporDepo.Controls.Add(buttonRaporDEpo);
+            panelRaporDepo.Location = new Point(3, 489);
+            panelRaporDepo.Name = "panelRaporDepo";
+            panelRaporDepo.Size = new Size(169, 48);
+            panelRaporDepo.TabIndex = 8;
+            // 
+            // buttonRaporDEpo
+            // 
+            buttonRaporDEpo.BackColor = Color.FromArgb(23, 24, 29);
+            buttonRaporDEpo.ForeColor = Color.AliceBlue;
+            buttonRaporDEpo.Image = (Image)resources.GetObject("buttonRaporDEpo.Image");
+            buttonRaporDEpo.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonRaporDEpo.Location = new Point(-9, -6);
+            buttonRaporDEpo.Name = "buttonRaporDEpo";
+            buttonRaporDEpo.Padding = new Padding(10, 0, 0, 0);
+            buttonRaporDEpo.Size = new Size(250, 62);
+            buttonRaporDEpo.TabIndex = 2;
+            buttonRaporDEpo.Text = "           Rapor";
+            buttonRaporDEpo.TextAlign = ContentAlignment.MiddleLeft;
+            buttonRaporDEpo.UseVisualStyleBackColor = false;
+            buttonRaporDEpo.Click += buttonRaporDEpo_Click;
+            // 
+            // panelChatBot
+            // 
+            panelChatBot.Controls.Add(buttonChatBot);
+            panelChatBot.Location = new Point(3, 543);
+            panelChatBot.Name = "panelChatBot";
+            panelChatBot.Size = new Size(169, 48);
+            panelChatBot.TabIndex = 12;
+            // 
+            // buttonChatBot
+            // 
+            buttonChatBot.BackColor = Color.FromArgb(23, 24, 29);
+            buttonChatBot.ForeColor = Color.AliceBlue;
+            buttonChatBot.Image = (Image)resources.GetObject("buttonChatBot.Image");
+            buttonChatBot.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonChatBot.Location = new Point(-9, -6);
+            buttonChatBot.Name = "buttonChatBot";
+            buttonChatBot.Padding = new Padding(10, 0, 0, 0);
+            buttonChatBot.Size = new Size(250, 62);
+            buttonChatBot.TabIndex = 2;
+            buttonChatBot.Text = "           Chat Bot";
+            buttonChatBot.TextAlign = ContentAlignment.MiddleLeft;
+            buttonChatBot.UseVisualStyleBackColor = false;
+            buttonChatBot.Click += buttonChatBot_Click;
+            // 
             // panelDestek
             // 
             panelDestek.Controls.Add(buttonDestek);
-            panelDestek.Location = new Point(3, 489);
+            panelDestek.Location = new Point(3, 597);
             panelDestek.Name = "panelDestek";
             panelDestek.Size = new Size(169, 48);
             panelDestek.TabIndex = 13;
@@ -612,7 +668,7 @@
             AnaHPanel.Dock = DockStyle.Fill;
             AnaHPanel.Location = new Point(4, 2);
             AnaHPanel.Name = "AnaHPanel";
-            AnaHPanel.Size = new Size(1046, 453);
+            AnaHPanel.Size = new Size(1046, 424);
             AnaHPanel.TabIndex = 2;
             // 
             // panelForm
@@ -621,7 +677,7 @@
             panelForm.Location = new Point(178, 33);
             panelForm.Margin = new Padding(0);
             panelForm.Name = "panelForm";
-            panelForm.Size = new Size(868, 420);
+            panelForm.Size = new Size(868, 391);
             panelForm.TabIndex = 2;
             // 
             // SolHPanel
@@ -632,14 +688,14 @@
             SolHPanel.Location = new Point(0, 33);
             SolHPanel.Margin = new Padding(0);
             SolHPanel.Name = "SolHPanel";
-            SolHPanel.Size = new Size(178, 420);
+            SolHPanel.Size = new Size(178, 391);
             SolHPanel.TabIndex = 0;
             // 
             // AnaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 459);
+            ClientSize = new Size(1054, 430);
             ControlBox = false;
             Controls.Add(AnaHPanel);
             MinimumSize = new Size(900, 400);
@@ -669,6 +725,8 @@
             panelSolStokG.ResumeLayout(false);
             panelSolStokC.ResumeLayout(false);
             panelSolStokL.ResumeLayout(false);
+            panelRaporDepo.ResumeLayout(false);
+            panelChatBot.ResumeLayout(false);
             panelDestek.ResumeLayout(false);
             AnaHPanel.ResumeLayout(false);
             SolHPanel.ResumeLayout(false);
@@ -787,5 +845,9 @@
         private Button buttonStokList;
         private Panel panelDestek;
         private Button buttonDestek;
+        private Panel panelChatBot;
+        private Button buttonChatBot;
+        private Panel panelRaporDepo;
+        private Button buttonRaporDEpo;
     }
 }
