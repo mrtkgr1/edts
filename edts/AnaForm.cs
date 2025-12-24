@@ -1,4 +1,5 @@
-﻿using EnvanterDepoSistemitaslak2;
+﻿using edts.Properties;
+using EnvanterDepoSistemitaslak2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,6 +70,8 @@ namespace edts {
 
             panelForm.Controls.Add(yeniForm);
             yeniForm.Show();
+
+            labelBaslik.Text = yeniForm.Name;
         }
 
         private void SolMenuButtonAyarla() {
@@ -88,6 +91,11 @@ namespace edts {
 
 
         }
+        
+        //----Ayarlar ----
+        public void UstBarTemaDegistir() {
+
+        }         
 
         //-----Menü açma kapama işlemleri -----
         bool isKayitMenuAcik = false;

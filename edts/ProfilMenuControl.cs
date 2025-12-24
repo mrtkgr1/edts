@@ -16,6 +16,7 @@ namespace edts {
         public ProfilMenuControl() {
             InitializeComponent();
             AdlariYaz();
+            
         }
 
         private void AdlariYaz() {
