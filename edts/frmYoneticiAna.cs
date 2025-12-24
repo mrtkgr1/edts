@@ -10,27 +10,34 @@ using System.Windows.Forms;
 
 namespace edts
 {
-    public partial class frmYoneticiAna : Form {
+    public partial class frmYoneticiAna : Form
+    {
         private const int CikisHareketID = 11;
         private bool isMenuAcik = true;
-        public frmYoneticiAna() {
+        public frmYoneticiAna()
+        {
             InitializeComponent();
             SayfaGoster(new frmYoneticiHomeIcerik());
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e) {
-            if (isMenuAcik) {
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (isMenuAcik)
+            {
                 tableLayoutPanel1.ColumnStyles[0].Width = 90;
                 isMenuAcik = false;
                 label4.Visible = false;
-            } else {
+            }
+            else
+            {
                 tableLayoutPanel1.ColumnStyles[0].Width = 300;
                 isMenuAcik = true;
                 label4.Visible = true;
             }
         }
 
-        private void SayfaGoster(Form yeniForm) {
+        private void SayfaGoster(Form yeniForm)
+        {
             panel2.Controls.Clear();
 
             panel2.AutoScroll = true;
@@ -46,40 +53,50 @@ namespace edts
             yeniForm.Show();
         }
 
-        private void pictureBox6_Click(object sender, EventArgs e) {
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
             //SayfaGoster(new frmAdminSistemAyarlari());
         }
 
-        private void pictureBox7_Click(object sender, EventArgs e) {
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
             SayfaGoster(new frmSupport());
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e) {
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
             SayfaGoster(new frmUrunYonetimi());
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e) {
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
             SayfaGoster(new frmGenelRaporlar());
         }
 
-        private void pbAnasayfa_Click(object sender, EventArgs e) {
+        private void pbAnasayfa_Click(object sender, EventArgs e)
+        {
             SayfaGoster(new frmYoneticiHomeIcerik());
         }
 
-        private void anaMet(object sender, EventArgs e) {
+        private void anaMet(object sender, EventArgs e)
+        {
             SayfaGoster(new frmYoneticiHomeIcerik());
         }
 
-        private void urunMet(object sender, EventArgs e) {
+        private void urunMet(object sender, EventArgs e)
+        {
             SayfaGoster(new frmUrunYonetimi());
         }
 
-        private void raporMet(object sender, EventArgs e) {
+        private void raporMet(object sender, EventArgs e)
+        {
             SayfaGoster(new frmGenelRaporlar());
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e) {
-            try {
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 VeritabaniYardimcisi.LogKaydet(
                     kullaniciID: AktifKullanici.ID,
                     hareketID: CikisHareketID,
@@ -89,13 +106,27 @@ namespace edts
 
                 AktifKullanici.ID = 0;
                 AktifKullanici.KullaniciAdi = "";
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 System.Diagnostics.Debug.WriteLine("Çıkış logu kaydedilirken hata oluştu: " + ex.Message);
             }
 
             this.Close();
             edts.GirişForm girisFormu = new edts.GirişForm();
             girisFormu.Show();
+        }
+
+        private void pbChatbottt_Click(object sender, EventArgs e)
+        {
+            ChatbotYonetici chat = new ChatbotYonetici();
+            chat.ShowDialog();
+        }
+
+        private void lblChatBottt_Click(object sender, EventArgs e)
+        {
+            ChatbotYonetici chat = new ChatbotYonetici();
+            chat.ShowDialog();
         }
     }
 }
