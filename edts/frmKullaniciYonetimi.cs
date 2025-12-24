@@ -1,15 +1,16 @@
-﻿using System;
+﻿using edts;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
-using System.Configuration;
-using edts;
+using static edts.Sabitler;
 namespace edts
 {
     public partial class frmKullaniciYonetimi : Form {
@@ -68,22 +69,19 @@ namespace edts
             }
         }
         private void RolleriDoldur() {
-            string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+            var rolListesi = Enum.GetValues(typeof(Rol))
+                .Cast<Rol>()
+                .Select(r => new {
+                    RolID = (int)r,          
+                    RolAd = r.ToString()    
+                })
+                .ToList();
 
-            string sorgu = "SELECT RolID, RolAd FROM tblRoller ORDER BY RolID";
+            cmbRolSecim.DataSource = rolListesi;
+            cmbRolSecim.DisplayMember = "RolAd"; 
+            cmbRolSecim.ValueMember = "RolID";  
 
-            using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
-                SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                cmbRolSecim.DisplayMember = "RolAd";
-                cmbRolSecim.ValueMember = "RolID";
-                cmbRolSecim.DataSource = dt;
-
-                // 🔴 ÇOK ÖNEMLİ
-                cmbRolSecim.SelectedIndex = -1; // Başlangıçta seçili olmasın
-            }
+            cmbRolSecim.SelectedIndex = -1;
         }
 
 

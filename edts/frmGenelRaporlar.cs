@@ -51,13 +51,12 @@ namespace edts
                     sh.IslemID,
                     sh.FaturaNo,
                     u.UrunAd,
-                    ht.HareketAd,
+                    sh.HareketID,
                     k.KullaniciAdi,
                     sh.Miktar,
                     sh.Tarih
                 FROM tblStokHareketleri sh
                 INNER JOIN tblUrunler u ON sh.UrunID = u.UrunID
-                INNER JOIN tblHareketTipleri ht ON sh.HareketID = ht.HareketID
                 INNER JOIN tblKullanicilar k ON sh.KullaniciID = k.KullaniciID
                 WHERE sh.Tarih BETWEEN @Tarih1 AND @Tarih2
                 ORDER BY sh.Tarih DESC"; // En son yapılan işlem en üstte
@@ -74,6 +73,17 @@ namespace edts
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
+                    dt.Columns.Add("IslemAdi", typeof(string));
+
+                    foreach (DataRow row in dt.Rows) {
+                        if (row["HareketID"] != DBNull.Value) {
+                            int id = Convert.ToInt32(row["HareketID"]);
+                            string tmp = Sabitler.IslemAl(id);
+                            char ico = (id == (int)Sabitler.IslemTuru.Alim) ? '➕' : (id == (int)Sabitler.IslemTuru.Satım) ? '➖' : 'ℹ';
+                            row["IslemAdi"] = ico + Sabitler.IslemAl(id);
+                        }
+                    }
+
                     dataGridView1.DataSource = dt;
 
                     // 3. ADIM: Sütun İsimlendirme ve Gizleme (Kozmetik)
@@ -81,10 +91,13 @@ namespace edts
                     // ID'yi gizle (Arka planda silme/güncelleme için lazım)
                     if (dataGridView1.Columns["IslemID"] != null)
                         dataGridView1.Columns["IslemID"].Visible = false;
+                    dataGridView1.Columns["HareketID"].Visible = false;
 
                     // Başlıkları Türkçeleştir
                     dataGridView1.Columns["UrunAd"].HeaderText = "Ürün Adı";
-                    dataGridView1.Columns["HareketAd"].HeaderText = "İşlem Tipi";
+                    //dataGridView1.Columns["HareketAd"].HeaderText = "İşlem Tipi";
+                    dataGridView1.Columns["IslemAdi"].HeaderText = "İşlem Tipi";
+                    dataGridView1.Columns["IslemAdi"].DisplayIndex = 1;
                     dataGridView1.Columns["KullaniciAdi"].HeaderText = "İşlemi Yapan";
                     dataGridView1.Columns["Miktar"].HeaderText = "Adet";
                     dataGridView1.Columns["Tarih"].HeaderText = "İşlem Tarihi";
