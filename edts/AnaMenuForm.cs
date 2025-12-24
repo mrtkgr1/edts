@@ -40,7 +40,7 @@ namespace edts
                     return; // Formu kapattıktan sonra daha fazla işlem yapma
             }
 
-            acilacakForm = new AnaForm();
+           acilacakForm = new AnaForm();
 
             if (acilacakForm != null)
             {
