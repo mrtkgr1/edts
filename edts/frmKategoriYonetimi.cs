@@ -16,8 +16,9 @@ using edts;
 namespace edts
 {
     public partial class frmKategoriYonetimi : Form
-    { static private readonly string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-       
+    {
+        static private readonly string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+
         public frmKategoriYonetimi()
         {
             InitializeComponent();
@@ -145,7 +146,7 @@ namespace edts
                 KategoriListeGuncelle();
             }
         }
-    private void KategoriListeGuncelle()
+        private void KategoriListeGuncelle()
         {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
@@ -172,6 +173,11 @@ namespace edts
                     MessageBox.Show("Veri çekilemedi: " + ex.Message);
                 }
             }
+        }
+
+        private void frmKategoriYonetimi_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
