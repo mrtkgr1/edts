@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace edts
 {
     public partial class frmYoneticiHomeİcerikcopy : Form
@@ -34,6 +35,10 @@ namespace edts
             basitGrafik1.Invalidate();
         }
 
+        private void groupBox4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
-    }
+}
 
