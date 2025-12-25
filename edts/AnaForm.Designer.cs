@@ -48,6 +48,8 @@
             buttonSolMusteriK = new Button();
             panelTedarikciK = new Panel();
             buttonSolTedarikciK = new Button();
+            panelSatisF = new Panel();
+            buttonSatisF = new Button();
             panelRapor = new Panel();
             buttonSolRapor = new Button();
             panelSolSistemA = new Panel();
@@ -86,6 +88,7 @@
             panelKategoriK.SuspendLayout();
             panelMusteriK.SuspendLayout();
             panelTedarikciK.SuspendLayout();
+            panelSatisF.SuspendLayout();
             panelRapor.SuspendLayout();
             panelSolSistemA.SuspendLayout();
             panelSolDenetinK.SuspendLayout();
@@ -231,6 +234,7 @@
             yanMenuPanel.BackColor = Color.FromArgb(23, 24, 29);
             yanMenuPanel.Controls.Add(panelKontrol);
             yanMenuPanel.Controls.Add(kayitMenuPanel);
+            yanMenuPanel.Controls.Add(panelSatisF);
             yanMenuPanel.Controls.Add(panelRapor);
             yanMenuPanel.Controls.Add(panelSolSistemA);
             yanMenuPanel.Controls.Add(panelSolDenetinK);
@@ -245,7 +249,7 @@
             yanMenuPanel.Location = new Point(0, 0);
             yanMenuPanel.Margin = new Padding(0);
             yanMenuPanel.Name = "yanMenuPanel";
-            yanMenuPanel.Size = new Size(175, 648);
+            yanMenuPanel.Size = new Size(175, 702);
             yanMenuPanel.TabIndex = 1;
             // 
             // panelKontrol
@@ -413,10 +417,34 @@
             buttonSolTedarikciK.UseVisualStyleBackColor = false;
             buttonSolTedarikciK.Click += buttonSolTedarikciK_Click;
             // 
+            // panelSatisF
+            // 
+            panelSatisF.Controls.Add(buttonSatisF);
+            panelSatisF.Location = new Point(3, 111);
+            panelSatisF.Name = "panelSatisF";
+            panelSatisF.Size = new Size(169, 48);
+            panelSatisF.TabIndex = 8;
+            // 
+            // buttonSatisF
+            // 
+            buttonSatisF.BackColor = Color.FromArgb(23, 24, 29);
+            buttonSatisF.ForeColor = Color.AliceBlue;
+            buttonSatisF.Image = (Image)resources.GetObject("buttonSatisF.Image");
+            buttonSatisF.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonSatisF.Location = new Point(-9, -6);
+            buttonSatisF.Name = "buttonSatisF";
+            buttonSatisF.Padding = new Padding(10, 0, 0, 0);
+            buttonSatisF.Size = new Size(250, 62);
+            buttonSatisF.TabIndex = 2;
+            buttonSatisF.Text = "           Satış/Fatura";
+            buttonSatisF.TextAlign = ContentAlignment.MiddleLeft;
+            buttonSatisF.UseVisualStyleBackColor = false;
+            buttonSatisF.Click += buttonSatisF_Click;
+            // 
             // panelRapor
             // 
             panelRapor.Controls.Add(buttonSolRapor);
-            panelRapor.Location = new Point(3, 111);
+            panelRapor.Location = new Point(3, 165);
             panelRapor.Name = "panelRapor";
             panelRapor.Size = new Size(169, 48);
             panelRapor.TabIndex = 7;
@@ -440,7 +468,7 @@
             // panelSolSistemA
             // 
             panelSolSistemA.Controls.Add(buttonSolSistemAyar);
-            panelSolSistemA.Location = new Point(3, 165);
+            panelSolSistemA.Location = new Point(3, 219);
             panelSolSistemA.Name = "panelSolSistemA";
             panelSolSistemA.Size = new Size(169, 48);
             panelSolSistemA.TabIndex = 9;
@@ -464,7 +492,7 @@
             // panelSolDenetinK
             // 
             panelSolDenetinK.Controls.Add(buttonSolDenetimKayit);
-            panelSolDenetinK.Location = new Point(3, 219);
+            panelSolDenetinK.Location = new Point(3, 273);
             panelSolDenetinK.Name = "panelSolDenetinK";
             panelSolDenetinK.Size = new Size(169, 48);
             panelSolDenetinK.TabIndex = 8;
@@ -488,7 +516,7 @@
             // panelSolKullaniciA
             // 
             panelSolKullaniciA.Controls.Add(buttonSolKullaniciAyar);
-            panelSolKullaniciA.Location = new Point(3, 273);
+            panelSolKullaniciA.Location = new Point(3, 327);
             panelSolKullaniciA.Name = "panelSolKullaniciA";
             panelSolKullaniciA.Size = new Size(169, 48);
             panelSolKullaniciA.TabIndex = 10;
@@ -512,7 +540,7 @@
             // panelSolStokG
             // 
             panelSolStokG.Controls.Add(buttonSolStokG);
-            panelSolStokG.Location = new Point(3, 327);
+            panelSolStokG.Location = new Point(3, 381);
             panelSolStokG.Name = "panelSolStokG";
             panelSolStokG.Size = new Size(169, 48);
             panelSolStokG.TabIndex = 11;
@@ -536,7 +564,7 @@
             // panelSolStokC
             // 
             panelSolStokC.Controls.Add(buttonSolStokCıkış);
-            panelSolStokC.Location = new Point(3, 381);
+            panelSolStokC.Location = new Point(3, 435);
             panelSolStokC.Name = "panelSolStokC";
             panelSolStokC.Size = new Size(169, 48);
             panelSolStokC.TabIndex = 11;
@@ -560,7 +588,7 @@
             // panelSolStokL
             // 
             panelSolStokL.Controls.Add(buttonStokList);
-            panelSolStokL.Location = new Point(3, 435);
+            panelSolStokL.Location = new Point(3, 489);
             panelSolStokL.Name = "panelSolStokL";
             panelSolStokL.Size = new Size(169, 48);
             panelSolStokL.TabIndex = 12;
@@ -584,7 +612,7 @@
             // panelRaporDepo
             // 
             panelRaporDepo.Controls.Add(buttonRaporDEpo);
-            panelRaporDepo.Location = new Point(3, 489);
+            panelRaporDepo.Location = new Point(3, 543);
             panelRaporDepo.Name = "panelRaporDepo";
             panelRaporDepo.Size = new Size(169, 48);
             panelRaporDepo.TabIndex = 8;
@@ -608,7 +636,7 @@
             // panelChatBot
             // 
             panelChatBot.Controls.Add(buttonChatBot);
-            panelChatBot.Location = new Point(3, 543);
+            panelChatBot.Location = new Point(3, 597);
             panelChatBot.Name = "panelChatBot";
             panelChatBot.Size = new Size(169, 48);
             panelChatBot.TabIndex = 12;
@@ -632,7 +660,7 @@
             // panelDestek
             // 
             panelDestek.Controls.Add(buttonDestek);
-            panelDestek.Location = new Point(3, 597);
+            panelDestek.Location = new Point(3, 651);
             panelDestek.Name = "panelDestek";
             panelDestek.Size = new Size(169, 48);
             panelDestek.TabIndex = 13;
@@ -721,6 +749,7 @@
             panelKategoriK.ResumeLayout(false);
             panelMusteriK.ResumeLayout(false);
             panelTedarikciK.ResumeLayout(false);
+            panelSatisF.ResumeLayout(false);
             panelRapor.ResumeLayout(false);
             panelSolSistemA.ResumeLayout(false);
             panelSolDenetinK.ResumeLayout(false);
@@ -852,5 +881,7 @@
         private Button buttonChatBot;
         private Panel panelRaporDepo;
         private Button buttonRaporDEpo;
+        private Panel panelSatisF;
+        private Button buttonSatisF;
     }
 }
