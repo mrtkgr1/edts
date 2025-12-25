@@ -357,5 +357,17 @@ namespace edts {
         private void buttonRaporDEpo_Click(object sender, EventArgs e) {
             SayfaGoster(new frmDepoRapor());
         }
+
+        private void buttonSolKategoriK_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmKategoriYonetimi());
+        }
+
+        private void buttonSolMusteriK_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmMusteriTanimlama());
+        }
+
+        private void buttonSolTedarikciK_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmTedarikciYonetim());
+        }
     }
 }
