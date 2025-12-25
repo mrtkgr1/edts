@@ -38,7 +38,7 @@
             btnSill = new KavisliButon();
             birimFiyat = new NumericUpDown();
             label10 = new Label();
-            comboBox2 = new ComboBox();
+            cmbBirimTipi = new ComboBox();
             comboBoxKategori = new ComboBox();
             txtUrunKod = new TextBox();
             txtKritik = new TextBox();
@@ -65,19 +65,19 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(594, 766);
+            panel1.Size = new Size(594, 792);
             panel1.TabIndex = 2;
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            tabControl1.Location = new Point(61, 119);
+            tabControl1.Location = new Point(12, 155);
             tabControl1.Margin = new Padding(3, 4, 3, 4);
             tabControl1.Multiline = true;
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(497, 624);
+            tabControl1.Size = new Size(576, 624);
             tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -90,7 +90,7 @@
             tabPage1.Controls.Add(btnSill);
             tabPage1.Controls.Add(birimFiyat);
             tabPage1.Controls.Add(label10);
-            tabPage1.Controls.Add(comboBox2);
+            tabPage1.Controls.Add(cmbBirimTipi);
             tabPage1.Controls.Add(comboBoxKategori);
             tabPage1.Controls.Add(txtUrunKod);
             tabPage1.Controls.Add(txtKritik);
@@ -104,7 +104,7 @@
             tabPage1.Margin = new Padding(3, 4, 3, 4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3, 4, 3, 4);
-            tabPage1.Size = new Size(489, 583);
+            tabPage1.Size = new Size(568, 583);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Ürün Tanımlama";
             // 
@@ -188,14 +188,14 @@
             label10.TabIndex = 27;
             label10.Text = "Birim fiyat: ";
             // 
-            // comboBox2
+            // cmbBirimTipi
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(256, 243);
-            comboBox2.Margin = new Padding(3, 4, 3, 4);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(189, 36);
-            comboBox2.TabIndex = 26;
+            cmbBirimTipi.FormattingEnabled = true;
+            cmbBirimTipi.Location = new Point(256, 243);
+            cmbBirimTipi.Margin = new Padding(3, 4, 3, 4);
+            cmbBirimTipi.Name = "cmbBirimTipi";
+            cmbBirimTipi.Size = new Size(189, 36);
+            cmbBirimTipi.TabIndex = 26;
             // 
             // comboBoxKategori
             // 
@@ -293,7 +293,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(594, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(615, 766);
+            panel2.Size = new Size(615, 792);
             panel2.TabIndex = 3;
             // 
             // dataGridView2
@@ -303,7 +303,7 @@
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(615, 766);
+            dataGridView2.Size = new Size(615, 792);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellClick += dataGridView2_CellClick;
             // 
@@ -311,7 +311,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1209, 766);
+            ClientSize = new Size(1209, 792);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
@@ -335,7 +335,7 @@
         private TabPage tabPage1;
         private NumericUpDown birimFiyat;
         private Label label10;
-        private ComboBox comboBox2;
+        private ComboBox cmbBirimTipi;
         private ComboBox comboBoxKategori;
         private TextBox txtUrunKod;
         private TextBox txtKritik;

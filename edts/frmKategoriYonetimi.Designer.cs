@@ -195,6 +195,7 @@
             Controls.Add(panel1);
             Name = "frmKategoriYonetimi";
             Text = "frmKategoriYonetimi";
+            Load += frmKategoriYonetimi_Load;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             panel1.ResumeLayout(false);

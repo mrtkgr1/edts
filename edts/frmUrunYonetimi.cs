@@ -1,5 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Office2010.Excel;
+
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -47,7 +47,6 @@ namespace edts
 
         private void btnKaydet_Click_1(object sender, EventArgs e)
         {
-            // 1. Kutuların boş olup olmadığını kontrol edelim (Hata almamak için)
             if (string.IsNullOrEmpty(txtUrunAd.Text) || string.IsNullOrEmpty(txtAlisFiyati.Text))
             {
                 MessageBox.Show("Lütfen ürün adı ve alış fiyatı gibi zorunlu alanları doldurun!");
@@ -59,36 +58,35 @@ namespace edts
                 try
                 {
                     baglan.Open();
+                    // Sorguya "BirimTipi" kolonunu ve "@BirimTipi" parametresini ekledik
                     SqlCommand cmdInsert = new SqlCommand(@"INSERT INTO tblUrunler  
-                (KategoriID, UrunKodu, UrunAd, KritikStok, MevcutStok, Durum, BirimFiyat, AlisFiyat)  
-                VALUES (@KategoriID, @UrunKodu, @UrunAd, @KritikStok, 0, 'Aktif', @BirimFiyat, @AlisFiyat)", baglan);
+            (KategoriID, UrunKodu, UrunAd, KritikStok, MevcutStok, Durum, BirimFiyat, AlisFiyat, BirimTipi)  
+            VALUES (@KategoriID, @UrunKodu, @UrunAd, @KritikStok, 0, 'Aktif', @BirimFiyat, @AlisFiyat, @BirimTipi)", baglan);
 
-                    // ComboBox'tan seçilen ID (Dikkat: ValueMember set edilmiş olmalı)
                     cmdInsert.Parameters.AddWithValue("@KategoriID", comboBoxKategori.SelectedValue ?? DBNull.Value);
-
                     cmdInsert.Parameters.AddWithValue("@UrunKodu", txtUrunKod.Text);
                     cmdInsert.Parameters.AddWithValue("@UrunAd", txtUrunAd.Text);
 
-                    // Sayısal dönüşümler (Hata riskine karşı varsayılan 0 verdik)
                     int kritikStok = 0;
                     int.TryParse(txtKritik.Text, out kritikStok);
                     cmdInsert.Parameters.AddWithValue("@KritikStok", kritikStok);
 
                     decimal satisFiyati = 0;
-                    decimal.TryParse(birimFiyat.Value.ToString(), out satisFiyati); // NumericUpDown ise .Value kullanılır
+                    decimal.TryParse(birimFiyat.Value.ToString(), out satisFiyati);
                     cmdInsert.Parameters.AddWithValue("@BirimFiyat", satisFiyati);
 
                     decimal alisFiyati = 0;
                     decimal.TryParse(txtAlisFiyati.Text, out alisFiyati);
                     cmdInsert.Parameters.AddWithValue("@AlisFiyat", alisFiyati);
 
+                    // --- BURAYI EKLEDİK ---
+                    cmdInsert.Parameters.AddWithValue("@BirimTipi", cmbBirimTipi.Text);
+
                     cmdInsert.ExecuteNonQuery();
 
-                    // Başarı Mesajı ve Log
                     VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 5, "tblUrunler", $"{txtUrunAd.Text} adlı ürün eklendi.");
                     MessageBox.Show("Ürün başarıyla kaydedildi.");
 
-                    // Formu temizle
                     txtUrunAd.Clear();
                     txtUrunKod.Clear();
                     txtAlisFiyati.Clear();
@@ -143,6 +141,7 @@ namespace edts
 
         private void btnGuncelle_Click_1(object sender, EventArgs e)
         {
+           
             if (dataGridView2.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Lütfen güncellemek istediğiniz ürünün en solundaki boşluğa tıklayarak tüm satırı seçiniz.");
@@ -156,14 +155,15 @@ namespace edts
                     int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["UrunID"].Value);
                     baglan.Open();
 
-                    // SQL Sorgusu: AlisFiyat sütununu da ekledik
+                    // 1. ADIM: SQL Sorgusuna BirimTipi'ni ekledik
                     string sorgu = @"UPDATE tblUrunler 
                              SET KategoriID = @KategoriID, 
                                  UrunKodu = @UrunKodu, 
                                  UrunAd = @UrunAd, 
                                  KritikStok = @KritikStok,
                                  BirimFiyat = @BirimFiyat,
-                                 AlisFiyat = @AlisFiyat
+                                 AlisFiyat = @AlisFiyat,
+                                 BirimTipi = @BirimTipi
                              WHERE UrunID = @UrunID";
 
                     SqlCommand cmdUpdate = new SqlCommand(sorgu, baglan);
@@ -173,7 +173,9 @@ namespace edts
                     cmdUpdate.Parameters.AddWithValue("@UrunKodu", txtUrunKod.Text);
                     cmdUpdate.Parameters.AddWithValue("@UrunAd", txtUrunAd.Text);
 
-                    // Sayısal değerler için TryParse kullanımı daha güvenlidir (Boş kutu hatasını önler)
+                    // 2. ADIM: BirimTipi parametresini ComboBox'tan alıp ekledik
+                    cmdUpdate.Parameters.AddWithValue("@BirimTipi", cmbBirimTipi.Text);
+
                     decimal satisFiyat;
                     decimal.TryParse(birimFiyat.Value.ToString(), out satisFiyat);
                     cmdUpdate.Parameters.AddWithValue("@BirimFiyat", satisFiyat);
@@ -198,8 +200,10 @@ namespace edts
             }
             UrunListeGuncelle();
         }
+        
         private void UrunListeGuncelle()
         {
+         
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 try
@@ -212,8 +216,11 @@ namespace edts
                 u.UrunKodu,
                 u.UrunAd,
                 u.BirimFiyat,
-                u.AlisFiyat,  -- Bunu ekledik
-                k.KategoriAd   -- Artık ID değil, İsim çekiyoruz
+                u.AlisFiyat,
+                u.BirimTipi,  -- İŞTE BURASI EKSİKTİ!
+                u.KritikStok,  -- BURASI EKLENDİ
+                u.MevcutStok,  -- BURASI EKLENDİ (Stok miktarını görmek için)
+                k.KategoriAd   
             FROM tblUrunler u
             INNER JOIN tblKategoriler k ON u.KategoriID = k.KategoriID";
 
@@ -223,15 +230,40 @@ namespace edts
 
                     dataGridView2.DataSource = dt;
 
-                    // Başlıkları düzenleyelim
+                    // Görünürlük ve Başlık Düzenlemeleri
                     if (dataGridView2.Columns["UrunID"] != null) dataGridView2.Columns["UrunID"].Visible = false;
+
                     dataGridView2.Columns["UrunKodu"].HeaderText = "Ürün Kodu";
                     dataGridView2.Columns["UrunAd"].HeaderText = "Ürün Adı";
-                    dataGridView2.Columns["AlisFiyat"].HeaderText = "Alış Fiyatı"; // Başlık ekledik
+                    dataGridView2.Columns["AlisFiyat"].HeaderText = "Alış Fiyatı";
                     dataGridView2.Columns["BirimFiyat"].HeaderText = "Satış Fiyatı";
                     dataGridView2.Columns["KategoriAd"].HeaderText = "Kategori";
 
+                    // Yeni eklediğimiz sütunun başlığı
+                    if (dataGridView2.Columns["BirimTipi"] != null)
+                        dataGridView2.Columns["BirimTipi"].HeaderText = "Birim";
+                    // Yeni Eklenen Sütun Başlıkları
+                    dataGridView2.Columns["KritikStok"].HeaderText = "Kritik Seviye";
+                    dataGridView2.Columns["MevcutStok"].HeaderText = "Stok Adedi";
+
                     dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                    // --- BONUS ÖZELLİK BURAYA GELİYOR ---
+                    foreach (DataGridViewRow row in dataGridView2.Rows)
+                    {
+                        // Satırın boş olmadığından emin olalım
+                        if (row.Cells["MevcutStok"].Value != null && row.Cells["KritikStok"].Value != null)
+                        {
+                            int stok = Convert.ToInt32(row.Cells["MevcutStok"].Value);
+                            int kritik = Convert.ToInt32(row.Cells["KritikStok"].Value);
+
+                            if (stok <= kritik)
+                            {
+                                row.DefaultCellStyle.BackColor = Color.Salmon; // Arka plan rengi
+                                row.DefaultCellStyle.ForeColor = Color.Black; // Yazı rengi
+                            }
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -378,31 +410,51 @@ namespace edts
         {
             KategorileriYukle();
             UrunListeGuncelle(); // Form açılır açılmaz liste gelsin
+                                 // Bunu Form_Load içine yaz
+            cmbBirimTipi.Items.AddRange(new string[] { "Adet", "KG", "Metre", "Paket","gram" });
+            cmbBirimTipi.SelectedIndex = 0; // İlk sıradakini seçili getirir
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Eğer başlık satırına değil de gerçek bir veri satırına tıklandıysa
-            if (e.RowIndex >= 0)
+         
+            // 1. ADIM: Başlık satırına (-1) veya en alttaki boş yeni satıra (IsNewRow) tıklandıysa işlemi bitir
+            if (e.RowIndex < 0 || dataGridView2.Rows[e.RowIndex].IsNewRow)
+                return;
+
+            // Tıklanan satırı bir değişkene atayalım
+            DataGridViewRow satir = dataGridView2.Rows[e.RowIndex];
+
+            try
             {
-                DataGridViewRow satir = dataGridView2.Rows[e.RowIndex];
+                // 2. ADIM: Verileri kutulara aktarırken null (boş) kontrolü yapalım
+                // ?.ToString() kullanımı değer null ise hata vermez, boş string döner.
 
-                // TextBox'ları doldur
-                txtUrunKod.Text = satir.Cells["UrunKodu"].Value.ToString();
-                txtUrunAd.Text = satir.Cells["UrunAd"].Value.ToString();
+                txtUrunKod.Text = satir.Cells["UrunKodu"].Value?.ToString();
+                txtUrunAd.Text = satir.Cells["UrunAd"].Value?.ToString();
+                txtAlisFiyati.Text = satir.Cells["AlisFiyat"].Value?.ToString();
+                comboBoxKategori.Text = satir.Cells["KategoriAd"].Value?.ToString();
+                cmbBirimTipi.Text = satir.Cells["BirimTipi"].Value?.ToString();
 
-                // Alış Fiyatı (txtAlisFiyati kullandığını belirtmiştin)
-                txtAlisFiyati.Text = satir.Cells["AlisFiyat"].Value.ToString();
+                // Kritik Stok (Grid'e eklediysen)
+                if (dataGridView2.Columns.Contains("KritikStok"))
+                    txtKritik.Text = satir.Cells["KritikStok"].Value?.ToString();
 
-                // Satış Fiyatı (NumericUpDown - birimFiyat)
-                birimFiyat.Value = Convert.ToDecimal(satir.Cells["BirimFiyat"].Value);
-
-                // Kategori Seçimi (ComboBox)
-                // Not: Grid'de Kategori adı görünüyor ama arka planda ID ile eşleşmesi gerekir
-                comboBoxKategori.Text = satir.Cells["KategoriAd"].Value.ToString();
-
-                // Eğer Kritik Stok değerini de Grid'e eklediysen onu da çekebilirsin:
-                // txtKritik.Text = satir.Cells["KritikStok"].Value.ToString();
+                // 3. ADIM: Sayısal Dönüşüm (Hata aldığın kritik nokta)
+                // Eğer hücre boş (DBNull) ise Convert.ToDecimal hata verir, bu yüzden kontrol ediyoruz.
+                if (satir.Cells["BirimFiyat"].Value != DBNull.Value && satir.Cells["BirimFiyat"].Value != null)
+                {
+                    birimFiyat.Value = Convert.ToDecimal(satir.Cells["BirimFiyat"].Value);
+                }
+                else
+                {
+                    birimFiyat.Value = 0; // Değer yoksa hata verme, 0 yap.
+                }
+            }
+            catch (Exception ex)
+            {
+                // Beklenmedik bir hata olursa program kapanmasın, bize söylesin.
+                MessageBox.Show("Satır seçilirken hata oluştu: " + ex.Message);
             }
         }
 
