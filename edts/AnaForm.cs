@@ -79,6 +79,7 @@ namespace edts {
 
             kayitMenuPanel.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici;
             panelRapor.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici;
+            panelSatisF.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Yonetici;
 
             panelSolSistemA.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Admin;
             panelSolDenetinK.Visible = AktifKullanici.RolID == (int)Sabitler.Rol.Admin;
@@ -100,6 +101,7 @@ namespace edts {
         bool isKayitMenuAcik = false;
         private void menuHareket_Tick(object sender, EventArgs e) {
             if (isKayitMenuAcik) {
+                kayitMenuPanel.AutoSize = false;
                 kayitMenuPanel.Height -= 10;
                 if (kayitMenuPanel.Height <= 49) {
                     isKayitMenuAcik = false;
@@ -107,9 +109,10 @@ namespace edts {
                 }
             } else {
                 kayitMenuPanel.Height += 10;
-                if (kayitMenuPanel.Height >= 240) {
+                if (kayitMenuPanel.Height >= 250) {
                     isKayitMenuAcik = true;
                     menuKayitHareket.Stop();
+                    kayitMenuPanel.AutoSize = true;
                 }
             }
         }
@@ -368,6 +371,10 @@ namespace edts {
 
         private void buttonSolTedarikciK_Click(object sender, EventArgs e) {
             SayfaGoster(new frmTedarikciYonetim());
+        }
+
+        private void buttonSatisF_Click(object sender, EventArgs e) {
+            SayfaGoster(new frmSatisFatura());
         }
     }
 }
