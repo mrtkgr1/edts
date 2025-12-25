@@ -26,373 +26,590 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmYoneticiHomeIcerik));
-            panel1 = new Panel();
-            pnlKritikDurum = new Panel();
-            lblKritikBilgi = new Label();
-            lblYuzdeDeger = new Label();
-            prbKritikStok = new ProgressBar();
-            lblKritikBaslik = new Label();
-            panel2 = new Panel();
-            panel5 = new Panel();
-            pictureBox3 = new PictureBox();
-            label4 = new Label();
-            panel6 = new Panel();
-            pictureBox2 = new PictureBox();
-            label2 = new Label();
-            panel7 = new Panel();
-            pictureBox4 = new PictureBox();
-            label3 = new Label();
-            panel4 = new Panel();
-            pictureBox1 = new PictureBox();
-            label1 = new Label();
-            panel3 = new Panel();
-            groupBox2 = new GroupBox();
+            groupBox8 = new GroupBox();
+            lblToplamKarZararText = new Label();
+            pbKarZarar = new ProgressBar();
+            groupBox4 = new GroupBox();
+            lblSatisYil = new Label();
+            kavisliButon9 = new KavisliButon();
+            groupBox3 = new GroupBox();
+            lblSatisAy = new Label();
+            kavisliButon8 = new KavisliButon();
             groupBox1 = new GroupBox();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            panel1.SuspendLayout();
-            pnlKritikDurum.SuspendLayout();
-            panel2.SuspendLayout();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel3.SuspendLayout();
-            groupBox2.SuspendLayout();
+            groupBox2 = new GroupBox();
+            lblSatisHafta = new Label();
+            kavisliButon7 = new KavisliButon();
+            groupBox13 = new GroupBox();
+            lblSatisGun = new Label();
+            kavisliButon10 = new KavisliButon();
+            lblEnCok = new Label();
+            lblYuksekKar = new Label();
+            kavisliButon5 = new KavisliButon();
+            pnlHomeYonetici = new Panel();
+            groupBox9 = new GroupBox();
+            groupBox10 = new GroupBox();
+            lblToplamUser = new Label();
+            kavisliButon1 = new KavisliButon();
+            groupBox11 = new GroupBox();
+            lblPasifUser = new Label();
+            kavisliButon2 = new KavisliButon();
+            groupBox12 = new GroupBox();
+            lblAktifUser = new Label();
+            kavisliButon3 = new KavisliButon();
+            groupBox5 = new GroupBox();
+            groupBox14 = new GroupBox();
+            lblEnAz = new Label();
+            kavisliButon4 = new KavisliButon();
+            groupBox6 = new GroupBox();
+            kavisliButon6 = new KavisliButon();
+            groupBox7 = new GroupBox();
+            groupBox8.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox3.SuspendLayout();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox13.SuspendLayout();
+            pnlHomeYonetici.SuspendLayout();
+            groupBox9.SuspendLayout();
+            groupBox10.SuspendLayout();
+            groupBox11.SuspendLayout();
+            groupBox12.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox14.SuspendLayout();
+            groupBox6.SuspendLayout();
+            groupBox7.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // groupBox8
             // 
-            panel1.Controls.Add(pnlKritikDurum);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1084, 218);
-            panel1.TabIndex = 1;
+            groupBox8.Controls.Add(lblToplamKarZararText);
+            groupBox8.Controls.Add(pbKarZarar);
+            groupBox8.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox8.ForeColor = SystemColors.ControlLightLight;
+            groupBox8.Location = new Point(20, 52);
+            groupBox8.Name = "groupBox8";
+            groupBox8.Size = new Size(429, 172);
+            groupBox8.TabIndex = 0;
+            groupBox8.TabStop = false;
+            groupBox8.Text = "Toplam Kar/Zarar";
             // 
-            // pnlKritikDurum
+            // lblToplamKarZararText
             // 
-            pnlKritikDurum.BackColor = SystemColors.ControlLightLight;
-            pnlKritikDurum.Controls.Add(lblKritikBilgi);
-            pnlKritikDurum.Controls.Add(lblYuzdeDeger);
-            pnlKritikDurum.Controls.Add(prbKritikStok);
-            pnlKritikDurum.Controls.Add(lblKritikBaslik);
-            pnlKritikDurum.Location = new Point(6, 110);
-            pnlKritikDurum.Name = "pnlKritikDurum";
-            pnlKritikDurum.Size = new Size(262, 87);
-            pnlKritikDurum.TabIndex = 1;
+            lblToplamKarZararText.AutoSize = true;
+            lblToplamKarZararText.Location = new Point(20, 121);
+            lblToplamKarZararText.Name = "lblToplamKarZararText";
+            lblToplamKarZararText.Size = new Size(70, 28);
+            lblToplamKarZararText.TabIndex = 1;
+            lblToplamKarZararText.Text = "label1";
             // 
-            // lblKritikBilgi
+            // pbKarZarar
             // 
-            lblKritikBilgi.AutoSize = true;
-            lblKritikBilgi.Location = new Point(8, 53);
-            lblKritikBilgi.Name = "lblKritikBilgi";
-            lblKritikBilgi.Size = new Size(0, 17);
-            lblKritikBilgi.TabIndex = 3;
+            pbKarZarar.Location = new Point(20, 55);
+            pbKarZarar.Name = "pbKarZarar";
+            pbKarZarar.Size = new Size(391, 63);
+            pbKarZarar.TabIndex = 0;
             // 
-            // lblYuzdeDeger
+            // groupBox4
             // 
-            lblYuzdeDeger.AutoSize = true;
-            lblYuzdeDeger.Location = new Point(8, 53);
-            lblYuzdeDeger.Name = "lblYuzdeDeger";
-            lblYuzdeDeger.Size = new Size(0, 17);
-            lblYuzdeDeger.TabIndex = 2;
+            groupBox4.Controls.Add(lblSatisYil);
+            groupBox4.Controls.Add(kavisliButon9);
+            groupBox4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox4.ForeColor = SystemColors.ControlLightLight;
+            groupBox4.Location = new Point(20, 586);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(429, 172);
+            groupBox4.TabIndex = 8;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Yıllık Satış";
             // 
-            // prbKritikStok
+            // lblSatisYil
             // 
-            prbKritikStok.Location = new Point(132, 53);
-            prbKritikStok.Name = "prbKritikStok";
-            prbKritikStok.Size = new Size(127, 26);
-            prbKritikStok.TabIndex = 0;
+            lblSatisYil.AutoSize = true;
+            lblSatisYil.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblSatisYil.Location = new Point(191, 77);
+            lblSatisYil.Name = "lblSatisYil";
+            lblSatisYil.Size = new Size(126, 31);
+            lblSatisYil.TabIndex = 10;
+            lblSatisYil.Text = "Yıllık Satış";
             // 
-            // lblKritikBaslik
+            // kavisliButon9
             // 
-            lblKritikBaslik.AutoSize = true;
-            lblKritikBaslik.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblKritikBaslik.Location = new Point(44, 13);
-            lblKritikBaslik.Name = "lblKritikBaslik";
-            lblKritikBaslik.Size = new Size(170, 25);
-            lblKritikBaslik.TabIndex = 1;
-            lblKritikBaslik.Text = "Kritik Stok Yüzdesi";
+            kavisliButon9.BackgroundImage = (Image)resources.GetObject("kavisliButon9.BackgroundImage");
+            kavisliButon9.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon9.BorderRadius = 30;
+            kavisliButon9.FlatAppearance.BorderSize = 0;
+            kavisliButon9.FlatStyle = FlatStyle.Flat;
+            kavisliButon9.ForeColor = SystemColors.Control;
+            kavisliButon9.Location = new Point(0, 33);
+            kavisliButon9.Name = "kavisliButon9";
+            kavisliButon9.Size = new Size(162, 116);
+            kavisliButon9.TabIndex = 6;
+            kavisliButon9.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // groupBox3
             // 
-            panel2.BackColor = SystemColors.ControlLightLight;
-            panel2.Controls.Add(panel5);
-            panel2.Controls.Add(panel6);
-            panel2.Controls.Add(panel7);
-            panel2.Controls.Add(panel4);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 218);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1084, 158);
-            panel2.TabIndex = 2;
+            groupBox3.Controls.Add(lblSatisAy);
+            groupBox3.Controls.Add(kavisliButon8);
+            groupBox3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox3.ForeColor = SystemColors.ControlLightLight;
+            groupBox3.Location = new Point(20, 408);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(429, 172);
+            groupBox3.TabIndex = 8;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Aylık Satış";
             // 
-            // panel5
+            // lblSatisAy
             // 
-            panel5.BackColor = Color.DarkOliveGreen;
-            panel5.Controls.Add(pictureBox3);
-            panel5.Controls.Add(label4);
-            panel5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            panel5.ForeColor = SystemColors.ControlLightLight;
-            panel5.Location = new Point(811, 19);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(262, 123);
-            panel5.TabIndex = 1;
+            lblSatisAy.AutoSize = true;
+            lblSatisAy.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblSatisAy.Location = new Point(191, 73);
+            lblSatisAy.Name = "lblSatisAy";
+            lblSatisAy.Size = new Size(126, 31);
+            lblSatisAy.TabIndex = 9;
+            lblSatisAy.Text = "Aylık Satış";
             // 
-            // pictureBox3
+            // kavisliButon8
             // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(3, 13);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(109, 53);
-            pictureBox3.TabIndex = 2;
-            pictureBox3.TabStop = false;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(3, 68);
-            label4.Name = "label4";
-            label4.Size = new Size(155, 19);
-            label4.TabIndex = 0;
-            label4.Text = "Tanımlı Tedarikçi Sayısı";
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.DarkOliveGreen;
-            panel6.Controls.Add(pictureBox2);
-            panel6.Controls.Add(label2);
-            panel6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            panel6.ForeColor = SystemColors.ControlLightLight;
-            panel6.Location = new Point(273, 19);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(265, 123);
-            panel6.TabIndex = 1;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(3, 13);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(109, 53);
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(0, 68);
-            label2.Name = "label2";
-            label2.Size = new Size(158, 19);
-            label2.TabIndex = 0;
-            label2.Text = "Toplam Kayıtlı Kullanıcı";
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.DarkOliveGreen;
-            panel7.Controls.Add(pictureBox4);
-            panel7.Controls.Add(label3);
-            panel7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            panel7.ForeColor = SystemColors.ControlLightLight;
-            panel7.Location = new Point(543, 19);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(262, 123);
-            panel7.TabIndex = 1;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(3, 13);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(109, 53);
-            pictureBox4.TabIndex = 3;
-            pictureBox4.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(0, 68);
-            label3.Name = "label3";
-            label3.Size = new Size(178, 19);
-            label3.TabIndex = 0;
-            label3.Text = "Son 7 Gün Giriş/Çıkış Farkı";
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.DarkOliveGreen;
-            panel4.Controls.Add(pictureBox1);
-            panel4.Controls.Add(label1);
-            panel4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            panel4.ForeColor = SystemColors.ControlLightLight;
-            panel4.Location = new Point(3, 19);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(265, 123);
-            panel4.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(3, 13);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(109, 53);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 68);
-            label1.Name = "label1";
-            label1.Size = new Size(158, 19);
-            label1.TabIndex = 0;
-            label1.Text = "Toplam Envanter Değeri";
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(groupBox2);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 376);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1084, 212);
-            panel3.TabIndex = 3;
-            // 
-            // groupBox2
-            // 
-            groupBox2.BackColor = SystemColors.ControlLightLight;
-            groupBox2.Controls.Add(groupBox1);
-            groupBox2.ForeColor = SystemColors.ControlLightLight;
-            groupBox2.Location = new Point(290, 5);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(515, 117);
-            groupBox2.TabIndex = 0;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "groupBox2";
-            groupBox2.Enter += groupBox2_Enter;
+            kavisliButon8.BackgroundImage = (Image)resources.GetObject("kavisliButon8.BackgroundImage");
+            kavisliButon8.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon8.BorderRadius = 30;
+            kavisliButon8.FlatAppearance.BorderSize = 0;
+            kavisliButon8.FlatStyle = FlatStyle.Flat;
+            kavisliButon8.ForeColor = SystemColors.Control;
+            kavisliButon8.Location = new Point(0, 33);
+            kavisliButon8.Name = "kavisliButon8";
+            kavisliButon8.Size = new Size(162, 116);
+            kavisliButon8.TabIndex = 6;
+            kavisliButon8.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = SystemColors.ControlLightLight;
-            groupBox1.Controls.Add(button3);
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Location = new Point(5, 11);
+            groupBox1.Controls.Add(groupBox4);
+            groupBox1.Controls.Add(groupBox3);
+            groupBox1.Controls.Add(groupBox2);
+            groupBox1.Controls.Add(groupBox13);
+            groupBox1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            groupBox1.Location = new Point(13, 50);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(505, 94);
-            groupBox1.TabIndex = 1;
+            groupBox1.Size = new Size(470, 776);
+            groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Hızlı Eylemler";
+            groupBox1.Text = "Toplam Satışlar";
             // 
-            // button3
+            // groupBox2
             // 
-            button3.BackColor = Color.DarkOliveGreen;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = SystemColors.ControlLightLight;
-            button3.Location = new Point(318, 22);
-            button3.Name = "button3";
-            button3.Size = new Size(144, 49);
-            button3.TabIndex = 5;
-            button3.Text = "Kategori Tanımla";
-            button3.UseVisualStyleBackColor = false;
+            groupBox2.Controls.Add(lblSatisHafta);
+            groupBox2.Controls.Add(kavisliButon7);
+            groupBox2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox2.ForeColor = SystemColors.ControlLightLight;
+            groupBox2.Location = new Point(20, 230);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(429, 172);
+            groupBox2.TabIndex = 8;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Haftalık Satış";
             // 
-            // button2
+            // lblSatisHafta
             // 
-            button2.BackColor = Color.DarkOliveGreen;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(170, 22);
-            button2.Name = "button2";
-            button2.Size = new Size(144, 49);
-            button2.TabIndex = 4;
-            button2.Text = "Envanter Raporunu Görüntüle";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            lblSatisHafta.AutoSize = true;
+            lblSatisHafta.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblSatisHafta.Location = new Point(191, 77);
+            lblSatisHafta.Name = "lblSatisHafta";
+            lblSatisHafta.Size = new Size(158, 31);
+            lblSatisHafta.TabIndex = 8;
+            lblSatisHafta.Text = "Haftalık Satış";
             // 
-            // button1
+            // kavisliButon7
             // 
-            button1.BackColor = Color.DarkOliveGreen;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(21, 22);
-            button1.Name = "button1";
-            button1.Size = new Size(144, 49);
-            button1.TabIndex = 3;
-            button1.Text = "Yeni Kullanıcı Ekle";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            kavisliButon7.BackgroundImage = (Image)resources.GetObject("kavisliButon7.BackgroundImage");
+            kavisliButon7.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon7.BorderRadius = 30;
+            kavisliButon7.FlatAppearance.BorderSize = 0;
+            kavisliButon7.FlatStyle = FlatStyle.Flat;
+            kavisliButon7.ForeColor = SystemColors.Control;
+            kavisliButon7.Location = new Point(0, 33);
+            kavisliButon7.Name = "kavisliButon7";
+            kavisliButon7.Size = new Size(162, 116);
+            kavisliButon7.TabIndex = 6;
+            kavisliButon7.UseVisualStyleBackColor = true;
+            // 
+            // groupBox13
+            // 
+            groupBox13.Controls.Add(lblSatisGun);
+            groupBox13.Controls.Add(kavisliButon10);
+            groupBox13.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox13.ForeColor = SystemColors.ControlLightLight;
+            groupBox13.Location = new Point(20, 52);
+            groupBox13.Name = "groupBox13";
+            groupBox13.Size = new Size(429, 172);
+            groupBox13.TabIndex = 7;
+            groupBox13.TabStop = false;
+            groupBox13.Text = "Günlük Satış";
+            // 
+            // lblSatisGun
+            // 
+            lblSatisGun.AutoSize = true;
+            lblSatisGun.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblSatisGun.Location = new Point(191, 77);
+            lblSatisGun.Name = "lblSatisGun";
+            lblSatisGun.Size = new Size(149, 31);
+            lblSatisGun.TabIndex = 7;
+            lblSatisGun.Text = "Günlük Satış";
+            // 
+            // kavisliButon10
+            // 
+            kavisliButon10.BackgroundImage = (Image)resources.GetObject("kavisliButon10.BackgroundImage");
+            kavisliButon10.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon10.BorderRadius = 30;
+            kavisliButon10.FlatAppearance.BorderSize = 0;
+            kavisliButon10.FlatStyle = FlatStyle.Flat;
+            kavisliButon10.ForeColor = SystemColors.Control;
+            kavisliButon10.Location = new Point(0, 33);
+            kavisliButon10.Name = "kavisliButon10";
+            kavisliButon10.Size = new Size(162, 116);
+            kavisliButon10.TabIndex = 6;
+            kavisliButon10.UseVisualStyleBackColor = true;
+            // 
+            // lblEnCok
+            // 
+            lblEnCok.AutoSize = true;
+            lblEnCok.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblEnCok.Location = new Point(195, 77);
+            lblEnCok.Name = "lblEnCok";
+            lblEnCok.Size = new Size(227, 31);
+            lblEnCok.TabIndex = 6;
+            lblEnCok.Text = "En Çok Satılan Ürün";
+            // 
+            // lblYuksekKar
+            // 
+            lblYuksekKar.AutoSize = true;
+            lblYuksekKar.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblYuksekKar.Location = new Point(195, 81);
+            lblYuksekKar.Name = "lblYuksekKar";
+            lblYuksekKar.Size = new Size(216, 31);
+            lblYuksekKar.TabIndex = 5;
+            lblYuksekKar.Text = "Yüksek Kar Getiren";
+            // 
+            // kavisliButon5
+            // 
+            kavisliButon5.BackgroundImage = (Image)resources.GetObject("kavisliButon5.BackgroundImage");
+            kavisliButon5.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon5.BorderRadius = 30;
+            kavisliButon5.FlatAppearance.BorderSize = 0;
+            kavisliButon5.FlatStyle = FlatStyle.Flat;
+            kavisliButon5.Location = new Point(6, 33);
+            kavisliButon5.Name = "kavisliButon5";
+            kavisliButon5.Size = new Size(183, 125);
+            kavisliButon5.TabIndex = 4;
+            kavisliButon5.UseVisualStyleBackColor = true;
+            // 
+            // pnlHomeYonetici
+            // 
+            pnlHomeYonetici.BackColor = Color.LightSteelBlue;
+            pnlHomeYonetici.Controls.Add(groupBox9);
+            pnlHomeYonetici.Controls.Add(groupBox5);
+            pnlHomeYonetici.Controls.Add(groupBox1);
+            pnlHomeYonetici.Dock = DockStyle.Fill;
+            pnlHomeYonetici.Location = new Point(0, 0);
+            pnlHomeYonetici.Margin = new Padding(3, 4, 3, 4);
+            pnlHomeYonetici.Name = "pnlHomeYonetici";
+            pnlHomeYonetici.Size = new Size(1403, 871);
+            pnlHomeYonetici.TabIndex = 7;
+            // 
+            // groupBox9
+            // 
+            groupBox9.Controls.Add(groupBox10);
+            groupBox9.Controls.Add(groupBox11);
+            groupBox9.Controls.Add(groupBox12);
+            groupBox9.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            groupBox9.Location = new Point(965, 50);
+            groupBox9.Name = "groupBox9";
+            groupBox9.Size = new Size(470, 776);
+            groupBox9.TabIndex = 3;
+            groupBox9.TabStop = false;
+            groupBox9.Text = "Kullanıcı Hareketleri";
+            // 
+            // groupBox10
+            // 
+            groupBox10.Controls.Add(lblToplamUser);
+            groupBox10.Controls.Add(kavisliButon1);
+            groupBox10.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox10.ForeColor = SystemColors.ControlLightLight;
+            groupBox10.Location = new Point(20, 562);
+            groupBox10.Name = "groupBox10";
+            groupBox10.Size = new Size(429, 193);
+            groupBox10.TabIndex = 1;
+            groupBox10.TabStop = false;
+            groupBox10.Text = "Toplam Kullanıcılar";
+            // 
+            // lblToplamUser
+            // 
+            lblToplamUser.AutoSize = true;
+            lblToplamUser.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblToplamUser.Location = new Point(208, 86);
+            lblToplamUser.Name = "lblToplamUser";
+            lblToplamUser.Size = new Size(221, 31);
+            lblToplamUser.TabIndex = 1;
+            lblToplamUser.Text = "Toplam Kullanıcılar";
+            // 
+            // kavisliButon1
+            // 
+            kavisliButon1.BackgroundImage = (Image)resources.GetObject("kavisliButon1.BackgroundImage");
+            kavisliButon1.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon1.BorderRadius = 30;
+            kavisliButon1.FlatAppearance.BorderSize = 0;
+            kavisliButon1.FlatStyle = FlatStyle.Flat;
+            kavisliButon1.Location = new Point(19, 47);
+            kavisliButon1.Name = "kavisliButon1";
+            kavisliButon1.Size = new Size(183, 125);
+            kavisliButon1.TabIndex = 0;
+            kavisliButon1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            groupBox11.Controls.Add(lblPasifUser);
+            groupBox11.Controls.Add(kavisliButon2);
+            groupBox11.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox11.ForeColor = SystemColors.ControlLightLight;
+            groupBox11.Location = new Point(20, 316);
+            groupBox11.Name = "groupBox11";
+            groupBox11.Size = new Size(429, 193);
+            groupBox11.TabIndex = 1;
+            groupBox11.TabStop = false;
+            groupBox11.Text = "Pasif Kullanıcılar";
+            // 
+            // lblPasifUser
+            // 
+            lblPasifUser.AutoSize = true;
+            lblPasifUser.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblPasifUser.ForeColor = Color.DimGray;
+            lblPasifUser.Location = new Point(208, 81);
+            lblPasifUser.Name = "lblPasifUser";
+            lblPasifUser.Size = new Size(165, 31);
+            lblPasifUser.TabIndex = 2;
+            lblPasifUser.Text = "Pasif Kullanıcı";
+            // 
+            // kavisliButon2
+            // 
+            kavisliButon2.BackgroundImage = (Image)resources.GetObject("kavisliButon2.BackgroundImage");
+            kavisliButon2.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon2.BorderRadius = 30;
+            kavisliButon2.FlatAppearance.BorderSize = 0;
+            kavisliButon2.FlatStyle = FlatStyle.Flat;
+            kavisliButon2.Location = new Point(19, 33);
+            kavisliButon2.Name = "kavisliButon2";
+            kavisliButon2.Size = new Size(183, 125);
+            kavisliButon2.TabIndex = 1;
+            kavisliButon2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            groupBox12.Controls.Add(lblAktifUser);
+            groupBox12.Controls.Add(kavisliButon3);
+            groupBox12.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox12.ForeColor = SystemColors.ControlLightLight;
+            groupBox12.Location = new Point(20, 75);
+            groupBox12.Name = "groupBox12";
+            groupBox12.Size = new Size(429, 193);
+            groupBox12.TabIndex = 0;
+            groupBox12.TabStop = false;
+            groupBox12.Text = "Aktif Kullanıcılar";
+            // 
+            // lblAktifUser
+            // 
+            lblAktifUser.AutoSize = true;
+            lblAktifUser.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblAktifUser.ForeColor = Color.DarkOliveGreen;
+            lblAktifUser.Location = new Point(208, 79);
+            lblAktifUser.Name = "lblAktifUser";
+            lblAktifUser.Size = new Size(196, 31);
+            lblAktifUser.TabIndex = 3;
+            lblAktifUser.Text = "Aktif Kullanıcılar";
+            // 
+            // kavisliButon3
+            // 
+            kavisliButon3.BackColor = Color.LightSteelBlue;
+            kavisliButon3.BackgroundImage = (Image)resources.GetObject("kavisliButon3.BackgroundImage");
+            kavisliButon3.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon3.BorderRadius = 30;
+            kavisliButon3.FlatAppearance.BorderSize = 0;
+            kavisliButon3.FlatStyle = FlatStyle.Flat;
+            kavisliButon3.Location = new Point(19, 33);
+            kavisliButon3.Name = "kavisliButon3";
+            kavisliButon3.Size = new Size(183, 125);
+            kavisliButon3.TabIndex = 2;
+            kavisliButon3.UseVisualStyleBackColor = false;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(groupBox14);
+            groupBox5.Controls.Add(groupBox6);
+            groupBox5.Controls.Add(groupBox7);
+            groupBox5.Controls.Add(groupBox8);
+            groupBox5.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            groupBox5.Location = new Point(489, 50);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(470, 776);
+            groupBox5.TabIndex = 2;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Kar/Zarar";
+            // 
+            // groupBox14
+            // 
+            groupBox14.Controls.Add(lblEnAz);
+            groupBox14.Controls.Add(kavisliButon4);
+            groupBox14.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox14.ForeColor = SystemColors.ControlLightLight;
+            groupBox14.Location = new Point(20, 586);
+            groupBox14.Name = "groupBox14";
+            groupBox14.Size = new Size(429, 172);
+            groupBox14.TabIndex = 6;
+            groupBox14.TabStop = false;
+            groupBox14.Text = "En Az Satılan Ürün";
+            // 
+            // lblEnAz
+            // 
+            lblEnAz.AutoSize = true;
+            lblEnAz.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblEnAz.ForeColor = Color.OrangeRed;
+            lblEnAz.Location = new Point(206, 77);
+            lblEnAz.Name = "lblEnAz";
+            lblEnAz.Size = new Size(213, 31);
+            lblEnAz.TabIndex = 6;
+            lblEnAz.Text = "En Az Satılan Ürün";
+            // 
+            // kavisliButon4
+            // 
+            kavisliButon4.BackgroundImage = (Image)resources.GetObject("kavisliButon4.BackgroundImage");
+            kavisliButon4.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon4.BorderRadius = 30;
+            kavisliButon4.FlatAppearance.BorderSize = 0;
+            kavisliButon4.FlatStyle = FlatStyle.Flat;
+            kavisliButon4.Location = new Point(6, 33);
+            kavisliButon4.Name = "kavisliButon4";
+            kavisliButon4.Size = new Size(183, 125);
+            kavisliButon4.TabIndex = 5;
+            kavisliButon4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(lblEnCok);
+            groupBox6.Controls.Add(kavisliButon6);
+            groupBox6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox6.ForeColor = SystemColors.ControlLightLight;
+            groupBox6.Location = new Point(20, 408);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(429, 172);
+            groupBox6.TabIndex = 1;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "En Çok Satılan Ürün";
+            // 
+            // kavisliButon6
+            // 
+            kavisliButon6.BackgroundImage = (Image)resources.GetObject("kavisliButon6.BackgroundImage");
+            kavisliButon6.BackgroundImageLayout = ImageLayout.Zoom;
+            kavisliButon6.BorderRadius = 30;
+            kavisliButon6.FlatAppearance.BorderSize = 0;
+            kavisliButon6.FlatStyle = FlatStyle.Flat;
+            kavisliButon6.Location = new Point(6, 33);
+            kavisliButon6.Name = "kavisliButon6";
+            kavisliButon6.Size = new Size(183, 125);
+            kavisliButon6.TabIndex = 5;
+            kavisliButon6.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            groupBox7.Controls.Add(lblYuksekKar);
+            groupBox7.Controls.Add(kavisliButon5);
+            groupBox7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            groupBox7.ForeColor = SystemColors.ControlLightLight;
+            groupBox7.Location = new Point(20, 230);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new Size(429, 172);
+            groupBox7.TabIndex = 1;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "Yüksek Kar Getiren Ürünler";
             // 
             // frmYoneticiHomeIcerik
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1084, 588);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            ClientSize = new Size(1403, 871);
+            Controls.Add(pnlHomeYonetici);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmYoneticiHomeIcerik";
             Text = "frmYoneticiHomeIcerik";
-            panel1.ResumeLayout(false);
-            pnlKritikDurum.ResumeLayout(false);
-            pnlKritikDurum.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel3.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
+            groupBox8.ResumeLayout(false);
+            groupBox8.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox13.ResumeLayout(false);
+            groupBox13.PerformLayout();
+            pnlHomeYonetici.ResumeLayout(false);
+            groupBox9.ResumeLayout(false);
+            groupBox10.ResumeLayout(false);
+            groupBox10.PerformLayout();
+            groupBox11.ResumeLayout(false);
+            groupBox11.PerformLayout();
+            groupBox12.ResumeLayout(false);
+            groupBox12.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox14.ResumeLayout(false);
+            groupBox14.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel5;
-        private Panel panel6;
-        private Panel panel7;
-        private Panel panel4;
-        private Panel panel3;
-        private Label label4;
-        private Label label2;
-        private Label label3;
-        private Label label1;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox1;
-        private GroupBox groupBox2;
-        private Panel pnlKritikDurum;
-        private Label lblYuzdeDeger;
-        private Label lblKritikBaslik;
-        private ProgressBar prbKritikStok;
+
+        private GroupBox groupBox8;
+        private ProgressBar pbKarZarar;
+        private GroupBox groupBox4;
+        private Label lblSatisYil;
+        private KavisliButon kavisliButon9;
+        private GroupBox groupBox3;
+        private Label lblSatisAy;
+        private KavisliButon kavisliButon8;
         private GroupBox groupBox1;
-        private Button button3;
-        private Button button2;
-        private Button button1;
-        private Label lblKritikBilgi;
+        private GroupBox groupBox2;
+        private Label lblSatisHafta;
+        private KavisliButon kavisliButon7;
+        private GroupBox groupBox13;
+        private Label lblSatisGun;
+        private KavisliButon kavisliButon10;
+        private Label lblEnCok;
+        private Label lblYuksekKar;
+        private KavisliButon kavisliButon5;
+        private Panel pnlHomeYonetici;
+        private GroupBox groupBox9;
+        private GroupBox groupBox10;
+        private Label lblToplamUser;
+        private KavisliButon kavisliButon1;
+        private GroupBox groupBox11;
+        private Label lblPasifUser;
+        private KavisliButon kavisliButon2;
+        private GroupBox groupBox12;
+        private Label lblAktifUser;
+        private KavisliButon kavisliButon3;
+        private GroupBox groupBox5;
+        private GroupBox groupBox14;
+        private Label lblEnAz;
+        private KavisliButon kavisliButon4;
+        private GroupBox groupBox6;
+        private KavisliButon kavisliButon6;
+        private GroupBox groupBox7;
+        private Label lblToplamKarZararText;
     }
 }
