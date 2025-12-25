@@ -15,7 +15,7 @@ namespace edts
     public partial class ChatbotForm : Form
     {
         static string connectionString =
-            "Server=LAPTOP-ECRTR81F\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
+            "Server=.\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
 
         // Sınıfın başında, constructor'dan önce
         private Dictionary<int, List<string>> RolYetkileri = new Dictionary<int, List<string>>()

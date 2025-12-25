@@ -15,8 +15,6 @@ namespace edts
     public partial class frmDepoHome : Form
     {
 
-        // <<< BURAYA EKLEYİN: Aktif Kullanıcı ID'sini tutacak değişken >>>
-        private int aktifKullaniciID;
 
         public frmDepoHome()
         {
