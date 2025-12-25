@@ -361,6 +361,7 @@
             buttonSolKategoriK.Text = "          Kategori";
             buttonSolKategoriK.TextAlign = ContentAlignment.MiddleLeft;
             buttonSolKategoriK.UseVisualStyleBackColor = false;
+            buttonSolKategoriK.Click += buttonSolKategoriK_Click;
             // 
             // panelMusteriK
             // 
@@ -385,6 +386,7 @@
             buttonSolMusteriK.Text = "          Müsteri";
             buttonSolMusteriK.TextAlign = ContentAlignment.MiddleLeft;
             buttonSolMusteriK.UseVisualStyleBackColor = false;
+            buttonSolMusteriK.Click += buttonSolMusteriK_Click;
             // 
             // panelTedarikciK
             // 
@@ -409,6 +411,7 @@
             buttonSolTedarikciK.Text = "          Tedarikçi";
             buttonSolTedarikciK.TextAlign = ContentAlignment.MiddleLeft;
             buttonSolTedarikciK.UseVisualStyleBackColor = false;
+            buttonSolTedarikciK.Click += buttonSolTedarikciK_Click;
             // 
             // panelRapor
             // 
