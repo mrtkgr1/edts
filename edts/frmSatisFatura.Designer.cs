@@ -1,0 +1,253 @@
+﻿namespace edts
+{
+    partial class frmSatisFatura
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            panel2 = new Panel();
+            dataGridView2 = new DataGridView();
+            tabPage5 = new TabPage();
+            btnSatisOnay = new Button();
+            btnSepetEkle = new Button();
+            label14 = new Label();
+            cmbMusteriSecim = new ComboBox();
+            label13 = new Label();
+            nmrSatisAdet = new NumericUpDown();
+            txtUrunBarkod = new TextBox();
+            label12 = new Label();
+            panel1 = new Panel();
+            dgvSepet = new DataGridView();
+            tabControl1 = new TabControl();
+            label1 = new Label();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nmrSatisAdet).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSepet).BeginInit();
+            tabControl1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(dataGridView2);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(653, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(585, 878);
+            panel2.TabIndex = 5;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Dock = DockStyle.Fill;
+            dataGridView2.Location = new Point(0, 0);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.Size = new Size(585, 878);
+            dataGridView2.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            tabPage5.BackColor = Color.LightSlateGray;
+            tabPage5.Controls.Add(btnSatisOnay);
+            tabPage5.Controls.Add(btnSepetEkle);
+            tabPage5.Controls.Add(label14);
+            tabPage5.Controls.Add(cmbMusteriSecim);
+            tabPage5.Controls.Add(label13);
+            tabPage5.Controls.Add(nmrSatisAdet);
+            tabPage5.Controls.Add(txtUrunBarkod);
+            tabPage5.Controls.Add(label12);
+            tabPage5.Location = new Point(4, 37);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(613, 382);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Satış/Fatura";
+            // 
+            // btnSatisOnay
+            // 
+            btnSatisOnay.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnSatisOnay.Location = new Point(239, 286);
+            btnSatisOnay.Name = "btnSatisOnay";
+            btnSatisOnay.Size = new Size(124, 44);
+            btnSatisOnay.TabIndex = 9;
+            btnSatisOnay.Text = "Satışı Onayla";
+            btnSatisOnay.UseVisualStyleBackColor = true;
+            btnSatisOnay.Click += btnSatisOnay_Click;
+            // 
+            // btnSepetEkle
+            // 
+            btnSepetEkle.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnSepetEkle.Location = new Point(100, 286);
+            btnSepetEkle.Name = "btnSepetEkle";
+            btnSepetEkle.Size = new Size(124, 44);
+            btnSepetEkle.TabIndex = 8;
+            btnSepetEkle.Text = "Sepete Ekle";
+            btnSepetEkle.UseVisualStyleBackColor = true;
+            btnSepetEkle.Click += btnSepetEkle_Click;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label14.ForeColor = SystemColors.ControlLightLight;
+            label14.Location = new Point(22, 219);
+            label14.Name = "label14";
+            label14.Size = new Size(134, 23);
+            label14.TabIndex = 5;
+            label14.Text = "Müşteri Seçimi:";
+            // 
+            // cmbMusteriSecim
+            // 
+            cmbMusteriSecim.FormattingEnabled = true;
+            cmbMusteriSecim.Location = new Point(166, 215);
+            cmbMusteriSecim.Name = "cmbMusteriSecim";
+            cmbMusteriSecim.Size = new Size(215, 36);
+            cmbMusteriSecim.TabIndex = 4;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label13.ForeColor = SystemColors.ControlLightLight;
+            label13.Location = new Point(22, 158);
+            label13.Name = "label13";
+            label13.Size = new Size(127, 23);
+            label13.TabIndex = 3;
+            label13.Text = "Miktar Seçimi:";
+            // 
+            // nmrSatisAdet
+            // 
+            nmrSatisAdet.Location = new Point(166, 152);
+            nmrSatisAdet.Name = "nmrSatisAdet";
+            nmrSatisAdet.Size = new Size(215, 34);
+            nmrSatisAdet.TabIndex = 2;
+            // 
+            // txtUrunBarkod
+            // 
+            txtUrunBarkod.Location = new Point(166, 94);
+            txtUrunBarkod.Name = "txtUrunBarkod";
+            txtUrunBarkod.Size = new Size(215, 34);
+            txtUrunBarkod.TabIndex = 1;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label12.ForeColor = SystemColors.ControlLightLight;
+            label12.Location = new Point(22, 101);
+            label12.Name = "label12";
+            label12.Size = new Size(127, 23);
+            label12.TabIndex = 0;
+            label12.Text = "Ürün Barkodu:";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ControlLightLight;
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(dgvSepet);
+            panel1.Controls.Add(tabControl1);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(653, 878);
+            panel1.TabIndex = 4;
+            // 
+            // dgvSepet
+            // 
+            dgvSepet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSepet.Location = new Point(16, 24);
+            dgvSepet.Name = "dgvSepet";
+            dgvSepet.RowHeadersWidth = 51;
+            dgvSepet.Size = new Size(613, 408);
+            dgvSepet.TabIndex = 3;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage5);
+            tabControl1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            tabControl1.Location = new Point(16, 442);
+            tabControl1.Margin = new Padding(3, 4, 3, 4);
+            tabControl1.Multiline = true;
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(621, 423);
+            tabControl1.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.DarkGray;
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(259, 24);
+            label1.Name = "label1";
+            label1.Size = new Size(114, 25);
+            label1.TabIndex = 4;
+            label1.Text = "Geçici Tablo";
+            // 
+            // frmSatisFatura
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1238, 878);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Name = "frmSatisFatura";
+            Text = "frmSatisFatura";
+            Load += frmSatisFatura_Load;
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nmrSatisAdet).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSepet).EndInit();
+            tabControl1.ResumeLayout(false);
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Panel panel2;
+        private DataGridView dataGridView2;
+        private TabPage tabPage5;
+        private Button btnSatisOnay;
+        private Button btnSepetEkle;
+        private Label label14;
+        private ComboBox cmbMusteriSecim;
+        private Label label13;
+        private NumericUpDown nmrSatisAdet;
+        private TextBox txtUrunBarkod;
+        private Label label12;
+        private Panel panel1;
+        private TabControl tabControl1;
+        private DataGridView dgvSepet;
+        private Label label1;
+    }
+}
