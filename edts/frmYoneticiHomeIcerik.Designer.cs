@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmYoneticiHomeIcerik));
             groupBox8 = new GroupBox();
             lblToplamKarZararText = new Label();
@@ -66,6 +67,7 @@
             groupBox6 = new GroupBox();
             kavisliButon6 = new KavisliButon();
             groupBox7 = new GroupBox();
+            timer1 = new System.Windows.Forms.Timer(components);
             groupBox8.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -277,20 +279,20 @@
             // lblEnCok
             // 
             lblEnCok.AutoSize = true;
-            lblEnCok.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblEnCok.Location = new Point(195, 77);
+            lblEnCok.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblEnCok.Location = new Point(195, 33);
             lblEnCok.Name = "lblEnCok";
-            lblEnCok.Size = new Size(227, 31);
+            lblEnCok.Size = new Size(199, 28);
             lblEnCok.TabIndex = 6;
             lblEnCok.Text = "En Çok Satılan Ürün";
             // 
             // lblYuksekKar
             // 
             lblYuksekKar.AutoSize = true;
-            lblYuksekKar.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblYuksekKar.Location = new Point(195, 81);
+            lblYuksekKar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblYuksekKar.Location = new Point(203, 47);
             lblYuksekKar.Name = "lblYuksekKar";
-            lblYuksekKar.Size = new Size(216, 31);
+            lblYuksekKar.Size = new Size(191, 28);
             lblYuksekKar.TabIndex = 5;
             lblYuksekKar.Text = "Yüksek Kar Getiren";
             // 
@@ -423,7 +425,7 @@
             // 
             lblAktifUser.AutoSize = true;
             lblAktifUser.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblAktifUser.ForeColor = Color.DarkOliveGreen;
+            lblAktifUser.ForeColor = Color.ForestGreen;
             lblAktifUser.Location = new Point(208, 79);
             lblAktifUser.Name = "lblAktifUser";
             lblAktifUser.Size = new Size(196, 31);
@@ -474,11 +476,11 @@
             // lblEnAz
             // 
             lblEnAz.AutoSize = true;
-            lblEnAz.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblEnAz.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblEnAz.ForeColor = Color.OrangeRed;
-            lblEnAz.Location = new Point(206, 77);
+            lblEnAz.Location = new Point(195, 45);
             lblEnAz.Name = "lblEnAz";
-            lblEnAz.Size = new Size(213, 31);
+            lblEnAz.Size = new Size(188, 28);
             lblEnAz.TabIndex = 6;
             lblEnAz.Text = "En Az Satılan Ürün";
             // 
@@ -534,6 +536,12 @@
             groupBox7.TabStop = false;
             groupBox7.Text = "Yüksek Kar Getiren Ürünler";
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 30000;
+            timer1.Tick += timer1_Tick;
+            // 
             // frmYoneticiHomeIcerik
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -543,6 +551,8 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmYoneticiHomeIcerik";
             Text = "frmYoneticiHomeIcerik";
+            FormClosing += frmYoneticiHomeIcerik_FormClosing;
+            Load += frmYoneticiHomeIcerik_Load;
             groupBox8.ResumeLayout(false);
             groupBox8.PerformLayout();
             groupBox4.ResumeLayout(false);
@@ -611,5 +621,6 @@
         private KavisliButon kavisliButon6;
         private GroupBox groupBox7;
         private Label lblToplamKarZararText;
+        private System.Windows.Forms.Timer timer1;
     }
 }

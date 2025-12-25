@@ -1,4 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Wordprocessing;
+using edts;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using edts;
 
 namespace edts
 {
@@ -107,18 +108,33 @@ namespace edts
 
         private void btnTedarikciSill_Click(object sender, EventArgs e)
         {
+            // 1. ADIM: Seçim Kontrolü
+            if (dataGridView2.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Tedarikçi silme işlemi için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Silinecek firmanın adını log ve mesaj için değişkene alalım
+            string firmaAdi = txtFirmaAdi.Text;
+
+            // 2. ADIM: ONAY SORUSU (Kritik nokta)
+            DialogResult soru = MessageBox.Show(
+                $"{firmaAdi} isimli tedarikçiyi silmek istediğinize emin misiniz?\nBu işlem geri alınamaz!",
+                "Silme Onayı",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            // Eğer kullanıcı 'Hayır' derse işlemi iptal et
+            if (soru != DialogResult.Yes) return;
+
+            // 3. ADIM: İŞLEM (Kullanıcı Evet dediyse burası çalışır)
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 try
                 {
                     baglan.Open();
-
-                    if (dataGridView2.SelectedRows.Count == 0)
-                    {
-                        MessageBox.Show("Tedarikçi güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
-                        return;
-                    }
                     int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["TedarikciID"].Value);
 
                     string sorgu = "DELETE FROM tblTedarikciler WHERE TedarikciID = @ID";
@@ -128,23 +144,30 @@ namespace edts
 
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Tedarikçi silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tedarikçi başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     VeritabaniYardimcisi.LogKaydet(
                         kullaniciID: AktifKullanici.ID,
                         hareketID: 8,
                         tabloAdi: "tblTedarikciler",
-                        aciklama: $"{txtFirmaAdi.Text} adlı tedarikçi silindi."
+                        aciklama: $"{firmaAdi} adlı tedarikçi silindi."
                     );
+
+                    // Silme işleminden sonra kutuları temizlemek iyi bir pratiktir
+                    txtFirmaAdi.Clear();
+                    txtVergiDairesi.Clear();
+                    txtVergiNo.Clear();
+                    txtTelefon.Clear();
                 }
                 catch (SqlException ex)
                 {
                     if (ex.Number == 547)
                     {
-                        MessageBox.Show("Bu tedarikçiyi silemezsiniz çünkü sistemde kayıtlı ürünleri var. Önce ürünleri silmeli veya başka tedarikçiye aktarmalısınız.", "İlişki Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Bu tedarikçiyi silemezsiniz çünkü bu tedarikçiden alınmış ürünler veya fatura kayıtları sistemde mevcut. Önce bu kayıtları temizlemelisiniz.", "İlişki Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        MessageBox.Show("Silme Hatası: " + ex.Message);
+                        MessageBox.Show("Silme Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -153,18 +176,29 @@ namespace edts
 
         private void btnTedarikciGuncellee_Click(object sender, EventArgs e)
         {
+            // 1. ADIM: Seçili satır kontrolü
+            if (dataGridView2.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Tedarikçi güncelleme işlemi için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. ADIM: KULLANICIYA SORALIM (Onay Mekanizması)
+            DialogResult soru = MessageBox.Show(
+                $"{txtFirmaAdi.Text} firmasının bilgilerini güncellemek istediğinize emin misiniz?",
+                "Güncelleme Onayı",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Eğer kullanıcı 'Hayır' derse işlemi burada durdur
+            if (soru != DialogResult.Yes) return;
 
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 try
                 {
                     baglan.Open();
-
-                    if (dataGridView2.SelectedRows.Count == 0)
-                    {
-                        MessageBox.Show("Tedarikçi güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
-                        return;
-                    }
                     int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["TedarikciID"].Value);
 
                     string sorgu = @"UPDATE tblTedarikciler 
@@ -182,18 +216,24 @@ namespace edts
                     cmd.Parameters.AddWithValue("@VN", txtVergiNo.Text);
                     cmd.Parameters.AddWithValue("@Tel", txtTelefon.Text);
 
-                    cmd.ExecuteNonQuery();
+                    int sonuc = cmd.ExecuteNonQuery();
 
-                    VeritabaniYardimcisi.LogKaydet(
-                        kullaniciID: AktifKullanici.ID,
-                        hareketID: 8,
-                        tabloAdi: "tblTedarikciler",
-                        aciklama: $"{txtFirmaAdi.Text} adlı tedarikçi güncellendi."
-                    );
+                    // 3. ADIM: BAŞARI BİLDİRİMİ
+                    if (sonuc > 0)
+                    {
+                        MessageBox.Show("Tedarikçi bilgileri başarıyla güncellendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        VeritabaniYardimcisi.LogKaydet(
+                            kullaniciID: AktifKullanici.ID,
+                            hareketID: 8,
+                            tabloAdi: "tblTedarikciler",
+                            aciklama: $"{txtFirmaAdi.Text} adlı tedarikçi güncellendi."
+                        );
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Güncelleme Hatası: " + ex.Message);
+                    MessageBox.Show("Güncelleme Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             TedarikcileriListele();
@@ -201,12 +241,25 @@ namespace edts
 
         private void btnTedarikciKaydett_Click(object sender, EventArgs e)
         {
-          
+
+            // 1. ADIM: Boş kontrolü (Zaten harika bir şekilde yapmışsın)
             if (txtFirmaAdi.Text.Trim() == "")
             {
                 MessageBox.Show("Firma Adı boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // 2. ADIM: ONAY SORUSU (Kullanıcıya soruyoruz)
+            DialogResult soru = MessageBox.Show(
+                $"{txtFirmaAdi.Text} firmasını yeni tedarikçi olarak kaydetmek istiyor musunuz?",
+                "Tedarikçi Kayıt Onayı",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Eğer kullanıcı 'Hayır' derse işlemi burada bitir
+            if (soru != DialogResult.Yes) return;
+
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 try
@@ -219,7 +272,6 @@ namespace edts
 
                     SqlCommand cmd = new SqlCommand(sorgu, baglan);
 
-                    // Parametreleri ekliyoruz
                     cmd.Parameters.AddWithValue("@Ad", txtFirmaAdi.Text);
                     cmd.Parameters.AddWithValue("@VD", txtVergiDairesi.Text);
                     cmd.Parameters.AddWithValue("@VN", txtVergiNo.Text);
@@ -227,16 +279,25 @@ namespace edts
 
                     cmd.ExecuteNonQuery();
 
+                    // 3. ADIM: BAŞARI MESAJI (Kullanıcıyı bilgilendiriyoruz)
+                    MessageBox.Show("Tedarikçi kaydı başarıyla tamamlandı.", "İşlem Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     VeritabaniYardimcisi.LogKaydet(
                         kullaniciID: AktifKullanici.ID,
                         hareketID: 8,
                         tabloAdi: "tblTedarikciler",
                         aciklama: $"{txtFirmaAdi.Text} adlı tedarikçi eklendi."
                     );
+
+                    // İsteğe bağlı: Kayıttan sonra kutuları temizleyebilirsin
+                    txtFirmaAdi.Clear();
+                    txtVergiDairesi.Clear();
+                    txtVergiNo.Clear();
+                    txtTelefon.Clear();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ekleme Hatası: " + ex.Message);
+                    MessageBox.Show("Ekleme Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             TedarikcileriListele();
