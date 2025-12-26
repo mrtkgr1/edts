@@ -31,11 +31,11 @@
             lblKategoriAdi = new Label();
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
+            btnSilSutun = new DataGridViewButtonColumn();
             txtKategoriAdi = new TextBox();
             panel1 = new Panel();
             tabControl1 = new TabControl();
             tabPage2 = new TabPage();
-            btnKategoriSill = new KavisliButon();
             btnKategoriGuncellee = new KavisliButon();
             btnKategoriKaydett = new KavisliButon();
             txtKategoriAciklama = new TextBox();
@@ -70,6 +70,7 @@
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun });
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
@@ -77,6 +78,19 @@
             dataGridView2.Size = new Size(613, 710);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellClick += dataGridView2_CellClick;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridView2.CellPainting += dataGridView2_CellPainting;
+            dataGridView2.MouseLeave += dataGridView2_MouseLeave;
+            dataGridView2.MouseMove += dataGridView2_MouseMove;
+            // 
+            // btnSilSutun
+            // 
+            btnSilSutun.HeaderText = "";
+            btnSilSutun.MinimumWidth = 6;
+            btnSilSutun.Name = "btnSilSutun";
+            btnSilSutun.Text = "Sil";
+            btnSilSutun.UseColumnTextForButtonValue = true;
+            btnSilSutun.Width = 125;
             // 
             // txtKategoriAdi
             // 
@@ -111,7 +125,6 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.LightSlateGray;
-            tabPage2.Controls.Add(btnKategoriSill);
             tabPage2.Controls.Add(btnKategoriGuncellee);
             tabPage2.Controls.Add(btnKategoriKaydett);
             tabPage2.Controls.Add(txtKategoriAciklama);
@@ -126,25 +139,12 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Kategori Tanımlama";
             // 
-            // btnKategoriSill
-            // 
-            btnKategoriSill.BorderRadius = 30;
-            btnKategoriSill.FlatStyle = FlatStyle.System;
-            btnKategoriSill.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnKategoriSill.Location = new Point(388, 411);
-            btnKategoriSill.Name = "btnKategoriSill";
-            btnKategoriSill.Size = new Size(101, 39);
-            btnKategoriSill.TabIndex = 9;
-            btnKategoriSill.Text = "Sil";
-            btnKategoriSill.UseVisualStyleBackColor = true;
-            btnKategoriSill.Click += btnKategoriSill_Click;
-            // 
             // btnKategoriGuncellee
             // 
             btnKategoriGuncellee.BorderRadius = 30;
             btnKategoriGuncellee.FlatStyle = FlatStyle.System;
             btnKategoriGuncellee.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnKategoriGuncellee.Location = new Point(281, 411);
+            btnKategoriGuncellee.Location = new Point(331, 411);
             btnKategoriGuncellee.Name = "btnKategoriGuncellee";
             btnKategoriGuncellee.Size = new Size(101, 39);
             btnKategoriGuncellee.TabIndex = 8;
@@ -157,7 +157,7 @@
             btnKategoriKaydett.BorderRadius = 30;
             btnKategoriKaydett.FlatStyle = FlatStyle.System;
             btnKategoriKaydett.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnKategoriKaydett.Location = new Point(174, 411);
+            btnKategoriKaydett.Location = new Point(224, 411);
             btnKategoriKaydett.Name = "btnKategoriKaydett";
             btnKategoriKaydett.Size = new Size(101, 39);
             btnKategoriKaydett.TabIndex = 7;
@@ -214,10 +214,10 @@
         private Panel panel1;
         private TabControl tabControl1;
         private TabPage tabPage2;
-        private KavisliButon btnKategoriSill;
         private KavisliButon btnKategoriGuncellee;
         private KavisliButon btnKategoriKaydett;
         private TextBox txtKategoriAciklama;
         private Label lblAciklama;
+        private DataGridViewButtonColumn btnSilSutun;
     }
 }

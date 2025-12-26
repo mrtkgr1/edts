@@ -37,7 +37,7 @@ namespace edts
                 case 1:
                     KategoriListeGuncelle();
                     break;
-              
+
                 default:
                     break;
             }
@@ -141,7 +141,7 @@ namespace edts
 
         private void btnGuncelle_Click_1(object sender, EventArgs e)
         {
-           
+
             if (dataGridView2.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Lütfen güncellemek istediğiniz ürünün en solundaki boşluğa tıklayarak tüm satırı seçiniz.");
@@ -200,10 +200,10 @@ namespace edts
             }
             UrunListeGuncelle();
         }
-        
+
         private void UrunListeGuncelle()
         {
-         
+
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 try
@@ -249,18 +249,30 @@ namespace edts
                     dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                     // --- BONUS ÖZELLİK BURAYA GELİYOR ---
+                    // --- SADECE STOK HÜCRESİNİ RENKLENDİRME ---
                     foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
-                        // Satırın boş olmadığından emin olalım
-                        if (row.Cells["MevcutStok"].Value != null && row.Cells["KritikStok"].Value != null)
+                        // Satırın yeni satır (boş alt satır) olmadığını ve hücrelerin varlığını kontrol et
+                        if (!row.IsNewRow && row.Cells["MevcutStok"].Value != null && row.Cells["KritikStok"].Value != null)
                         {
                             int stok = Convert.ToInt32(row.Cells["MevcutStok"].Value);
                             int kritik = Convert.ToInt32(row.Cells["KritikStok"].Value);
 
                             if (stok <= kritik)
                             {
-                                row.DefaultCellStyle.BackColor = Color.Salmon; // Arka plan rengi
-                                row.DefaultCellStyle.ForeColor = Color.Black; // Yazı rengi
+                                // Tüm satır yerine sadece "Stok Adedi" hücresini boyuyoruz
+                                row.Cells["MevcutStok"].Style.BackColor = Color.Salmon;
+                                row.Cells["MevcutStok"].Style.ForeColor = Color.Black;
+
+                                // Eğer istersen yazı tipini kalınlaştırarak dikkati daha da artırabiliriz:
+                                row.Cells["MevcutStok"].Style.Font = new Font(dataGridView2.Font, FontStyle.Bold);
+                            }
+                            else
+                            {
+                                // Stok yeterliyse renkleri ve fontu varsayılana döndür
+                                row.Cells["MevcutStok"].Style.BackColor = Color.White;
+                                row.Cells["MevcutStok"].Style.ForeColor = Color.Black;
+                                row.Cells["MevcutStok"].Style.Font = new Font(dataGridView2.Font, FontStyle.Regular);
                             }
                         }
                     }
@@ -329,10 +341,10 @@ namespace edts
         }
 
         //------------------- KATEGORİ İŞLEMLERİ ------------------//
-       
-       
 
-       
+
+
+
         private void KategoriListeGuncelle()
         {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
@@ -357,8 +369,8 @@ namespace edts
             }
         }
 
-       
-   
+
+
         private void musteriBilgiAl(int id, out string ad, out string verigiNo, out string vergiDairesi, out string tel)
         {
             ad = string.Empty;
@@ -402,8 +414,8 @@ namespace edts
                         UrunBilgileriniGetir(Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["UrunID"].Value));
                     }
                     break;
-               
-                    }   
+
+            }
         }
 
         private void frmUrunYonetimi_Load(object sender, EventArgs e)
@@ -411,13 +423,13 @@ namespace edts
             KategorileriYukle();
             UrunListeGuncelle(); // Form açılır açılmaz liste gelsin
                                  // Bunu Form_Load içine yaz
-            cmbBirimTipi.Items.AddRange(new string[] { "Adet", "KG", "Metre", "Paket","gram" });
+            cmbBirimTipi.Items.AddRange(new string[] { "Adet", "KG", "Metre", "Paket", "gram" });
             cmbBirimTipi.SelectedIndex = 0; // İlk sıradakini seçili getirir
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-         
+
             // 1. ADIM: Başlık satırına (-1) veya en alttaki boş yeni satıra (IsNewRow) tıklandıysa işlemi bitir
             if (e.RowIndex < 0 || dataGridView2.Rows[e.RowIndex].IsNewRow)
                 return;
@@ -462,8 +474,110 @@ namespace edts
         {
 
         }
+
+        private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (this.DesignMode || e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            {
+                // 1. Arka planı temizle (Gri taşmaları önler)
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
+
+                // 2. Buton boyutunu Natalie örneğine göre ayarla (Hücreden küçük ve ortalı)
+                var btnRect = new Rectangle(e.CellBounds.X + 10, e.CellBounds.Y + 4, e.CellBounds.Width - 20, e.CellBounds.Height - 8);
+
+                // 3. Mouse Durum Kontrolü
+                Point mousePos = dataGridView2.PointToClient(Cursor.Position);
+                bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
+
+                // Renk Tonları: Natalie örneğindeki soft kırmızı (Normal) ve biraz daha koyusu (Hover)
+                Color normalKirmizi = Color.FromArgb(255, 148, 148);
+                Color hoverKirmizi = Color.FromArgb(235, 110, 110);
+
+                Color gecerliRenk = isHovering ? hoverKirmizi : normalKirmizi;
+
+                // 4. Yumuşak Kenarlık ve Dolgu Çizimi
+                using (Pen p = new Pen(gecerliRenk, 1))
+                using (Brush b = new SolidBrush(gecerliRenk))
+                {
+                    // Butonun gövdesi
+                    e.Graphics.FillRectangle(b, btnRect);
+                    // Butonun dış çerçevesi (Daha net durması için)
+                    e.Graphics.DrawRectangle(p, btnRect);
+                }
+
+                // 5. Yazı (Web tarzı: Küçük harf veya İlk harf büyük)
+                TextRenderer.DrawText(e.Graphics, "Sil", e.CellStyle.Font, btnRect, Color.White,
+                    TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
+
+                e.Handled = true;
+            }
+        }
+
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            {
+                string urunAd = dataGridView2.Rows[e.RowIndex].Cells["UrunAd"].Value?.ToString() ?? "Ürün";
+                string urunId = dataGridView2.Rows[e.RowIndex].Cells["UrunID"].Value.ToString();
+
+                // Şık bir Onay Kutusu
+                DialogResult onay = MessageBox.Show(
+                    $"{urunAd} ürününü silmek üzeresiniz. Onaylıyor musunuz?",
+                    "Dikkat",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (onay == DialogResult.Yes)
+                {
+                    UrunSil(urunId);
+                    UrunListeGuncelle();
+                }
+            }
+        }
+        // --- SQL SİLME METODU ---
+        private void UrunSil(string id)
+        {
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
+            {
+                try
+                {
+                    baglan.Open();
+                    SqlCommand cmd = new SqlCommand("DELETE FROM tblUrunler WHERE UrunID = @id", baglan);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+
+                    // Loglama işlemini de aradan çıkarıyoruz
+                    VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 5, "tblUrunler", $"ID:{id} olan ürün silindi.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ürün silinirken bir hata oluştu: " + ex.Message);
+                }
+            }
+        }
+
+        private void dataGridView2_MouseMove(object sender, MouseEventArgs e)
+        {
+            var hit = dataGridView2.HitTest(e.X, e.Y);
+            if (hit.Type == DataGridViewHitTestType.Cell && dataGridView2.Columns[hit.ColumnIndex].Name == "btnSilSutun")
+            {
+                dataGridView2.InvalidateCell(hit.ColumnIndex, hit.RowIndex);
+            }
+        }
+
+        private void dataGridView2_MouseLeave(object sender, EventArgs e)
+        {
+            // Mouse grid'den çıktığında butonun rengini eski haline döndürür
+            dataGridView2.Invalidate();
+        }
     }
 }
+
+
     
 
 
