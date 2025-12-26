@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnTedarikciSill = new KavisliButon();
             btnTedarikciGuncellee = new KavisliButon();
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
+            btnSilSutun = new DataGridViewButtonColumn();
             tabPage3 = new TabPage();
             btnTedarikciKaydett = new KavisliButon();
             lblAdres = new Label();
@@ -51,21 +51,6 @@
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
-            // btnTedarikciSill
-            // 
-            btnTedarikciSill.BackColor = Color.White;
-            btnTedarikciSill.BorderRadius = 30;
-            btnTedarikciSill.FlatAppearance.BorderSize = 0;
-            btnTedarikciSill.FlatStyle = FlatStyle.System;
-            btnTedarikciSill.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnTedarikciSill.Location = new Point(382, 292);
-            btnTedarikciSill.Name = "btnTedarikciSill";
-            btnTedarikciSill.Size = new Size(93, 45);
-            btnTedarikciSill.TabIndex = 13;
-            btnTedarikciSill.Text = "Sil";
-            btnTedarikciSill.UseVisualStyleBackColor = false;
-            btnTedarikciSill.Click += btnTedarikciSill_Click;
-            // 
             // btnTedarikciGuncellee
             // 
             btnTedarikciGuncellee.BackColor = Color.White;
@@ -73,7 +58,7 @@
             btnTedarikciGuncellee.FlatAppearance.BorderSize = 0;
             btnTedarikciGuncellee.FlatStyle = FlatStyle.System;
             btnTedarikciGuncellee.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnTedarikciGuncellee.Location = new Point(283, 292);
+            btnTedarikciGuncellee.Location = new Point(338, 292);
             btnTedarikciGuncellee.Name = "btnTedarikciGuncellee";
             btnTedarikciGuncellee.Size = new Size(93, 45);
             btnTedarikciGuncellee.TabIndex = 12;
@@ -85,26 +70,39 @@
             // 
             panel2.Controls.Add(dataGridView2);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(634, 0);
+            panel2.Location = new Point(666, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(688, 791);
+            panel2.Size = new Size(526, 791);
             panel2.TabIndex = 5;
             // 
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun });
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(688, 791);
+            dataGridView2.Size = new Size(526, 791);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellClick += dataGridView2_CellClick;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridView2.CellPainting += dataGridView2_CellPainting;
+            dataGridView2.MouseLeave += dataGridView2_MouseLeave;
+            dataGridView2.MouseMove += dataGridView2_MouseMove;
+            // 
+            // btnSilSutun
+            // 
+            btnSilSutun.HeaderText = "";
+            btnSilSutun.MinimumWidth = 6;
+            btnSilSutun.Name = "btnSilSutun";
+            btnSilSutun.Text = "Sil";
+            btnSilSutun.UseColumnTextForButtonValue = true;
+            btnSilSutun.Width = 125;
             // 
             // tabPage3
             // 
             tabPage3.BackColor = Color.LightSlateGray;
-            tabPage3.Controls.Add(btnTedarikciSill);
             tabPage3.Controls.Add(btnTedarikciGuncellee);
             tabPage3.Controls.Add(btnTedarikciKaydett);
             tabPage3.Controls.Add(lblAdres);
@@ -130,7 +128,7 @@
             btnTedarikciKaydett.FlatAppearance.BorderSize = 0;
             btnTedarikciKaydett.FlatStyle = FlatStyle.System;
             btnTedarikciKaydett.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnTedarikciKaydett.Location = new Point(184, 292);
+            btnTedarikciKaydett.Location = new Point(218, 292);
             btnTedarikciKaydett.Name = "btnTedarikciKaydett";
             btnTedarikciKaydett.Size = new Size(93, 45);
             btnTedarikciKaydett.TabIndex = 11;
@@ -222,7 +220,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(634, 791);
+            panel1.Size = new Size(666, 791);
             panel1.TabIndex = 4;
             // 
             // tabControl1
@@ -241,7 +239,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1322, 791);
+            ClientSize = new Size(1192, 791);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmTedarikciYonetim";
@@ -257,8 +255,6 @@
         }
 
         #endregion
-
-        private KavisliButon btnTedarikciSill;
         private KavisliButon btnTedarikciGuncellee;
         private Panel panel2;
         private DataGridView dataGridView2;
@@ -274,5 +270,6 @@
         private Label lblFirmaAdi;
         private Panel panel1;
         private TabControl tabControl1;
+        private DataGridViewButtonColumn btnSilSutun;
     }
 }

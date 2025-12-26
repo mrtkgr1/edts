@@ -97,16 +97,15 @@
             lblGenelToplam.AutoSize = true;
             lblGenelToplam.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblGenelToplam.ForeColor = SystemColors.ControlLightLight;
-            lblGenelToplam.Location = new Point(354, 250);
+            lblGenelToplam.Location = new Point(310, 312);
             lblGenelToplam.Name = "lblGenelToplam";
-            lblGenelToplam.Size = new Size(59, 23);
+            lblGenelToplam.Size = new Size(0, 23);
             lblGenelToplam.TabIndex = 10;
-            lblGenelToplam.Text = "label2";
             // 
             // btnSatisOnay
             // 
             btnSatisOnay.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnSatisOnay.Location = new Point(289, 286);
+            btnSatisOnay.Location = new Point(299, 250);
             btnSatisOnay.Name = "btnSatisOnay";
             btnSatisOnay.Size = new Size(124, 44);
             btnSatisOnay.TabIndex = 9;
@@ -117,7 +116,7 @@
             // btnSepetEkle
             // 
             btnSepetEkle.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnSepetEkle.Location = new Point(100, 286);
+            btnSepetEkle.Location = new Point(82, 250);
             btnSepetEkle.Name = "btnSepetEkle";
             btnSepetEkle.Size = new Size(124, 44);
             btnSepetEkle.TabIndex = 8;
@@ -197,7 +196,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.DarkGray;
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(269, 9);
+            label1.Location = new Point(309, 9);
             label1.Name = "label1";
             label1.Size = new Size(114, 25);
             label1.TabIndex = 4;

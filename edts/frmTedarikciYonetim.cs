@@ -1,5 +1,4 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Wordprocessing;
 using edts;
 using Microsoft.Data.SqlClient;
 using System;
@@ -301,6 +300,91 @@ namespace edts
                 }
             }
             TedarikcileriListele();
+        }
+
+        private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (this.DesignMode || e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
+                var btnRect = new Rectangle(e.CellBounds.X + 10, e.CellBounds.Y + 4, e.CellBounds.Width - 20, e.CellBounds.Height - 8);
+
+                Point mousePos = dataGridView2.PointToClient(Cursor.Position);
+                bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
+
+                // Hover durumunda koyu kırmızı, normalde soft kırmızı
+                Color gecerliRenk = isHovering ? Color.FromArgb(235, 110, 110) : Color.FromArgb(255, 148, 148);
+
+                using (Pen p = new Pen(gecerliRenk, 1))
+                using (Brush b = new SolidBrush(gecerliRenk))
+                {
+                    e.Graphics.FillRectangle(b, btnRect);
+                    e.Graphics.DrawRectangle(p, btnRect);
+                }
+
+                TextRenderer.DrawText(e.Graphics, "Sil", e.CellStyle.Font, btnRect, Color.White,
+                    TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
+
+                e.Handled = true;
+            }
+        }
+
+        private void TedarikciSil(string id)
+        {
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
+            {
+                try
+                {
+                    baglan.Open();
+                    SqlCommand cmd = new SqlCommand("DELETE FROM tblTedarikciler WHERE TedarikciID = @id", baglan);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Tedarikçi silindi.");
+                }
+                catch (SqlException sqlEx) when (sqlEx.Number == 547)
+                {
+                    MessageBox.Show("Bu tedarikçiye ait alış kayıtları olduğu için silemezsiniz. Pasife almayı deneyin.");
+                }
+            }
+        }
+
+        private void dataGridView2_MouseMove(object sender, MouseEventArgs e)
+        {
+            var hit = dataGridView2.HitTest(e.X, e.Y);
+            if (hit.Type == DataGridViewHitTestType.Cell && dataGridView2.Columns[hit.ColumnIndex].Name == "btnSilSutun")
+            {
+                dataGridView2.InvalidateCell(hit.ColumnIndex, hit.RowIndex);
+            }
+        }
+
+        private void dataGridView2_MouseLeave(object sender, EventArgs e)
+        {
+            dataGridView2.Invalidate();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            {
+                // Hücre isimlerini (TedarikciAd, TedarikciID) kendi veritabanı sütun isimlerine göre kontrol et!
+                string ad = dataGridView2.Rows[e.RowIndex].Cells["TedarikciAd"].Value?.ToString() ?? "Tedarikçi";
+                string id = dataGridView2.Rows[e.RowIndex].Cells["TedarikciID"].Value.ToString();
+
+                DialogResult onay = MessageBox.Show(
+                    $"{ad} isimli tedarikçiyi silmek istediğinize emin misiniz?",
+                    "Tedarikçi Silme Onayı",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (onay == DialogResult.Yes)
+                {
+                    TedarikciSil(id);      // Kendi silme metodun
+                    TedarikcileriListele();   // Listeyi yenileme metodun
+                }
+            }
         }
     }
 }
