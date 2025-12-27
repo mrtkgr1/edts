@@ -280,7 +280,7 @@
             // 
             lblEnCok.AutoSize = true;
             lblEnCok.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblEnCok.Location = new Point(195, 33);
+            lblEnCok.Location = new Point(168, 38);
             lblEnCok.Name = "lblEnCok";
             lblEnCok.Size = new Size(199, 28);
             lblEnCok.TabIndex = 6;
@@ -290,7 +290,7 @@
             // 
             lblYuksekKar.AutoSize = true;
             lblYuksekKar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblYuksekKar.Location = new Point(203, 47);
+            lblYuksekKar.Location = new Point(168, 47);
             lblYuksekKar.Name = "lblYuksekKar";
             lblYuksekKar.Size = new Size(191, 28);
             lblYuksekKar.TabIndex = 5;
@@ -311,7 +311,7 @@
             // 
             // pnlHomeYonetici
             // 
-            pnlHomeYonetici.BackColor = Color.LightSteelBlue;
+            pnlHomeYonetici.BackColor = Color.LightSlateGray;
             pnlHomeYonetici.Controls.Add(groupBox9);
             pnlHomeYonetici.Controls.Add(groupBox5);
             pnlHomeYonetici.Controls.Add(groupBox1);
@@ -478,7 +478,7 @@
             lblEnAz.AutoSize = true;
             lblEnAz.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblEnAz.ForeColor = Color.OrangeRed;
-            lblEnAz.Location = new Point(195, 45);
+            lblEnAz.Location = new Point(179, 45);
             lblEnAz.Name = "lblEnAz";
             lblEnAz.Size = new Size(188, 28);
             lblEnAz.TabIndex = 6;

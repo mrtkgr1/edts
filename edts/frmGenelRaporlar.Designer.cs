@@ -32,7 +32,6 @@
             panel7 = new Panel();
             btnExcelAktar = new KavisliButon();
             btnRaporGetir = new KavisliButon();
-            cmbRaporTipi = new ComboBox();
             label2 = new Label();
             label1 = new Label();
             dtpBaslangic = new DateTimePicker();
@@ -76,7 +75,6 @@
             panel7.BackColor = SystemColors.ControlLightLight;
             panel7.Controls.Add(btnExcelAktar);
             panel7.Controls.Add(btnRaporGetir);
-            panel7.Controls.Add(cmbRaporTipi);
             panel7.Controls.Add(label2);
             panel7.Controls.Add(label1);
             panel7.Controls.Add(dtpBaslangic);
@@ -118,16 +116,6 @@
             btnRaporGetir.Text = "Raporu Getir";
             btnRaporGetir.UseVisualStyleBackColor = false;
             btnRaporGetir.Click += kavisliButon1_Click;
-            // 
-            // cmbRaporTipi
-            // 
-            cmbRaporTipi.FormattingEnabled = true;
-            cmbRaporTipi.Items.AddRange(new object[] { "Stok Değerleri, Giriş/Çıkış Özeti, Kritik Durum" });
-            cmbRaporTipi.Location = new Point(765, 8);
-            cmbRaporTipi.Margin = new Padding(3, 4, 3, 4);
-            cmbRaporTipi.Name = "cmbRaporTipi";
-            cmbRaporTipi.Size = new Size(151, 28);
-            cmbRaporTipi.TabIndex = 11;
             // 
             // label2
             // 
@@ -298,6 +286,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmGenelRaporlar";
             Text = "frmGenelRaporlar";
+            Load += frmGenelRaporlar_Load;
             panel1.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
@@ -329,12 +318,10 @@
         private Label label4;
         private Label label5;
         private Panel panel7;
-        private ComboBox cmbRaporTipi;
         private Label label2;
         private Label label1;
         private DateTimePicker dtpBaslangic;
         private DateTimePicker dtpBitis;
-        private KavisliButon kavisliButon2;
         private KavisliButon btnRaporGetir;
         private KavisliButon btnExcelAktar;
     }
