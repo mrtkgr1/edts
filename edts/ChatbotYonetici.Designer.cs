@@ -46,9 +46,9 @@
             // panel4
             // 
             panel4.Controls.Add(flowChattt);
-            panel4.Location = new Point(194, 123);
+            panel4.Location = new Point(137, 12);
             panel4.Name = "panel4";
-            panel4.Size = new Size(591, 289);
+            panel4.Size = new Size(589, 289);
             panel4.TabIndex = 11;
             // 
             // flowChattt
@@ -56,14 +56,14 @@
             flowChattt.Dock = DockStyle.Bottom;
             flowChattt.Location = new Point(0, 0);
             flowChattt.Name = "flowChattt";
-            flowChattt.Size = new Size(591, 289);
+            flowChattt.Size = new Size(589, 289);
             flowChattt.TabIndex = 3;
             flowChattt.Paint += flowChattt_Paint;
             // 
             // panel3
             // 
             panel3.Controls.Add(btnGonderrr);
-            panel3.Location = new Point(698, 418);
+            panel3.Location = new Point(642, 307);
             panel3.Name = "panel3";
             panel3.Size = new Size(84, 30);
             panel3.TabIndex = 10;
@@ -82,7 +82,7 @@
             // panel2
             // 
             panel2.Controls.Add(btnSesliOkumaaa);
-            panel2.Location = new Point(610, 418);
+            panel2.Location = new Point(554, 307);
             panel2.Name = "panel2";
             panel2.Size = new Size(82, 30);
             panel2.TabIndex = 9;
@@ -101,9 +101,9 @@
             // panel1
             // 
             panel1.Controls.Add(txtSoruuu);
-            panel1.Location = new Point(194, 418);
+            panel1.Location = new Point(139, 307);
             panel1.Name = "panel1";
-            panel1.Size = new Size(407, 30);
+            panel1.Size = new Size(406, 30);
             panel1.TabIndex = 8;
             // 
             // txtSoruuu
@@ -112,7 +112,7 @@
             txtSoruuu.Location = new Point(0, 0);
             txtSoruuu.Multiline = true;
             txtSoruuu.Name = "txtSoruuu";
-            txtSoruuu.Size = new Size(407, 30);
+            txtSoruuu.Size = new Size(406, 30);
             txtSoruuu.TabIndex = 3;
             txtSoruuu.TextChanged += txtSoruuu_TextChanged;
             txtSoruuu.KeyDown += txtSoruuu_KeyDown;
