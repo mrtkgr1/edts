@@ -652,7 +652,7 @@
             buttonChatBot.Padding = new Padding(10, 0, 0, 0);
             buttonChatBot.Size = new Size(250, 62);
             buttonChatBot.TabIndex = 2;
-            buttonChatBot.Text = "           Chat Bot";
+            buttonChatBot.Text = "           Fuzuli ";
             buttonChatBot.TextAlign = ContentAlignment.MiddleLeft;
             buttonChatBot.UseVisualStyleBackColor = false;
             buttonChatBot.Click += buttonChatBot_Click;

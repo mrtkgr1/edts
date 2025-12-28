@@ -28,7 +28,7 @@ namespace edts {
         }
 
         private void SolPanelScroll() {
-            SolHPanel.MouseWheel += Panel_MouseWheel;
+            SolHPanel.MouseWheel += Panel_MouseWheel!;
 
             SolHPanel.MouseEnter += (s, e) => SolHPanel.Focus();
             yanMenuPanel.MouseEnter += (s, e) => SolHPanel.Focus();
@@ -193,7 +193,7 @@ namespace edts {
 
         //-----Hesap popup işlemleri -----
         private void kullaniciAyarlari_Tiklandi() {
-            MessageBox.Show("Kullanıcı ayarları tıklandı.");
+            SayfaGoster(new frmKullaniciAyarlari());
         }
 
         private void hesapDuzenle_Tiklandi() {
