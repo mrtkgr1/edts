@@ -72,9 +72,10 @@
             // 
             btnGonderrr.BackgroundImage = (Image)resources.GetObject("btnGonderrr.BackgroundImage");
             btnGonderrr.BackgroundImageLayout = ImageLayout.Zoom;
+            btnGonderrr.Dock = DockStyle.Fill;
             btnGonderrr.Location = new Point(0, 0);
             btnGonderrr.Name = "btnGonderrr";
-            btnGonderrr.Size = new Size(87, 30);
+            btnGonderrr.Size = new Size(84, 30);
             btnGonderrr.TabIndex = 0;
             btnGonderrr.UseVisualStyleBackColor = true;
             btnGonderrr.Click += btnGonderrr_Click;
@@ -91,9 +92,10 @@
             // 
             btnSesliOkumaaa.BackgroundImage = (Image)resources.GetObject("btnSesliOkumaaa.BackgroundImage");
             btnSesliOkumaaa.BackgroundImageLayout = ImageLayout.Zoom;
-            btnSesliOkumaaa.Location = new Point(-3, 0);
+            btnSesliOkumaaa.Dock = DockStyle.Fill;
+            btnSesliOkumaaa.Location = new Point(0, 0);
             btnSesliOkumaaa.Name = "btnSesliOkumaaa";
-            btnSesliOkumaaa.Size = new Size(90, 30);
+            btnSesliOkumaaa.Size = new Size(82, 30);
             btnSesliOkumaaa.TabIndex = 1;
             btnSesliOkumaaa.UseVisualStyleBackColor = true;
             btnSesliOkumaaa.Click += btnSesliOkumaaa_Click;
