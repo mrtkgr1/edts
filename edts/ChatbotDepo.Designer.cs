@@ -47,19 +47,22 @@
             // 
             // panel4
             // 
+            panel4.BackColor = Color.White;
             panel4.Controls.Add(flowChatt);
             panel4.Location = new Point(39, 30);
             panel4.Name = "panel4";
+            panel4.Padding = new Padding(2);
             panel4.Size = new Size(591, 289);
             panel4.TabIndex = 11;
+            panel4.Paint += panel4_Paint;
             // 
             // flowChatt
             // 
             flowChatt.BackColor = SystemColors.ControlLightLight;
-            flowChatt.Dock = DockStyle.Bottom;
-            flowChatt.Location = new Point(0, 0);
+            flowChatt.Dock = DockStyle.Fill;
+            flowChatt.Location = new Point(2, 2);
             flowChatt.Name = "flowChatt";
-            flowChatt.Size = new Size(591, 289);
+            flowChatt.Size = new Size(587, 285);
             flowChatt.TabIndex = 3;
             flowChatt.Paint += flowChatt_Paint;
             // 

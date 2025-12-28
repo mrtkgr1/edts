@@ -8,10 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace edts
 {
@@ -19,6 +21,16 @@ namespace edts
     {
         static string connectionString =
             "Server=LAPTOP-ECRTR81F\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
+        
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(
+    int nLeftRect,     // Sol üst x-koordinatı
+    int nTopRect,      // Sol üst y-koordinatı
+    int nRightRect,    // Sağ alt x-koordinatı
+    int nBottomRect,   // Sağ alt y-koordinatı
+    int nWidthEllipse, // Köşe yuvarlatma genişliği
+    int nHeightEllipse // Köşe yuvarlatma yüksekliği
+);
 
         // Botun son önerisini aklında tutar
         private string sonOneri = "";
@@ -43,9 +55,8 @@ namespace edts
 
 
 
-            string botAdi = "Stok Yönetim Botu";
+            string botAdi = "Fuzuli(Stok Yönetim Botu)";
             _ = GosterHarfHarf($"{botAdi}: Merhaba! Bugün size nasıl yardımcı olabilirim?", false);
-
 
 
 
@@ -55,8 +66,8 @@ namespace edts
         private string placeholder = "Bana soru sor...";
         private bool sesliOkumaAcik = false;
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
-        
- 
+
+
 
         private int KullaniciRolID(string kullaniciAdi)
         {
@@ -73,9 +84,9 @@ namespace edts
 
             return 0; // Bulunamadıysa
         }
-       
 
-       
+
+
         private string ChatbotCevapla(string soru)
         {
             if (string.IsNullOrWhiteSpace(soru) || soru == placeholder)
@@ -164,6 +175,8 @@ namespace edts
                 return "Neye evet dediğinizi tam anlayamadım, başka bir şey sormak ister misiniz?";
             }
 
+
+
             // --- Yönetici yetkileri ----
 
             if (orijinal.Contains("aktif mi"))
@@ -211,12 +224,12 @@ namespace edts
             }
 
             if (temizSoru == "rapor" || temizSoru == "rapor ver")
-{
-    return "Raporunuz hazır! Şunları yapabilirim:\n" +
-           "1. 'Raporu kaydet' diyerek masaüstüne alabilirsiniz.\n" +
-           "2. 'Excel raporu oluştur' diyebilirsiniz.\n" +
-           "3. '...mail@gmail.com adresine mail at' diyerek istediğiniz kişiye gönderebilirsiniz.";
-}
+            {
+                return "Raporunuz hazır! Şunları yapabilirim:\n" +
+                       "1. 'Raporu kaydet' diyerek masaüstüne alabilirsiniz.\n" +
+                       "2. 'Excel raporu oluştur' diyebilirsiniz.\n" +
+                       "3. '...mail@gmail.com adresine mail at' diyerek istediğiniz kişiye gönderebilirsiniz.";
+            }
 
             if (temizSoru.Contains("en pahalı")) return EnPahaliUrunuGetir();
             if (temizSoru.Contains("en ucuz")) return EnUcuzUrunuGetir(); // Yeni eklendi
@@ -235,7 +248,20 @@ namespace edts
                 return "Raporu hangi formatta hazırlamamı istersiniz? (Örn: 'Excel olarak kaydet' veya 'Not defteri olarak kaydet' diyebilirsiniz.)";
             }
 
-            
+            if (soru.Contains("şaka yap") || soru.Contains("beni güldür"))
+            {
+                string[] yoneticiSakalari = {
+            "Yöneticim, size bir şaka yapacaktım ama performans primimi etkilemesinden korktum... Şaka şaka, bakıyorum hemen!\"Bir gün bir veritabanı hatası yöneticiye çıkmış. Yazılımcı 'Kod bozuk' demiş, sistemci 'Sunucu kapalı' demiş. Yönetici gelip 'Hallederiz' demiş ve hata korkudan düzelmiş. Sizin 'Hallederiz' demeniz bile bu sisteme güven veriyor efendim!\"",
+            "Bir gün bir yönetici Fuzuli'ye sormuş: 'Benim neden hiç boş vaktim yok?' Fuzuli cevap vermiş: 'Çünkü her şeyi bana soruyorsunuz efendim!'",
+            "Yönetici olmak zor iş; hem personeli idare et, hem bütçeyi düşün, bir de gelip Fuzuli ile uğraş... Allah kolaylık versin!",
+            "Sizin için bir 'Toplantı Savar' özelliği geliştirecektim ama yine fuzuli olur diye vazgeçtim. En iyisi biz stoklara bakalım."
+        };
+
+                Random rnd = new Random();
+                return yoneticiSakalari[rnd.Next(yoneticiSakalari.Length)];
+            }
+
+
 
             if (temizSoru.Contains("not al") || temizSoru.Contains("hatırlat"))
             {
@@ -317,7 +343,7 @@ namespace edts
 
                 return UrunCiroGetir(orijinal); // Ürün adı arayan metoda yönlendir
             }
-           
+
 
             if (orijinal.Contains("teslim"))
             {
@@ -988,22 +1014,23 @@ namespace edts
             synthesizer.SetOutputToDefaultAudioDevice(); // hoparlöre gönder
             synthesizer.Rate = 5; // biraz hızlı
             synthesizer.SelectVoice("Microsoft Zira Desktop"); // kadın sesi
+            panel4.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, panel4.Width, panel4.Height, 30, 30));
 
 
         }
-      
+
         private string KelimeKokunuBul(string kelime)
-{
-    // Türkçedeki yaygın iyelik ve durum eklerini temizler
-    string[] ekler = { "ın", "in", "un", "ün", "nın", "nin", "nun", "nün", "ı", "i", "u", "ü" };
-    
-    foreach (var ek in ekler)
-    {
-        if (kelime.EndsWith(ek) && kelime.Length > 3) // Kelime çok kısa değilse eki at
-            return kelime.Substring(0, kelime.Length - ek.Length);
-    }
-    return kelime;
-}
+        {
+            // Türkçedeki yaygın iyelik ve durum eklerini temizler
+            string[] ekler = { "ın", "in", "un", "ün", "nın", "nin", "nun", "nün", "ı", "i", "u", "ü" };
+
+            foreach (var ek in ekler)
+            {
+                if (kelime.EndsWith(ek) && kelime.Length > 3) // Kelime çok kısa değilse eki at
+                    return kelime.Substring(0, kelime.Length - ek.Length);
+            }
+            return kelime;
+        }
         private void txtSoruuu_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1250,12 +1277,16 @@ namespace edts
             catch (Exception ex) { return "Not silinirken hata: " + ex.Message; }
         }
 
-      
+
 
         private async Task BotCevapVer(string cevap)
         {
             await Task.Run(() => synthesizer.Speak(cevap));
         }
 
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

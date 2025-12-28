@@ -348,7 +348,6 @@
         private Label label2;
         private Label label1;
         private Panel panel2;
-        private KavisliButon kavisliButon3;
         private KavisliButon btnKaydett;
         private DataGridView dataGridView2;
         private KavisliButon btnGuncelle;
