@@ -936,6 +936,18 @@ namespace edts
         {
             sesliOkumaAcik = !sesliOkumaAcik;
 
+            if (sesliOkumaAcik)
+            {
+                // Image özelliğini veya BackgroundImage özelliğini değiştirebilirsin
+                btnSesliOkumaaa.BackgroundImage = Properties.Resources.mic_on;
+                synthesizer.SpeakAsync("Sesli okuma açıldı.");
+            }
+            else
+            {
+                btnSesliOkumaaa.BackgroundImage = Properties.Resources.mic_off;
+                synthesizer.SpeakAsyncCancelAll();
+            }
+
         }
 
         private async void btnGonderrr_Click(object sender, EventArgs e)

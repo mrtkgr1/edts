@@ -9,6 +9,9 @@ using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using ClosedXML.Excel; 
+
 
 namespace edts
 {
@@ -17,13 +20,17 @@ namespace edts
         static string connectionString =
             "Server=.\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
 
+        private bool formatBekleniyor = false; // Rapor formatı cevabı bekleniyor mu?
+
+
+
         // Sınıfın başında, constructor'dan önce
         private Dictionary<int, List<string>> RolYetkileri = new Dictionary<int, List<string>>()
-    {
-        { 1, new List<string> { "stok", "fiyat", "ciro", "teslim", "kritik stok", "rol", "aktif", "yanlış giriş", "giriş yapan", "giriş yapmayan" } }, // Admin
-        { 2, new List<string> { "stok", "fiyat", "teslim", "kritik stok" } }, // Personel
-        { 3, new List<string> { "stok", "teslim", "ciro", "kritik stok" } } // Yönetici
-    };
+{
+    { 1, new List<string> { "stok", "fiyat", "ciro", "teslim", "kritik stok", "rol", "aktif", "yanlış giriş", "giriş yapan", "giriş yapmayan", "analiz", "hareketler", "kullanıcı özet" } },
+    { 2, new List<string> { "stok", "fiyat", "teslim", "kritik stok" } },
+    { 3, new List<string> { "stok", "teslim", "ciro", "kritik stok" } }
+};
         public ChatbotForm()
         {
             InitializeComponent();
@@ -34,6 +41,7 @@ namespace edts
             flowChat.Dock = DockStyle.Fill; // panel ekranı kaplasın
 
 
+           
 
             string botAdi = "Stok Yönetim Botu";
             _ = GosterHarfHarf($"{botAdi}: Merhaba! Bugün size nasıl yardımcı olabilirim?", false);
@@ -135,6 +143,44 @@ namespace edts
 
             // Sorunun anahtar kelimesini tespit et
             string soruAnahtar = "";
+
+
+            // --- YENİ EKLENEN RAPORLAMA KONTROLÜ ---
+            if (formatBekleniyor)
+            {
+                if (soru.Contains("excel"))
+                {
+                    formatBekleniyor = false;
+                    BotDosyaHazirla("excel");
+                    return "Tamamdır! Admin denetim raporunu Excel olarak masaüstüne hazırladım.";
+                }
+                else if (soru.Contains("not defteri") || soru.Contains("txt"))
+                {
+                    formatBekleniyor = false;
+                    BotDosyaHazirla("txt");
+                    return "Anlaşıldı! Raporu Not Defteri (TXT) formatında masaüstüne çıkardım.";
+                }
+                else
+                {
+                    return "Lütfen sadece 'Excel' veya 'Not Defteri' yazarak format seçiniz.";
+                }
+            }
+
+            // Tetikleyici Komut: Admin Kayıtlarını Kaydet
+            if (soru.Contains("denetim kayıtlarını kaydet") || soru.Contains("kayıtları dışa aktar"))
+            {
+                if (aktifRolId == 1) // Sadece Admin yapabilsin
+                {
+                    formatBekleniyor = true;
+                    return "Tabii ki efendim. Denetim kayıtlarını hangi formatta hazırlamamı istersiniz? (Excel / Not Defteri)";
+                }
+                else
+                {
+                    return "Bu işlem için yönetici yetkiniz bulunmuyor.";
+                }
+            }
+            // --- RAPORLAMA KONTROLÜ SONU ---
+
 
             if (orijinal.Contains("kritik") && (orijinal.Contains("liste") || orijinal.Contains("rapor")))
             {
@@ -248,6 +294,16 @@ namespace edts
             if (orijinal.Contains("bugün") && orijinal.Contains("giriş") && orijinal.Contains("yapmayan"))
                 return BugunGirisYapmayanKullanicilar();
 
+            // --- ADMIN ÖZEL KOMUTLARI ---
+            if (aktifRolId == 1)
+            {
+                if (orijinal.Contains("analiz") || orijinal.Contains("sistem durumu"))
+                    return SistemGenelAnalizi();
+
+                if (orijinal.Contains("ne yaptı") || orijinal.Contains("hareketleri"))
+                    return KullaniciIslemGecmisi(orijinal);
+            }
+
             // --- YENİ EKLENEN KISIM ---
             if (orijinal.Contains("log") || (orijinal.Contains("kim") && orijinal.Contains("yaptı")))
             {
@@ -258,6 +314,15 @@ namespace edts
                     return "Bu sistem raporlarını sadece Admin görüntüleyebilir.";
             }
             // --------------------------
+
+            // Raf sorgusu için
+            if (orijinal.Contains("raf") || orijinal.Contains("nerede"))
+                return UrunKonumuGetir(orijinal);
+
+            // Analiz sorgusu için
+            if (aktifRolId == 1 && (orijinal.Contains("analiz") || orijinal.Contains("özet")))
+                return SistemGenelAnalizi();
+
 
             if (orijinal.Contains("geçen hafta") && orijinal.Contains("stok"))
                 return GecenHaftaStokHareketleri();
@@ -731,7 +796,7 @@ namespace edts
             conn.Open();
 
             using SqlCommand cmd = new SqlCommand(
-                "SELECT UrunAd FROM tblUrunler WHERE MevcutStok <= KritikStokSeviyesi", conn);
+     "SELECT UrunAd, MevcutStok, KritikStok FROM tblUrunler WHERE MevcutStok <= KritikStok", conn);
 
             using SqlDataReader reader = cmd.ExecuteReader();
 
@@ -950,7 +1015,17 @@ namespace edts
         {
             sesliOkumaAcik = !sesliOkumaAcik;
 
-
+            if (sesliOkumaAcik)
+            {
+                // Image özelliğini veya BackgroundImage özelliğini değiştirebilirsin
+                btnSesliOkuma.BackgroundImage = Properties.Resources.mic_on;
+                synthesizer.SpeakAsync("Sesli okuma açıldı.");
+            }
+            else
+            {
+                btnSesliOkuma.BackgroundImage = Properties.Resources.mic_off;
+                synthesizer.SpeakAsyncCancelAll();
+            }
 
         }
 
@@ -1234,5 +1309,128 @@ namespace edts
         {
 
         }
+
+        private string SistemGenelAnalizi()
+        {
+            try
+            {
+                using SqlConnection conn = new SqlConnection(connectionString);
+                conn.Open();
+
+                // Tablo yapına tam uyumlu sorgu
+                string query = @"
+            SELECT 
+                (SELECT COUNT(*) FROM tblUrunler WHERE MevcutStok <= KritikStok) as KritikAdet,
+                (SELECT COUNT(*) FROM tblDenetimKayitlari WHERE Aciklama LIKE '%yanlış%' AND CAST(IslemTarihi AS DATE) = CAST(GETDATE() AS DATE)) as HataliGiris,
+                (SELECT ISNULL(SUM(MevcutStok * BirimFiyat), 0) FROM tblUrunler) as DepoDegeri,
+                (SELECT COUNT(*) FROM tblUrunler WHERE MevcutStok = 0) as BitenUrun";
+
+                using SqlCommand cmd = new SqlCommand(query, conn);
+                using SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    return $"📊 **Admin Sistem Özeti:**\n" +
+                           $"• **Kritik Stok:** {dr["KritikAdet"]} ürün limitin altında.\n" +
+                           $"• **Stoku Biten:** {dr["BitenUrun"]} ürün tamamen tükenmiş.\n" +
+                           $"• **Depo Değeri:** {Convert.ToDecimal(dr["DepoDegeri"]):C2} (Mevcut stokların toplam satış değeri).\n" +
+                           $"• **Güvenlik:** Bugün {dr["HataliGiris"]} hatalı giriş denemesi yapıldı.";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Analiz hatası: " + ex.Message;
+            }
+            return "Veri alınamadı.";
+        }
+
+        private string UrunKonumuGetir(string soru)
+        {
+            // Sorudan ürün adını ayıkla (Örn: "Elma rafı neresi?")
+            string urunAdi = soru.Replace("rafı", "").Replace("nerede", "").Replace("konumu", "").Trim();
+
+            using SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            using SqlCommand cmd = new SqlCommand("SELECT RafNo FROM tblUrunler WHERE LOWER(UrunAd) LIKE @ad", conn);
+            cmd.Parameters.AddWithValue("@ad", "%" + urunAdi + "%");
+
+            object res = cmd.ExecuteScalar();
+            return res != null && res != DBNull.Value
+                ? $"{urunAdi} ürünü **{res}** numaralı rafta bulunuyor."
+                : $"{urunAdi} için raf bilgisi girilmemiş.";
+        }
+
+
+        private void BotDosyaHazirla(string tip)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                // Denetim kayıtlarını çeken sorgu
+                string sorgu = @"SELECT d.IslemTarihi, k.KullaniciAdi, d.Aciklama 
+                         FROM tblDenetimKayitlari d 
+                         JOIN tblKullanicilar k ON d.KullaniciID = k.KullaniciID 
+                         ORDER BY d.IslemTarihi DESC";
+
+                SqlDataAdapter da = new SqlDataAdapter(sorgu, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                string masaustuPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+                if (tip == "excel")
+                {
+                    string dosyaAdi = Path.Combine(masaustuPath, "Admin_Denetim_Raporu.xlsx");
+                    using (var wb = new ClosedXML.Excel.XLWorkbook())
+                    {
+                        var ws = wb.Worksheets.Add("Denetim Kayıtları");
+                        ws.Cell(1, 1).InsertTable(dt); // Veriyi tablo olarak ekler
+                        ws.Columns().AdjustToContents(); // Sütun genişliklerini ayarlar
+                        wb.SaveAs(dosyaAdi);
+                    }
+                }
+                else if (tip == "txt")
+                {
+                    string dosyaAdi = Path.Combine(masaustuPath, "Admin_Denetim_Raporu.txt");
+                    using (StreamWriter sw = new StreamWriter(dosyaAdi))
+                    {
+                        sw.WriteLine("--- ADMİN DENETİM KAYITLARI RAPORU ---");
+                        sw.WriteLine($"Rapor Tarihi: {DateTime.Now}");
+                        sw.WriteLine("---------------------------------------");
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            sw.WriteLine($"{row["IslemTarihi"]} | {row["KullaniciAdi"]} | {row["Aciklama"]}");
+                        }
+                    }
+                }
+            }
+        }
+
+        private string KullaniciIslemGecmisi(string soru)
+        {
+            string kullaniciAdi = TemizleKullaniciAdi(soru.Replace("ne", "").Replace("yaptı", "").Replace("hareketleri", "").Trim());
+
+            using SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            using SqlCommand cmd = new SqlCommand(@"
+        SELECT TOP 5 d.Aciklama, d.IslemTarihi 
+        FROM tblDenetimKayitlari d
+        JOIN tblKullanicilar k ON d.KullaniciID = k.KullaniciID
+        WHERE LOWER(k.KullaniciAdi) = @ad
+        ORDER BY d.IslemTarihi DESC", conn);
+
+            cmd.Parameters.AddWithValue("@ad", kullaniciAdi.ToLower());
+            using SqlDataReader dr = cmd.ExecuteReader();
+
+            string sonuc = $"🔍 **{kullaniciAdi} Son 5 Hareketi:**\n";
+            bool bulundu = false;
+            while (dr.Read())
+            {
+                sonuc += $"• {dr["IslemTarihi"]:dd/MM HH:mm}: {dr["Aciklama"]}\n";
+                bulundu = true;
+            }
+            return bulundu ? sonuc : $"{kullaniciAdi} için işlem kaydı bulunamadı.";
+        }
+
     }
 }

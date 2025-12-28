@@ -142,7 +142,6 @@
 
         #endregion
 
-        private Button kavisliButon1;
         private Button btnSesliOkuma;
         private Panel panel1;
         private Panel panel2;

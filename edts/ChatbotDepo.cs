@@ -950,6 +950,17 @@ private string BugunGirisYapanKullanicilar()
         private void btnSesliOkumaa_Click(object sender, EventArgs e)
         {
             sesliOkumaAcik = !sesliOkumaAcik;
+            if (sesliOkumaAcik)
+            {
+                // Image özelliğini veya BackgroundImage özelliğini değiştirebilirsin
+                btnSesliOkumaa.BackgroundImage = Properties.Resources.mic_on;
+                synthesizer.SpeakAsync("Sesli okuma açıldı.");
+            }
+            else
+            {
+                btnSesliOkumaa.BackgroundImage = Properties.Resources.mic_off;
+                synthesizer.SpeakAsyncCancelAll();
+            }
 
         }
 
