@@ -46,24 +46,27 @@
             // panel4
             // 
             panel4.Controls.Add(flowChattt);
-            panel4.Location = new Point(194, 123);
+            panel4.Location = new Point(185, 103);
             panel4.Name = "panel4";
-            panel4.Size = new Size(591, 289);
+            panel4.Padding = new Padding(2);
+            panel4.Size = new Size(589, 289);
             panel4.TabIndex = 11;
+            panel4.Paint += panel4_Paint;
             // 
             // flowChattt
             // 
+            flowChattt.BackColor = SystemColors.Window;
             flowChattt.Dock = DockStyle.Bottom;
-            flowChattt.Location = new Point(0, 0);
+            flowChattt.Location = new Point(2, -2);
             flowChattt.Name = "flowChattt";
-            flowChattt.Size = new Size(591, 289);
+            flowChattt.Size = new Size(585, 289);
             flowChattt.TabIndex = 3;
             flowChattt.Paint += flowChattt_Paint;
             // 
             // panel3
             // 
             panel3.Controls.Add(btnGonderrr);
-            panel3.Location = new Point(698, 418);
+            panel3.Location = new Point(690, 398);
             panel3.Name = "panel3";
             panel3.Size = new Size(84, 30);
             panel3.TabIndex = 10;
@@ -72,9 +75,10 @@
             // 
             btnGonderrr.BackgroundImage = (Image)resources.GetObject("btnGonderrr.BackgroundImage");
             btnGonderrr.BackgroundImageLayout = ImageLayout.Zoom;
+            btnGonderrr.Dock = DockStyle.Fill;
             btnGonderrr.Location = new Point(0, 0);
             btnGonderrr.Name = "btnGonderrr";
-            btnGonderrr.Size = new Size(87, 30);
+            btnGonderrr.Size = new Size(84, 30);
             btnGonderrr.TabIndex = 0;
             btnGonderrr.UseVisualStyleBackColor = true;
             btnGonderrr.Click += btnGonderrr_Click;
@@ -82,7 +86,7 @@
             // panel2
             // 
             panel2.Controls.Add(btnSesliOkumaaa);
-            panel2.Location = new Point(610, 418);
+            panel2.Location = new Point(602, 398);
             panel2.Name = "panel2";
             panel2.Size = new Size(82, 30);
             panel2.TabIndex = 9;
@@ -91,9 +95,10 @@
             // 
             btnSesliOkumaaa.BackgroundImage = (Image)resources.GetObject("btnSesliOkumaaa.BackgroundImage");
             btnSesliOkumaaa.BackgroundImageLayout = ImageLayout.Zoom;
-            btnSesliOkumaaa.Location = new Point(-3, 0);
+            btnSesliOkumaaa.Dock = DockStyle.Fill;
+            btnSesliOkumaaa.Location = new Point(0, 0);
             btnSesliOkumaaa.Name = "btnSesliOkumaaa";
-            btnSesliOkumaaa.Size = new Size(90, 30);
+            btnSesliOkumaaa.Size = new Size(82, 30);
             btnSesliOkumaaa.TabIndex = 1;
             btnSesliOkumaaa.UseVisualStyleBackColor = true;
             btnSesliOkumaaa.Click += btnSesliOkumaaa_Click;
@@ -101,9 +106,9 @@
             // panel1
             // 
             panel1.Controls.Add(txtSoruuu);
-            panel1.Location = new Point(194, 418);
+            panel1.Location = new Point(187, 398);
             panel1.Name = "panel1";
-            panel1.Size = new Size(407, 30);
+            panel1.Size = new Size(406, 30);
             panel1.TabIndex = 8;
             // 
             // txtSoruuu
@@ -112,7 +117,7 @@
             txtSoruuu.Location = new Point(0, 0);
             txtSoruuu.Multiline = true;
             txtSoruuu.Name = "txtSoruuu";
-            txtSoruuu.Size = new Size(407, 30);
+            txtSoruuu.Size = new Size(406, 30);
             txtSoruuu.TabIndex = 3;
             txtSoruuu.TextChanged += txtSoruuu_TextChanged;
             txtSoruuu.KeyDown += txtSoruuu_KeyDown;
@@ -121,6 +126,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightSlateGray;
             ClientSize = new Size(979, 570);
             Controls.Add(panel4);
             Controls.Add(panel3);

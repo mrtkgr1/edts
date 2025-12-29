@@ -1,5 +1,4 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -177,8 +176,101 @@ namespace edts
 
         private void frmKategoriYonetimi_Load(object sender, EventArgs e)
         {
-
+            // Kategori formunda olduğumuz için doğru metodu çağıralım
+            KategoriListeGuncelle();
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            {
+                string kategoriAd = dataGridView2.Rows[e.RowIndex].Cells["KategoriAd"].Value?.ToString() ?? "Kategori";
+                string kategoriId = dataGridView2.Rows[e.RowIndex].Cells["KategoriID"].Value.ToString();
+
+                DialogResult onay = MessageBox.Show(
+                    $"{kategoriAd} kategorisini silmek istediğinize emin misiniz?\nNot: Eğer bu kategoriye bağlı ürünler varsa silinemez.",
+                    "Kategori Silme",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (onay == DialogResult.Yes)
+                {
+                    // Senin mevcut silme mantığını buraya bağladık
+                    KategoriSil(kategoriId);
+                    KategoriListeGuncelle();
+                }
+            }
+        }
+
+        private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (this.DesignMode || e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
+
+                // Butonu hücreden biraz küçük ve zarif yapıyoruz
+                var btnRect = new Rectangle(e.CellBounds.X + 10, e.CellBounds.Y + 4, e.CellBounds.Width - 20, e.CellBounds.Height - 8);
+
+                Point mousePos = dataGridView2.PointToClient(Cursor.Position);
+                bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
+
+                Color gecerliRenk = isHovering ? Color.FromArgb(235, 110, 110) : Color.FromArgb(255, 148, 148);
+
+                using (Pen p = new Pen(gecerliRenk, 1))
+                using (Brush b = new SolidBrush(gecerliRenk))
+                {
+                    e.Graphics.FillRectangle(b, btnRect);
+                    e.Graphics.DrawRectangle(p, btnRect);
+                }
+
+                TextRenderer.DrawText(e.Graphics, "Sil", e.CellStyle.Font, btnRect, Color.White,
+                    TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
+
+                e.Handled = true;
+            }
+        }
+
+        // 4. SQL Silme Metodu (Eğer istersen burayı güncelle)
+        private void KategoriSil(string id)
+        {
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
+            {
+                try
+                {
+                    baglan.Open();
+                    SqlCommand cmd = new SqlCommand("DELETE FROM tblKategoriler WHERE KategoriID = @id", baglan);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+
+                    VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 6, "tblKategoriler", $"ID:{id} olan kategori silindi.");
+                }
+                catch (SqlException sqlEx) when (sqlEx.Number == 547)
+                {
+                    MessageBox.Show("Bu kategoriye bağlı ürünler olduğu için silemezsiniz. Önce ürünleri başka kategoriye taşıyın.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata oluştu: " + ex.Message);
+                }
+            }
+        }
+
+        private void dataGridView2_MouseMove(object sender, MouseEventArgs e)
+        {
+            var hit = dataGridView2.HitTest(e.X, e.Y);
+            if (hit.Type == DataGridViewHitTestType.Cell && dataGridView2.Columns[hit.ColumnIndex].Name == "btnSilSutun")
+            {
+                dataGridView2.InvalidateCell(hit.ColumnIndex, hit.RowIndex);
+            }
+        }
+
+        private void dataGridView2_MouseLeave(object sender, EventArgs e)
+        {
+           dataGridView2.Invalidate();
+    }
     }
 }
 
