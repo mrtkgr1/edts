@@ -179,9 +179,10 @@ namespace edts {
             prefPictureBox.Image = Properties.Resources.kayan_liste_assa;
         }
 
+        //bildirim
         bool bildiirmVar = true;
         private void pictureBox4_Click(object sender, EventArgs e) {
-
+            BildirimGoster("xsa","sasa");
             if (bildiirmVar) {
                 pictureBox4.Image = Properties.Resources.notf_var;
                 bildiirmVar = false;
@@ -189,6 +190,17 @@ namespace edts {
                 kayitMenuPanel.Visible = true;
                 pictureBox4.Image = Properties.Resources.notf_yok;
             }
+        }
+        public void BildirimGoster(string baslik, string mesaj) {
+            NotifyIcon bildirimCubugu = new NotifyIcon();
+
+            bildirimCubugu.Icon = SystemIcons.Information;
+
+            
+            bildirimCubugu.Visible = true;
+
+            bildirimCubugu.ShowBalloonTip(3000, baslik, mesaj, ToolTipIcon.Info);
+
         }
 
         //-----Hesap popup işlemleri -----

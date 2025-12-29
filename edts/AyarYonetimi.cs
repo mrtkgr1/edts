@@ -1,7 +1,9 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +13,19 @@ namespace edts {
         static private readonly string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
         public static List<KullaniciAyar> Ayarlar = new List<KullaniciAyar>() {
-            new("tema", "Tema", "Acik", "Acik", AyarTuru.Metin, "Grub 1"),
-            new("font_boyutu", "Font Boyutu", "12", "12", AyarTuru.Sayi, "Grub 1"),
-            new("sifre_koruma", "Sifre Koruma", "false", "false", AyarTuru.Metin, "Grub 2"),
+            new("tema", "Tema", "def", "def", AyarTuru.Liste, "Görünüm"),
+            //new("font_boyutu", "Font Boyutu", "12", "12", AyarTuru.Sayi, "Görünüm"),
+            new("dinamik_renk_onay", "Sekmenin pencere rengini değiştirmesine izin ver", "true", "true", AyarTuru.Mantik, "Görünüm"),
+            new("bildirim_durum","Bildirimleri aç","true","true",AyarTuru.Mantik,"Bildirim"),
+            new("bildirim_masaustu","Bildirimleri masaüstünde göster","true","true",AyarTuru.Mantik,"Bildirim"),
+            new("bildirim_sesi","Bildirim sesini değiştir","def","def",AyarTuru.Liste,"Bildirim"),
+
+
+        };
+
+        public static Dictionary<string, (string, string)[]> SecenekListesi = new() {
+            ["tema"] = [("Varsayılan", "def"),("Siyah","siyah"),("Beyaz","beyaz")],
+            ["bildirim_sesi"] = [("Ses kapalı","off"), ("Varsayılan", "def")]
         };
 
         public static void AyarlariSenkronizeEt(int userId) {
@@ -41,6 +53,11 @@ namespace edts {
                 foreach (var ayar in Ayarlar) {
                     if (veritabanindakiAyarlar.ContainsKey(ayar.Id)) {
                         string dbValue = veritabanindakiAyarlar[ayar.Id];
+                        if(ayar.Tur == AyarTuru.Liste) {
+                            if(!ListeVerisiVarMi(ayar.Id, dbValue)) {
+                                dbValue = "def";
+                            }
+                        }
                         ayar.Deger = dbValue;
                     } else {
                         string insertQuery = "INSERT INTO UserSettings (UserID, SettingKey, SettingValue) VALUES (@UserID, @Key, @Value)";
@@ -90,6 +107,18 @@ namespace edts {
             if (ayar != null) {
                 ayar.Deger = yeniDeger;
             }
+        }
+
+        public static bool ListeVerisiVarMi(string Id, string veriTabanidanGelenId) {
+            bool f = false;
+            if (AyarYonetimi.SecenekListesi.TryGetValue(Id, out (string, string)[] c)) {
+                foreach ((string _text, string _id) item in c) {
+                    if (item._id == veriTabanidanGelenId) {
+                        return true;
+                    }
+                }
+            }
+            return f;
         }
 
     }

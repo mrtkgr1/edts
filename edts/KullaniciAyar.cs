@@ -35,6 +35,8 @@ namespace edts {
                 return result;
             return false;
         }
+        
+
     }
     
     enum AyarTuru {
@@ -42,5 +44,6 @@ namespace edts {
         Sayi,
         Mantik,
         Sifre,
+        Liste,
     }
 }
