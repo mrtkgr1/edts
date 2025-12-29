@@ -24,94 +24,185 @@ namespace edts
 
         private void btnSepetEkle_Click(object sender, EventArgs e)
         {
+          
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 baglan.Open();
-                // Ürün bilgilerini ve stok durumunu barkoddan çekiyoruz
-                SqlCommand cmd = new SqlCommand("SELECT UrunAd, SatisFiyat, StokMiktari FROM tblUrunler WHERE Barkod=@barkod", baglan);
-                cmd.Parameters.AddWithValue("@barkod", txtUrunBarkod.Text);
+                // SORGUNU GÜNCELLEDİM: UrunID bilgisini de çekiyoruz
+                SqlCommand cmd = new SqlCommand("SELECT UrunID, UrunAd, BirimFiyat, MevcutStok FROM tblUrunler WHERE UrunKodu=@kod", baglan);
+                cmd.Parameters.AddWithValue("@kod", txtUrunBarkod.Text);
+
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 if (dr.Read())
                 {
-                    int stok = Convert.ToInt32(dr["StokMiktari"]);
-                    int istenen = (int)nmrSatisAdet.Value;
+                    decimal stok = Convert.ToDecimal(dr["MevcutStok"]);
+                    decimal istenen = nmrSatisAdet.Value;
 
                     if (istenen > stok)
                     {
-                        MessageBox.Show($"Yetersiz stok! Mevcut: {stok}", "Uyarı");
+                        MessageBox.Show($"Yetersiz stok! Mevcut: {stok}", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    // Sepete ekle
-                    sepetTablosu.Rows.Add(txtUrunBarkod.Text, dr["UrunAd"], istenen, dr["SatisFiyat"]);
+                    // SEPETE EKLEME: UrunID ve Toplam Fiyat hesaplaması eklendi
+                    decimal birimFiyat = Convert.ToDecimal(dr["BirimFiyat"]);
+                    decimal toplamFiyat = birimFiyat * istenen;
+
+                    // Sütun sıralamasına dikkat (ID, Barkod, Ad, Adet, Fiyat, Toplam)
+                    sepetTablosu.Rows.Add(
+                        dr["UrunID"],
+                        txtUrunBarkod.Text,
+                        dr["UrunAd"],
+                        istenen,
+                        birimFiyat,
+                        toplamFiyat
+                    );
+
+                    txtUrunBarkod.Clear();
+                    txtUrunBarkod.Focus();
+
+                    // Genel toplamı ekrandaki etikete yansıtmak için:
+                  
+                    lblGenelToplam.Text = Convert.ToDecimal(sepetTablosu.Compute("Sum(Toplam)", "")).ToString("C2");
                 }
-                else { MessageBox.Show("Ürün bulunamadı!"); }
+                else
+                {
+                    MessageBox.Show("Ürün bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+        
 
         private void btnSatisOnay_Click(object sender, EventArgs e)
         {
-            if (sepetTablosu.Rows.Count == 0) return;
+            // 1. Müşteri seçimi kontrolü (@mid hatasını önlemek için)
+            if (cmbMusteri.SelectedValue == null)
+            {
+                MessageBox.Show("Lütfen önce bir müşteri seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (sepetTablosu.Rows.Count == 0)
+            {
+                MessageBox.Show("Sepette ürün bulunmuyor!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 baglan.Open();
-                SqlTransaction işlem = baglan.BeginTransaction(); // Hata olursa tüm işlemi geri almak için
+                SqlTransaction işlem = baglan.BeginTransaction();
 
                 try
                 {
-                    // 1. tblSatislar'a ana kaydı at (Kime satıldı?)
+                    // 2. tblSatislar'a ana kaydı at
                     SqlCommand cmdSatis = new SqlCommand(@"INSERT INTO tblSatislar (MusteriID, SatisTarihi, ToplamTutar) 
                                                   OUTPUT INSERTED.SatisID 
                                                   VALUES (@mid, GETDATE(), @toplam)", baglan, işlem);
-                    cmdSatis.Parameters.AddWithValue("@mid", cmbMusteriSecim.SelectedValue);
+
+                    cmdSatis.Parameters.AddWithValue("@mid", cmbMusteri.SelectedValue);
                     cmdSatis.Parameters.AddWithValue("@toplam", sepetTablosu.Compute("Sum(Toplam)", ""));
                     int satisID = (int)cmdSatis.ExecuteScalar();
 
-                    // 2. Sepetteki her ürün için işlem yap
+                    // 3. Sepetteki her ürün için işlem yap
                     foreach (DataRow row in sepetTablosu.Rows)
                     {
-                        // Satış detayına ekle
-                        SqlCommand cmdDetay = new SqlCommand("INSERT INTO tblSatisDetay (SatisID, Barkod, Adet, Fiyat) VALUES (@sid, @barkod, @adet, @fiyat)", baglan, işlem);
+                        // Sütun isimlerini tblSatisDetay tasarımına göre güncelledim:
+                        // UrunKodu -> UrunID | Adet -> Miktar | Fiyat -> BirimFiyat
+                        SqlCommand cmdDetay = new SqlCommand(@"INSERT INTO tblSatisDetay (SatisID, UrunID, Miktar, BirimFiyat) 
+                                                       VALUES (@sid, @uid, @miktar, @fiyat)", baglan, işlem);
+
                         cmdDetay.Parameters.AddWithValue("@sid", satisID);
-                        cmdDetay.Parameters.AddWithValue("@barkod", row["Barkod"]);
-                        cmdDetay.Parameters.AddWithValue("@adet", row["Adet"]);
+                        // NOT: Sepet tablonuzda ürünün ID'sini tuttuğunuzdan emin olun. 
+                        // Eğer Barkod ile işlem yapıyorsanız, burada önce ID'yi bulmamız gerekebilir.
+                        cmdDetay.Parameters.AddWithValue("@uid", row["UrunID"]);
+                        cmdDetay.Parameters.AddWithValue("@miktar", row["Adet"]);
                         cmdDetay.Parameters.AddWithValue("@fiyat", row["Fiyat"]);
                         cmdDetay.ExecuteNonQuery();
 
-                        // STOKTAN DÜŞÜŞ
-                        SqlCommand cmdStok = new SqlCommand("UPDATE tblUrunler SET StokMiktari = StokMiktari - @adet WHERE Barkod = @barkod", baglan, işlem);
+                        // 4. STOKTAN DÜŞÜŞ (tblUrunler yapına göre)
+                        // UrunKodu ve MevcutStok isimlerini kullandım
+                        SqlCommand cmdStok = new SqlCommand(@"UPDATE tblUrunler SET MevcutStok = MevcutStok - @adet 
+                                                       WHERE UrunKodu = @barkod", baglan, işlem);
                         cmdStok.Parameters.AddWithValue("@adet", row["Adet"]);
                         cmdStok.Parameters.AddWithValue("@barkod", row["Barkod"]);
                         cmdStok.ExecuteNonQuery();
                     }
 
-                    işlem.Commit(); // Her şey tamamsa onayla
-                    MessageBox.Show("Satış başarıyla tamamlandı, stoklar güncellendi.");
+                    işlem.Commit();
+                    MessageBox.Show("Satış başarıyla tamamlandı, stoklar güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     sepetTablosu.Clear();
 
-                    VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 10, "tblSatislar", "Yeni satış yapıldı. ID: " + satisID);
+                    VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 10, "tblSatislar", "Satış yapıldı. ID: " + satisID);
+
+                    // İŞTE BURAYA EKLE: Etiketi görsel olarak sıfırla
+                    lblGenelToplam.Text = "0.00";
+
+                    // İsteğe bağlı: İmleci tekrar barkod girişine odakla
+                    txtUrunBarkod.Focus();
                 }
                 catch (Exception ex)
                 {
-                    işlem.Rollback(); // Hata varsa hiçbir şeyi kaydetme
-                    MessageBox.Show("Satış hatası: " + ex.Message);
+                    işlem.Rollback();
+                    MessageBox.Show("Satış hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+        
+        
 
+        private void MusterileriGetir()
+        {
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
+            {
+                // Sadece ID ve Ad Soyad çekiyoruz
+                SqlDataAdapter da = new SqlDataAdapter("SELECT MusteriID, MusteriAd FROM tblMusteriler", baglan);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                cmbMusteri.DataSource = dt;
+                cmbMusteri.DisplayMember = "MusteriAd"; // Ekranda görünecek olan
+                cmbMusteri.ValueMember = "MusteriID";   // Arka planda tutulacak olan ID
+
+                cmbMusteri.SelectedIndex = -1; // İlk açılışta boş görünsün
+            }
+        }
+
+        private void SatislariGetir()
+        {
+            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
+            {
+                // En son yapılan satışı en üstte görmek için 'ORDER BY SatisID DESC' ekledik
+                string sorgu = @"SELECT S.SatisID, M.MusteriAd, S.SatisTarihi, S.ToplamTutar 
+                         FROM tblSatislar S 
+                         INNER JOIN tblMusteriler M ON S.MusteriID = M.MusteriID 
+                         ORDER BY S.SatisID DESC";
+
+                SqlDataAdapter da = new SqlDataAdapter(sorgu, baglan);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvSatislar.DataSource = dt; // Sağdaki tabloyu doldurur
+            }
+        }
         private void frmSatisFatura_Load(object sender, EventArgs e)
         {
-            // Bellekteki tabloya sütunları ekliyoruz
-            sepetTablosu.Columns.Add("Barkod");
-            sepetTablosu.Columns.Add("UrunAd");
-            sepetTablosu.Columns.Add("Adet", typeof(int));
-            sepetTablosu.Columns.Add("Fiyat", typeof(decimal));
-            sepetTablosu.Columns.Add("Toplam", typeof(decimal), "Adet * Fiyat"); // Otomatik hesaplar
+            // Sütunları Rows.Add içindeki sırayla birebir aynı yapmalısın:
+            sepetTablosu.Columns.Add("UrunID", typeof(int));    // 1. Sütun
+            sepetTablosu.Columns.Add("Barkod");                 // 2. Sütun
+            sepetTablosu.Columns.Add("UrunAd");                 // 3. Sütun
+            sepetTablosu.Columns.Add("Adet", typeof(decimal));  // 4. Sütun
+            sepetTablosu.Columns.Add("Fiyat", typeof(decimal)); // 5. Sütun
+            sepetTablosu.Columns.Add("Toplam", typeof(decimal));// 6. Sütun
 
-            // DataGridView'e "Senin verilerin bu sanal tablodur" diyoruz
             dgvSepet.DataSource = sepetTablosu;
+
+            // Görsellik: UrunID'yi kullanıcı görmesin ama kod kullansın
+            dgvSepet.Columns["UrunID"].Visible = false;
+
+            MusterileriGetir();
+            SatislariGetir(); // Sağdaki kalıcı tabloyu doldurur
         }
     }
-}
+    }
+
