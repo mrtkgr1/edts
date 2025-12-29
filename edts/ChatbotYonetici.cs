@@ -55,7 +55,7 @@ namespace edts
 
 
 
-            string botAdi = "Fuzuli(Stok Yönetim Botu)";
+            string botAdi = "Fuzuli)";
             _ = GosterHarfHarf($"{botAdi}: Merhaba! Bugün size nasıl yardımcı olabilirim?", false);
 
 
@@ -966,7 +966,7 @@ namespace edts
             {
                 // Image özelliğini veya BackgroundImage özelliğini değiştirebilirsin
                 btnSesliOkumaaa.BackgroundImage = Properties.Resources.mic_on;
-                synthesizer.SpeakAsync("Sesli okuma açıldı.");
+               
             }
             else
             {
@@ -1013,7 +1013,7 @@ namespace edts
         {
             synthesizer.SetOutputToDefaultAudioDevice(); // hoparlöre gönder
             synthesizer.Rate = 5; // biraz hızlı
-            synthesizer.SelectVoice("Microsoft Zira Desktop"); // kadın sesi
+            synthesizer.SelectVoice("Microsoft Tolga"); 
             panel4.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, panel4.Width, panel4.Height, 30, 30));
 
 
