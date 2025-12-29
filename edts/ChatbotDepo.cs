@@ -10,7 +10,7 @@ using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Runtime.InteropServices;
 
 namespace edts
 {
@@ -19,13 +19,32 @@ namespace edts
         static string connectionString =
             "Server=LAPTOP-ECRTR81F\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
 
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(
+    int nLeftRect,     // Sol üst x-koordinatı
+    int nTopRect,      // Sol üst y-koordinatı
+    int nRightRect,    // Sağ alt x-koordinatı
+    int nBottomRect,   // Sağ alt y-koordinatı
+    int nWidthEllipse, // Köşe yuvarlatma genişliği
+    int nHeightEllipse // Köşe yuvarlatma yüksekliği 
+            );
+        // --- YENİ EKLENEN DEĞİŞKENLER ---
+        private bool formatBekleniyor = false;
+        private string[] matrixMesajlari = {
+    "◈ Veritabanı katmanlarına sızılıyor...",
+    "◈ SQL paketleri analiz ediliyor...",
+    "◈ Güvenlik duvarı aşılıyor (şaka şaka)...",
+    "◈ Veriler şifreleniyor: [##########] %100",
+    "◈ Fuzuli derinlere iniyor..."
+};
+
         // Sınıfın başında, constructor'dan önce
         private Dictionary<int, List<string>> RolYetkileri = new Dictionary<int, List<string>>()
     {
         { 3, new List<string> { "stok", "fiyat", "teslim", "kritik stok","raf", "stok_matematik" } }, // Depo Personeli
     };
 
-      
+
         public ChatbotDepo()
         {
             InitializeComponent();
@@ -67,12 +86,14 @@ namespace edts
 
             return 0; // Bulunamadıysa
         }
-      
 
-        
-       
+
+
+
         private string ChatbotCevapla(string soru)
         {
+
+
             if (string.IsNullOrWhiteSpace(soru))
                 return "Lütfen bir soru yazın.";
 
@@ -109,9 +130,9 @@ namespace edts
             string[] kotuDurum = { "kötü", "berbat", "fena", "yorgun", "mutsuz" };
             string[] selamlar = { "merhaba", "selam", "günaydın", "iyi akşamlar", "hey" };
 
-           
 
-           
+
+
             // Selam ve duygu cevapları
             if (selamlar.Any(s => temizSoru.Contains(s)))
                 return "Merhaba! Gününüz güzel geçiyordur umarım. Nasılsınız?";
@@ -163,6 +184,35 @@ namespace edts
                 else kategori = "stok";
             }
 
+            //Fuzuli İşlemler---------------------------------------------------------------------------
+            if (soru.Contains("şaka yap") || soru.Contains("komik bir şey söyle"))
+            {
+                string[] sakalar = {
+        "Geçen gün bir SQL sorgusu bara girmiş, yan masadaki iki tabloya 'Join' olabilir miyiz demiş.",
+        "Bilgisayarlar neden hiç şemsiye taşımaz? Çünkü zaten pencereleri (Windows) var.",
+        "Fuzuli diyor ki: Veritabanı dolup taşsa da gönlümdeki yeriniz sınırsız efendim."
+    };
+                Random rnd = new Random();
+                return sakalar[rnd.Next(sakalar.Length)];
+            }
+
+            if (DateTime.Now.Hour >= 0 && DateTime.Now.Hour < 6)
+            {
+                // Gece mesajı başlangıcı
+                string sitemliGiris = "Gecenin bu saatinde dertlerinize ortak olurum ama bu verileri sormanız beni biraz yaraladı... Yine de sizin için bakıyorum: ";
+
+                if (soru.Contains("fiyat") || soru.Contains("birim") || soru.Contains("kadar"))
+                {
+                    return sitemliGiris + UrunFiyatiGetir(soru);
+                }
+            }
+
+            if (soru.Contains("nasılsın") || soru.Contains("naber"))
+            {
+                return "Hiç bu kadar iyi olmamıştım";
+            }
+
+
             // 3. FİYAT İŞLEMLERİ (Kritik Nokta Burası)
             else if (temizSoru.Contains("fiyat") || temizSoru.Contains("birim"))
             {
@@ -178,8 +228,9 @@ namespace edts
                     kategori = "fiyat"; // Sadece sorgulama
                 }
             }
+            //Fuzuli işlemler ---------------------------------------------------------------------------------
 
-  else if (temizSoru.Contains("stok") || temizSoru.Contains("miktar"))
+            else if (temizSoru.Contains("stok") || temizSoru.Contains("miktar"))
             {
                 // Artır, azalt, ekle, yap kelimelerinden biri varsa
                 if (temizSoru.Contains("art") || temizSoru.Contains("azalt") || temizSoru.Contains("ekle") || temizSoru.Contains("yap"))
@@ -223,7 +274,7 @@ namespace edts
             else if (temizSoru.Contains("raf") || temizSoru.Contains("nerede")) // RAF KATEGORİSİNİ EKLEDİK
                 kategori = "raf";
 
-          
+
 
 
 
@@ -297,7 +348,7 @@ namespace edts
                 case "yanlış giriş": return KullaniciYanlisGirisSayisi(orijinal);
                 case "giriş yapan": return BugunGirisYapanKullanicilar();
                 case "giriş yapmayan": return BugunGirisYapmayanKullanicilar();
-               
+
             }
 
             // Destek / teşekkür / vedalar
@@ -313,7 +364,7 @@ namespace edts
             // Anlamadıysa tekrar et
             return "Soruyu anlayamadım. Örnek: 'admin aktif mi?' veya 'dolap stokta var mı?'";
         }
-        
+
 
         // TextBox focus aldığında placeholder'ı temizle
         private void txtSoru_Enter(object sender, EventArgs e)
@@ -402,7 +453,7 @@ namespace edts
                 flowChatt.ScrollControlIntoView(lbl);
             }
         }
-    
+
 
         private string KullaniciRolu(string soru)
         {
@@ -530,12 +581,12 @@ namespace edts
                 return "Ürün adı algılanamadı.";
 
             using SqlConnection conn = new SqlConnection(connectionString);
-        conn.Open();
+            conn.Open();
 
             // önce birebir arayalım
             using SqlCommand cmd = new SqlCommand(
                 "SELECT BirimFiyat FROM tblUrunler WHERE LOWER(UrunAd) = @UrunAdi", conn);
-        cmd.Parameters.AddWithValue("@UrunAdi", urunAdi.ToLower().Trim());
+            cmd.Parameters.AddWithValue("@UrunAdi", urunAdi.ToLower().Trim());
 
             object result = cmd.ExecuteScalar();
 
@@ -567,77 +618,77 @@ namespace edts
                 .OrderBy(x => Mesafe(x, urunAdi))
                 .First();
 
-if (Mesafe(tahmin, urunAdi) <= 2)
-    return $"‘{urunAdi}' bulunamadı. Şunu mu demek istediniz: {tahmin}?";
+            if (Mesafe(tahmin, urunAdi) <= 2)
+                return $"‘{urunAdi}' bulunamadı. Şunu mu demek istediniz: {tahmin}?";
 
-return $"{urunAdi} adlı ürün bulunamadı.";
+            return $"{urunAdi} adlı ürün bulunamadı.";
         }
         private string UrunCiroGetir(string soru)
-{
-    string? urunAdi = soru.Split(' ', StringSplitOptions.RemoveEmptyEntries)
-.FirstOrDefault(x => x != "ciro" && x != "satış" && x != "ne" && x != "kadar");
+        {
+            string? urunAdi = soru.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .FirstOrDefault(x => x != "ciro" && x != "satış" && x != "ne" && x != "kadar");
 
-    if (string.IsNullOrEmpty(urunAdi))
-        return "Lütfen ürün adını belirtin.";
+            if (string.IsNullOrEmpty(urunAdi))
+                return "Lütfen ürün adını belirtin.";
 
-    urunAdi = urunAdi.ToLower().Trim();
+            urunAdi = urunAdi.ToLower().Trim();
 
-    if (string.IsNullOrEmpty(urunAdi))
-        return "Lütfen ürün adını belirtin.";
+            if (string.IsNullOrEmpty(urunAdi))
+                return "Lütfen ürün adını belirtin.";
 
-    using SqlConnection conn = new SqlConnection(connectionString);
-    conn.Open();
+            using SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
 
-    using SqlCommand cmd = new SqlCommand(@"
+            using SqlCommand cmd = new SqlCommand(@"
         SELECT SUM(sd.Miktar * sd.BirimFiyat)
         FROM tblSatisDetay sd
         JOIN tblUrunler u ON u.UrunID = sd.UrunID
         WHERE LOWER(u.UrunAd) = @UrunAdi",
-        conn);
+                conn);
 
-    cmd.Parameters.AddWithValue("@UrunAdi", urunAdi.ToLower().Trim());
+            cmd.Parameters.AddWithValue("@UrunAdi", urunAdi.ToLower().Trim());
 
-    object? result = cmd.ExecuteScalar();
+            object? result = cmd.ExecuteScalar();
 
-    if (result != DBNull.Value && result != null)
-        return $"{urunAdi} ürününün toplam cirosu: {result} ₺";
+            if (result != DBNull.Value && result != null)
+                return $"{urunAdi} ürününün toplam cirosu: {result} ₺";
 
-    return $"{urunAdi} ürünü için ciro bulunamadı.";
-}
-private string KullaniciYanlisGirisSayisi(string soru)
-{
-    string[] stopWords = { "kaç", "kez", "yanlış", "giriş", "hatalı", "girdi", "kullanıcı" };
-    string[] kelimeler = soru.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            return $"{urunAdi} ürünü için ciro bulunamadı.";
+        }
+        private string KullaniciYanlisGirisSayisi(string soru)
+        {
+            string[] stopWords = { "kaç", "kez", "yanlış", "giriş", "hatalı", "girdi", "kullanıcı" };
+            string[] kelimeler = soru.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-    string? kelime = kelimeler
-.Where(x => !stopWords.Contains(x))
-.FirstOrDefault();
+            string? kelime = kelimeler
+        .Where(x => !stopWords.Contains(x))
+        .FirstOrDefault();
 
-    kelime = kelime?.Trim() ?? "";
+            kelime = kelime?.Trim() ?? "";
 
-    string kullaniciAdi = TemizleKullaniciAdi(kelime);
+            string kullaniciAdi = TemizleKullaniciAdi(kelime);
 
 
-    if (string.IsNullOrEmpty(kullaniciAdi))
-        return "Kullanıcı adı algılanamadı.";
+            if (string.IsNullOrEmpty(kullaniciAdi))
+                return "Kullanıcı adı algılanamadı.";
 
-    using SqlConnection conn = new SqlConnection(connectionString);
-    conn.Open();
+            using SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
 
-    using SqlCommand cmd = new SqlCommand(
-        @"SELECT COUNT(*) 
+            using SqlCommand cmd = new SqlCommand(
+                @"SELECT COUNT(*) 
           FROM tblDenetimKayitlari d
           JOIN tblKullanicilar k ON k.KullaniciID = d.KullaniciID
           WHERE LOWER(k.KullaniciAdi) = @KullaniciAdi 
             AND d.Aciklama LIKE '%yanlış giriş%'", conn);
-    cmd.Parameters.AddWithValue("@KullaniciAdi", kullaniciAdi.ToLower().Trim());
+            cmd.Parameters.AddWithValue("@KullaniciAdi", kullaniciAdi.ToLower().Trim());
 
-    object result = cmd.ExecuteScalar();
-    int sayi = Convert.ToInt32(result);
+            object result = cmd.ExecuteScalar();
+            int sayi = Convert.ToInt32(result);
 
-    return $"{kullaniciAdi} adlı kullanıcı {sayi} kez yanlış giriş yapmış.";
-}
-private string UrunTeslimTarihi(string soru)
+            return $"{kullaniciAdi} adlı kullanıcı {sayi} kez yanlış giriş yapmış.";
+        }
+        private string UrunTeslimTarihi(string soru)
         {
             string urunAdi = soru
       .Split(" ", StringSplitOptions.RemoveEmptyEntries)
@@ -657,7 +708,7 @@ private string UrunTeslimTarihi(string soru)
                 conn.Open();
 
                 using SqlCommand cmd =
-                    new ("SELECT TOP 1 TeslimTarihi FROM tblUrunler WHERE LOWER(UrunAd)=@ad", conn);
+                    new("SELECT TOP 1 TeslimTarihi FROM tblUrunler WHERE LOWER(UrunAd)=@ad", conn);
                 cmd.Parameters.AddWithValue("@ad", urunAdi);
 
                 object? result = cmd.ExecuteScalar();
@@ -673,54 +724,54 @@ private string UrunTeslimTarihi(string soru)
             // 2️⃣ ilgili ürün bulunamadı → tahmin öner
             List<string> tumUrunler = new();
 
-using (SqlConnection conn2 = new SqlConnection(connectionString))
-{
-    conn2.Open();
+            using (SqlConnection conn2 = new SqlConnection(connectionString))
+            {
+                conn2.Open();
 
-    using SqlCommand cmd2 = new("SELECT UrunAd FROM tblUrunler", conn2);
-    using SqlDataReader r = cmd2.ExecuteReader();
-    while (r.Read())
-    {
-        string? ad = r["UrunAd"]?.ToString()?.ToLower();
-        if (!string.IsNullOrWhiteSpace(ad))
-            tumUrunler.Add(ad);
-    }
-}
+                using SqlCommand cmd2 = new("SELECT UrunAd FROM tblUrunler", conn2);
+                using SqlDataReader r = cmd2.ExecuteReader();
+                while (r.Read())
+                {
+                    string? ad = r["UrunAd"]?.ToString()?.ToLower();
+                    if (!string.IsNullOrWhiteSpace(ad))
+                        tumUrunler.Add(ad);
+                }
+            }
 
-// 3️⃣ en benzer ürün öner
-string benzer = tumUrunler
-    .FirstOrDefault(x => x.StartsWith(urunAdi[..2])) ?? "Benzer ürün bulunamadı.";
+            // 3️⃣ en benzer ürün öner
+            string benzer = tumUrunler
+                .FirstOrDefault(x => x.StartsWith(urunAdi[..2])) ?? "Benzer ürün bulunamadı.";
 
-return $"'{urunAdi}' adına ait teslim tarihi bulunamadı.\nBuna yakın ürün: {benzer}";
+            return $"'{urunAdi}' adına ait teslim tarihi bulunamadı.\nBuna yakın ürün: {benzer}";
         }
 
         private string KritikStokUrunleri()
-{
-    using SqlConnection conn = new SqlConnection(connectionString);
-    conn.Open();
-
-    using SqlCommand cmd = new SqlCommand(
-        "SELECT UrunAd FROM tblUrunler WHERE MevcutStok <= KritikStokSeviyesi", conn);
-
-    using SqlDataReader reader = cmd.ExecuteReader();
-
-    List<string> kritikUrunler = new List<string>();
-    while (reader.Read())
-    {
-        var urun = reader["UrunAd"]?.ToString();
-
-        if (!string.IsNullOrWhiteSpace(urun))
         {
-            kritikUrunler.Add(urun);
+            using SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+
+            using SqlCommand cmd = new SqlCommand(
+                "SELECT UrunAd FROM tblUrunler WHERE MevcutStok <= KritikStokSeviyesi", conn);
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            List<string> kritikUrunler = new List<string>();
+            while (reader.Read())
+            {
+                var urun = reader["UrunAd"]?.ToString();
+
+                if (!string.IsNullOrWhiteSpace(urun))
+                {
+                    kritikUrunler.Add(urun);
+                }
+            }
+
+            if (kritikUrunler.Count == 0)
+                return "Kritik stokta olan ürün bulunmamaktadır.";
+
+            return "Kritik stokta olan ürünler: " + string.Join(", ", kritikUrunler);
         }
-    }
-
-    if (kritikUrunler.Count == 0)
-        return "Kritik stokta olan ürün bulunmamaktadır.";
-
-    return "Kritik stokta olan ürünler: " + string.Join(", ", kritikUrunler);
-}
-private string BugunGirisYapanKullanicilar()
+        private string BugunGirisYapanKullanicilar()
         {
             using SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
@@ -950,6 +1001,17 @@ private string BugunGirisYapanKullanicilar()
         private void btnSesliOkumaa_Click(object sender, EventArgs e)
         {
             sesliOkumaAcik = !sesliOkumaAcik;
+            if (sesliOkumaAcik)
+            {
+                // Image özelliğini veya BackgroundImage özelliğini değiştirebilirsin
+                btnSesliOkumaa.BackgroundImage = Properties.Resources.mic_on;
+                synthesizer.SpeakAsync("Sesli okuma açıldı.");
+            }
+            else
+            {
+                btnSesliOkumaa.BackgroundImage = Properties.Resources.mic_off;
+                synthesizer.SpeakAsyncCancelAll();
+            }
 
         }
 
@@ -1020,34 +1082,67 @@ private string BugunGirisYapanKullanicilar()
                 return;
             }
 
-            // Kullanıcı mesajını ekle
+            // 1. Kullanıcı mesajını ekle
             EkleMesaj(soru, true);
             txtSoruu.Clear();
 
-            // Chatbot cevabı
+            // --- MATRIX EFEKTİ BURADA BAŞLIYOR ---
+            // Sadece belirli kelimelerde çıksın (isteğe bağlı)
+            if (soru.Contains("stok") || soru.Contains("kaydet") || soru.Contains("log") || soru.Contains("ciro"))
+            {
+                await MatrixEfektiYap(); // Bot sahte işlem mesajlarını yazar
+            }
+            // -------------------------------------
+
+            // 2. Chatbot cevabı hazırlanıyor
             string cevap = ChatbotCevapla(soru);
 
-            // Sesli okuma açıksa hemen başlat (await yok, paralel çalışacak)
+            // 3. Sesli okuma (Paralel çalışır)
             if (sesliOkumaAcik)
             {
-                synthesizer.SpeakAsyncCancelAll(); // önceki sesi kes
-                synthesizer.SpeakAsync(cevap);     // yeni cevabı oku
+                synthesizer.SpeakAsyncCancelAll();
+                synthesizer.SpeakAsync(cevap);
             }
 
-            // Harf harf yazdır
+            // 4. Asıl cevabı harf harf yazdır
             await GosterHarfHarf(cevap, false);
 
         }
 
+        // MATRIX EFEKTİ METODU
+        private async Task MatrixEfektiYap()
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < 2; i++) // 2 tane rastgele matrix mesajı seçer
+            {
+                string secilen = matrixMesajlari[rnd.Next(matrixMesajlari.Length)];
+                await GosterHarfHarf(secilen, false);
+                await Task.Delay(400); // Yarım saniye bekle
+            }
+        }
+
+        // DOSYA HAZIRLAMA METODU
+        private void BotDosyaHazirla(string tip)
+        {
+            // Buraya yukarıda verdiğim SQL'den veri çekip masaüstüne kaydeden kodu yapıştıracaksın.
+        }
+
         private void ChatbotDepo_Load(object sender, EventArgs e)
         {
-
+            panel4.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, panel4.Width, panel4.Height, 25, 25));
             synthesizer.SetOutputToDefaultAudioDevice(); // hoparlöre gönder
             synthesizer.Rate = 5; // biraz hızlı
             synthesizer.SelectVoice("Microsoft Zira Desktop"); // kadın sesi
+                                                               // Formun Load olayına veya Constructor'a ekle:
+
         }
 
         private void flowChatt_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }

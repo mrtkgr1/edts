@@ -30,6 +30,7 @@
         {
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
+            btnSilSutun = new DataGridViewButtonColumn();
             tabPage4 = new TabPage();
             btnMusteriGuncel = new Button();
             btnMusteriSil = new Button();
@@ -63,6 +64,7 @@
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun });
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
@@ -70,6 +72,19 @@
             dataGridView2.Size = new Size(613, 784);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellClick += dataGridView2_CellClick;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridView2.CellPainting += dataGridView2_CellPainting;
+            dataGridView2.MouseLeave += dataGridView2_MouseLeave;
+            dataGridView2.MouseMove += dataGridView2_MouseMove;
+            // 
+            // btnSilSutun
+            // 
+            btnSilSutun.HeaderText = "";
+            btnSilSutun.MinimumWidth = 6;
+            btnSilSutun.Name = "btnSilSutun";
+            btnSilSutun.Text = "Sil";
+            btnSilSutun.UseColumnTextForButtonValue = true;
+            btnSilSutun.Width = 125;
             // 
             // tabPage4
             // 
@@ -101,7 +116,7 @@
             btnMusteriGuncel.Location = new Point(308, 298);
             btnMusteriGuncel.Margin = new Padding(3, 4, 3, 4);
             btnMusteriGuncel.Name = "btnMusteriGuncel";
-            btnMusteriGuncel.Size = new Size(91, 33);
+            btnMusteriGuncel.Size = new Size(91, 38);
             btnMusteriGuncel.TabIndex = 10;
             btnMusteriGuncel.Text = "Güncelle";
             btnMusteriGuncel.UseVisualStyleBackColor = false;
@@ -115,7 +130,7 @@
             btnMusteriSil.Location = new Point(405, 298);
             btnMusteriSil.Margin = new Padding(3, 4, 3, 4);
             btnMusteriSil.Name = "btnMusteriSil";
-            btnMusteriSil.Size = new Size(91, 33);
+            btnMusteriSil.Size = new Size(91, 38);
             btnMusteriSil.TabIndex = 9;
             btnMusteriSil.Text = "Sil";
             btnMusteriSil.UseVisualStyleBackColor = false;
@@ -129,7 +144,7 @@
             btnMusteriKayit.Location = new Point(211, 298);
             btnMusteriKayit.Margin = new Padding(3, 4, 3, 4);
             btnMusteriKayit.Name = "btnMusteriKayit";
-            btnMusteriKayit.Size = new Size(91, 33);
+            btnMusteriKayit.Size = new Size(91, 38);
             btnMusteriKayit.TabIndex = 8;
             btnMusteriKayit.Text = "Kaydet";
             btnMusteriKayit.UseVisualStyleBackColor = false;
@@ -271,5 +286,6 @@
         private Label label9;
         private Panel panel1;
         private TabControl tabControl1;
+        private DataGridViewButtonColumn btnSilSutun;
     }
 }

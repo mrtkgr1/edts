@@ -35,7 +35,6 @@
             txtAlisFiyati = new TextBox();
             btnGuncelle = new KavisliButon();
             btnKaydett = new KavisliButon();
-            btnSill = new KavisliButon();
             birimFiyat = new NumericUpDown();
             label10 = new Label();
             cmbBirimTipi = new ComboBox();
@@ -50,6 +49,7 @@
             label1 = new Label();
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
+            btnSilSutun = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -87,7 +87,6 @@
             tabPage1.Controls.Add(txtAlisFiyati);
             tabPage1.Controls.Add(btnGuncelle);
             tabPage1.Controls.Add(btnKaydett);
-            tabPage1.Controls.Add(btnSill);
             tabPage1.Controls.Add(birimFiyat);
             tabPage1.Controls.Add(label10);
             tabPage1.Controls.Add(cmbBirimTipi);
@@ -132,7 +131,7 @@
             btnGuncelle.FlatAppearance.BorderSize = 0;
             btnGuncelle.FlatStyle = FlatStyle.System;
             btnGuncelle.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnGuncelle.Location = new Point(187, 498);
+            btnGuncelle.Location = new Point(355, 472);
             btnGuncelle.Name = "btnGuncelle";
             btnGuncelle.Size = new Size(104, 38);
             btnGuncelle.TabIndex = 31;
@@ -146,27 +145,13 @@
             btnKaydett.FlatAppearance.BorderSize = 0;
             btnKaydett.FlatStyle = FlatStyle.System;
             btnKaydett.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnKaydett.Location = new Point(77, 498);
+            btnKaydett.Location = new Point(245, 472);
             btnKaydett.Name = "btnKaydett";
             btnKaydett.Size = new Size(104, 38);
             btnKaydett.TabIndex = 30;
             btnKaydett.Text = "Kaydet";
             btnKaydett.UseVisualStyleBackColor = true;
             btnKaydett.Click += btnKaydet_Click_1;
-            // 
-            // btnSill
-            // 
-            btnSill.BorderRadius = 30;
-            btnSill.FlatAppearance.BorderSize = 0;
-            btnSill.FlatStyle = FlatStyle.System;
-            btnSill.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnSill.Location = new Point(297, 498);
-            btnSill.Name = "btnSill";
-            btnSill.Size = new Size(104, 38);
-            btnSill.TabIndex = 29;
-            btnSill.Text = "Sil";
-            btnSill.UseVisualStyleBackColor = true;
-            btnSill.Click += btnSill_Click;
             // 
             // birimFiyat
             // 
@@ -299,6 +284,7 @@
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun });
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
@@ -306,6 +292,20 @@
             dataGridView2.Size = new Size(615, 792);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellClick += dataGridView2_CellClick;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridView2.CellPainting += dataGridView2_CellPainting;
+            dataGridView2.MouseLeave += dataGridView2_MouseLeave;
+            dataGridView2.MouseMove += dataGridView2_MouseMove;
+            // 
+            // btnSilSutun
+            // 
+            btnSilSutun.FlatStyle = FlatStyle.Flat;
+            btnSilSutun.HeaderText = "Column1";
+            btnSilSutun.MinimumWidth = 6;
+            btnSilSutun.Name = "btnSilSutun";
+            btnSilSutun.Text = "Sil";
+            btnSilSutun.UseColumnTextForButtonValue = true;
+            btnSilSutun.Width = 125;
             // 
             // frmUrunYonetimi
             // 
@@ -348,12 +348,11 @@
         private Label label2;
         private Label label1;
         private Panel panel2;
-        private KavisliButon btnSill;
-        private KavisliButon kavisliButon3;
         private KavisliButon btnKaydett;
         private DataGridView dataGridView2;
         private KavisliButon btnGuncelle;
         private TextBox txtAlisFiyati;
         private Label label11;
+        private DataGridViewButtonColumn btnSilSutun;
     }
 }

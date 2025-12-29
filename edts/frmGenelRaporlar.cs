@@ -41,98 +41,86 @@ namespace edts
                 {
                     baglan.Open();
 
-                    // 1. ADIM: 3 Tabloyu Birleştiren SQL Sorgusu
-                    // sh: StokHareketleri (Ana Tablo)
-                    // u:  Urunler
-                    // ht: HareketTipleri
-                    // k:  Kullanicilar
+                    // Sorguya ht (HareketTipleri) tablosunu ekledik
                     string sorgu = @"
-                SELECT 
-                    sh.IslemID,
-                    sh.FaturaNo,
-                    u.UrunAd,
-                    sh.HareketID,
-                    k.KullaniciAdi,
-                    sh.Miktar,
-                    sh.Tarih
-                FROM tblStokHareketleri sh
-                INNER JOIN tblUrunler u ON sh.UrunID = u.UrunID
-                INNER JOIN tblKullanicilar k ON sh.KullaniciID = k.KullaniciID
-                WHERE sh.Tarih BETWEEN @Tarih1 AND @Tarih2
-                ORDER BY sh.Tarih DESC"; // En son yapılan işlem en üstte
-
+    SELECT 
+        sh.IslemID,
+        sh.FaturaNo,
+        ISNULL(u.UrunAd, 'Ürün Bulunamadı') as UrunAd, -- Eğer isim gelmiyorsa 'Ürün Bulunamadı' yazar
+        ht.HareketAd,
+        k.KullaniciAdi,
+        sh.Miktar,
+        sh.Tarih,
+        sh.HareketID
+    FROM tblStokHareketleri sh
+    LEFT JOIN tblUrunler u ON CAST(sh.UrunID AS INT) = CAST(u.UrunID AS INT) -- Tip uyuşmazlığına karşı CAST ekledik
+    INNER JOIN tblKullanicilar k ON sh.KullaniciID = k.KullaniciID
+    INNER JOIN tblHareketTipleri ht ON sh.HareketID = ht.HareketID
+    WHERE sh.Tarih BETWEEN @Tarih1 AND @Tarih2
+    ORDER BY sh.Tarih DESC";
                     SqlDataAdapter da = new SqlDataAdapter(sorgu, baglan);
-
-                    // 2. ADIM: Tarih Parametreleri (Saat Detayı)
-                    // Başlangıç: Seçilen günün 00:00:00 anı
-                    da.SelectCommand.Parameters.AddWithValue("@Tarih1", baslangicTarihi.Date);
-
-                    // Bitiş: Seçilen günün 23:59:59 anı (Günün sonuna kadar olanları al)
-                    da.SelectCommand.Parameters.AddWithValue("@Tarih2", bitisTarihi.Date.AddDays(1).AddSeconds(-1));
+                    da.SelectCommand.Parameters.Add("@Tarih1", SqlDbType.DateTime).Value = baslangicTarihi.Date;
+                    da.SelectCommand.Parameters.Add("@Tarih2", SqlDbType.DateTime).Value = bitisTarihi.Date.AddDays(1).AddSeconds(-1);
 
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dt.Columns.Add("IslemAdi", typeof(string));
+                    // Görseldeki "Oturum Açıldı" karmaşasını bitiren kısım:
+                    dt.Columns.Add("IslemGorsel", typeof(string)); // Yeni bir sütun oluşturuyoruz
 
-                    foreach (DataRow row in dt.Rows) {
-                        if (row["HareketID"] != DBNull.Value) {
-                            int id = Convert.ToInt32(row["HareketID"]);
-                            string tmp = Sabitler.IslemAl(id);
-                            char ico = (id == (int)Sabitler.IslemTuru.Alim) ? '➕' : (id == (int)Sabitler.IslemTuru.Satım) ? '➖' : 'ℹ';
-                            row["IslemAdi"] = ico + Sabitler.IslemAl(id);
-                        }
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string gercekAd = row["HareketAd"].ToString();
+                        // Veritabanındaki HareketID'ye göre ikon atıyoruz (4: Giriş, 2: Çıkış)
+                        int hID = Convert.ToInt32(row["HareketID"]);
+                        char ico = (hID == 4) ? '➕' : (hID == 2) ? '➖' : 'ℹ';
+
+                        row["IslemGorsel"] = ico + " " + gercekAd;
                     }
 
                     dataGridView1.DataSource = dt;
 
-                    // 3. ADIM: Sütun İsimlendirme ve Gizleme (Kozmetik)
+                    // --- SÜTUN AYARLARI ---
+                    if (dataGridView1.Columns["IslemID"] != null) dataGridView1.Columns["IslemID"].Visible = false;
+                    if (dataGridView1.Columns["HareketID"] != null) dataGridView1.Columns["HareketID"].Visible = false;
+                    if (dataGridView1.Columns["HareketAd"] != null) dataGridView1.Columns["HareketAd"].Visible = false;
 
-                    // ID'yi gizle (Arka planda silme/güncelleme için lazım)
-                    if (dataGridView1.Columns["IslemID"] != null)
-                        dataGridView1.Columns["IslemID"].Visible = false;
-                    dataGridView1.Columns["HareketID"].Visible = false;
-
-                    // Başlıkları Türkçeleştir
+                    dataGridView1.Columns["IslemGorsel"].HeaderText = "İşlem Tipi";
+                    dataGridView1.Columns["IslemGorsel"].DisplayIndex = 0; // En başa al
                     dataGridView1.Columns["UrunAd"].HeaderText = "Ürün Adı";
-                    //dataGridView1.Columns["HareketAd"].HeaderText = "İşlem Tipi";
-                    dataGridView1.Columns["IslemAdi"].HeaderText = "İşlem Tipi";
-                    dataGridView1.Columns["IslemAdi"].DisplayIndex = 1;
                     dataGridView1.Columns["KullaniciAdi"].HeaderText = "İşlemi Yapan";
                     dataGridView1.Columns["Miktar"].HeaderText = "Adet";
                     dataGridView1.Columns["Tarih"].HeaderText = "İşlem Tarihi";
-                    dataGridView1.Columns["FaturaNo"].HeaderText = "Fatura No";
-
-                    // Sütunları ekrana yay
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                    // Tarih formatını güzelleştir (Gün.Ay.Yıl Saat:Dakika)
                     dataGridView1.Columns["Tarih"].DefaultCellStyle.Format = "dd.MM.yyyy HH:mm";
+
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Veri çekme hatası: " + ex.Message);
+                    MessageBox.Show("Hata: " + ex.Message);
                 }
             }
         }
         public String TarihAraligiToplamTutarGetir(DateTime baslangic, DateTime bitis)
         {
-            String fnl = "";
+
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 try
                 {
                     baglan.Open();
 
-                    // SUM fonksiyonu ile tüm çarpımları topluyoruz
+                    // 1. Değişiklik: LEFT JOIN yaparak fiyatı olmayan veya eşleşmeyen ürünleri de hesaba katmaya çalışıyoruz.
+                    // 2. Değişiklik: CAST kullanarak para birimi ve miktar çarpmalarında veri tipi hatasını önlüyoruz.
                     string sorgu = @"
-                SELECT SUM(h.Miktar * ISNULL(u.BirimFiyat, 0)) 
+                SELECT SUM(CAST(h.Miktar AS DECIMAL(18,2)) * CAST(ISNULL(u.BirimFiyat, 0) AS DECIMAL(18,2))) 
                 FROM tblStokHareketleri h
-                INNER JOIN tblUrunler u ON h.UrunID = u.UrunID
+                LEFT JOIN tblUrunler u ON h.UrunID = u.UrunID
                 WHERE h.Tarih BETWEEN @tarih1 AND @tarih2";
 
                     SqlCommand cmd = new SqlCommand(sorgu, baglan);
 
+                    // Tarih ayarını garantiye alalım
                     cmd.Parameters.AddWithValue("@tarih1", baslangic.Date);
                     cmd.Parameters.AddWithValue("@tarih2", bitis.Date.AddDays(1).AddSeconds(-1));
 
@@ -141,19 +129,16 @@ namespace edts
                     if (sonuc != DBNull.Value && sonuc != null)
                     {
                         decimal toplam = Convert.ToDecimal(sonuc);
-                        fnl = toplam.ToString("C2");
-                    }
-                    else
-                    {
-                        fnl = "₺0,00";
+                        return toplam.ToString("C2");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Hesaplama hatası(Tutar): " + ex.Message);
+                    // Hatanın tam olarak ne olduğunu görelim
+                    MessageBox.Show("Hesaplama Detay Hatası: " + ex.Message);
                 }
             }
-            return fnl;
+            return "₺0,00";
         }
 
         public void StokDurumuHesapla(DateTime baslangic, DateTime bitis)
@@ -164,18 +149,17 @@ namespace edts
                 {
                     baglan.Open();
 
+                    // DÜZELTME: HareketID = 4 yerine 1 (Giriş), 2 (Çıkış) kullanıyoruz
                     string sorgu = @"
                 SELECT 
-                    ISNULL(SUM(CASE WHEN HareketID = 4 THEN Miktar ELSE 0 END), 0) AS ToplamGiris,
+                    ISNULL(SUM(CASE WHEN HareketID = 1 THEN Miktar ELSE 0 END), 0) AS ToplamGiris,
                     ISNULL(SUM(CASE WHEN HareketID = 2 THEN Miktar ELSE 0 END), 0) AS ToplamCikis,
-                    ISNULL(SUM(CASE WHEN HareketID = 4 THEN Miktar ELSE 0 END) - 
+                    ISNULL(SUM(CASE WHEN HareketID = 1 THEN Miktar ELSE 0 END) - 
                            SUM(CASE WHEN HareketID = 2 THEN Miktar ELSE 0 END), 0) AS ToplamFark
                 FROM tblStokHareketleri
                 WHERE Tarih BETWEEN @Baslangic AND @Bitis";
 
                     SqlCommand cmd = new SqlCommand(sorgu, baglan);
-
-                    // Tarih Saat Ayarı (Günün tamamını kapsasın diye)
                     cmd.Parameters.AddWithValue("@Baslangic", baslangic.Date);
                     cmd.Parameters.AddWithValue("@Bitis", bitis.Date.AddDays(1).AddSeconds(-1));
 
@@ -183,16 +167,14 @@ namespace edts
                     {
                         if (dr.Read())
                         {
-                            // Değerleri alıyoruz
+                            // Artık veritabanındaki HareketID=1 olan kayıtları toplayacak
                             int giren = Convert.ToInt32(dr["ToplamGiris"]);
                             int cikan = Convert.ToInt32(dr["ToplamCikis"]);
                             int fark = Convert.ToInt32(dr["ToplamFark"]);
 
-                            // Labellara yazdırıyoruz
                             label3.Text = "Toplam Giriş Miktarı : " + giren.ToString();
                             label4.Text = "Toplam Çıkış Miktarı : " + cikan.ToString();
                             label5.Text = "Net Stok Farkı : " + fark.ToString();
-
                         }
                     }
                 }
@@ -213,16 +195,20 @@ namespace edts
 
                     // Sadece istenen sütunları SELECT kısmına yazdık (Aciklama YOK)
                     string sorgu = @"
-                SELECT 
-                    IslemID, 
-                    UrunID, 
-                    HareketID, 
-                    KullaniciID, 
-                    Miktar, 
-                    Tarih 
-                FROM tblStokHareketleri 
-                WHERE Tarih BETWEEN @tarih1 AND @tarih2
-                ORDER BY Tarih DESC"; // En yeniden eskiye sırala
+    SELECT 
+        sh.IslemID,
+        sh.FaturaNo,
+        u.UrunAd,           -- tblUrunler tablosundan geliyor
+        ht.HareketAd,       -- tblHareketTipleri tablosundan geliyor (Oturum Açıldı hatasını çözer)
+        k.KullaniciAdi,
+        sh.Miktar,
+        sh.Tarih
+    FROM tblStokHareketleri sh
+    INNER JOIN tblUrunler u ON sh.UrunID = u.UrunID
+    INNER JOIN tblKullanicilar k ON sh.KullaniciID = k.KullaniciID
+    INNER JOIN tblHareketTipleri ht ON sh.HareketID = ht.HareketID
+    WHERE sh.Tarih BETWEEN @Tarih1 AND @Tarih2
+    ORDER BY sh.Tarih DESC";
 
                     SqlDataAdapter da = new SqlDataAdapter(sorgu, baglan);
 
@@ -284,52 +270,88 @@ namespace edts
         }
 
         private void btnExcelAktar_Click_1(object sender, EventArgs e)
-        {
-            // DataGridView boşsa işlem yapma
+        { 
+
+            // 1. Veri kontrolü
             if (dataGridView1.Rows.Count == 0)
             {
                 MessageBox.Show("Aktarılacak veri bulunamadı!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            try
+            // 2. Dosya Kaydetme Diyaloğu (Kullanıcıya nereye kaydedeceğini soralım)
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "Excel Dosyası |*.xlsx";
+            saveFile.Title = "Raporu Kaydet";
+            saveFile.FileName = "Stok_Raporu_" + DateTime.Now.ToString("dd_MM_yyyy");
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
             {
-                // 1. Excel Uygulamasını Başlat
-                Excel.Application excelApp = new Excel.Application();
-                excelApp.Visible = true; // İşlem bittiğinde Excel açılsın
-                Excel.Workbook workbook = excelApp.Workbooks.Add(Type.Missing);
-                Excel.Worksheet worksheet = (Excel.Worksheet)workbook.ActiveSheet;
-                worksheet.Name = "Genel Rapor";
-
-                // 2. Başlıkları Aktar (Kolon isimleri)
-                for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
+                try
                 {
-                    worksheet.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
-                    // Başlıkları kalın yapalım
-                    Excel.Range baslikHucresi = (Excel.Range)worksheet.Cells[1, i];
-                    baslikHucresi.Font.Bold = true;
-                    baslikHucresi.Interior.Color = ColorTranslator.ToOle(Color.LightGray); // İstersen arka planı da boyayabilirsin
-                }
+                    // 3. Excel'i arka planda başlat
+                    Type excelType = Type.GetTypeFromProgID("Excel.Application");
+                    dynamic excelApp = Activator.CreateInstance(excelType);
+                    excelApp.Visible = false; // İşlem bitene kadar gizli kalsın (daha hızlıdır)
+                    dynamic workbook = excelApp.Workbooks.Add();
+                    dynamic worksheet = workbook.ActiveSheet;
+                    worksheet.Name = "Genel Rapor";
 
-                // 3. Verileri Aktar
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
+                    // 4. Başlıkları Aktar ve Biçimlendir
+                    int excelSutun = 1;
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-                        // Satır indeksi 2'den başlar (1. satır başlıktı)
-                        worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value?.ToString();
+                        if (dataGridView1.Columns[j].Visible)
+                        {
+                            dynamic cell = worksheet.Cells[1, excelSutun];
+                            cell.Value = dataGridView1.Columns[j].HeaderText;
+                            cell.Font.Bold = true; // Kalın yazı
+                            cell.Interior.Color = ColorTranslator.ToOle(Color.FromArgb(64, 94, 58)); // Senin yeşil tonun
+                            cell.Font.Color = ColorTranslator.ToOle(Color.White); // Beyaz yazı
+                            excelSutun++;
+                        }
                     }
+
+                    // 5. Verileri Aktar
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        excelSutun = 1;
+                        for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                        {
+                            if (dataGridView1.Columns[j].Visible)
+                            {
+                                worksheet.Cells[i + 2, excelSutun] = dataGridView1.Rows[i].Cells[j].Value?.ToString();
+                                excelSutun++;
+                            }
+                        }
+                    }
+
+                    // 6. Sütun Genişliklerini Ayarla ve Kenarlık Ekle
+                    dynamic allCells = worksheet.UsedRange;
+                    allCells.Columns.AutoFit();
+                    allCells.Borders.LineStyle = 1; // İnce kenarlıklar
+
+                    // 7. Dosyayı Kaydet ve Kapat
+                    workbook.SaveAs(saveFile.FileName);
+                    excelApp.Visible = true; // İşlem bitince kullanıcıya göster
+
+                    MessageBox.Show("Rapor başarıyla oluşturuldu ve kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                // 4. Sütunları otomatik genişlet
-                worksheet.Columns.AutoFit();
-
-                MessageBox.Show("Veriler başarıyla Excel'e aktarıldı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Excel profesyonel aktarım hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        }
+
+        private void frmGenelRaporlar_Load(object sender, EventArgs e)
+        {
+            // Form açıldığında son 1 ayın raporunu otomatik getir
+            dtpBaslangic.Value = DateTime.Now.AddMonths(-1);
+            dtpBitis.Value = DateTime.Now;
+
+            // Raporu getiren butonun içindeki işlemleri başlat
+            btnRaporGetir.PerformClick();
         }
     }
 
