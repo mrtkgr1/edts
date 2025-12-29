@@ -28,7 +28,7 @@ namespace edts {
         }
 
         private void SolPanelScroll() {
-            SolHPanel.MouseWheel += Panel_MouseWheel;
+            SolHPanel.MouseWheel += Panel_MouseWheel!;
 
             SolHPanel.MouseEnter += (s, e) => SolHPanel.Focus();
             yanMenuPanel.MouseEnter += (s, e) => SolHPanel.Focus();
@@ -179,9 +179,10 @@ namespace edts {
             prefPictureBox.Image = Properties.Resources.kayan_liste_assa;
         }
 
+        //bildirim
         bool bildiirmVar = true;
         private void pictureBox4_Click(object sender, EventArgs e) {
-
+            BildirimGoster("xsa","sasa");
             if (bildiirmVar) {
                 pictureBox4.Image = Properties.Resources.notf_var;
                 bildiirmVar = false;
@@ -190,10 +191,21 @@ namespace edts {
                 pictureBox4.Image = Properties.Resources.notf_yok;
             }
         }
+        public void BildirimGoster(string baslik, string mesaj) {
+            NotifyIcon bildirimCubugu = new NotifyIcon();
+
+            bildirimCubugu.Icon = SystemIcons.Information;
+
+            
+            bildirimCubugu.Visible = true;
+
+            bildirimCubugu.ShowBalloonTip(3000, baslik, mesaj, ToolTipIcon.Info);
+
+        }
 
         //-----Hesap popup işlemleri -----
         private void kullaniciAyarlari_Tiklandi() {
-            MessageBox.Show("Kullanıcı ayarları tıklandı.");
+            SayfaGoster(new frmKullaniciAyarlari());
         }
 
         private void hesapDuzenle_Tiklandi() {

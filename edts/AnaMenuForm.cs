@@ -19,7 +19,7 @@ namespace edts
             Form? acilacakForm = null;
 
             // ... switch (aktifRolID) bloğu ...
-            switch (aktifRolID)
+           /* switch (aktifRolID)
             {
                 case 1: 
                     acilacakForm = new frmAdminAnaMenu();
@@ -32,15 +32,15 @@ namespace edts
                 case 3: 
                     acilacakForm = new frmDepoHome();
                     break;
-
+                
                 default:
                     // Tanımlanmamış rol ID'si için
                     MessageBox.Show("Rol ID'niz sisteme tanımlı değildir.", "Yetki Hatası", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     this.Close();
                     return; // Formu kapattıktan sonra daha fazla işlem yapma
-            }
-
-           acilacakForm = new AnaForm();
+            }*/
+            AyarYonetimi.AyarlariSenkronizeEt(AktifKullanici.ID);
+            acilacakForm = new AnaForm();
 
             if (acilacakForm != null)
             {
