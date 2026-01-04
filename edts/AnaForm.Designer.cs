@@ -27,8 +27,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnaForm));
             panel1 = new Panel();
             labelBaslik = new Label();
-            pictureBox4 = new PictureBox();
-            pictureBox3 = new PictureBox();
+            pictureBoxNotf = new PictureBox();
+            pictureBoxProfile = new PictureBox();
             button8 = new Button();
             prefPictureBox = new PictureBox();
             button10 = new Button();
@@ -76,8 +76,8 @@
             panelForm = new Panel();
             SolHPanel = new Panel();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxNotf).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)prefPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             yanMenuPanel.SuspendLayout();
@@ -105,10 +105,10 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(224, 224, 224);
+            panel1.BackColor = Color.FromArgb(45, 45, 48);
             panel1.Controls.Add(labelBaslik);
-            panel1.Controls.Add(pictureBox4);
-            panel1.Controls.Add(pictureBox3);
+            panel1.Controls.Add(pictureBoxNotf);
+            panel1.Controls.Add(pictureBoxProfile);
             panel1.Controls.Add(button8);
             panel1.Controls.Add(prefPictureBox);
             panel1.Controls.Add(button10);
@@ -131,37 +131,36 @@
             labelBaslik.TabIndex = 5;
             labelBaslik.Text = "Kontrol Paneli";
             // 
-            // pictureBox4
+            // pictureBoxNotf
             // 
-            pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(857, 0);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(33, 33);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 2;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
+            pictureBoxNotf.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBoxNotf.Image = Properties.Resources.notf_yok_beyaz;
+            pictureBoxNotf.Location = new Point(857, 0);
+            pictureBoxNotf.Name = "pictureBoxNotf";
+            pictureBoxNotf.Size = new Size(33, 33);
+            pictureBoxNotf.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxNotf.TabIndex = 2;
+            pictureBoxNotf.TabStop = false;
+            pictureBoxNotf.Click += pictureBox4_Click;
             // 
-            // pictureBox3
+            // pictureBoxProfile
             // 
-            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(896, 0);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(33, 33);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 2;
-            pictureBox3.TabStop = false;
-            pictureBox3.Click += pictureBox3_Click;
+            pictureBoxProfile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBoxProfile.Image = Properties.Resources.profile_beyaz;
+            pictureBoxProfile.Location = new Point(896, 0);
+            pictureBoxProfile.Name = "pictureBoxProfile";
+            pictureBoxProfile.Size = new Size(33, 33);
+            pictureBoxProfile.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxProfile.TabIndex = 2;
+            pictureBoxProfile.TabStop = false;
+            pictureBoxProfile.Click += pictureBox3_Click;
             // 
             // button8
             // 
             button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button8.BackColor = Color.FromArgb(192, 0, 0);
+            button8.FlatAppearance.BorderSize = 0;
             button8.FlatStyle = FlatStyle.Flat;
             button8.Font = new Font("Marlett", 8.830189F);
-            button8.ForeColor = Color.White;
             button8.Location = new Point(1013, 0);
             button8.Name = "button8";
             button8.Size = new Size(33, 33);
@@ -174,7 +173,7 @@
             // prefPictureBox
             // 
             prefPictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            prefPictureBox.Image = (Image)resources.GetObject("prefPictureBox.Image");
+            prefPictureBox.Image = Properties.Resources.kayan_liste_beyaz_assa;
             prefPictureBox.InitialImage = (Image)resources.GetObject("prefPictureBox.InitialImage");
             prefPictureBox.Location = new Point(818, 0);
             prefPictureBox.Name = "prefPictureBox";
@@ -187,10 +186,9 @@
             // button10
             // 
             button10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button10.BackColor = Color.FromArgb(224, 224, 224);
+            button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Marlett", 8.830189F);
-            button10.ForeColor = Color.Black;
             button10.Location = new Point(935, 0);
             button10.Name = "button10";
             button10.Size = new Size(33, 33);
@@ -203,10 +201,9 @@
             // btnBuyut
             // 
             btnBuyut.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnBuyut.BackColor = Color.FromArgb(224, 224, 224);
+            btnBuyut.FlatAppearance.BorderSize = 0;
             btnBuyut.FlatStyle = FlatStyle.Flat;
             btnBuyut.Font = new Font("Marlett", 8.830189F);
-            btnBuyut.ForeColor = Color.Black;
             btnBuyut.Location = new Point(974, 0);
             btnBuyut.Name = "btnBuyut";
             btnBuyut.Size = new Size(33, 33);
@@ -231,7 +228,6 @@
             // 
             yanMenuPanel.AutoSize = true;
             yanMenuPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            yanMenuPanel.BackColor = Color.FromArgb(23, 24, 29);
             yanMenuPanel.Controls.Add(panelKontrol);
             yanMenuPanel.Controls.Add(kayitMenuPanel);
             yanMenuPanel.Controls.Add(panelSatisF);
@@ -262,8 +258,6 @@
             // 
             // buttonSolKontrol
             // 
-            buttonSolKontrol.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSolKontrol.ForeColor = Color.AliceBlue;
             buttonSolKontrol.Image = (Image)resources.GetObject("buttonSolKontrol.Image");
             buttonSolKontrol.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolKontrol.Location = new Point(-9, -6);
@@ -278,7 +272,6 @@
             // 
             // kayitMenuPanel
             // 
-            kayitMenuPanel.BackColor = Color.FromArgb(36, 36, 42);
             kayitMenuPanel.Controls.Add(panelMenuKayit);
             kayitMenuPanel.Controls.Add(panelUrunK);
             kayitMenuPanel.Controls.Add(panelKategoriK);
@@ -302,8 +295,6 @@
             // 
             // buttonSolMenuKayit
             // 
-            buttonSolMenuKayit.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSolMenuKayit.ForeColor = Color.AliceBlue;
             buttonSolMenuKayit.Image = (Image)resources.GetObject("buttonSolMenuKayit.Image");
             buttonSolMenuKayit.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolMenuKayit.Location = new Point(-9, -6);
@@ -328,8 +319,6 @@
             // 
             // buttonSolUrunK
             // 
-            buttonSolUrunK.BackColor = Color.FromArgb(32, 32, 36);
-            buttonSolUrunK.ForeColor = Color.AliceBlue;
             buttonSolUrunK.Image = (Image)resources.GetObject("buttonSolUrunK.Image");
             buttonSolUrunK.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolUrunK.Location = new Point(-6, -6);
@@ -353,8 +342,6 @@
             // 
             // buttonSolKategoriK
             // 
-            buttonSolKategoriK.BackColor = Color.FromArgb(32, 32, 36);
-            buttonSolKategoriK.ForeColor = Color.AliceBlue;
             buttonSolKategoriK.Image = (Image)resources.GetObject("buttonSolKategoriK.Image");
             buttonSolKategoriK.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolKategoriK.Location = new Point(-6, -6);
@@ -378,8 +365,6 @@
             // 
             // buttonSolMusteriK
             // 
-            buttonSolMusteriK.BackColor = Color.FromArgb(32, 32, 36);
-            buttonSolMusteriK.ForeColor = Color.AliceBlue;
             buttonSolMusteriK.Image = (Image)resources.GetObject("buttonSolMusteriK.Image");
             buttonSolMusteriK.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolMusteriK.Location = new Point(-6, -6);
@@ -403,8 +388,6 @@
             // 
             // buttonSolTedarikciK
             // 
-            buttonSolTedarikciK.BackColor = Color.FromArgb(32, 32, 36);
-            buttonSolTedarikciK.ForeColor = Color.AliceBlue;
             buttonSolTedarikciK.Image = (Image)resources.GetObject("buttonSolTedarikciK.Image");
             buttonSolTedarikciK.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolTedarikciK.Location = new Point(-6, -6);
@@ -427,8 +410,6 @@
             // 
             // buttonSatisF
             // 
-            buttonSatisF.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSatisF.ForeColor = Color.AliceBlue;
             buttonSatisF.Image = (Image)resources.GetObject("buttonSatisF.Image");
             buttonSatisF.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSatisF.Location = new Point(-9, -6);
@@ -451,8 +432,6 @@
             // 
             // buttonSolRapor
             // 
-            buttonSolRapor.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSolRapor.ForeColor = Color.AliceBlue;
             buttonSolRapor.Image = (Image)resources.GetObject("buttonSolRapor.Image");
             buttonSolRapor.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolRapor.Location = new Point(-9, -6);
@@ -475,8 +454,6 @@
             // 
             // buttonSolSistemAyar
             // 
-            buttonSolSistemAyar.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSolSistemAyar.ForeColor = Color.AliceBlue;
             buttonSolSistemAyar.Image = (Image)resources.GetObject("buttonSolSistemAyar.Image");
             buttonSolSistemAyar.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolSistemAyar.Location = new Point(-9, -6);
@@ -499,8 +476,6 @@
             // 
             // buttonSolDenetimKayit
             // 
-            buttonSolDenetimKayit.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSolDenetimKayit.ForeColor = Color.AliceBlue;
             buttonSolDenetimKayit.Image = (Image)resources.GetObject("buttonSolDenetimKayit.Image");
             buttonSolDenetimKayit.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolDenetimKayit.Location = new Point(-9, -6);
@@ -523,8 +498,6 @@
             // 
             // buttonSolKullaniciAyar
             // 
-            buttonSolKullaniciAyar.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSolKullaniciAyar.ForeColor = Color.AliceBlue;
             buttonSolKullaniciAyar.Image = (Image)resources.GetObject("buttonSolKullaniciAyar.Image");
             buttonSolKullaniciAyar.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolKullaniciAyar.Location = new Point(-9, -6);
@@ -547,8 +520,6 @@
             // 
             // buttonSolStokG
             // 
-            buttonSolStokG.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSolStokG.ForeColor = Color.AliceBlue;
             buttonSolStokG.Image = (Image)resources.GetObject("buttonSolStokG.Image");
             buttonSolStokG.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolStokG.Location = new Point(-9, -6);
@@ -571,8 +542,6 @@
             // 
             // buttonSolStokCıkış
             // 
-            buttonSolStokCıkış.BackColor = Color.FromArgb(23, 24, 29);
-            buttonSolStokCıkış.ForeColor = Color.AliceBlue;
             buttonSolStokCıkış.Image = (Image)resources.GetObject("buttonSolStokCıkış.Image");
             buttonSolStokCıkış.ImageAlign = ContentAlignment.MiddleLeft;
             buttonSolStokCıkış.Location = new Point(-9, -6);
@@ -595,8 +564,6 @@
             // 
             // buttonStokList
             // 
-            buttonStokList.BackColor = Color.FromArgb(23, 24, 29);
-            buttonStokList.ForeColor = Color.AliceBlue;
             buttonStokList.Image = (Image)resources.GetObject("buttonStokList.Image");
             buttonStokList.ImageAlign = ContentAlignment.MiddleLeft;
             buttonStokList.Location = new Point(-9, -6);
@@ -619,8 +586,6 @@
             // 
             // buttonRaporDEpo
             // 
-            buttonRaporDEpo.BackColor = Color.FromArgb(23, 24, 29);
-            buttonRaporDEpo.ForeColor = Color.AliceBlue;
             buttonRaporDEpo.Image = (Image)resources.GetObject("buttonRaporDEpo.Image");
             buttonRaporDEpo.ImageAlign = ContentAlignment.MiddleLeft;
             buttonRaporDEpo.Location = new Point(-9, -6);
@@ -643,8 +608,6 @@
             // 
             // buttonChatBot
             // 
-            buttonChatBot.BackColor = Color.FromArgb(23, 24, 29);
-            buttonChatBot.ForeColor = Color.AliceBlue;
             buttonChatBot.Image = (Image)resources.GetObject("buttonChatBot.Image");
             buttonChatBot.ImageAlign = ContentAlignment.MiddleLeft;
             buttonChatBot.Location = new Point(-9, -6);
@@ -667,8 +630,6 @@
             // 
             // buttonDestek
             // 
-            buttonDestek.BackColor = Color.FromArgb(23, 24, 29);
-            buttonDestek.ForeColor = Color.AliceBlue;
             buttonDestek.Image = (Image)resources.GetObject("buttonDestek.Image");
             buttonDestek.ImageAlign = ContentAlignment.MiddleLeft;
             buttonDestek.Location = new Point(-9, -6);
@@ -698,6 +659,7 @@
             AnaHPanel.Controls.Add(panel1);
             AnaHPanel.Dock = DockStyle.Fill;
             AnaHPanel.Location = new Point(4, 2);
+            AnaHPanel.Margin = new Padding(0);
             AnaHPanel.Name = "AnaHPanel";
             AnaHPanel.Size = new Size(1046, 424);
             AnaHPanel.TabIndex = 2;
@@ -713,9 +675,9 @@
             // 
             // SolHPanel
             // 
-            SolHPanel.BackColor = Color.FromArgb(23, 24, 29);
             SolHPanel.Controls.Add(yanMenuPanel);
             SolHPanel.Dock = DockStyle.Left;
+            SolHPanel.ForeColor = Color.White;
             SolHPanel.Location = new Point(0, 33);
             SolHPanel.Margin = new Padding(0);
             SolHPanel.Name = "SolHPanel";
@@ -726,6 +688,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1054, 430);
             ControlBox = false;
             Controls.Add(AnaHPanel);
@@ -737,8 +700,8 @@
             Resize += AnaForm_Resize;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxNotf).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
             ((System.ComponentModel.ISupportInitialize)prefPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             yanMenuPanel.ResumeLayout(false);
@@ -856,8 +819,8 @@
         private Button btnBuyut;
         private PictureBox prefPictureBox;
         private Panel AnaHPanel;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox4;
+        private PictureBox pictureBoxProfile;
+        private PictureBox pictureBoxNotf;
         private ToolStripDropDown popup;
         private ToolStripDropDown popupHesap;
         private Label labelBaslik;

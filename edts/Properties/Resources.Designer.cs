@@ -233,6 +233,16 @@ namespace edts.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap profile_siyah {
+            get {
+                object obj = ResourceManager.GetObject("profile_siyah", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap supply_chain {
             get {
                 object obj = ResourceManager.GetObject("supply-chain", resourceCulture);

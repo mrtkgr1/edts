@@ -206,6 +206,11 @@ namespace edts {
             }
 
             AyarYonetimi.AyarlariKaydet(AktifKullanici.ID);
+            AnlikOturumGuncelleme();
+        }
+
+        private void AnlikOturumGuncelleme() {
+            AnaForm.reff?.TemaGuncelle();
         }
     }
 

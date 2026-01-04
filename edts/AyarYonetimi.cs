@@ -24,7 +24,7 @@ namespace edts {
         };
 
         public static Dictionary<string, (string, string)[]> SecenekListesi = new() {
-            ["tema"] = [("Varsayılan", "def"),("Siyah","siyah"),("Beyaz","beyaz")],
+            ["tema"] = [("Varsayılan", "def"),("Siyah","siyah"),("Beyaz","beyaz"),("Mavi","mavi"),("Mavi-Gri","mavi_gri")],
             ["bildirim_sesi"] = [("Ses kapalı","off"), ("Varsayılan", "def")]
         };
 
@@ -72,6 +72,7 @@ namespace edts {
             }
         }
 
+        //kayııt
         public static void AyarlariKaydet(int userId) {
             using (SqlConnection connection = new SqlConnection(baglantiDizesi)) {
                 connection.Open();
@@ -87,6 +88,8 @@ namespace edts {
             }
         }
 
+
+        //Getter
         public static string AyarGetir(string ayarId) {
             KullaniciAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
             return ayar != null ? ayar.Deger : string.Empty;
@@ -102,6 +105,36 @@ namespace edts {
             return ayar != null ? ayar.BoolAl() : false;
         }
 
+        //getter kontrol
+        public static bool AyarGetir(string ayarId, out string? cvp) {
+            KullaniciAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
+            if (ayar == null) {
+                cvp = null;
+                return false;
+            }
+            cvp = ayar.Deger;
+            return true;
+        }
+        public static bool AyarGetir(string ayarId, out int? cvp) {
+            KullaniciAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
+            if (ayar == null) {
+                cvp = null;
+                return false;
+            }
+            cvp = ayar.IntAl();
+            return true;
+        }
+        public static bool AyarGetir(string ayarId, out bool? cvp) {
+            KullaniciAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
+            if (ayar == null) {
+                cvp = null;
+                return false;
+            }
+            cvp = ayar.BoolAl();
+            return true;
+        }
+
+        //---
         public static void AyarDegistir(string ayarId, string yeniDeger) {
             KullaniciAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
             if (ayar != null) {
