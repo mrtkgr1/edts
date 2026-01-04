@@ -58,7 +58,7 @@ namespace edts
 
         private void frmKullaniciYonetimi_Load(object sender, EventArgs e) {
             try {
-                RolleriDoldur();
+               // RolleriDoldur();
                 KullanicilariListele();
             } catch (Exception ex) {
                 // BU MESAJ KUTUSUNU GÖRMENİZ GEREKİYOR!
@@ -68,7 +68,7 @@ namespace edts
                                 MessageBoxIcon.Error);
             }
         }
-        private void RolleriDoldur() {
+       /* private void RolleriDoldur() {
             var rolListesi = Enum.GetValues(typeof(Rol))
                 .Cast<Rol>()
                 .Select(r => new {
@@ -290,6 +290,6 @@ namespace edts
                     MessageBox.Show("Silme işlemi sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
+        }*/
     }
 }

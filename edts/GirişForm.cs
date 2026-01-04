@@ -77,8 +77,7 @@ namespace edts
                     using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
                     {
                         komut.Parameters.AddWithValue("@pKullaniciAdi", kullaniciAdi);
-                        // 🟢 KRİTİK DÜZELTME: SQL'e HASH'lenmiş değeri gönderiyoruz.
-                        komut.Parameters.AddWithValue("@pSifreHash", girisHash); // <-- Düzeltildi!
+                        komut.Parameters.AddWithValue("@pSifreHash", girisHash);
 
                         baglanti.Open();
                         SqlDataReader okuyucu = komut.ExecuteReader();
