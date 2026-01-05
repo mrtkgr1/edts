@@ -90,7 +90,7 @@
             flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel1.Location = new Point(0, 328);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(752, 34);
+            flowLayoutPanel1.Size = new Size(379, 34);
             flowLayoutPanel1.TabIndex = 4;
             // 
             // panelKullaniciAyar
@@ -98,10 +98,10 @@
             panelKullaniciAyar.AutoSize = true;
             panelKullaniciAyar.BorderStyle = BorderStyle.FixedSingle;
             panelKullaniciAyar.Controls.Add(buttonKullaniciAyar);
-            panelKullaniciAyar.Location = new Point(640, 0);
+            panelKullaniciAyar.Location = new Point(262, 0);
             panelKullaniciAyar.Margin = new Padding(0, 0, 3, 2);
             panelKullaniciAyar.Name = "panelKullaniciAyar";
-            panelKullaniciAyar.Size = new Size(109, 31);
+            panelKullaniciAyar.Size = new Size(114, 31);
             panelKullaniciAyar.TabIndex = 5;
             panelKullaniciAyar.Visible = false;
             // 
@@ -112,10 +112,10 @@
             buttonKullaniciAyar.Location = new Point(-1, 0);
             buttonKullaniciAyar.Margin = new Padding(0);
             buttonKullaniciAyar.Name = "buttonKullaniciAyar";
-            buttonKullaniciAyar.Size = new Size(108, 29);
+            buttonKullaniciAyar.Size = new Size(113, 29);
             buttonKullaniciAyar.TabIndex = 0;
             buttonKullaniciAyar.TabStop = false;
-            buttonKullaniciAyar.Text = "Kullanıcı Ayaları";
+            buttonKullaniciAyar.Text = "Kullanıcı Ayarları";
             buttonKullaniciAyar.UseVisualStyleBackColor = false;
             buttonKullaniciAyar.Click += buttonKullaniciAyar_Click;
             // 
@@ -124,7 +124,7 @@
             panelAdminAyar.AutoSize = true;
             panelAdminAyar.BorderStyle = BorderStyle.FixedSingle;
             panelAdminAyar.Controls.Add(button1);
-            panelAdminAyar.Location = new Point(532, 0);
+            panelAdminAyar.Location = new Point(154, 0);
             panelAdminAyar.Margin = new Padding(0, 0, 3, 2);
             panelAdminAyar.Name = "panelAdminAyar";
             panelAdminAyar.Size = new Size(105, 32);
@@ -149,7 +149,7 @@
             panelBildirim.AutoSize = true;
             panelBildirim.BorderStyle = BorderStyle.FixedSingle;
             panelBildirim.Controls.Add(button2);
-            panelBildirim.Location = new Point(418, 0);
+            panelBildirim.Location = new Point(40, 0);
             panelBildirim.Margin = new Padding(0, 0, 3, 2);
             panelBildirim.Name = "panelBildirim";
             panelBildirim.Size = new Size(111, 31);
@@ -173,7 +173,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(752, 362);
+            ClientSize = new Size(379, 362);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(lblYetki);
             Controls.Add(lblKullanici);
@@ -182,6 +182,7 @@
             MaximizeBox = false;
             Name = "KullaniciBilgi";
             ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Profil";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);

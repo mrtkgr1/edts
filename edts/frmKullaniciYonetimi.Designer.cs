@@ -32,16 +32,22 @@
             dgvKullaniciListesi = new DataGridView();
             tableLayoutPanel1 = new TableLayoutPanel();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            resizableButton1 = new ResizableButton();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            textBox1 = new TextBox();
+            resizableButton4 = new ResizableButton();
+            resizableButtonExcel = new ResizableButton();
+            panel1 = new Panel();
+            resizableButtonFiltreSil = new ResizableButton();
+            resizableButtonAra = new ResizableButton();
+            textBoxArama = new TextBox();
+            comboBoxRol = new ComboBox();
+            comboBoxAktif = new ComboBox();
+            comboBoxSirala = new ComboBox();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvKullaniciListesi).BeginInit();
             tableLayoutPanel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -66,6 +72,9 @@
             dgvKullaniciListesi.RowHeadersWidth = 51;
             dgvKullaniciListesi.Size = new Size(858, 511);
             dgvKullaniciListesi.TabIndex = 0;
+            dgvKullaniciListesi.CellContentClick += dgvKullaniciListesi_CellContentClick;
+            dgvKullaniciListesi.CellDoubleClick += dgvKullaniciListesi_CellDouble;
+            dgvKullaniciListesi.CellFormatting += dgvKullaniciListesi_CellFormatting;
             // 
             // tableLayoutPanel1
             // 
@@ -79,11 +88,13 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(858, 46);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.Controls.Add(resizableButton1);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Margin = new Padding(0);
@@ -91,13 +102,33 @@
             flowLayoutPanel1.Size = new Size(140, 46);
             flowLayoutPanel1.TabIndex = 0;
             // 
+            // resizableButton1
+            // 
+            resizableButton1.Image = (Image)resources.GetObject("resizableButton1.Image");
+            resizableButton1.ImageAlign = ContentAlignment.MiddleLeft;
+            resizableButton1.KaynakResim = (Image)resources.GetObject("resizableButton1.KaynakResim");
+            resizableButton1.Location = new Point(3, 3);
+            resizableButton1.Name = "resizableButton1";
+            resizableButton1.ResimBoyutu = 32;
+            resizableButton1.Size = new Size(134, 38);
+            resizableButton1.TabIndex = 0;
+            resizableButton1.Text = "     Kullanıcı ekle";
+            resizableButton1.UseVisualStyleBackColor = true;
+            resizableButton1.Click += resizableButton1_Click;
+            // 
             // flowLayoutPanel2
             // 
             flowLayoutPanel2.AutoSize = true;
             flowLayoutPanel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            flowLayoutPanel2.Controls.Add(pictureBox2);
-            flowLayoutPanel2.Controls.Add(pictureBox3);
-            flowLayoutPanel2.Controls.Add(textBox1);
+            flowLayoutPanel2.Controls.Add(resizableButton4);
+            flowLayoutPanel2.Controls.Add(resizableButtonExcel);
+            flowLayoutPanel2.Controls.Add(panel1);
+            flowLayoutPanel2.Controls.Add(resizableButtonFiltreSil);
+            flowLayoutPanel2.Controls.Add(resizableButtonAra);
+            flowLayoutPanel2.Controls.Add(textBoxArama);
+            flowLayoutPanel2.Controls.Add(comboBoxRol);
+            flowLayoutPanel2.Controls.Add(comboBoxAktif);
+            flowLayoutPanel2.Controls.Add(comboBoxSirala);
             flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel2.Location = new Point(140, 0);
@@ -106,34 +137,111 @@
             flowLayoutPanel2.Size = new Size(718, 46);
             flowLayoutPanel2.TabIndex = 1;
             // 
-            // pictureBox2
+            // resizableButton4
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(677, 4);
-            pictureBox2.Margin = new Padding(4);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(37, 37);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 2;
-            pictureBox2.TabStop = false;
+            resizableButton4.Image = (Image)resources.GetObject("resizableButton4.Image");
+            resizableButton4.KaynakResim = (Image)resources.GetObject("resizableButton4.KaynakResim");
+            resizableButton4.Location = new Point(677, 3);
+            resizableButton4.Name = "resizableButton4";
+            resizableButton4.ResimBoyutu = 32;
+            resizableButton4.Size = new Size(38, 38);
+            resizableButton4.TabIndex = 9;
+            resizableButton4.TabStop = false;
+            resizableButton4.UseVisualStyleBackColor = true;
+            resizableButton4.Click += resizableButton4_Click;
             // 
-            // pictureBox3
+            // resizableButtonExcel
             // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(632, 4);
-            pictureBox3.Margin = new Padding(4);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(37, 37);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 3;
-            pictureBox3.TabStop = false;
+            resizableButtonExcel.Image = (Image)resources.GetObject("resizableButtonExcel.Image");
+            resizableButtonExcel.KaynakResim = (Image)resources.GetObject("resizableButtonExcel.KaynakResim");
+            resizableButtonExcel.Location = new Point(633, 3);
+            resizableButtonExcel.Name = "resizableButtonExcel";
+            resizableButtonExcel.ResimBoyutu = 32;
+            resizableButtonExcel.Size = new Size(38, 38);
+            resizableButtonExcel.TabIndex = 5;
+            resizableButtonExcel.TabStop = false;
+            resizableButtonExcel.UseVisualStyleBackColor = true;
+            resizableButtonExcel.Click += resizableButtonyenile_Click;
             // 
-            // textBox1
+            // panel1
             // 
-            textBox1.Location = new Point(515, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(110, 25);
-            textBox1.TabIndex = 1;
+            panel1.BackColor = SystemColors.ActiveBorder;
+            panel1.Location = new Point(625, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(2, 37);
+            panel1.TabIndex = 6;
+            // 
+            // resizableButtonFiltreSil
+            // 
+            resizableButtonFiltreSil.Enabled = false;
+            resizableButtonFiltreSil.Image = (Image)resources.GetObject("resizableButtonFiltreSil.Image");
+            resizableButtonFiltreSil.KaynakResim = (Image)resources.GetObject("resizableButtonFiltreSil.KaynakResim");
+            resizableButtonFiltreSil.Location = new Point(581, 3);
+            resizableButtonFiltreSil.Name = "resizableButtonFiltreSil";
+            resizableButtonFiltreSil.ResimBoyutu = 32;
+            resizableButtonFiltreSil.Size = new Size(38, 38);
+            resizableButtonFiltreSil.TabIndex = 10;
+            resizableButtonFiltreSil.TabStop = false;
+            resizableButtonFiltreSil.UseVisualStyleBackColor = true;
+            resizableButtonFiltreSil.Click += resizableButtonFiltreSil_Click;
+            // 
+            // resizableButtonAra
+            // 
+            resizableButtonAra.Image = (Image)resources.GetObject("resizableButtonAra.Image");
+            resizableButtonAra.KaynakResim = (Image)resources.GetObject("resizableButtonAra.KaynakResim");
+            resizableButtonAra.Location = new Point(537, 3);
+            resizableButtonAra.Name = "resizableButtonAra";
+            resizableButtonAra.ResimBoyutu = 32;
+            resizableButtonAra.Size = new Size(38, 38);
+            resizableButtonAra.TabIndex = 4;
+            resizableButtonAra.UseVisualStyleBackColor = true;
+            resizableButtonAra.Click += resizableButtonAra_Click;
+            // 
+            // textBoxArama
+            // 
+            textBoxArama.Font = new Font("Segoe UI", 9F);
+            textBoxArama.Location = new Point(394, 10);
+            textBoxArama.Margin = new Padding(3, 10, 3, 3);
+            textBoxArama.MaxLength = 50;
+            textBoxArama.Name = "textBoxArama";
+            textBoxArama.Size = new Size(137, 25);
+            textBoxArama.TabIndex = 1;
+            textBoxArama.TextChanged += textBoxArama_TextChanged;
+            // 
+            // comboBoxRol
+            // 
+            comboBoxRol.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxRol.FormattingEnabled = true;
+            comboBoxRol.Location = new Point(288, 10);
+            comboBoxRol.Margin = new Padding(3, 10, 3, 3);
+            comboBoxRol.Name = "comboBoxRol";
+            comboBoxRol.Size = new Size(100, 25);
+            comboBoxRol.TabIndex = 7;
+            comboBoxRol.SelectedIndexChanged += comboBoxRol_SelectedIndexChanged;
+            // 
+            // comboBoxAktif
+            // 
+            comboBoxAktif.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxAktif.FormattingEnabled = true;
+            comboBoxAktif.Items.AddRange(new object[] { "Aktif/Pasif", "Aktif", "Pasif" });
+            comboBoxAktif.Location = new Point(182, 10);
+            comboBoxAktif.Margin = new Padding(3, 10, 3, 3);
+            comboBoxAktif.Name = "comboBoxAktif";
+            comboBoxAktif.Size = new Size(100, 25);
+            comboBoxAktif.TabIndex = 8;
+            comboBoxAktif.SelectedIndexChanged += comboBoxAktif_SelectedIndexChanged;
+            // 
+            // comboBoxSirala
+            // 
+            comboBoxSirala.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSirala.FormattingEnabled = true;
+            comboBoxSirala.Items.AddRange(new object[] { "Eskiden Yeniye", "Yeniden Eskiye", "Kullanici Adı (A→Z)", "Kullanici Adı (Z→A)", "İsim (A→Z)", "İsim (Z→A)", "Rol" });
+            comboBoxSirala.Location = new Point(47, 10);
+            comboBoxSirala.Margin = new Padding(3, 10, 3, 3);
+            comboBoxSirala.Name = "comboBoxSirala";
+            comboBoxSirala.Size = new Size(129, 25);
+            comboBoxSirala.TabIndex = 11;
+            comboBoxSirala.SelectedIndexChanged += comboBoxSirala_SelectedIndexChanged;
             // 
             // frmKullaniciYonetimi
             // 
@@ -148,10 +256,9 @@
             ((System.ComponentModel.ISupportInitialize)dgvKullaniciListesi).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel2.ResumeLayout(false);
             flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -161,9 +268,16 @@
         private TableLayoutPanel tableLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel2;
-        private TextBox textBox1;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
+        private TextBox textBoxArama;
+        private ResizableButton resizableButton1;
+        private ResizableButton resizableButtonExcel;
+        private Panel panel1;
+        private ResizableButton resizableButtonAra;
+        private ComboBox comboBoxRol;
+        private ComboBox comboBoxAktif;
+        private ResizableButton resizableButton4;
+        private ResizableButton resizableButtonFiltreSil;
+        private ComboBox comboBoxSirala;
     }
 
 }
