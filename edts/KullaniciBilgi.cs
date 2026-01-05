@@ -25,6 +25,13 @@ namespace edts {
             butonOlustur();
         }
 
+        public KullaniciBilgi(string userID) {
+            InitializeComponent();
+            kullaniciStringKurulum(userID);
+            kullaniciBilgileriDoldur(kullaniciID);
+            butonOlustur();
+        }
+
         private void kullaniciBilgileriDoldur(int id) {
             if (id == AktifKullanici.ID) { 
                 lblAd.Text = AktifKullanici.TamAd;
@@ -48,6 +55,26 @@ namespace edts {
                         MessageBox.Show("Profil penceresi gösterilemiyor. Hata:\n"+ex.Message);
                     }
                 }
+            }
+        }
+
+        private void kullaniciStringKurulum(string id) {
+
+            string sorgu = "SELECT KullaniciID FROM tblKullanicilar WHERE KullaniciAdi=@id";
+            using (SqlConnection conn = new SqlConnection(baglantiDizesi)) {
+                try {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sorgu, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read()) {
+                        kullaniciID = (int)reader["KullaniciID"];
+                    }
+                } catch (Exception ex) {
+                    MessageBox.Show("Profil penceresi gösterilemiyor. Hata:\n" + ex.Message);
+                }
+                
             }
         }
 
