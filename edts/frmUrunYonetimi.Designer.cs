@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUrunYonetimi));
             panel1 = new Panel();
             button1 = new Button();
+            label1 = new Label();
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
             btnSilSutun = new DataGridViewButtonColumn();
@@ -43,6 +45,7 @@
             // 
             panel1.BackColor = SystemColors.ControlLightLight;
             panel1.Controls.Add(button1);
+            panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -51,15 +54,26 @@
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.ActiveBorder;
+            button1.BackColor = Color.Transparent;
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button1.Location = new Point(25, 18);
+            button1.Location = new Point(12, 54);
             button1.Name = "button1";
-            button1.Size = new Size(157, 65);
+            button1.Size = new Size(143, 37);
             button1.TabIndex = 3;
-            button1.Text = "Ürün Tanımla";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(12, 23);
+            label1.Name = "label1";
+            label1.Size = new Size(143, 28);
+            label1.TabIndex = 4;
+            label1.Text = "Ürün Tanımla:";
             // 
             // panel2
             // 
@@ -72,6 +86,7 @@
             // 
             // dataGridView2
             // 
+            dataGridView2.AllowUserToAddRows = false;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun, btnGuncelleSutun });
             dataGridView2.Dock = DockStyle.Fill;
@@ -92,7 +107,7 @@
             btnSilSutun.HeaderText = "Sil";
             btnSilSutun.MinimumWidth = 6;
             btnSilSutun.Name = "btnSilSutun";
-            btnSilSutun.Text = "Sil";
+            btnSilSutun.Text = "🗑";
             btnSilSutun.UseColumnTextForButtonValue = true;
             btnSilSutun.Width = 125;
             // 
@@ -102,7 +117,7 @@
             btnGuncelleSutun.HeaderText = "Güncelle";
             btnGuncelleSutun.MinimumWidth = 6;
             btnGuncelleSutun.Name = "btnGuncelleSutun";
-            btnGuncelleSutun.Text = "Güncelle";
+            btnGuncelleSutun.Text = "📝";
             btnGuncelleSutun.UseColumnTextForButtonValue = true;
             btnGuncelleSutun.Width = 125;
             // 
@@ -118,6 +133,7 @@
             Text = "frmUrunYonetimi";
             Load += frmUrunYonetimi_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
@@ -129,6 +145,7 @@
         private Panel panel2;
         private DataGridView dataGridView2;
         private Button button1;
+        private Label label1;
         private DataGridViewButtonColumn btnSilSutun;
         private DataGridViewButtonColumn btnGuncelleSutun;
     }

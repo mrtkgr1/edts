@@ -353,6 +353,8 @@ namespace edts
             // Raporu getiren butonun içindeki işlemleri başlat
             btnRaporGetir.PerformClick();
         }
+      
+
     }
 
 }

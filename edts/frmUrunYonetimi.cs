@@ -244,7 +244,7 @@ namespace edts
                     DataGridViewButtonColumn btnGuncelle = new DataGridViewButtonColumn();
                     btnGuncelle.Name = "btnGuncelleSutun";
                     btnGuncelle.HeaderText = "Düzenle";
-                    btnGuncelle.Text = "Güncelle";
+                    btnGuncelle.Text = "📝";
                     btnGuncelle.UseColumnTextForButtonValue = true;
                     dataGridView2.Columns.Add(btnGuncelle);
 
@@ -252,7 +252,7 @@ namespace edts
                     DataGridViewButtonColumn btnSil = new DataGridViewButtonColumn();
                     btnSil.Name = "btnSilSutun";
                     btnSil.HeaderText = "İşlem";
-                    btnSil.Text = "Sil";
+                    btnSil.Text = "🗑";
                     btnSil.UseColumnTextForButtonValue = true;
                     dataGridView2.Columns.Add(btnSil);
 
@@ -512,18 +512,7 @@ namespace edts
 
         private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (this.DesignMode || e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
-            // --- SİL BUTONU BOYAMA ---
-            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
-            {
-                ButonCizici(e, "Sil", Color.FromArgb(255, 148, 148), Color.FromArgb(235, 110, 110));
-            }
-            // --- GÜNCELLE BUTONU BOYAMA ---
-            else if (dataGridView2.Columns[e.ColumnIndex].Name == "btnGuncelleSutun")
-            {
-                ButonCizici(e, "Güncelle", Color.FromArgb(148, 210, 255), Color.FromArgb(110, 180, 235));
-            }
+           
         }
         
 
@@ -565,6 +554,8 @@ namespace edts
                     UrunListeGuncelle();
                 }
             }
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.ReadOnly = true;
         }
         // --- SQL SİLME METODU ---
         private void UrunSil(string id)
