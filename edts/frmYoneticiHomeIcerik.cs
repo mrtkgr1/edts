@@ -21,10 +21,10 @@ namespace edts
 
         public frmYoneticiHomeIcerik()
         {
-            // BU SATIR ÇOK ÖNEMLİ: Tasarımı ve olayları yükler.
+           
             InitializeComponent();
 
-            // Olayı (Event) koda bağlıyoruz
+           
             this.Load += new EventHandler(frmYoneticiHomeIcerik_Load);
         }
 
@@ -57,9 +57,9 @@ namespace edts
                     SqlCommand komut = new SqlCommand(sqlSorgusu, baglanti);
                     object sonuc = komut.ExecuteScalar();
 
-                    // Eğer veritabanı boşsa 0 yaz, doluysa para formatında yaz
+                   
                     decimal miktar = (sonuc != null && sonuc != DBNull.Value) ? Convert.ToDecimal(sonuc) : 0;
-                    hedefLabel.Text = miktar.ToString("C2"); // Örn: 1.250,00 ₺
+                    hedefLabel.Text = miktar.ToString("C2"); 
                 }
                 catch (Exception)
                 {
@@ -75,7 +75,7 @@ namespace edts
                 try
                 {
                     bag.Open();
-                    // 3 farklı sayıyı da sırayla çekiyoruz
+                   
                     int aktif = (int)new SqlCommand("SELECT COUNT(*) FROM tblKullanicilar WHERE AktifMi=1", bag).ExecuteScalar();
                     int pasif = (int)new SqlCommand("SELECT COUNT(*) FROM tblKullanicilar WHERE AktifMi=0", bag).ExecuteScalar();
                     int toplam = aktif + pasif;
@@ -84,13 +84,13 @@ namespace edts
                     lblPasif.Text = pasif.ToString();
                     lblToplam.Text = toplam.ToString();
                 }
-                catch { /* Hata olursa 0 kalsın */ }
+                catch {  }
             }
         }
 
 
 
-        // Başına System.Windows.Forms ekleyerek "bu formdaki nesnedir" diyoruz
+       
         private void KarZararCubugunuGuncelle(System.Windows.Forms.ProgressBar pb, Label lblTutar)
         {
             using (SqlConnection bag = new SqlConnection(baglantiDizesi))
@@ -98,7 +98,7 @@ namespace edts
                 try
                 {
                     bag.Open();
-                    // sd.SatisFiyat yerine sd.BirimFiyat kullanıyoruz (Tablonuzdaki isme göre burayı güncelleyin)
+                   
                     string sorgu = @"SELECT ISNULL(SUM((sd.BirimFiyat - u.AlisFiyat) * sd.Miktar), 0) 
                              FROM tblSatisDetay sd 
                              JOIN tblUrunler u ON sd.UrunID = u.UrunID";
@@ -114,7 +114,7 @@ namespace edts
                 }
                 catch (Exception ex)
                 {
-                    // Eğer hala hata veriyorsa, buradaki mesaj gerçek sütun adını bulmamıza yardım eder
+                   
                     MessageBox.Show("Hata Detayı: " + ex.Message);
                     pb.Value = 0;
                 }
@@ -182,7 +182,7 @@ namespace edts
                 try
                 {
                     bag.Open();
-                    // SatisFiyat hata verdiği için BirimFiyat olarak güncelledik
+                   
                     string sorgu = @"SELECT TOP 3 UrunAd, (BirimFiyat - AlisFiyat) as BirimKar 
                              FROM tblUrunler 
                              WHERE BirimFiyat > AlisFiyat
@@ -205,7 +205,7 @@ namespace edts
                 catch (Exception ex)
                 {
                     lblYuksekKar.Text = "Sütun Hatası!";
-                    // Hangi sütun olduğunu kesin görmek için: MessageBox.Show(ex.Message);
+                   
                 }
             }
         }
@@ -218,27 +218,27 @@ namespace edts
 
         private void frmYoneticiHomeIcerik_Load(object sender, EventArgs e)
         {
-            // 1. Günlük Satış (Bugün)
+            
             VeriyiGetirVeYaz(lblSatisGun,
                 "SELECT SUM(ToplamTutar) FROM tblSatislar WHERE CAST(SatisTarihi AS DATE) = CAST(GETDATE() AS DATE)");
 
-            // 2. Haftalık Satış (Son 7 Gün)
+           
             VeriyiGetirVeYaz(lblSatisHafta,
                 "SELECT SUM(ToplamTutar) FROM tblSatislar WHERE SatisTarihi >= DATEADD(DAY, -7, GETDATE())");
 
-            // 3. Aylık Satış (Bu Ay)
+           
             VeriyiGetirVeYaz(lblSatisAy,
                 "SELECT SUM(ToplamTutar) FROM tblSatislar WHERE MONTH(SatisTarihi) = MONTH(GETDATE()) AND YEAR(SatisTarihi) = YEAR(GETDATE())");
 
-            // 4. Yıllık Satış (Bu Yıl)
+           
             VeriyiGetirVeYaz(lblSatisYil,
                 "SELECT SUM(ToplamTutar) FROM tblSatislar WHERE YEAR(SatisTarihi) = YEAR(GETDATE())");
 
-            // Diğer metodları da buraya eklemeyi unutma:
+           
             KullaniciSayilariniGuncelle(lblAktifUser, lblPasifUser, lblToplamUser);
-            EnCokSatanlariGetir(lblEnCok);       // En çok satılan 3 adet (Adetleriyle)
-            EnAzSatanlariGetir(lblEnAz);         // En az satılan 3 adet (Adetleriyle)
-            YuksekKarGetirenUrunuGetir(lblYuksekKar); // Birim kârı en yüksek 3 ürün
+            EnCokSatanlariGetir(lblEnCok);       
+            EnAzSatanlariGetir(lblEnAz);        
+            YuksekKarGetirenUrunuGetir(lblYuksekKar); 
             KarZararCubugunuGuncelle(pbKarZarar, lblToplamKarZararText);
 
 
@@ -246,7 +246,7 @@ namespace edts
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            // Form yüklendiğinde çalışan tüm metodları burada tekrar çağırıyoruz
+           
             frmYoneticiHomeIcerik_Load(null, null);
         }
 
@@ -254,9 +254,9 @@ namespace edts
         {
             if (timer1 != null)
             {
-                timer1.Enabled = false; // Timer'ı durdur
+                timer1.Enabled = false; 
                 timer1.Stop();
-                timer1.Dispose(); // Kaynağı tamamen serbest bırak
+                timer1.Dispose(); 
             }
         }
     }

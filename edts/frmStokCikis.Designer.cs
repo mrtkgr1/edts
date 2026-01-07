@@ -26,7 +26,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             panel1 = new Panel();
             groupBox3 = new GroupBox();
             label1 = new Label();
@@ -62,13 +63,14 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.DarkOliveGreen;
+            panel1.BackColor = Color.LightSlateGray;
             panel1.Controls.Add(groupBox3);
             panel1.Controls.Add(groupBox4);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(257, 588);
+            panel1.Size = new Size(294, 692);
             panel1.TabIndex = 2;
             // 
             // groupBox3
@@ -82,9 +84,11 @@
             groupBox3.Controls.Add(label4);
             groupBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox3.ForeColor = SystemColors.ControlLightLight;
-            groupBox3.Location = new Point(22, 306);
+            groupBox3.Location = new Point(25, 360);
+            groupBox3.Margin = new Padding(3, 4, 3, 4);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(219, 214);
+            groupBox3.Padding = new Padding(3, 4, 3, 4);
+            groupBox3.Size = new Size(250, 252);
             groupBox3.TabIndex = 3;
             groupBox3.TabStop = false;
             groupBox3.Text = "Ürün Ekleme";
@@ -92,20 +96,21 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(14, 72);
+            label1.Location = new Point(16, 85);
             label1.Name = "label1";
-            label1.Size = new Size(110, 21);
+            label1.Size = new Size(117, 23);
             label1.TabIndex = 6;
             label1.Text = "Mevcut Stok:";
             // 
             // btnListeyeEkle
             // 
-            btnListeyeEkle.BackColor = Color.DarkCyan;
+            btnListeyeEkle.BackColor = Color.LightSteelBlue;
             btnListeyeEkle.FlatAppearance.BorderSize = 0;
             btnListeyeEkle.FlatStyle = FlatStyle.Flat;
-            btnListeyeEkle.Location = new Point(94, 166);
+            btnListeyeEkle.Location = new Point(107, 195);
+            btnListeyeEkle.Margin = new Padding(3, 4, 3, 4);
             btnListeyeEkle.Name = "btnListeyeEkle";
-            btnListeyeEkle.Size = new Size(116, 31);
+            btnListeyeEkle.Size = new Size(133, 36);
             btnListeyeEkle.TabIndex = 5;
             btnListeyeEkle.Text = "Listeye Ekle";
             btnListeyeEkle.UseVisualStyleBackColor = false;
@@ -114,19 +119,20 @@
             // lblMevcutStok
             // 
             lblMevcutStok.AutoSize = true;
-            lblMevcutStok.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblMevcutStok.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblMevcutStok.ForeColor = SystemColors.ControlLightLight;
-            lblMevcutStok.Location = new Point(181, 66);
+            lblMevcutStok.Location = new Point(147, 86);
             lblMevcutStok.Name = "lblMevcutStok";
-            lblMevcutStok.Size = new Size(0, 21);
+            lblMevcutStok.Size = new Size(0, 23);
             lblMevcutStok.TabIndex = 4;
             lblMevcutStok.Click += lblMevcutStok_Click;
             // 
             // txtAdet
             // 
-            txtAdet.Location = new Point(78, 118);
+            txtAdet.Location = new Point(89, 139);
+            txtAdet.Margin = new Padding(3, 4, 3, 4);
             txtAdet.Name = "txtAdet";
-            txtAdet.Size = new Size(133, 27);
+            txtAdet.Size = new Size(151, 30);
             txtAdet.TabIndex = 3;
             // 
             // cmbUrun
@@ -134,9 +140,10 @@
             cmbUrun.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbUrun.AutoCompleteSource = AutoCompleteSource.ListItems;
             cmbUrun.FormattingEnabled = true;
-            cmbUrun.Location = new Point(78, 43);
+            cmbUrun.Location = new Point(89, 41);
+            cmbUrun.Margin = new Padding(3, 4, 3, 4);
             cmbUrun.Name = "cmbUrun";
-            cmbUrun.Size = new Size(133, 28);
+            cmbUrun.Size = new Size(151, 31);
             cmbUrun.TabIndex = 2;
             cmbUrun.SelectedIndexChanged += cmbUrun_SelectedIndexChanged;
             // 
@@ -144,9 +151,9 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ControlLightLight;
-            label3.Location = new Point(19, 121);
+            label3.Location = new Point(22, 142);
             label3.Name = "label3";
-            label3.Size = new Size(50, 21);
+            label3.Size = new Size(54, 23);
             label3.TabIndex = 1;
             label3.Text = "Adet:";
             // 
@@ -154,9 +161,9 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ControlLightLight;
-            label4.Location = new Point(19, 42);
+            label4.Location = new Point(22, 49);
             label4.Name = "label4";
-            label4.Size = new Size(52, 21);
+            label4.Size = new Size(54, 23);
             label4.TabIndex = 0;
             label4.Text = "Ürün:";
             // 
@@ -170,9 +177,11 @@
             groupBox4.Controls.Add(label5);
             groupBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox4.ForeColor = SystemColors.ControlLightLight;
-            groupBox4.Location = new Point(22, 22);
+            groupBox4.Location = new Point(25, 26);
+            groupBox4.Margin = new Padding(3, 4, 3, 4);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(219, 264);
+            groupBox4.Padding = new Padding(3, 4, 3, 4);
+            groupBox4.Size = new Size(250, 311);
             groupBox4.TabIndex = 2;
             groupBox4.TabStop = false;
             groupBox4.Text = "Sevkiyat Bilgileri";
@@ -180,50 +189,53 @@
             // cmbCikisNedeni
             // 
             cmbCikisNedeni.FormattingEnabled = true;
-            cmbCikisNedeni.Location = new Point(32, 213);
+            cmbCikisNedeni.Location = new Point(37, 251);
+            cmbCikisNedeni.Margin = new Padding(3, 4, 3, 4);
             cmbCikisNedeni.Name = "cmbCikisNedeni";
-            cmbCikisNedeni.Size = new Size(133, 28);
+            cmbCikisNedeni.Size = new Size(151, 31);
             cmbCikisNedeni.TabIndex = 5;
             // 
             // cmbMusteri
             // 
             cmbMusteri.FormattingEnabled = true;
-            cmbMusteri.Location = new Point(32, 71);
+            cmbMusteri.Location = new Point(37, 84);
+            cmbMusteri.Margin = new Padding(3, 4, 3, 4);
             cmbMusteri.Name = "cmbMusteri";
-            cmbMusteri.Size = new Size(133, 28);
+            cmbMusteri.Size = new Size(151, 31);
             cmbMusteri.TabIndex = 4;
             // 
             // txtSiparisNo
             // 
-            txtSiparisNo.Location = new Point(32, 137);
+            txtSiparisNo.Location = new Point(37, 161);
+            txtSiparisNo.Margin = new Padding(3, 4, 3, 4);
             txtSiparisNo.Name = "txtSiparisNo";
-            txtSiparisNo.Size = new Size(133, 27);
+            txtSiparisNo.Size = new Size(151, 30);
             txtSiparisNo.TabIndex = 3;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(32, 191);
+            label7.Location = new Point(37, 225);
             label7.Name = "label7";
-            label7.Size = new Size(106, 21);
+            label7.Size = new Size(110, 23);
             label7.TabIndex = 2;
             label7.Text = "Çıkış Nedeni";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(32, 115);
+            label6.Location = new Point(37, 135);
             label6.Name = "label6";
-            label6.Size = new Size(92, 21);
+            label6.Size = new Size(97, 23);
             label6.TabIndex = 1;
             label6.Text = "Sipariş No:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(32, 48);
+            label5.Location = new Point(37, 56);
             label5.Name = "label5";
-            label5.Size = new Size(72, 21);
+            label5.Size = new Size(76, 23);
             label5.TabIndex = 0;
             label5.Text = "Müşteri:";
             // 
@@ -231,9 +243,10 @@
             // 
             panel2.Controls.Add(dgvSevkiyatListesi);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(3, 3);
+            panel2.Location = new Point(3, 4);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(689, 511);
+            panel2.Size = new Size(788, 600);
             panel2.TabIndex = 3;
             // 
             // dgvSevkiyatListesi
@@ -243,10 +256,14 @@
             dgvSevkiyatListesi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSevkiyatListesi.Dock = DockStyle.Fill;
             dgvSevkiyatListesi.Location = new Point(0, 0);
+            dgvSevkiyatListesi.Margin = new Padding(3, 4, 3, 4);
             dgvSevkiyatListesi.Name = "dgvSevkiyatListesi";
+            dgvSevkiyatListesi.ReadOnly = true;
             dgvSevkiyatListesi.RowHeadersWidth = 51;
-            dgvSevkiyatListesi.Size = new Size(689, 511);
+            dgvSevkiyatListesi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSevkiyatListesi.Size = new Size(788, 600);
             dgvSevkiyatListesi.TabIndex = 1;
+            dgvSevkiyatListesi.CellContentClick += dgvSevkiyatListesi_CellContentClick;
             // 
             // tableLayoutPanel1
             // 
@@ -256,13 +273,13 @@
             tableLayoutPanel1.Controls.Add(panel3, 0, 1);
             tableLayoutPanel1.Controls.Add(panel2, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(257, 0);
+            tableLayoutPanel1.Location = new Point(294, 0);
             tableLayoutPanel1.Margin = new Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 71F));
-            tableLayoutPanel1.Size = new Size(695, 588);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 84F));
+            tableLayoutPanel1.Size = new Size(794, 692);
             tableLayoutPanel1.TabIndex = 3;
             // 
             // panel3
@@ -271,30 +288,33 @@
             panel3.BackColor = SystemColors.ControlLightLight;
             panel3.Controls.Add(panel4);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 520);
+            panel3.Location = new Point(3, 612);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(689, 65);
+            panel3.Size = new Size(788, 76);
             panel3.TabIndex = 4;
             // 
             // panel4
             // 
             panel4.Controls.Add(btnCikisiOnayla);
             panel4.Controls.Add(btnSil);
-            panel4.Location = new Point(145, 0);
+            panel4.Location = new Point(166, 0);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(377, 75);
+            panel4.Size = new Size(431, 88);
             panel4.TabIndex = 2;
             // 
             // btnCikisiOnayla
             // 
-            btnCikisiOnayla.BackColor = Color.Green;
+            btnCikisiOnayla.BackColor = Color.LightSteelBlue;
             btnCikisiOnayla.FlatAppearance.BorderSize = 0;
             btnCikisiOnayla.FlatStyle = FlatStyle.Flat;
             btnCikisiOnayla.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             btnCikisiOnayla.ForeColor = SystemColors.ControlLightLight;
-            btnCikisiOnayla.Location = new Point(25, 3);
+            btnCikisiOnayla.Location = new Point(29, 4);
+            btnCikisiOnayla.Margin = new Padding(3, 4, 3, 4);
             btnCikisiOnayla.Name = "btnCikisiOnayla";
-            btnCikisiOnayla.Size = new Size(159, 65);
+            btnCikisiOnayla.Size = new Size(182, 76);
             btnCikisiOnayla.TabIndex = 3;
             btnCikisiOnayla.Text = "Çıkışı Onayla";
             btnCikisiOnayla.UseVisualStyleBackColor = false;
@@ -307,9 +327,10 @@
             btnSil.FlatStyle = FlatStyle.Flat;
             btnSil.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             btnSil.ForeColor = SystemColors.ControlLightLight;
-            btnSil.Location = new Point(190, 3);
+            btnSil.Location = new Point(217, 4);
+            btnSil.Margin = new Padding(3, 4, 3, 4);
             btnSil.Name = "btnSil";
-            btnSil.Size = new Size(159, 65);
+            btnSil.Size = new Size(182, 76);
             btnSil.TabIndex = 2;
             btnSil.Text = "Listeyi Temizle";
             btnSil.UseVisualStyleBackColor = false;
@@ -317,13 +338,15 @@
             // 
             // frmStokCikis
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(952, 588);
+            ClientSize = new Size(1088, 692);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmStokCikis";
             Text = "frmStokCikis";
+            Load += frmStokCikis_Load;
             panel1.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
