@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             panel1 = new Panel();
             label4 = new Label();
             label3 = new Label();
@@ -60,18 +59,17 @@
             panel1.Controls.Add(dtpBaslangic);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1201, 108);
+            panel1.Size = new Size(1051, 92);
             panel1.TabIndex = 0;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label4.Location = new Point(681, 20);
+            label4.Location = new Point(596, 17);
             label4.Name = "label4";
-            label4.Size = new Size(131, 23);
+            label4.Size = new Size(127, 21);
             label4.TabIndex = 15;
             label4.Text = "Kullanıcı Seçim";
             // 
@@ -79,9 +77,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label3.Location = new Point(524, 20);
+            label3.Location = new Point(458, 17);
             label3.Name = "label3";
-            label3.Size = new Size(110, 23);
+            label3.Size = new Size(103, 21);
             label3.TabIndex = 14;
             label3.Text = "Hareket Tipi";
             // 
@@ -89,9 +87,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label2.Location = new Point(290, 20);
+            label2.Location = new Point(254, 17);
             label2.Name = "label2";
-            label2.Size = new Size(95, 23);
+            label2.Size = new Size(90, 21);
             label2.TabIndex = 13;
             label2.Text = "Bitiş Tarihi";
             // 
@@ -99,9 +97,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label1.Location = new Point(56, 19);
+            label1.Location = new Point(49, 16);
             label1.Name = "label1";
-            label1.Size = new Size(135, 23);
+            label1.Size = new Size(130, 21);
             label1.TabIndex = 12;
             label1.Text = "Başlangıç Tarihi";
             // 
@@ -112,10 +110,9 @@
             btnExcelAktar.FlatStyle = FlatStyle.Flat;
             btnExcelAktar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnExcelAktar.ForeColor = SystemColors.ControlLightLight;
-            btnExcelAktar.Location = new Point(845, 44);
-            btnExcelAktar.Margin = new Padding(3, 4, 3, 4);
+            btnExcelAktar.Location = new Point(739, 37);
             btnExcelAktar.Name = "btnExcelAktar";
-            btnExcelAktar.Size = new Size(134, 29);
+            btnExcelAktar.Size = new Size(117, 25);
             btnExcelAktar.TabIndex = 11;
             btnExcelAktar.Text = "Excel'e Aktar";
             btnExcelAktar.UseVisualStyleBackColor = false;
@@ -128,10 +125,9 @@
             btnKayitlariGetir.FlatStyle = FlatStyle.Flat;
             btnKayitlariGetir.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnKayitlariGetir.ForeColor = SystemColors.ControlLightLight;
-            btnKayitlariGetir.Location = new Point(985, 44);
-            btnKayitlariGetir.Margin = new Padding(3, 4, 3, 4);
+            btnKayitlariGetir.Location = new Point(862, 37);
             btnKayitlariGetir.Name = "btnKayitlariGetir";
-            btnKayitlariGetir.Size = new Size(131, 29);
+            btnKayitlariGetir.Size = new Size(115, 25);
             btnKayitlariGetir.TabIndex = 10;
             btnKayitlariGetir.Text = "Kayıtları Getir";
             btnKayitlariGetir.UseVisualStyleBackColor = false;
@@ -140,45 +136,40 @@
             // cmbHareketTipi
             // 
             cmbHareketTipi.FormattingEnabled = true;
-            cmbHareketTipi.Location = new Point(524, 45);
-            cmbHareketTipi.Margin = new Padding(3, 4, 3, 4);
+            cmbHareketTipi.Location = new Point(458, 38);
             cmbHareketTipi.Name = "cmbHareketTipi";
-            cmbHareketTipi.Size = new Size(151, 28);
+            cmbHareketTipi.Size = new Size(133, 25);
             cmbHareketTipi.TabIndex = 9;
             // 
             // cmbKullaniciSecim
             // 
             cmbKullaniciSecim.FormattingEnabled = true;
-            cmbKullaniciSecim.Location = new Point(681, 44);
-            cmbKullaniciSecim.Margin = new Padding(3, 4, 3, 4);
+            cmbKullaniciSecim.Location = new Point(596, 37);
             cmbKullaniciSecim.Name = "cmbKullaniciSecim";
-            cmbKullaniciSecim.Size = new Size(158, 28);
+            cmbKullaniciSecim.Size = new Size(139, 25);
             cmbKullaniciSecim.TabIndex = 8;
             // 
             // dtpBitis
             // 
-            dtpBitis.Location = new Point(290, 44);
-            dtpBitis.Margin = new Padding(3, 4, 3, 4);
+            dtpBitis.Location = new Point(254, 37);
             dtpBitis.Name = "dtpBitis";
-            dtpBitis.Size = new Size(228, 27);
+            dtpBitis.Size = new Size(200, 25);
             dtpBitis.TabIndex = 7;
             // 
             // dtpBaslangic
             // 
-            dtpBaslangic.Location = new Point(56, 43);
-            dtpBaslangic.Margin = new Padding(3, 4, 3, 4);
+            dtpBaslangic.Location = new Point(49, 37);
             dtpBaslangic.Name = "dtpBaslangic";
-            dtpBaslangic.Size = new Size(228, 27);
+            dtpBaslangic.Size = new Size(200, 25);
             dtpBaslangic.TabIndex = 6;
             // 
             // panel2
             // 
             panel2.Controls.Add(dgvDenetimKayitlari);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 108);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(0, 92);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1201, 416);
+            panel2.Size = new Size(1051, 353);
             panel2.TabIndex = 1;
             // 
             // dgvDenetimKayitlari
@@ -186,22 +177,20 @@
             dgvDenetimKayitlari.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDenetimKayitlari.Dock = DockStyle.Fill;
             dgvDenetimKayitlari.Location = new Point(0, 0);
-            dgvDenetimKayitlari.Margin = new Padding(3, 4, 3, 4);
             dgvDenetimKayitlari.Name = "dgvDenetimKayitlari";
             dgvDenetimKayitlari.RowHeadersWidth = 51;
-            dgvDenetimKayitlari.Size = new Size(1201, 416);
+            dgvDenetimKayitlari.Size = new Size(1051, 353);
             dgvDenetimKayitlari.TabIndex = 0;
             // 
             // frmAdminDenetimKayitlari
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1201, 524);
+            ClientSize = new Size(1051, 445);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmAdminDenetimKayitlari";
-            Text = "frmAdminDenetimKayitlari";
+            Text = "Denetim Kaydı";
             Load += frmAdminDenetimKayitlari_Load_1;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

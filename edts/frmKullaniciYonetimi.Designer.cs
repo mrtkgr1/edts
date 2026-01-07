@@ -26,193 +26,38 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
-            panel1 = new Panel();
-            chkAktifMi = new CheckBox();
-            btnHesapSil = new Button();
-            btnHesapGuncelle = new Button();
-            btnKullaniciKaydet = new Button();
-            cmbRolSecim = new ComboBox();
-            txtSifre = new TextBox();
-            txtKullaniciAdi = new TextBox();
-            txtAdSoyad = new TextBox();
-            lblRol = new Label();
-            lblSifre = new Label();
-            lblKullaniciAdi = new Label();
-            lblAdSoyad = new Label();
+        private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKullaniciYonetimi));
             panel2 = new Panel();
             dgvKullaniciListesi = new DataGridView();
-            panel1.SuspendLayout();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            resizableButton1 = new ResizableButton();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            resizableButton4 = new ResizableButton();
+            resizableButtonExcel = new ResizableButton();
+            panel1 = new Panel();
+            resizableButtonFiltreSil = new ResizableButton();
+            resizableButtonAra = new ResizableButton();
+            textBoxArama = new TextBox();
+            comboBoxRol = new ComboBox();
+            comboBoxAktif = new ComboBox();
+            comboBoxSirala = new ComboBox();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvKullaniciListesi).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.LightSlateGray;
-            panel1.Controls.Add(chkAktifMi);
-            panel1.Controls.Add(btnHesapSil);
-            panel1.Controls.Add(btnHesapGuncelle);
-            panel1.Controls.Add(btnKullaniciKaydet);
-            panel1.Controls.Add(cmbRolSecim);
-            panel1.Controls.Add(txtSifre);
-            panel1.Controls.Add(txtKullaniciAdi);
-            panel1.Controls.Add(txtAdSoyad);
-            panel1.Controls.Add(lblRol);
-            panel1.Controls.Add(lblSifre);
-            panel1.Controls.Add(lblKullaniciAdi);
-            panel1.Controls.Add(lblAdSoyad);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(354, 655);
-            panel1.TabIndex = 0;
-            // 
-            // chkAktifMi
-            // 
-            chkAktifMi.AutoSize = true;
-            chkAktifMi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            chkAktifMi.ForeColor = SystemColors.ControlLightLight;
-            chkAktifMi.Location = new Point(182, 245);
-            chkAktifMi.Margin = new Padding(3, 4, 3, 4);
-            chkAktifMi.Name = "chkAktifMi";
-            chkAktifMi.Size = new Size(68, 27);
-            chkAktifMi.TabIndex = 11;
-            chkAktifMi.Text = "Aktif";
-            chkAktifMi.UseVisualStyleBackColor = true;
-            // 
-            // btnHesapSil
-            // 
-            btnHesapSil.BackColor = Color.Crimson;
-            btnHesapSil.FlatAppearance.BorderSize = 0;
-            btnHesapSil.FlatStyle = FlatStyle.Flat;
-            btnHesapSil.Location = new Point(159, 312);
-            btnHesapSil.Margin = new Padding(3, 4, 3, 4);
-            btnHesapSil.Name = "btnHesapSil";
-            btnHesapSil.Size = new Size(127, 29);
-            btnHesapSil.TabIndex = 10;
-            btnHesapSil.Text = "Hesap Sil";
-            btnHesapSil.UseVisualStyleBackColor = false;
-            btnHesapSil.Click += btnHesapSil_Click;
-            // 
-            // btnHesapGuncelle
-            // 
-            btnHesapGuncelle.BackColor = Color.DarkOrange;
-            btnHesapGuncelle.FlatAppearance.BorderSize = 0;
-            btnHesapGuncelle.FlatStyle = FlatStyle.Flat;
-            btnHesapGuncelle.Location = new Point(25, 347);
-            btnHesapGuncelle.Margin = new Padding(3, 4, 3, 4);
-            btnHesapGuncelle.Name = "btnHesapGuncelle";
-            btnHesapGuncelle.Size = new Size(127, 29);
-            btnHesapGuncelle.TabIndex = 9;
-            btnHesapGuncelle.Text = "Hesap Güncelle";
-            btnHesapGuncelle.UseVisualStyleBackColor = false;
-            btnHesapGuncelle.Click += btnHesapGuncelle_Click;
-            // 
-            // btnKullaniciKaydet
-            // 
-            btnKullaniciKaydet.BackColor = Color.LightSeaGreen;
-            btnKullaniciKaydet.FlatAppearance.BorderSize = 0;
-            btnKullaniciKaydet.FlatStyle = FlatStyle.Flat;
-            btnKullaniciKaydet.Location = new Point(25, 312);
-            btnKullaniciKaydet.Margin = new Padding(3, 4, 3, 4);
-            btnKullaniciKaydet.Name = "btnKullaniciKaydet";
-            btnKullaniciKaydet.Size = new Size(127, 29);
-            btnKullaniciKaydet.TabIndex = 8;
-            btnKullaniciKaydet.Text = "Kullanıcı Kaydet";
-            btnKullaniciKaydet.UseVisualStyleBackColor = false;
-            btnKullaniciKaydet.Click += btnKullaniciKaydet_Click;
-            // 
-            // cmbRolSecim
-            // 
-            cmbRolSecim.FormattingEnabled = true;
-            cmbRolSecim.Items.AddRange(new object[] { "Yönetici", "Depo Personeli" });
-            cmbRolSecim.Location = new Point(182, 196);
-            cmbRolSecim.Margin = new Padding(3, 4, 3, 4);
-            cmbRolSecim.Name = "cmbRolSecim";
-            cmbRolSecim.Size = new Size(151, 28);
-            cmbRolSecim.TabIndex = 7;
-            // 
-            // txtSifre
-            // 
-            txtSifre.Location = new Point(182, 149);
-            txtSifre.Margin = new Padding(3, 4, 3, 4);
-            txtSifre.Name = "txtSifre";
-            txtSifre.PasswordChar = '*';
-            txtSifre.Size = new Size(151, 27);
-            txtSifre.TabIndex = 6;
-            // 
-            // txtKullaniciAdi
-            // 
-            txtKullaniciAdi.Location = new Point(182, 98);
-            txtKullaniciAdi.Margin = new Padding(3, 4, 3, 4);
-            txtKullaniciAdi.Name = "txtKullaniciAdi";
-            txtKullaniciAdi.Size = new Size(151, 27);
-            txtKullaniciAdi.TabIndex = 5;
-            txtKullaniciAdi.TextChanged += txtKullaniciAdi_TextChanged;
-            // 
-            // txtAdSoyad
-            // 
-            txtAdSoyad.Location = new Point(182, 56);
-            txtAdSoyad.Margin = new Padding(3, 4, 3, 4);
-            txtAdSoyad.Name = "txtAdSoyad";
-            txtAdSoyad.Size = new Size(151, 27);
-            txtAdSoyad.TabIndex = 4;
-            // 
-            // lblRol
-            // 
-            lblRol.AutoSize = true;
-            lblRol.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            lblRol.ForeColor = SystemColors.ControlLightLight;
-            lblRol.Location = new Point(25, 198);
-            lblRol.Name = "lblRol";
-            lblRol.Size = new Size(157, 23);
-            lblRol.TabIndex = 3;
-            lblRol.Text = "Rol / Yetki Seviyesi:";
-            // 
-            // lblSifre
-            // 
-            lblSifre.AutoSize = true;
-            lblSifre.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            lblSifre.ForeColor = SystemColors.ControlLightLight;
-            lblSifre.Location = new Point(25, 151);
-            lblSifre.Name = "lblSifre";
-            lblSifre.Size = new Size(48, 23);
-            lblSifre.TabIndex = 2;
-            lblSifre.Text = "Şifre:";
-            // 
-            // lblKullaniciAdi
-            // 
-            lblKullaniciAdi.AutoSize = true;
-            lblKullaniciAdi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            lblKullaniciAdi.ForeColor = SystemColors.ControlLightLight;
-            lblKullaniciAdi.Location = new Point(25, 102);
-            lblKullaniciAdi.Name = "lblKullaniciAdi";
-            lblKullaniciAdi.Size = new Size(107, 23);
-            lblKullaniciAdi.TabIndex = 1;
-            lblKullaniciAdi.Text = "Kullanıcı Adı:";
-            // 
-            // lblAdSoyad
-            // 
-            lblAdSoyad.AutoSize = true;
-            lblAdSoyad.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            lblAdSoyad.ForeColor = SystemColors.ControlLightLight;
-            lblAdSoyad.Location = new Point(25, 58);
-            lblAdSoyad.Name = "lblAdSoyad";
-            lblAdSoyad.Size = new Size(87, 23);
-            lblAdSoyad.TabIndex = 0;
-            lblAdSoyad.Text = "Ad Soyad:";
             // 
             // panel2
             // 
             panel2.Controls.Add(dgvKullaniciListesi);
+            panel2.Controls.Add(tableLayoutPanel1);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(354, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(627, 655);
+            panel2.Size = new Size(858, 557);
             panel2.TabIndex = 1;
             // 
             // dgvKullaniciListesi
@@ -221,51 +66,218 @@
             dgvKullaniciListesi.AllowUserToDeleteRows = false;
             dgvKullaniciListesi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvKullaniciListesi.Dock = DockStyle.Fill;
-            dgvKullaniciListesi.Location = new Point(0, 0);
-            dgvKullaniciListesi.Margin = new Padding(3, 4, 3, 4);
+            dgvKullaniciListesi.Location = new Point(0, 46);
             dgvKullaniciListesi.Name = "dgvKullaniciListesi";
             dgvKullaniciListesi.ReadOnly = true;
             dgvKullaniciListesi.RowHeadersWidth = 51;
-            dgvKullaniciListesi.Size = new Size(627, 655);
+            dgvKullaniciListesi.Size = new Size(858, 511);
             dgvKullaniciListesi.TabIndex = 0;
-            dgvKullaniciListesi.CellClick += dgvKullaniciListesi_CellClick;
+            dgvKullaniciListesi.CellContentClick += dgvKullaniciListesi_CellContentClick;
+            dgvKullaniciListesi.CellDoubleClick += dgvKullaniciListesi_CellDouble;
+            dgvKullaniciListesi.CellFormatting += dgvKullaniciListesi_CellFormatting;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 0);
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel2, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(858, 46);
+            tableLayoutPanel1.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(resizableButton1);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(140, 46);
+            flowLayoutPanel1.TabIndex = 0;
+            // 
+            // resizableButton1
+            // 
+            resizableButton1.Image = (Image)resources.GetObject("resizableButton1.Image");
+            resizableButton1.ImageAlign = ContentAlignment.MiddleLeft;
+            resizableButton1.KaynakResim = (Image)resources.GetObject("resizableButton1.KaynakResim");
+            resizableButton1.Location = new Point(3, 3);
+            resizableButton1.Name = "resizableButton1";
+            resizableButton1.ResimBoyutu = 32;
+            resizableButton1.Size = new Size(134, 38);
+            resizableButton1.TabIndex = 0;
+            resizableButton1.Text = "     Kullanıcı ekle";
+            resizableButton1.UseVisualStyleBackColor = true;
+            resizableButton1.Click += resizableButton1_Click;
+            // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.AutoSize = true;
+            flowLayoutPanel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            flowLayoutPanel2.Controls.Add(resizableButton4);
+            flowLayoutPanel2.Controls.Add(resizableButtonExcel);
+            flowLayoutPanel2.Controls.Add(panel1);
+            flowLayoutPanel2.Controls.Add(resizableButtonFiltreSil);
+            flowLayoutPanel2.Controls.Add(resizableButtonAra);
+            flowLayoutPanel2.Controls.Add(textBoxArama);
+            flowLayoutPanel2.Controls.Add(comboBoxRol);
+            flowLayoutPanel2.Controls.Add(comboBoxAktif);
+            flowLayoutPanel2.Controls.Add(comboBoxSirala);
+            flowLayoutPanel2.Dock = DockStyle.Fill;
+            flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel2.Location = new Point(140, 0);
+            flowLayoutPanel2.Margin = new Padding(0);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(718, 46);
+            flowLayoutPanel2.TabIndex = 1;
+            // 
+            // resizableButton4
+            // 
+            resizableButton4.Image = (Image)resources.GetObject("resizableButton4.Image");
+            resizableButton4.KaynakResim = (Image)resources.GetObject("resizableButton4.KaynakResim");
+            resizableButton4.Location = new Point(677, 3);
+            resizableButton4.Name = "resizableButton4";
+            resizableButton4.ResimBoyutu = 32;
+            resizableButton4.Size = new Size(38, 38);
+            resizableButton4.TabIndex = 9;
+            resizableButton4.TabStop = false;
+            resizableButton4.UseVisualStyleBackColor = true;
+            resizableButton4.Click += resizableButton4_Click;
+            // 
+            // resizableButtonExcel
+            // 
+            resizableButtonExcel.Image = (Image)resources.GetObject("resizableButtonExcel.Image");
+            resizableButtonExcel.KaynakResim = (Image)resources.GetObject("resizableButtonExcel.KaynakResim");
+            resizableButtonExcel.Location = new Point(633, 3);
+            resizableButtonExcel.Name = "resizableButtonExcel";
+            resizableButtonExcel.ResimBoyutu = 32;
+            resizableButtonExcel.Size = new Size(38, 38);
+            resizableButtonExcel.TabIndex = 5;
+            resizableButtonExcel.TabStop = false;
+            resizableButtonExcel.UseVisualStyleBackColor = true;
+            resizableButtonExcel.Click += resizableButtonyenile_Click;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveBorder;
+            panel1.Location = new Point(625, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(2, 37);
+            panel1.TabIndex = 6;
+            // 
+            // resizableButtonFiltreSil
+            // 
+            resizableButtonFiltreSil.Enabled = false;
+            resizableButtonFiltreSil.Image = (Image)resources.GetObject("resizableButtonFiltreSil.Image");
+            resizableButtonFiltreSil.KaynakResim = (Image)resources.GetObject("resizableButtonFiltreSil.KaynakResim");
+            resizableButtonFiltreSil.Location = new Point(581, 3);
+            resizableButtonFiltreSil.Name = "resizableButtonFiltreSil";
+            resizableButtonFiltreSil.ResimBoyutu = 32;
+            resizableButtonFiltreSil.Size = new Size(38, 38);
+            resizableButtonFiltreSil.TabIndex = 10;
+            resizableButtonFiltreSil.TabStop = false;
+            resizableButtonFiltreSil.UseVisualStyleBackColor = true;
+            resizableButtonFiltreSil.Click += resizableButtonFiltreSil_Click;
+            // 
+            // resizableButtonAra
+            // 
+            resizableButtonAra.Image = (Image)resources.GetObject("resizableButtonAra.Image");
+            resizableButtonAra.KaynakResim = (Image)resources.GetObject("resizableButtonAra.KaynakResim");
+            resizableButtonAra.Location = new Point(537, 3);
+            resizableButtonAra.Name = "resizableButtonAra";
+            resizableButtonAra.ResimBoyutu = 32;
+            resizableButtonAra.Size = new Size(38, 38);
+            resizableButtonAra.TabIndex = 4;
+            resizableButtonAra.UseVisualStyleBackColor = true;
+            resizableButtonAra.Click += resizableButtonAra_Click;
+            // 
+            // textBoxArama
+            // 
+            textBoxArama.Font = new Font("Segoe UI", 9F);
+            textBoxArama.Location = new Point(394, 10);
+            textBoxArama.Margin = new Padding(3, 10, 3, 3);
+            textBoxArama.MaxLength = 50;
+            textBoxArama.Name = "textBoxArama";
+            textBoxArama.Size = new Size(137, 25);
+            textBoxArama.TabIndex = 1;
+            textBoxArama.TextChanged += textBoxArama_TextChanged;
+            // 
+            // comboBoxRol
+            // 
+            comboBoxRol.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxRol.FormattingEnabled = true;
+            comboBoxRol.Location = new Point(288, 10);
+            comboBoxRol.Margin = new Padding(3, 10, 3, 3);
+            comboBoxRol.Name = "comboBoxRol";
+            comboBoxRol.Size = new Size(100, 25);
+            comboBoxRol.TabIndex = 7;
+            comboBoxRol.SelectedIndexChanged += comboBoxRol_SelectedIndexChanged;
+            // 
+            // comboBoxAktif
+            // 
+            comboBoxAktif.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxAktif.FormattingEnabled = true;
+            comboBoxAktif.Items.AddRange(new object[] { "Aktif/Pasif", "Aktif", "Pasif" });
+            comboBoxAktif.Location = new Point(182, 10);
+            comboBoxAktif.Margin = new Padding(3, 10, 3, 3);
+            comboBoxAktif.Name = "comboBoxAktif";
+            comboBoxAktif.Size = new Size(100, 25);
+            comboBoxAktif.TabIndex = 8;
+            comboBoxAktif.SelectedIndexChanged += comboBoxAktif_SelectedIndexChanged;
+            // 
+            // comboBoxSirala
+            // 
+            comboBoxSirala.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSirala.FormattingEnabled = true;
+            comboBoxSirala.Items.AddRange(new object[] { "Eskiden Yeniye", "Yeniden Eskiye", "Kullanici Adı (A→Z)", "Kullanici Adı (Z→A)", "İsim (A→Z)", "İsim (Z→A)", "Rol" });
+            comboBoxSirala.Location = new Point(47, 10);
+            comboBoxSirala.Margin = new Padding(3, 10, 3, 3);
+            comboBoxSirala.Name = "comboBoxSirala";
+            comboBoxSirala.Size = new Size(129, 25);
+            comboBoxSirala.TabIndex = 11;
+            comboBoxSirala.SelectedIndexChanged += comboBoxSirala_SelectedIndexChanged;
             // 
             // frmKullaniciYonetimi
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(981, 655);
+            ClientSize = new Size(858, 557);
             Controls.Add(panel2);
-            Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmKullaniciYonetimi";
             Text = "frmKullaniciYonetimi";
             Load += frmKullaniciYonetimi_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvKullaniciListesi).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel panel1;
-        private TextBox txtSifre;
-        private TextBox txtKullaniciAdi;
-        private TextBox txtAdSoyad;
-        private Label lblRol;
-        private Label lblSifre;
-        private Label lblKullaniciAdi;
-        private Label lblAdSoyad;
         private Panel panel2;
-        private Button btnHesapSil;
-        private Button btnHesapGuncelle;
-        private Button btnKullaniciKaydet;
-        private ComboBox cmbRolSecim;
         private DataGridView dgvKullaniciListesi;
-        private CheckBox chkAktifMi;
-
+        private TableLayoutPanel tableLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private TextBox textBoxArama;
+        private ResizableButton resizableButton1;
+        private ResizableButton resizableButtonExcel;
+        private Panel panel1;
+        private ResizableButton resizableButtonAra;
+        private ComboBox comboBoxRol;
+        private ComboBox comboBoxAktif;
+        private ResizableButton resizableButton4;
+        private ResizableButton resizableButtonFiltreSil;
+        private ComboBox comboBoxSirala;
     }
 
 }
