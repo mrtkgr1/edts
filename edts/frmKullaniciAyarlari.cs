@@ -118,7 +118,7 @@ namespace edts {
             pnlSettings.ResumeLayout();
         }
 
-        private Control AyarOzelKontrolOlustur(KullaniciAyar ayarG) {
+        public Control AyarOzelKontrolOlustur(KullaniciAyar ayarG) {
             Control resultControl;
 
             switch (ayarG.Tur) {
@@ -206,6 +206,11 @@ namespace edts {
             }
 
             AyarYonetimi.AyarlariKaydet(AktifKullanici.ID);
+            AnlikOturumGuncelleme();
+        }
+
+        private void AnlikOturumGuncelleme() {
+            AnaForm.reff?.TemaGuncelle();
         }
     }
 

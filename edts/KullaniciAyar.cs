@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace edts {
-    class KullaniciAyar {
+    public class KullaniciAyar {
         public string Id { get; set; }         
         public string AyarAdi { get; set; }   
         public string VarsayilanDeger { get; set; } 
@@ -39,7 +39,7 @@ namespace edts {
 
     }
     
-    enum AyarTuru {
+    public enum AyarTuru {
         Metin,
         Sayi,
         Mantik,

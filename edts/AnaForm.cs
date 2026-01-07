@@ -13,18 +13,22 @@ using System.Windows.Forms;
 
 namespace edts {
     public partial class AnaForm : Form {
+        public static AnaForm? reff;
+
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         public AnaForm() {
+            reff = this;
             InitializeComponent();
             InitializeSecenekPopup();
             InitializeProfilePopup();
             SolMenuButtonAyarla();
             KontrolFormGoster();
             SolPanelScroll();
+            AyarKurulum();
         }
 
         private void SolPanelScroll() {
@@ -93,8 +97,34 @@ namespace edts {
         }
 
         //----Ayarlar ----
-        public void UstBarTemaDegistir() {
+        public void AyarKurulum() {
+            TemaGuncelle();
 
+        }
+        public void TemaGuncelle() {
+            TemaYonetim.TemaDegistir(AyarYonetimi.AyarGetir("tema"));
+            Tema tema = (TemaYonetim.TemaAl());
+
+            if (tema.siyahIcon) {
+                pictureBox1.Image = Resources.menu_siyah;
+                prefPictureBox.Image = Resources.kayan_liste_assa;
+                pictureBoxProfile.Image = Resources.profile_siyah;
+                pictureBoxNotf.Image = Resources.notf_yok;
+                panel1.ForeColor = Color.Black;
+            } else {
+                pictureBox1.Image = Resources.menu_beyaz;
+                prefPictureBox.Image = Resources.kayan_liste_beyaz_assa;
+                pictureBoxProfile.Image = Resources.profile_beyaz;
+                pictureBoxNotf.Image = Resources.notf_yok_beyaz;
+                panel1.ForeColor = Color.White;
+            }
+
+            panel1.BackColor = tema.ustPanelArkaPlan;
+            SolHPanel.BackColor = tema.solMenuArkaPlan;
+            panelMenuKayit.BackColor = tema.solMenuArkaPlan;
+            SolHPanel.ForeColor = tema.yaziRengi;
+
+            kayitMenuPanel.BackColor = tema.solMenuAltMenu;
         }
 
         //-----Menü açma kapama işlemleri -----
@@ -166,11 +196,13 @@ namespace edts {
         private void prefPictureBox_click(object sender, EventArgs e) {
             Control senderControl = (Control)sender;
             if (isListeAcik) {
-                prefPictureBox.Image = Properties.Resources.kayan_liste_assa;
+                prefPictureBox.Image = (TemaYonetim.TemaAl().siyahIcon ? 
+                    Resources.kayan_liste_assa : Resources.kayan_liste_beyaz_assa);
                 isListeAcik = false;
             } else {
                 popup.Show(senderControl, popup.Size.Width / 2 * -1 + 16, senderControl.Height);
-                prefPictureBox.Image = Properties.Resources.kayan_liste_yukari;
+                prefPictureBox.Image = (TemaYonetim.TemaAl().siyahIcon ?
+                    Resources.kayan_liste_yukari : Resources.kayan_liste_beyaz_yukari);
                 isListeAcik = true;
             }
         }
@@ -184,11 +216,11 @@ namespace edts {
         private void pictureBox4_Click(object sender, EventArgs e) {
             BildirimGoster("xsa","sasa");
             if (bildiirmVar) {
-                pictureBox4.Image = Properties.Resources.notf_var;
+                pictureBoxNotf.Image = Properties.Resources.notf_var;
                 bildiirmVar = false;
             } else {
                 kayitMenuPanel.Visible = true;
-                pictureBox4.Image = Properties.Resources.notf_yok;
+                pictureBoxNotf.Image = Properties.Resources.notf_yok;
             }
         }
         public void BildirimGoster(string baslik, string mesaj) {
@@ -209,7 +241,8 @@ namespace edts {
         }
 
         private void hesapDuzenle_Tiklandi() {
-            MessageBox.Show("Hesap düzenle tıklandı.");
+            KullaniciBilgi tmp = new KullaniciBilgi(AktifKullanici.ID);
+            tmp.ShowDialog();
         }
 
         //-----Form çerçeve işlemleri ----- 
@@ -324,7 +357,8 @@ namespace edts {
         }
 
         private void buttonSistemAyar_Click(object sender, EventArgs e) {
-            SayfaGoster(new frmAdminSistemAyarlari());
+            //SayfaGoster(new frmAdminSistemAyarlari());
+            SayfaGoster(new SistemAyarlari());
         }
 
         private void buttonDenetimKayit_Click(object sender, EventArgs e) {
