@@ -9,16 +9,16 @@ namespace edts
     public partial class GirişForm : Form
     {
         private int aktifRolID;
+        private int denemeSayisi = 0;
         public GirişForm()
         {
             InitializeComponent();
-            // Diğer kodlar veya atamalar BURAYA GELMEZ. Sadece başlatma yapılır.
             button2.Image = Properties.Resources.eyek;
-
+            SistemAyarYonetim.AyarlariSenkronizeEt();
         }
         public GirişForm(int gelenRolID)
         {
-            InitializeComponent(); // <-- Bu satır şimdi çalışmalı
+            InitializeComponent();
             aktifRolID = gelenRolID;
 
             this.Load += AnaMenuForm_Load;
@@ -77,8 +77,7 @@ namespace edts
                     using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
                     {
                         komut.Parameters.AddWithValue("@pKullaniciAdi", kullaniciAdi);
-                        // 🟢 KRİTİK DÜZELTME: SQL'e HASH'lenmiş değeri gönderiyoruz.
-                        komut.Parameters.AddWithValue("@pSifreHash", girisHash); // <-- Düzeltildi!
+                        komut.Parameters.AddWithValue("@pSifreHash", girisHash);
 
                         baglanti.Open();
                         SqlDataReader okuyucu = komut.ExecuteReader();
@@ -94,8 +93,7 @@ namespace edts
                                 AktifKullanici.RolID = rolID;
                                 AktifKullanici.TamAd = adSoyad;
 
-                            // 🟢 KRİTİK LOGLAMA ADIMI 2: Giriş Başarısını Denetim Kaydına Ekleme
-                            int girisHareketID = 1; // Artık biliyoruz: GİRİŞ'in HareketID'si 1.
+                            int girisHareketID = 1; 
 
                                 VeritabaniYardimcisi.LogKaydet(
                                     kullaniciID: AktifKullanici.ID,
@@ -106,25 +104,23 @@ namespace edts
 
                                 AnaMenuForm anaForm = new AnaMenuForm(rolID);
 
-                            // Göz yanılmasını engellemek için Giriş Formunu gizle
                             this.Visible = false;
 
-                            // Yönlendirici formu MODAL olarak aç. 
-                            // AnaMenuForm kapanana kadar kod burada BEKLER.
                             anaForm.ShowDialog();
 
-                            // AnaMenuForm (yönlendirici) kapandığında buraya döneriz.
-                            // Artık ana formunuz (frmAdminAnaMenu) arkada açıktır.
-                            this.Close(); // <-- GİRİŞ FORMUNU KAPATAN SATIR!
+                            this.Close();
 
                             return;
                         }
                         else
                         {
-                            // Kullanıcı veya şifre hatalı
-                            // lblHata.Text = "*Kullanıcı Adı veya Şifre Hatalı";
-                            // lblHata.Visible = true;
+                            denemeSayisi++;
+
                             MessageBox.Show("Kullanıcı Adı veya Şifre Hatalı.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (denemeSayisi>=SistemAyarYonetim.AyarIntGetir("giris_denemesi")) {
+                                MessageBox.Show("Çok hatalı giriş.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
                         }
                     }
                 }
