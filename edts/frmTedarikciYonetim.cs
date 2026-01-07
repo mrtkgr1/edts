@@ -44,6 +44,9 @@ namespace edts
 
                     dataGridView2.DataSource = dt;
 
+                    
+                    btnGuncelleSutun.DisplayIndex = dataGridView2.ColumnCount - 1;
+                    btnSilSutun.DisplayIndex = dataGridView2.ColumnCount - 1;
                     // --- KOZMETİK AYARLAR ---
 
                     if (dataGridView2.Columns["TedarikciID"] != null)
@@ -95,19 +98,19 @@ namespace edts
         }
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+           /* if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
                 txtFirmaAdi.Text = row.Cells["TedarikciAd"].Value?.ToString();
                 txtVergiDairesi.Text = row.Cells["VergiDairesi"].Value?.ToString();
                 txtVergiNo.Text = row.Cells["VergiNo"].Value?.ToString();
                 txtTelefon.Text = row.Cells["IletisimTel"].Value?.ToString();
-            }
+            } */
         }
 
         private void btnTedarikciSill_Click(object sender, EventArgs e)
         {
-            // 1. ADIM: Seçim Kontrolü
+         /*   // 1. ADIM: Seçim Kontrolü
             if (dataGridView2.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Tedarikçi silme işlemi için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -170,12 +173,12 @@ namespace edts
                     }
                 }
             }
-            TedarikcileriListele();
+            TedarikcileriListele();  */
         }
-
+        
         private void btnTedarikciGuncellee_Click(object sender, EventArgs e)
         {
-            // 1. ADIM: Seçili satır kontrolü
+           /* // 1. ADIM: Seçili satır kontrolü
             if (dataGridView2.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Tedarikçi güncelleme işlemi için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -235,12 +238,12 @@ namespace edts
                     MessageBox.Show("Güncelleme Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            TedarikcileriListele();
+            TedarikcileriListele(); */
         }
 
         private void btnTedarikciKaydett_Click(object sender, EventArgs e)
         {
-
+/*
             // 1. ADIM: Boş kontrolü (Zaten harika bir şekilde yapmışsın)
             if (txtFirmaAdi.Text.Trim() == "")
             {
@@ -299,36 +302,12 @@ namespace edts
                     MessageBox.Show("Ekleme Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            TedarikcileriListele();
+            TedarikcileriListele();  */
         }
 
         private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (this.DesignMode || e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
-            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
-                var btnRect = new Rectangle(e.CellBounds.X + 10, e.CellBounds.Y + 4, e.CellBounds.Width - 20, e.CellBounds.Height - 8);
-
-                Point mousePos = dataGridView2.PointToClient(Cursor.Position);
-                bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
-
-                // Hover durumunda koyu kırmızı, normalde soft kırmızı
-                Color gecerliRenk = isHovering ? Color.FromArgb(235, 110, 110) : Color.FromArgb(255, 148, 148);
-
-                using (Pen p = new Pen(gecerliRenk, 1))
-                using (Brush b = new SolidBrush(gecerliRenk))
-                {
-                    e.Graphics.FillRectangle(b, btnRect);
-                    e.Graphics.DrawRectangle(p, btnRect);
-                }
-
-                TextRenderer.DrawText(e.Graphics, "Sil", e.CellStyle.Font, btnRect, Color.White,
-                    TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
-
-                e.Handled = true;
-            }
+           
         }
 
         private void TedarikciSil(string id)
@@ -366,25 +345,43 @@ namespace edts
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            if (e.RowIndex < 0) return;
+
+            // --- GÜNCELLEME BUTONU ---
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnGuncelleSutun")
             {
-                // Hücre isimlerini (TedarikciAd, TedarikciID) kendi veritabanı sütun isimlerine göre kontrol et!
-                string ad = dataGridView2.Rows[e.RowIndex].Cells["TedarikciAd"].Value?.ToString() ?? "Tedarikçi";
-                string id = dataGridView2.Rows[e.RowIndex].Cells["TedarikciID"].Value.ToString();
+                int id = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["TedarikciID"].Value);
 
-                DialogResult onay = MessageBox.Show(
-                    $"{ad} isimli tedarikçiyi silmek istediğinize emin misiniz?",
-                    "Tedarikçi Silme Onayı",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning
-                );
+                frmTedarikciYonetimGuncellepopup popup = new frmTedarikciYonetimGuncellepopup();
+                popup.GuncellenecekUrunID = id;
 
-                if (onay == DialogResult.Yes)
+                // Soruyu burada sormuyoruz, direkt formu açıyoruz.
+                // Form kapandığında eğer işlem başarılıysa (OK) listeyi yeniliyoruz.
+                if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    TedarikciSil(id);      // Kendi silme metodun
-                    TedarikcileriListele();   // Listeyi yenileme metodun
+                    TedarikcileriListele();
                 }
             }
+
+            // --- SİLME BUTONU ---
+            else if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            {
+                string idSil = dataGridView2.Rows[e.RowIndex].Cells["TedarikciID"].Value.ToString();
+                string adSil = dataGridView2.Rows[e.RowIndex].Cells["TedarikciAd"].Value?.ToString();
+
+                // Silme işlemi geri alınamaz olduğu için burada onay sormaya devam etmelisin
+                if (MessageBox.Show($"{adSil} silinsin mi?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    TedarikciSil(idSil);
+                    TedarikcileriListele();
+                }
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmTedarikciYonetimKaydetpopup yeniForm = new frmTedarikciYonetimKaydetpopup();
+            yeniForm.ShowDialog();
+            TedarikcileriListele();
         }
     }
 }

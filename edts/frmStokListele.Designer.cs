@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStokListele));
             panel1 = new Panel();
             panel3 = new Panel();
+            label3 = new Label();
+            btnExcelAktar = new Button();
             label2 = new Label();
             label1 = new Label();
             btnYenile = new Button();
@@ -46,7 +49,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.DarkOliveGreen;
+            panel1.BackColor = Color.LightSlateGray;
             panel1.Controls.Add(panel3);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -57,6 +60,8 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlLight;
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(btnExcelAktar);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(btnYenile);
@@ -68,11 +73,37 @@
             panel3.Size = new Size(744, 191);
             panel3.TabIndex = 0;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label3.Location = new Point(12, 69);
+            label3.Name = "label3";
+            label3.Size = new Size(87, 23);
+            label3.TabIndex = 15;
+            label3.Text = "Ürün Ara:";
+            // 
+            // btnExcelAktar
+            // 
+            btnExcelAktar.BackColor = Color.LightSlateGray;
+            btnExcelAktar.BackgroundImage = (Image)resources.GetObject("btnExcelAktar.BackgroundImage");
+            btnExcelAktar.BackgroundImageLayout = ImageLayout.Zoom;
+            btnExcelAktar.FlatAppearance.BorderSize = 0;
+            btnExcelAktar.FlatStyle = FlatStyle.Flat;
+            btnExcelAktar.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnExcelAktar.ForeColor = SystemColors.ControlLightLight;
+            btnExcelAktar.Location = new Point(486, 85);
+            btnExcelAktar.Name = "btnExcelAktar";
+            btnExcelAktar.Size = new Size(82, 42);
+            btnExcelAktar.TabIndex = 14;
+            btnExcelAktar.UseVisualStyleBackColor = false;
+            btnExcelAktar.Click += btnExcelAktar_Click;
+            // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label2.Location = new Point(300, 63);
+            label2.Location = new Point(329, 69);
             label2.Name = "label2";
             label2.Size = new Size(130, 23);
             label2.TabIndex = 13;
@@ -82,7 +113,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label1.Location = new Point(143, 63);
+            label1.Location = new Point(172, 69);
             label1.Name = "label1";
             label1.Size = new Size(143, 23);
             label1.TabIndex = 12;
@@ -90,23 +121,24 @@
             // 
             // btnYenile
             // 
-            btnYenile.BackColor = Color.DarkOliveGreen;
+            btnYenile.BackColor = Color.LightSlateGray;
+            btnYenile.BackgroundImage = (Image)resources.GetObject("btnYenile.BackgroundImage");
+            btnYenile.BackgroundImageLayout = ImageLayout.Zoom;
             btnYenile.FlatAppearance.BorderSize = 0;
             btnYenile.FlatStyle = FlatStyle.Flat;
             btnYenile.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             btnYenile.ForeColor = SystemColors.ControlLightLight;
-            btnYenile.Location = new Point(457, 92);
+            btnYenile.Location = new Point(574, 85);
             btnYenile.Name = "btnYenile";
-            btnYenile.Size = new Size(135, 29);
+            btnYenile.Size = new Size(82, 42);
             btnYenile.TabIndex = 11;
-            btnYenile.Text = "🔄Yenile";
             btnYenile.UseVisualStyleBackColor = false;
             btnYenile.Click += btnYenile_Click;
             // 
             // cmbDurumFiltresi
             // 
             cmbDurumFiltresi.FormattingEnabled = true;
-            cmbDurumFiltresi.Location = new Point(300, 94);
+            cmbDurumFiltresi.Location = new Point(329, 94);
             cmbDurumFiltresi.Name = "cmbDurumFiltresi";
             cmbDurumFiltresi.Size = new Size(151, 28);
             cmbDurumFiltresi.TabIndex = 10;
@@ -114,18 +146,19 @@
             // cmbKategoriFiltresi
             // 
             cmbKategoriFiltresi.FormattingEnabled = true;
-            cmbKategoriFiltresi.Location = new Point(143, 94);
+            cmbKategoriFiltresi.Location = new Point(172, 94);
             cmbKategoriFiltresi.Name = "cmbKategoriFiltresi";
             cmbKategoriFiltresi.Size = new Size(151, 28);
             cmbKategoriFiltresi.TabIndex = 9;
             // 
             // txtArama
             // 
-            txtArama.Location = new Point(12, 94);
+            txtArama.Location = new Point(12, 95);
             txtArama.Name = "txtArama";
-            txtArama.Size = new Size(125, 27);
+            txtArama.Size = new Size(151, 27);
             txtArama.TabIndex = 8;
             txtArama.Text = "🔎";
+            txtArama.TextChanged += txtArama_TextChanged;
             // 
             // panel2
             // 
@@ -138,6 +171,7 @@
             // 
             // dgvStoklar
             // 
+            dgvStoklar.AllowUserToAddRows = false;
             dgvStoklar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStoklar.Dock = DockStyle.Fill;
             dgvStoklar.Location = new Point(0, 0);
@@ -145,6 +179,7 @@
             dgvStoklar.RowHeadersWidth = 51;
             dgvStoklar.Size = new Size(1069, 324);
             dgvStoklar.TabIndex = 0;
+            dgvStoklar.CellFormatting += dgvStoklar_CellFormatting;
             // 
             // frmStokListele
             // 
@@ -176,5 +211,7 @@
         private TextBox txtArama;
         private Panel panel2;
         private DataGridView dgvStoklar;
+        private Button btnExcelAktar;
+        private Label label3;
     }
 }

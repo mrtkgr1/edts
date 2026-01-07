@@ -15,10 +15,10 @@ namespace EnvanterDepoSistemitaslak2
 {
     public partial class frmStokGiris : Form
     {
-        // Geçici stok detaylarını tutacak DataTable
+       
         private DataTable stokDetaylari = new DataTable();
 
-        // **BURAYA EKLEYİN** (Sınıf düzeyinde tanımlama)
+       
 
         public frmStokGiris()
         {
@@ -28,98 +28,70 @@ namespace EnvanterDepoSistemitaslak2
         }
         private void DetayTablosunuOlustur()
         {
-            // *** 1. ÖNCE SIFIRLA VE YENİ DATATABLE OLUŞTUR ***
             stokDetaylari = new DataTable();
-
-            // *** 2. ZORUNLU SÜTUNLARI EKLE (Veritabanına gidecek olanlar) ***
+           
             stokDetaylari.Columns.Add("UrunID", typeof(int));
-            stokDetaylari.Columns.Add("UrunAd", typeof(string)); // Görüntüleme amaçlı
+           
+            stokDetaylari.Columns.Add("UrunAd", typeof(string));
+           
             stokDetaylari.Columns.Add("Miktar", typeof(decimal));
-
-            // Stok Hareketleri tablosunda kaydetmeniz gereken diğer ID'ler
-            // Örneğin: stokDetaylari.Columns.Add("BirimFiyat", typeof(decimal));
-
-            // *** 3. DataGrid'de göstermek istediğimiz ve btnEkle'den gelen değerleri ekle ***
-            stokDetaylari.Columns.Add("TedarikciAdi", typeof(string));
+            
+            stokDetaylari.Columns.Add("TedarikciAd", typeof(string));
+           
             stokDetaylari.Columns.Add("FaturaNo", typeof(string));
+            
             stokDetaylari.Columns.Add("GirisNedeni", typeof(string));
 
-            // ŞU ANDA DATATABLE'INIZDA TOPLAM 6 SÜTUN VAR.
-
-            // *** 4. DataGridView'e DataTable'ı bağla (BU ÇOK ÖNEMLİ) ***
             dgvStokDetaylari.DataSource = stokDetaylari;
 
-            // *** 5. DataSource kullanıldığı için manuel sütun ekleme YAPMA! ***
-            // DataSource kullanıldığında, DataGrid sütunları DataTable'dan otomatik oluşturulur.
-            // Sadece özelleştirme (gizleme, başlık değiştirme) yapılır.
-
-            // Kullanıcıya göstermek istemediğimiz ID sütununu gizleyelim
+           
             dgvStokDetaylari.Columns["UrunID"].Visible = false;
-
-            // Not: Artık dgvStokDetaylari.Columns.Add("TedarikciAdi", "Tedarikçi"); satırlarına gerek yok!
+            dgvStokDetaylari.Columns["UrunAd"].HeaderText = "Ürün Adı";
+            dgvStokDetaylari.Columns["Miktar"].HeaderText = "Miktar";
+            dgvStokDetaylari.Columns["TedarikciAd"].HeaderText = "Tedarikçi";
+            dgvStokDetaylari.Columns["FaturaNo"].HeaderText = "Fatura No";
+            dgvStokDetaylari.Columns["GirisNedeni"].HeaderText = "Giriş Nedeni";
+            dgvStokDetaylari.Columns["btnSilGrid"].DisplayIndex = dgvStokDetaylari.ColumnCount - 1;
         }
-        // ComboBox'ları doldurmak için temel metot
+
         private void VeriYukle()
         {
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-
             using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
             {
                 try
                 {
                     baglanti.Open();
 
-                    // ------------------------------------------------------------------
-                    // A. TEDARİKÇİ YÜKLEME (cmbTedarikci)
-                    // SORGULAR DÜZELTİLDİ: Artık TedarikciAd kullanılıyor ve AktifMi kaldırıldı.
-                    // ------------------------------------------------------------------
-                    string tedarikciSorgu = "SELECT TedarikciID, TedarikciAd FROM tblTedarikciler";
+                   
+                    SqlDataAdapter daTedarik = new SqlDataAdapter("SELECT TedarikciID, TedarikciAd FROM tblTedarikciler", baglanti);
                     DataTable dtTedarikci = new DataTable();
-                    using (SqlDataAdapter da = new SqlDataAdapter(tedarikciSorgu, baglanti))
-                    {
-                        da.Fill(dtTedarikci);
-                    }
-
+                    daTedarik.Fill(dtTedarikci);
                     cmbTedarikci.DataSource = dtTedarikci;
-                    cmbTedarikci.DisplayMember = "TedarikciAd"; // <-- DÜZELTİLDİ
+                    cmbTedarikci.DisplayMember = "TedarikciAd";
                     cmbTedarikci.ValueMember = "TedarikciID";
                     cmbTedarikci.SelectedIndex = -1;
 
-                    // ------------------------------------------------------------------
-                    // B. ÜRÜN YÜKLEME (cmbUrunSecimi)
-                    // AktifMi sütununuz olmadığı için kontrol kaldırıldı.
-                    // ------------------------------------------------------------------
-                    string urunSorgu = "SELECT UrunID, UrunAd FROM tblUrunler";
+                    
+                    SqlDataAdapter daUrun = new SqlDataAdapter("SELECT UrunID, UrunAd FROM tblUrunler", baglanti);
                     DataTable dtUrun = new DataTable();
-                    using (SqlDataAdapter da = new SqlDataAdapter(urunSorgu, baglanti))
-                    {
-                        da.Fill(dtUrun);
-                    }
-
-                    cmbUrunSecimi.DataSource = dtUrun;
+                    daUrun.Fill(dtUrun);
+                    cmbUrunSecimi.DataSource = dtUrun; 
                     cmbUrunSecimi.DisplayMember = "UrunAd";
                     cmbUrunSecimi.ValueMember = "UrunID";
                     cmbUrunSecimi.SelectedIndex = -1;
 
-                    // ------------------------------------------------------------------
-                    // C. GİRİŞ NEDENİ YÜKLEME
-                    // ------------------------------------------------------------------
-                    if (cmbGirisNedeni.Items.Count == 0)
-                    {
-                        cmbGirisNedeni.Items.Add("Satın Alma (Normal Giriş)");
-                        cmbGirisNedeni.Items.Add("Müşteri İadesi");
-                        cmbGirisNedeni.Items.Add("Sayım Fazlası");
-                        cmbGirisNedeni.Items.Add("Transfer Girişi");
-                    }
+                    
+                    cmbGirisNedeni.Items.Clear();
+                    cmbGirisNedeni.Items.Add("Satın Alma");
+                    cmbGirisNedeni.Items.Add("İade");
+                    cmbGirisNedeni.Items.Add("Sayım Fazlası");
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Veri yüklenirken hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                catch (Exception ex) { MessageBox.Show("Yükleme Hatası: " + ex.Message); }
             }
         }
 
-        // Tedarikçi ComboBox'ını Doldurma Metodu
+       
         private void TedarikcileriYukle()
         {
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
@@ -128,7 +100,7 @@ namespace EnvanterDepoSistemitaslak2
             {
                 string sorgu = "SELECT TedarikciID, Ad FROM tblTedarikciler WHERE AktifMi = 1";
 
-                // Bu sorgunun TedarikciID ve Ad sütunlarını içerdiğinden emin olun!
+               
 
                 try
                 {
@@ -137,11 +109,11 @@ namespace EnvanterDepoSistemitaslak2
                     da.Fill(dt);
 
                     cmbTedarikci.DataSource = dt;
-                    // !!! BURAYA DİKKAT !!! 
-                    cmbTedarikci.DisplayMember = "Ad";        // DB'deki sütun adı
-                    cmbTedarikci.ValueMember = "TedarikciID"; // DB'deki sütun adı
+                   
+                    cmbTedarikci.DisplayMember = "Ad";       
+                    cmbTedarikci.ValueMember = "TedarikciID"; 
 
-                    cmbTedarikci.SelectedIndex = -1; // Seçim yapılmadan boş başlat
+                    cmbTedarikci.SelectedIndex = -1; 
                 }
                 catch (Exception ex)
                 {
@@ -150,11 +122,11 @@ namespace EnvanterDepoSistemitaslak2
             }
         }
 
-        // Ürün ComboBox'ını Doldurma Metodu (Barkod yerine buradan seçim yapılacak)
+       
         private void UrunleriYukle()
         {
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-            // UrunKodu ve UrunAd'ı birleştirerek ComboBox'ta daha anlaşılır bir gösterim sağlayalım
+            
             string sorgu = "SELECT UrunID, UrunKodu + ' - ' + UrunAd AS UrunTamAd FROM tblUrunler ORDER BY UrunTamAd";
 
             using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
@@ -172,149 +144,110 @@ namespace EnvanterDepoSistemitaslak2
 
         private void frmStokGiris_Load(object sender, EventArgs e)
         {
-
+            dgvStokDetaylari.AllowUserToAddRows = false;
 
         }
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            if (cmbUrunSecimi.SelectedValue == null)
+           
+            if (cmbUrunSecimi.SelectedValue == null || string.IsNullOrWhiteSpace(txtGirisMiktari.Text))
             {
-                MessageBox.Show("Lütfen bir ürün seçimi yapınız.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen ürün ve miktar bilgilerini giriniz!", "Uyarı");
                 return;
             }
 
-            if (!decimal.TryParse(txtGirisMiktari.Text, out decimal miktar) || miktar <= 0)
+            try
             {
-                MessageBox.Show("Geçerli bir giriş miktarı giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                
+                int urunID = Convert.ToInt32(cmbUrunSecimi.SelectedValue);
+                string urunAd = cmbUrunSecimi.Text;
+                decimal miktar = decimal.Parse(txtGirisMiktari.Text);
+                string tedarikciAd = cmbTedarikci.Text;
+                string faturaNo = txtFaturaNo.Text;
+                string girisNedeni = cmbGirisNedeni.Text;
+
+               
+                stokDetaylari.Rows.Add(
+                    urunID,       
+                    urunAd,       
+                    miktar,      
+                    tedarikciAd,  
+                    faturaNo,     
+                    girisNedeni  
+                );
+
+                txtGirisMiktari.Clear(); 
             }
-
-            // Gerekli değerleri al
-            int urunID = (int)cmbUrunSecimi.SelectedValue;
-            string urunAd = cmbUrunSecimi.Text;
-            string tedarikciAd = cmbTedarikci.Text;
-            string faturaNo = txtFaturaNo.Text;
-            string girisNedeni = cmbGirisNedeni.Text;
-
-            // *** DEĞİŞİKLİK BURADA: TOPLAMA MANTIĞI KALDIRILDI! ***
-            // Artık her zaman yeni bir satır ekliyoruz.
-            stokDetaylari.Rows.Add(
-                urunID,
-                urunAd,
-                miktar,
-                tedarikciAd,
-                faturaNo,
-                girisNedeni
-            );
-            // *******************************************************
-
-            // Giriş alanlarını temizle
-            cmbUrunSecimi.SelectedIndex = -1;
-            txtGirisMiktari.Clear();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Listeye eklerken hata oluştu: " + ex.Message);
+            }
         }
 
         private void btnGirisOnayla_Click(object sender, EventArgs e)
         {
-            // 1. Gerekli Kontroller
-            if (stokDetaylari.Rows.Count == 0)
+            if (stokDetaylari.Rows.Count == 0 || cmbTedarikci.SelectedValue == null)
             {
-                MessageBox.Show("Listeye eklenecek ürün detayı bulunmamaktadır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Eksik bilgi var!");
                 return;
             }
-
-            if (cmbTedarikci.SelectedValue == null)
-            {
-                MessageBox.Show("Lütfen Tedarikçi seçimi yapınız.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Varsayım: txtFaturaNo, cmbGirisNedeni ve cmbDepo isimlerini kullandınız.
-            // Varsayım: Oturum açan kullanıcının ID'si 'aktifKullaniciID' sınıf değişkeninde tutuluyor.
-            // Eğer Depo seçimi combobox'ta yoksa, Ana Depo ID'sini (1) varsayın.
-
-            int hareketID_GIRIS = 4; // 💡 Lütfen veritabanınızdaki Stok Giriş HareketID'sini buraya yazın!
-            int tedarikciID = (int)cmbTedarikci.SelectedValue;
-            string faturaNo = txtFaturaNo.Text.Trim();
-            string girisNedeni = cmbGirisNedeni.Text; // ComboBox text'i olarak alalım
-
-            // Eğer Depo ComboBox'ı varsa
-            // int depoID = (cmbDepo.SelectedValue != null) ? (int)cmbDepo.SelectedValue : 1; 
-            // Eğer Depo seçimi formu yoksa, varsayılan DepoID 1'i kullanalım
-            int depoID = 1;
 
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-
             using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
             {
                 baglanti.Open();
-                SqlTransaction transaction = baglanti.BeginTransaction(); // İŞLEM BAŞLAT!
+                SqlTransaction trans = baglanti.BeginTransaction();
 
                 try
                 {
-                    // Liste içindeki her bir satır için işlem yap
                     foreach (DataRow row in stokDetaylari.Rows)
                     {
-                        int urunID = (int)row["UrunID"];
-                        decimal miktar = (decimal)row["Miktar"];
-                        string aciklama = $"Giriş Nedeni: {girisNedeni}";
+                        
 
-                        // 1. STOK HAREKETİ KAYDI ATMA
-                        string stokHareketSorgu = @"
-                    INSERT INTO tblStokHareketleri 
-                    (UrunID, HareketID, KullaniciID, Miktar, Tarih, Aciklama, DepoID, TedarikciID, FaturaNo)
-                    VALUES (@UrunID, @HareketID, @KullaniciID, @Miktar, @Tarih, @Aciklama, @DepoID, @TedarikciID, @FaturaNo)";
+                        string sql = @"INSERT INTO tblStokHareketleri 
+                                     (UrunID, HareketID, KullaniciID, Miktar, Tarih, Aciklama, DepoID, TedarikciID, FaturaNo) 
+                                     VALUES (@u, (SELECT TOP 1 HareketID FROM tblHareketTipleri WHERE CarpimFaktoru > 0), 55, @m, GETDATE(), @a, 1, @t, @f)";
 
-                        using (SqlCommand komutHareket = new SqlCommand(stokHareketSorgu, baglanti, transaction))
+                        using (SqlCommand cmd = new SqlCommand(sql, baglanti, trans))
                         {
-                            // Varsayılan KullaniciID'ninizi buraya ekleyin
-                            komutHareket.Parameters.AddWithValue("@UrunID", urunID);
-                            komutHareket.Parameters.AddWithValue("@HareketID", hareketID_GIRIS);
-                            komutHareket.Parameters.AddWithValue("@KullaniciID", AktifKullanici.ID); // Buraya oturan kullanıcı ID'sini ekleyin
-                            komutHareket.Parameters.AddWithValue("@Miktar", miktar);
-                            komutHareket.Parameters.AddWithValue("@Tarih", DateTime.Now);
-                            komutHareket.Parameters.AddWithValue("@Aciklama", aciklama);
-                            komutHareket.Parameters.AddWithValue("@DepoID", depoID);
-                            komutHareket.Parameters.AddWithValue("@TedarikciID", tedarikciID);
-                            komutHareket.Parameters.AddWithValue("@FaturaNo", faturaNo);
-                            komutHareket.ExecuteNonQuery();
+                            cmd.Parameters.AddWithValue("@u", row["UrunID"]);
+                            cmd.Parameters.AddWithValue("@m", row["Miktar"]);
+                            cmd.Parameters.AddWithValue("@a", row["GirisNedeni"]);
+                            cmd.Parameters.AddWithValue("@t", cmbTedarikci.SelectedValue);
+                            cmd.Parameters.AddWithValue("@f", row["FaturaNo"]);
+                            cmd.ExecuteNonQuery();
                         }
 
-                        // 2. ÜRÜN STOĞUNU GÜNCELLEME (MevcutStok artırılıyor)
-                        string stokGuncelleSorgu = "UPDATE tblUrunler SET MevcutStok = MevcutStok + @Miktar WHERE UrunID = @UrunID";
-
-                        using (SqlCommand komutGuncelle = new SqlCommand(stokGuncelleSorgu, baglanti, transaction))
-                        {
-                            komutGuncelle.Parameters.AddWithValue("@Miktar", miktar);
-                            komutGuncelle.Parameters.AddWithValue("@UrunID", urunID);
-                            komutGuncelle.ExecuteNonQuery();
-                        }
+                        
+                        SqlCommand cmdUp = new SqlCommand("UPDATE tblUrunler SET MevcutStok += @m WHERE UrunID = @u", baglanti, trans);
+                        cmdUp.Parameters.AddWithValue("@m", row["Miktar"]);
+                        cmdUp.Parameters.AddWithValue("@u", row["UrunID"]);
+                        cmdUp.ExecuteNonQuery();
                     }
-
-                    transaction.Commit(); // HER ŞEY BAŞARILIYSA KAYITLARI ONAYLA
-                    MessageBox.Show("Stok girişi başarıyla tamamlandı.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Formu temizle ve resetle
-                    FormuTemizle();
+                    trans.Commit();
+                    MessageBox.Show("Kayıt Başarılı!");
+                    stokDetaylari.Clear();
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback(); // BİR HATA OLDUYSA İŞLEMLERİ GERİ AL
-                    MessageBox.Show("Stok girişi sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    trans.Rollback();
+                    MessageBox.Show("Hata oluştu: " + ex.Message);
                 }
             }
         }
 
-        // Kayıt sonrası formu temizleyecek metot (Temizle butonu için de kullanılabilir)
+
+      
         private void FormuTemizle()
         {
-            stokDetaylari.Clear(); // DataGridView'i temizle
+            stokDetaylari.Clear(); 
             cmbTedarikci.SelectedIndex = -1;
             cmbGirisNedeni.SelectedIndex = -1;
             txtFaturaNo.Clear();
             txtGirisMiktari.Clear();
             cmbUrunSecimi.SelectedIndex = -1;
-            // Eğer varsa, dgvStokDetaylari'yi de yenileyin.
+           
         }
 
         private void txtGirisMiktari_TextChanged(object sender, EventArgs e)
@@ -324,15 +257,31 @@ namespace EnvanterDepoSistemitaslak2
 
         private void btnSil_Click(object sender, EventArgs e)
         {
-            // Datagrid'de seçili satır olup olmadığını kontrol et
+           
             if (dgvStokDetaylari.SelectedRows.Count > 0)
             {
-                // Seçili satırı DataGrid'den kaldır
+               
                 dgvStokDetaylari.Rows.RemoveAt(dgvStokDetaylari.SelectedRows[0].Index);
             }
             else
             {
                 MessageBox.Show("Lütfen silinecek bir satır seçin.", "Uyarı");
+            }
+        }
+
+        private void dgvStokDetaylari_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+            if (dgvStokDetaylari.Columns[e.ColumnIndex].Name == "btnSilGrid" && e.RowIndex >= 0)
+            {
+               
+                var cevap = MessageBox.Show("Bu ürünü listeden çıkarmak istiyor musunuz?", "Sil", MessageBoxButtons.YesNo);
+
+                if (cevap == DialogResult.Yes)
+                {
+                   
+                    dgvStokDetaylari.Rows.RemoveAt(e.RowIndex);
+                }
             }
         }
     }

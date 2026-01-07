@@ -28,54 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblKategoriAdi = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKategoriYonetimi));
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
             btnSilSutun = new DataGridViewButtonColumn();
-            txtKategoriAdi = new TextBox();
+            btnGuncelleSutun = new DataGridViewButtonColumn();
             panel1 = new Panel();
-            tabControl1 = new TabControl();
-            tabPage2 = new TabPage();
-            btnKategoriGuncellee = new KavisliButon();
-            btnKategoriKaydett = new KavisliButon();
-            txtKategoriAciklama = new TextBox();
-            lblAciklama = new Label();
+            button1 = new Button();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             panel1.SuspendLayout();
-            tabControl1.SuspendLayout();
-            tabPage2.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblKategoriAdi
-            // 
-            lblKategoriAdi.AutoSize = true;
-            lblKategoriAdi.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblKategoriAdi.ForeColor = SystemColors.ControlLightLight;
-            lblKategoriAdi.Location = new Point(36, 65);
-            lblKategoriAdi.Name = "lblKategoriAdi";
-            lblKategoriAdi.Size = new Size(117, 23);
-            lblKategoriAdi.TabIndex = 0;
-            lblKategoriAdi.Text = "Kategori Adı:";
             // 
             // panel2
             // 
             panel2.Controls.Add(dataGridView2);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(653, 0);
+            panel2.Location = new Point(0, 89);
             panel2.Name = "panel2";
-            panel2.Size = new Size(613, 710);
+            panel2.Size = new Size(1266, 621);
             panel2.TabIndex = 5;
             // 
             // dataGridView2
             // 
+            dataGridView2.AllowUserToAddRows = false;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun });
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun, btnGuncelleSutun });
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(613, 710);
+            dataGridView2.Size = new Size(1266, 621);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellClick += dataGridView2_CellClick;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
@@ -85,106 +68,42 @@
             // 
             // btnSilSutun
             // 
-            btnSilSutun.HeaderText = "";
+            btnSilSutun.HeaderText = "Sil";
             btnSilSutun.MinimumWidth = 6;
             btnSilSutun.Name = "btnSilSutun";
-            btnSilSutun.Text = "Sil";
+            btnSilSutun.Text = "🗑";
             btnSilSutun.UseColumnTextForButtonValue = true;
             btnSilSutun.Width = 125;
             // 
-            // txtKategoriAdi
+            // btnGuncelleSutun
             // 
-            txtKategoriAdi.Location = new Point(156, 57);
-            txtKategoriAdi.Margin = new Padding(3, 4, 3, 4);
-            txtKategoriAdi.Name = "txtKategoriAdi";
-            txtKategoriAdi.Size = new Size(347, 30);
-            txtKategoriAdi.TabIndex = 1;
+            btnGuncelleSutun.HeaderText = "Düzenle";
+            btnGuncelleSutun.MinimumWidth = 6;
+            btnGuncelleSutun.Name = "btnGuncelleSutun";
+            btnGuncelleSutun.Text = "📝";
+            btnGuncelleSutun.UseColumnTextForButtonValue = true;
+            btnGuncelleSutun.Width = 125;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLightLight;
-            panel1.Controls.Add(tabControl1);
-            panel1.Dock = DockStyle.Left;
+            panel1.Controls.Add(button1);
+            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(653, 710);
+            panel1.Size = new Size(1266, 89);
             panel1.TabIndex = 4;
             // 
-            // tabControl1
+            // button1
             // 
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            tabControl1.Location = new Point(6, 131);
-            tabControl1.Margin = new Padding(3, 4, 3, 4);
-            tabControl1.Multiline = true;
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(644, 556);
-            tabControl1.TabIndex = 2;
-            // 
-            // tabPage2
-            // 
-            tabPage2.BackColor = Color.LightSlateGray;
-            tabPage2.Controls.Add(btnKategoriGuncellee);
-            tabPage2.Controls.Add(btnKategoriKaydett);
-            tabPage2.Controls.Add(txtKategoriAciklama);
-            tabPage2.Controls.Add(lblAciklama);
-            tabPage2.Controls.Add(txtKategoriAdi);
-            tabPage2.Controls.Add(lblKategoriAdi);
-            tabPage2.Location = new Point(4, 32);
-            tabPage2.Margin = new Padding(3, 4, 3, 4);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 4, 3, 4);
-            tabPage2.Size = new Size(636, 520);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Kategori Tanımlama";
-            // 
-            // btnKategoriGuncellee
-            // 
-            btnKategoriGuncellee.BorderRadius = 30;
-            btnKategoriGuncellee.FlatStyle = FlatStyle.System;
-            btnKategoriGuncellee.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnKategoriGuncellee.Location = new Point(331, 411);
-            btnKategoriGuncellee.Name = "btnKategoriGuncellee";
-            btnKategoriGuncellee.Size = new Size(101, 39);
-            btnKategoriGuncellee.TabIndex = 8;
-            btnKategoriGuncellee.Text = "Güncelle";
-            btnKategoriGuncellee.UseVisualStyleBackColor = true;
-            btnKategoriGuncellee.Click += btnKategoriGuncellee_Click;
-            // 
-            // btnKategoriKaydett
-            // 
-            btnKategoriKaydett.BorderRadius = 30;
-            btnKategoriKaydett.FlatStyle = FlatStyle.System;
-            btnKategoriKaydett.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnKategoriKaydett.Location = new Point(224, 411);
-            btnKategoriKaydett.Name = "btnKategoriKaydett";
-            btnKategoriKaydett.Size = new Size(101, 39);
-            btnKategoriKaydett.TabIndex = 7;
-            btnKategoriKaydett.Text = "Kaydet";
-            btnKategoriKaydett.UseVisualStyleBackColor = true;
-            btnKategoriKaydett.Click += btnKategoriKaydett_Click;
-            // 
-            // txtKategoriAciklama
-            // 
-            txtKategoriAciklama.Location = new Point(153, 104);
-            txtKategoriAciklama.Margin = new Padding(3, 4, 3, 4);
-            txtKategoriAciklama.Multiline = true;
-            txtKategoriAciklama.Name = "txtKategoriAciklama";
-            txtKategoriAciklama.ScrollBars = ScrollBars.Vertical;
-            txtKategoriAciklama.Size = new Size(350, 300);
-            txtKategoriAciklama.TabIndex = 3;
-            // 
-            // lblAciklama
-            // 
-            lblAciklama.AutoSize = true;
-            lblAciklama.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblAciklama.ForeColor = SystemColors.ControlLightLight;
-            lblAciklama.Location = new Point(59, 112);
-            lblAciklama.Name = "lblAciklama";
-            lblAciklama.Size = new Size(94, 23);
-            lblAciklama.TabIndex = 2;
-            lblAciklama.Text = "Açıklama :";
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.Location = new Point(35, 17);
+            button1.Name = "button1";
+            button1.Size = new Size(111, 51);
+            button1.TabIndex = 3;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // frmKategoriYonetimi
             // 
@@ -199,25 +118,15 @@
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             panel1.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Label lblKategoriAdi;
         private Panel panel2;
         private DataGridView dataGridView2;
-        private TextBox txtKategoriAdi;
         private Panel panel1;
-        private TabControl tabControl1;
-        private TabPage tabPage2;
-        private KavisliButon btnKategoriGuncellee;
-        private KavisliButon btnKategoriKaydett;
-        private TextBox txtKategoriAciklama;
-        private Label lblAciklama;
+        private Button button1;
         private DataGridViewButtonColumn btnSilSutun;
+        private DataGridViewButtonColumn btnGuncelleSutun;
     }
 }

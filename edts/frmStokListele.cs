@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using ClosedXML.Excel;
 
 namespace EnvanterDepoSistemitaslak2
 {
@@ -20,10 +21,10 @@ namespace EnvanterDepoSistemitaslak2
         }
         private void VerileriDoldur()
         {
-            // Kategori ComboBox'ını Doldur
+
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
-            // 1. Kategori ComboBox'ı (tblKategoriler)
+
             using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
             {
                 try
@@ -35,17 +36,17 @@ namespace EnvanterDepoSistemitaslak2
                         da.Fill(dtKategori);
                     }
 
-                    // "Tümü" seçeneğini ekle
+
                     DataRow tumuRow = dtKategori.NewRow();
-                    tumuRow["KategoriID"] = 0; // Filtrede 0, tümünü seçecek
+                    tumuRow["KategoriID"] = 0;
                     tumuRow["KategoriAd"] = "Tümü";
                     dtKategori.Rows.InsertAt(tumuRow, 0);
 
-                    // cmbKategoriFiltresi bileşenine bağlama
+
                     cmbKategoriFiltresi.DataSource = dtKategori;
                     cmbKategoriFiltresi.DisplayMember = "KategoriAd";
                     cmbKategoriFiltresi.ValueMember = "KategoriID";
-                    cmbKategoriFiltresi.SelectedIndex = 0; // "Tümü" seçili gelsin
+                    cmbKategoriFiltresi.SelectedIndex = 0;
                 }
                 catch (Exception ex)
                 {
@@ -53,7 +54,7 @@ namespace EnvanterDepoSistemitaslak2
                 }
             }
 
-            // 2. Durum Filtresi (cmbDurumFiltresi) - Sabit Değerler
+
             if (cmbDurumFiltresi.Items.Count == 0)
             {
                 cmbDurumFiltresi.Items.Add("Tümü");
@@ -66,7 +67,6 @@ namespace EnvanterDepoSistemitaslak2
         {
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
-            // NOT: tblBirimler tablosunun var olduğunu varsayıyoruz.
             string sorgu = @"
         SELECT
             U.UrunID,
@@ -91,26 +91,24 @@ namespace EnvanterDepoSistemitaslak2
             {
                 using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
                 {
-                    // FİLTRE KOŞULLARI
 
-                    // 1. Arama Filtresi (txtArama)
+
                     if (!string.IsNullOrEmpty(aramaMetni))
                     {
                         komut.CommandText += " AND U.UrunAd LIKE @AramaMetni ";
                         komut.Parameters.AddWithValue("@AramaMetni", "%" + aramaMetni + "%");
                     }
 
-                    // 2. Kategori Filtresi (cmbKategoriFiltresi)
+
                     if (kategoriID > 0)
                     {
                         komut.CommandText += " AND U.KategoriID = @KategoriID ";
                         komut.Parameters.AddWithValue("@KategoriID", kategoriID);
                     }
 
-                    // 3. Durum Filtresi (cmbDurumFiltresi)
                     if (!string.IsNullOrEmpty(durumFiltresi) && durumFiltresi != "Tümü")
                     {
-                        // Kritik veya Normal durumu filtrele
+
                         if (durumFiltresi == "Kritik Seviye")
                         {
                             komut.CommandText += " AND U.MevcutStok <= U.KritikStok ";
@@ -129,28 +127,20 @@ namespace EnvanterDepoSistemitaslak2
                         DataTable dt = new DataTable();
                         da.Fill(dt);
 
-                        // *** KRİTİK ADIM ***
+
                         dgvStoklar.DataSource = dt;
-                        dgvStoklar.Refresh(); // DataGridView'i güncellemeyi zorla
 
-                        if (dt.Rows.Count == 0)
-                        {
-                            // Listede kayıt yoksa kullanıcıyı bilgilendir
-                            MessageBox.Show("Filtreleme kriterlerine uygun ürün bulunamadı. Lütfen filtreleri kontrol edin.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        dgvStoklar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                        // *** GEÇİCİ ÇÖZÜM: GÖRÜNÜM AYARLARINI DEVRE DIŞI BIRAKMA ***
-                        // Eğer veriler görünmüyorsa, sorun DGV sütunlarının adlarında olabilir.
-                        // Bu kısmı yorum satırı yapın ve AutoGenerateColumns=True olduğundan emin olun.
-                        /*
-                        dgvStoklar.Columns["UrunID"].Visible = false;
-                        dgvStoklar.Columns["UrunAd"].HeaderText = "Ürün Adı";
-                        dgvStoklar.Columns["MevcutStok"].HeaderText = "Stok";
-                        dgvStoklar.Columns["KategoriAd"].HeaderText = "Kategori";
-                        dgvStoklar.Columns["BirimAd"].HeaderText = "Birim";
-                        dgvStoklar.Columns["KritikStok"].HeaderText = "Kritik Sınır";
-                        dgvStoklar.Columns["StokDurumu"].HeaderText = "Durum";
-                        */
+                        dgvStoklar.AllowUserToAddRows = false;
+
+                        dgvStoklar.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+                        dgvStoklar.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+                        dgvStoklar.DefaultCellStyle.Font = new Font("Segoe UI", 9);
+
+                        dgvStoklar.RowHeadersVisible = false;
+                        dgvStoklar.Refresh();
 
                     }
                     catch (Exception ex)
@@ -158,16 +148,28 @@ namespace EnvanterDepoSistemitaslak2
                         MessageBox.Show("Stok listesi yüklenirken veritabanı hatası oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                if (dgvStoklar.Columns.Count > 0)
+                {
+                    dgvStoklar.Columns["UrunID"].Visible = false;
+                    dgvStoklar.Columns["UrunAd"].HeaderText = "Ürün Adı";
+                    dgvStoklar.Columns["MevcutStok"].HeaderText = "Stok Miktarı";
+                    dgvStoklar.Columns["KategoriAd"].HeaderText = "Kategori";
+                    dgvStoklar.Columns["BirimAd"].HeaderText = "Birim";
+                    dgvStoklar.Columns["KritikStok"].HeaderText = "Kritik Sınır";
+                    dgvStoklar.Columns["StokDurumu"].HeaderText = "Durum";
+
+
+                    dgvStoklar.Columns["MevcutStok"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
             }
         }
 
         private void frmStokListele_Load(object sender, EventArgs e)
         {
-            // 1. Filtre ComboBox'larını Doldur
-            VerileriDoldur(); // Bu metot cmbKategoriFiltresi ve cmbDurumFiltresi'ni doldurur.
 
-            // 2. KRİTİK ADIM: FİLTRE DEĞERLERİNİ 'TÜMÜ' OLARAK AYARLAMA
-            // cmbKategoriFiltresi ve cmbDurumFiltresi'nin ilk elemanının ("Tümü") olduğunu varsayıyoruz.
+            VerileriDoldur();
+
+
             if (cmbKategoriFiltresi.Items.Count > 0)
             {
                 cmbKategoriFiltresi.SelectedIndex = 0;
@@ -177,37 +179,125 @@ namespace EnvanterDepoSistemitaslak2
                 cmbDurumFiltresi.SelectedIndex = 0;
             }
 
-            // Arama kutusunu da temizleyelim.
+
             txtArama.Text = string.Empty;
 
-            // 3. Listelemeyi Başlat
+
             StoklariListele();
+            dgvStoklar.AllowUserToAddRows = false;
         }
 
         private void btnYenile_Click(object sender, EventArgs e)
         {
-            // Bileşenlerden değerleri okuma
+
             string aramaMetni = txtArama.Text.Trim();
 
-            // Kategori ID'yi oku: SelectedValue null değilse oku, null ise 0 yap.
+
             int kategoriID = 0;
             if (cmbKategoriFiltresi.SelectedValue != null &&
                 cmbKategoriFiltresi.SelectedValue != DBNull.Value)
             {
-                // SelectedValue'nun int olduğunu varsayıyoruz.
+
                 kategoriID = Convert.ToInt32(cmbKategoriFiltresi.SelectedValue);
             }
 
-            // NOT: Eğer "Tümü" seçeneği (örneğin 0 ID'li) cmb'ye elle eklendiyse ve 
-            // SelectedValue'su 0 ise, bu kod çalışır.
+
 
             string durumFiltresi = cmbDurumFiltresi.Text;
 
-            // Listeleme metodunu filtrelerle çağırma
+
             StoklariListele(aramaMetni, kategoriID, durumFiltresi);
         }
 
-       
+        private void dgvStoklar_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            if (dgvStoklar.Columns[e.ColumnIndex].Name == "StokDurumu" && e.Value != null)
+            {
+                if (e.Value.ToString() == "Kritik Seviye")
+                {
+
+                    dgvStoklar.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.MistyRose;
+                    dgvStoklar.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                }
+                else
+                {
+
+                    dgvStoklar.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    dgvStoklar.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void ExcelAktarClosedXML(DataGridView dgv)
+        {
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Stok Listesi");
+
+                // 1. Başlıkları Aktar ve Formatla
+                int gecerliSutun = 1;
+                for (int i = 0; i < dgv.Columns.Count; i++)
+                {
+                    if (dgv.Columns[i].Visible) // Sadece görünür sütunları aktar
+                    {
+                        var cell = worksheet.Cell(1, gecerliSutun);
+                        cell.Value = dgv.Columns[i].HeaderText;
+                        cell.Style.Font.Bold = true;
+                        cell.Style.Fill.BackgroundColor = XLColor.LightGray;
+                        cell.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                        gecerliSutun++;
+                    }
+                }
+
+                // 2. Verileri Aktar
+                for (int i = 0; i < dgv.Rows.Count; i++)
+                {
+                    gecerliSutun = 1;
+                    for (int j = 0; j < dgv.Columns.Count; j++)
+                    {
+                        if (dgv.Columns[j].Visible)
+                        {
+                            worksheet.Cell(i + 2, gecerliSutun).Value = dgv.Rows[i].Cells[j].Value?.ToString();
+                            worksheet.Cell(i + 2, gecerliSutun).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            gecerliSutun++;
+                        }
+                    }
+                }
+
+                // 3. Sütun Genişliklerini Ayarla
+                worksheet.Columns().AdjustToContents();
+
+                // 4. Kaydetme Penceresi
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Excel Workbook|*.xlsx";
+                sfd.FileName = "Stok_Raporu_" + DateTime.Now.ToString("dd_MM_yyyy");
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    workbook.SaveAs(sfd.FileName);
+                    MessageBox.Show("Rapor başarıyla oluşturuldu!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void txtArama_TextChanged(object sender, EventArgs e)
+        {
+
+            btnYenile_Click(sender, e);
+        }
+
+        private void btnExcelAktar_Click(object sender, EventArgs e)
+        {
+            if (dgvStoklar.Rows.Count > 0)
+            {
+                
+                ExcelAktarClosedXML(dgvStoklar);
+            }
+            else
+            {
+                MessageBox.Show("Aktarılacak veri bulunamadı!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 
 }

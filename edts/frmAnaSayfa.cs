@@ -9,95 +9,91 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 
 namespace edts
 {
     public partial class frmAnaSayfa : Form
     {
         static private readonly string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-        public frmAnaSayfa() {
+        public frmAnaSayfa()
+        {
             InitializeComponent();
-            BugunkuIslemSayilariniGetir();
-            UrunDurumunuGetir();
+           
         }
-        public void BugunkuIslemSayilariniGetir() {
-            using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
-                try {
-                    baglan.Open();
-
-                    // SQL SORGUSU:
-                    // Tarih aralığı "Bugün" olanları filtrele.
-                    // HareketID 4 ise (Alım) sayacı 1 artır.
-                    // HareketID 2 ise (Satım) sayacı 1 artır.
-                    string sorgu = @"
-                SELECT 
-                    SUM(CASE WHEN HareketID = 4 THEN 1 ELSE 0 END) AS AlimSayisi,
-                    SUM(CASE WHEN HareketID = 2 THEN 1 ELSE 0 END) AS SatisSayisi
-                FROM tblStokHareketleri
-                WHERE Tarih BETWEEN @Baslangic AND @Bitis";
-
-                    SqlCommand cmd = new SqlCommand(sorgu, baglan);
-
-                    // PARAMETRELER (Bugünün Tamamı):
-                    // DateTime.Today -> Bugünün tarihi saat 00:00:00
-                    cmd.Parameters.AddWithValue("@Baslangic", DateTime.Today);
-
-                    // Bugünün son saniyesi -> 23:59:59
-                    cmd.Parameters.AddWithValue("@Bitis", DateTime.Today.AddDays(1).AddSeconds(-1));
-
-                    using (SqlDataReader dr = cmd.ExecuteReader()) {
-                        if (dr.Read()) {
-                            // Değerleri okuyalım (Eğer veritabanı boşsa veya o gün işlem yoksa 0 gelir)
-                            int alimAdet = dr["AlimSayisi"] != DBNull.Value ? Convert.ToInt32(dr["AlimSayisi"]) : 0;
-                            int satisAdet = dr["SatisSayisi"] != DBNull.Value ? Convert.ToInt32(dr["SatisSayisi"]) : 0;
-
-                            // Label'lara yazdıralım
-                            label2.Text = "Günlük Giriş: " + alimAdet.ToString();
-                            label4.Text = "Günlük Çıkış: " + satisAdet.ToString();
-                        }
-                    }
-                } catch (Exception ex) {
-                    MessageBox.Show("Bugünkü veriler çekilemedi: " + ex.Message);
-                }
-            }
-        }
-        public void UrunDurumunuGetir() {
-            using (SqlConnection baglan = new SqlConnection(baglantiDizesi)) {
-                try {
-                    baglan.Open();
-
-                    // TEK SORGUDA İKİ İŞLEM:
-                    // 1. COUNT(*) -> Tablodaki her şeyi say (Toplam Ürün)
-                    // 2. SUM(CASE...) -> Sadece stoğu kritikten az olanlara '1' verip topla (Kritik Ürün)
-                    string sorgu = @"
-                SELECT 
-                    COUNT(*) AS ToplamSayi,
-                    ISNULL(SUM(CASE WHEN MevcutStok < KritikStok THEN 1 ELSE 0 END), 0) AS KritikSayi
-                FROM tblUrunler";
-
-                    SqlCommand cmd = new SqlCommand(sorgu, baglan);
-
-                    using (SqlDataReader dr = cmd.ExecuteReader()) {
-                        if (dr.Read()) {
-                            // Değerleri okuyoruz
-                            string toplam = dr["ToplamSayi"]?.ToString() ?? "0";
-                            string kritik = dr["KritikSayi"].ToString() ?? "0";
-
-                            // Label'lara yazdırıyoruz
-                            label3.Text = "Kritik Stok Adeti: "+toplam;
-                            label1.Text = "Toplam Ürün Çeşidi: " + kritik;
-
-
-                        }
-                    }
-                } catch (Exception ex) {
-                    MessageBox.Show("Veriler alınamadı: " + ex.Message);
-                }
-            }
-        }
+       
+       
         private void pnlUstSol_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+
+        private void OzetVerileriYukle()
+        {
+            using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
+            {
+                string sorgu = @"
+            SELECT 
+                -- 1. Grup: Genel Envanter
+                (SELECT COUNT(*) FROM tblUrunler) AS ToplamCesit,
+                (SELECT ISNULL(SUM(MevcutStok), 0) FROM tblUrunler) AS ToplamStok,
+                (SELECT COUNT(*) FROM tblUrunler WHERE MevcutStok <= KritikStok) AS KritikAdet,
+                (SELECT COUNT(*) FROM tblUrunler WHERE MevcutStok = 0) AS BitenAdet,
+                
+                -- 2. Grup: Bugünün Hareketleri (tblStokHareketleri üzerinden)
+                -- Not: HareketID = 1 Giriş, HareketID = 2 Çıkış olarak varsayıldı
+                (SELECT ISNULL(SUM(Miktar), 0) FROM tblStokHareketleri 
+                 WHERE HareketID = 1 AND CAST(Tarih AS DATE) = CAST(GETDATE() AS DATE)) AS BugunGelen,
+                
+                (SELECT ISNULL(SUM(Miktar), 0) FROM tblStokHareketleri 
+                 WHERE HareketID = 2 AND CAST(Tarih AS DATE) = CAST(GETDATE() AS DATE)) AS BugunCikan,
+                
+                -- 3. Grup: Kritik Bilgi
+                (SELECT TOP 1 UrunAd FROM tblUrunler ORDER BY MevcutStok ASC) AS EnAzUrunAd,
+                (SELECT TOP 1 MevcutStok FROM tblUrunler ORDER BY MevcutStok ASC) AS EnAzUrunMiktar
+            ";
+
+                SqlCommand komut = new SqlCommand(sorgu, baglanti);
+
+                try
+                {
+                    baglanti.Open();
+                    SqlDataReader dr = komut.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                       
+                        lblToplamUrunCesidi.Text = dr["ToplamCesit"].ToString();
+                        lblToplamStokMiktari.Text = Convert.ToDecimal(dr["ToplamStok"]).ToString("N0");
+                        lblKritikStokAdet.Text = dr["KritikAdet"].ToString();
+                        lblBitenUrunler.Text = dr["BitenAdet"].ToString();
+
+                       
+                        lblBugunGelen.Text = Convert.ToDecimal(dr["BugunGelen"]).ToString("N0");
+                        lblBugunCikan.Text = Convert.ToDecimal(dr["BugunCikan"]).ToString("N0");
+
+                        
+                        lblEnAzUrunAd.Text = dr["EnAzUrunAd"].ToString() + " (" + dr["EnAzUrunMiktar"].ToString() + ")";
+                       
+
+                        
+                        int kritik = Convert.ToInt32(dr["KritikAdet"]);
+                        lblSistemMesaji.Text = kritik > 0 ? $"{kritik} Ürün Kritik Seviyede!" : "Her şey yolunda.";
+                        lblSistemMesaji.ForeColor = kritik > 0 ? Color.Red : Color.Green;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Veritabanı hatası: " + ex.Message);
+                }
+            }
+        }
+
+
+        private void frmAnaSayfa_Load(object sender, EventArgs e)
+        {
+            OzetVerileriYukle();
         }
     }
 }
