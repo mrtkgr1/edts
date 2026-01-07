@@ -117,17 +117,17 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1046, 33);
+            panel1.Size = new Size(1046, 36);
             panel1.TabIndex = 0;
             panel1.MouseDown += panel1_MouseDown;
             // 
             // labelBaslik
             // 
             labelBaslik.AutoSize = true;
-            labelBaslik.Font = new Font("Segoe UI", 9F);
-            labelBaslik.Location = new Point(37, 7);
+            labelBaslik.Font = new Font("Segoe UI", 11F);
+            labelBaslik.Location = new Point(42, 7);
             labelBaslik.Name = "labelBaslik";
-            labelBaslik.Size = new Size(94, 19);
+            labelBaslik.Size = new Size(116, 23);
             labelBaslik.TabIndex = 5;
             labelBaslik.Text = "Kontrol Paneli";
             // 
@@ -135,22 +135,23 @@
             // 
             pictureBoxNotf.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBoxNotf.Image = Properties.Resources.notf_yok_beyaz;
-            pictureBoxNotf.Location = new Point(857, 0);
+            pictureBoxNotf.Location = new Point(839, 1);
             pictureBoxNotf.Name = "pictureBoxNotf";
-            pictureBoxNotf.Size = new Size(33, 33);
-            pictureBoxNotf.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxNotf.Size = new Size(36, 33);
+            pictureBoxNotf.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxNotf.TabIndex = 2;
             pictureBoxNotf.TabStop = false;
+            pictureBoxNotf.Visible = false;
             pictureBoxNotf.Click += pictureBox4_Click;
             // 
             // pictureBoxProfile
             // 
             pictureBoxProfile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBoxProfile.Image = Properties.Resources.profile_beyaz;
-            pictureBoxProfile.Location = new Point(896, 0);
+            pictureBoxProfile.Location = new Point(881, 1);
             pictureBoxProfile.Name = "pictureBoxProfile";
-            pictureBoxProfile.Size = new Size(33, 33);
-            pictureBoxProfile.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxProfile.Size = new Size(36, 33);
+            pictureBoxProfile.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxProfile.TabIndex = 2;
             pictureBoxProfile.TabStop = false;
             pictureBoxProfile.Click += pictureBox3_Click;
@@ -159,11 +160,12 @@
             // 
             button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button8.FlatAppearance.BorderSize = 0;
+            button8.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
             button8.FlatStyle = FlatStyle.Flat;
             button8.Font = new Font("Marlett", 8.830189F);
-            button8.Location = new Point(1013, 0);
+            button8.Location = new Point(1007, 1);
             button8.Name = "button8";
-            button8.Size = new Size(33, 33);
+            button8.Size = new Size(36, 33);
             button8.TabIndex = 2;
             button8.TabStop = false;
             button8.Text = "r";
@@ -175,12 +177,13 @@
             prefPictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             prefPictureBox.Image = Properties.Resources.kayan_liste_beyaz_assa;
             prefPictureBox.InitialImage = (Image)resources.GetObject("prefPictureBox.InitialImage");
-            prefPictureBox.Location = new Point(818, 0);
+            prefPictureBox.Location = new Point(797, 1);
             prefPictureBox.Name = "prefPictureBox";
-            prefPictureBox.Size = new Size(33, 33);
-            prefPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            prefPictureBox.Size = new Size(36, 33);
+            prefPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             prefPictureBox.TabIndex = 2;
             prefPictureBox.TabStop = false;
+            prefPictureBox.Visible = false;
             prefPictureBox.Click += prefPictureBox_click;
             // 
             // button10
@@ -189,9 +192,9 @@
             button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Marlett", 8.830189F);
-            button10.Location = new Point(935, 0);
+            button10.Location = new Point(923, 1);
             button10.Name = "button10";
-            button10.Size = new Size(33, 33);
+            button10.Size = new Size(36, 33);
             button10.TabIndex = 4;
             button10.TabStop = false;
             button10.Text = "0";
@@ -204,9 +207,9 @@
             btnBuyut.FlatAppearance.BorderSize = 0;
             btnBuyut.FlatStyle = FlatStyle.Flat;
             btnBuyut.Font = new Font("Marlett", 8.830189F);
-            btnBuyut.Location = new Point(974, 0);
+            btnBuyut.Location = new Point(965, 1);
             btnBuyut.Name = "btnBuyut";
-            btnBuyut.Size = new Size(33, 33);
+            btnBuyut.Size = new Size(36, 33);
             btnBuyut.TabIndex = 3;
             btnBuyut.TabStop = false;
             btnBuyut.Text = "1";
@@ -216,10 +219,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Location = new Point(0, 1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(33, 33);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Size = new Size(36, 33);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
@@ -667,10 +670,10 @@
             // panelForm
             // 
             panelForm.Dock = DockStyle.Fill;
-            panelForm.Location = new Point(178, 33);
+            panelForm.Location = new Point(178, 36);
             panelForm.Margin = new Padding(0);
             panelForm.Name = "panelForm";
-            panelForm.Size = new Size(868, 391);
+            panelForm.Size = new Size(868, 388);
             panelForm.TabIndex = 2;
             // 
             // SolHPanel
@@ -678,17 +681,17 @@
             SolHPanel.Controls.Add(yanMenuPanel);
             SolHPanel.Dock = DockStyle.Left;
             SolHPanel.ForeColor = Color.White;
-            SolHPanel.Location = new Point(0, 33);
+            SolHPanel.Location = new Point(0, 36);
             SolHPanel.Margin = new Padding(0);
             SolHPanel.Name = "SolHPanel";
-            SolHPanel.Size = new Size(178, 391);
+            SolHPanel.Size = new Size(178, 388);
             SolHPanel.TabIndex = 0;
             // 
             // AnaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.Black;
             ClientSize = new Size(1054, 430);
             ControlBox = false;
             Controls.Add(AnaHPanel);
