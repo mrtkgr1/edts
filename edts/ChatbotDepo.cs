@@ -19,6 +19,10 @@ namespace edts
         static string connectionString =
             "Server=LAPTOP-ECRTR81F\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
 
+        // --- HAFIZA DEĞİŞKENLERİ ---
+        private string sonArananUrun = "";
+        private string sonKategori = "";
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
     int nLeftRect,     // Sol üst x-koordinatı
@@ -56,10 +60,8 @@ namespace edts
 
 
 
-            string botAdi = "Stok Yönetim Botu";
+            string botAdi = "Fuzuli";
             _ = GosterHarfHarf($"{botAdi}: Merhaba! Bugün size nasıl yardımcı olabilirim?", false);
-
-
 
 
         }
@@ -523,15 +525,16 @@ namespace edts
         private string UrunStokDurumu(string soru)
         {
 
-            // Sorudan ürün adını çıkar
-            string? urunAdi = soru.Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                     .FirstOrDefault(x => x != "stok" && x != "var" && x != "mı");
+            // ARTIK SPLIT YERİNE MERKEZİ METODU KULLANIYORUZ
+            string urunAdi = UrunAdiniBelirle(soru.ToLower().Trim());
 
             if (string.IsNullOrEmpty(urunAdi))
                 return "Ürün adı algılanamadı.";
 
             using SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
+
+           
 
             // önce birebir arayalım
             using (SqlCommand cmd = new SqlCommand(
@@ -543,10 +546,7 @@ namespace edts
                 if (result != null)
                 {
                     decimal stok = Convert.ToDecimal(result);
-
-                    return stok > 0
-                        ? $"{urunAdi} stokta mevcut. Miktar: {stok}"
-                        : $"{urunAdi} stokta mevcut değil.";
+                    return $"{urunAdi} ürününden şu an stokta {stok} adet var.";
                 }
             }
 
@@ -893,49 +893,60 @@ namespace edts
             try
             {
                 int miktar = 0;
-                // 1. Sayıyı bul
-                string[] kelimeler = soru.Split(' ');
-                foreach (var k in kelimeler)
-                {
-                    if (int.TryParse(new string(k.Where(char.IsDigit).ToArray()), out int sonuc))
-                    {
-                        miktar = sonuc;
-                        break;
-                    }
-                }
+                // 1. Sayıyı Ayıkla (Senin yöntemin gayet iyi)
+                var sayiKismi = new string(soru.Where(char.IsDigit).ToArray());
+                if (!int.TryParse(sayiKismi, out miktar) || miktar <= 0)
+                    return "Lütfen geçerli bir miktar belirtin. (Örn: 10 ekle)";
 
-                if (miktar <= 0) return "Lütfen geçerli bir sayı belirtin (Örn: 10 artır).";
+                // 2. İşlem Yönü
+                bool artir = soru.Contains("art") || soru.Contains("ekle") || soru.Contains("geldi");
 
-                // 2. İşlem yönünü belirle
-                bool artir = soru.Contains("art") || soru.Contains("ekle");
-
-                // 3. Ürün adını temizle (Senin Mesafe algoritmanı kullanacak şekilde)
-                string urunAdi = soru.ToLower()
-                    .Replace("stok", "").Replace("artır", "").Replace("azalt", "")
-                    .Replace("ekle", "").Replace("tane", "").Replace(miktar.ToString(), "").Trim();
+                // 3. Ürün Adını Bul (Hafızadaki veya sorudaki en yakın ürünü bulalım)
+                string hamUrunAdi = UrunAdiniBelirle(soru); // Önceki mesajda yazdığımız metod
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    // Mevcut stoğu al ve güncelle (Senin sütun adın MevcutStok olduğu için öyle yazdım)
+
+                    // ÖNCE: Ürünü ve mevcut stoğunu net bir şekilde bulalım (Levenshtein burada devreye girer)
+                    // Tüm ürün adlarını çekip Mesafe algoritmanla en yakını bulduğunu varsayıyorum
+                    string gercekUrunAdi = hamUrunAdi; // Burada Mesafe(hamUrunAdi, dbUrunAdi) çalışmalı
+
+                    // Mevcut stoğu kontrol et
+                    SqlCommand kontrolCmd = new SqlCommand("SELECT MevcutStok FROM tblUrunler WHERE UrunAd = @ad", conn);
+                    kontrolCmd.Parameters.AddWithValue("@ad", gercekUrunAdi);
+                    object currentStockObj = kontrolCmd.ExecuteScalar();
+
+                    if (currentStockObj == null)
+                        return $"'{hamUrunAdi}' adında bir ürün bulunamadı. Lütfen ürün adını kontrol edin.";
+
+                    int mevcutStok = Convert.ToInt32(currentStockObj);
+
+                    // NEGATİF STOK KONTROLÜ
+                    if (!artir && mevcutStok < miktar)
+                        return $"Yetersiz stok! Mevcut: {mevcutStok}, Azaltılmak istenen: {miktar}. İşlem iptal edildi.";
+
+                    // 4. GÜNCELLEME (Tam isimle güncelleme yapıyoruz, LIKE değil!)
                     string sql = artir
-                        ? "UPDATE tblUrunler SET MevcutStok = MevcutStok + @m WHERE LOWER(UrunAd) LIKE @ad"
-                        : "UPDATE tblUrunler SET MevcutStok = MevcutStok - @m WHERE LOWER(UrunAd) LIKE @ad";
+                        ? "UPDATE tblUrunler SET MevcutStok = MevcutStok + @m WHERE UrunAd = @ad"
+                        : "UPDATE tblUrunler SET MevcutStok = MevcutStok - @m WHERE UrunAd = @ad";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@m", miktar);
-                        cmd.Parameters.AddWithValue("@ad", "%" + urunAdi + "%");
-                        int etkilenen = cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@ad", gercekUrunAdi);
+                        cmd.ExecuteNonQuery();
 
-                        if (etkilenen > 0)
-                            return $"{urunAdi} stoğu {miktar} adet {(artir ? "artırıldı" : "azaltıldı")}.";
-                        else
-                            return $"'{urunAdi}' adlı ürünü bulamadım.";
+                        int yeniStok = artir ? mevcutStok + miktar : mevcutStok - miktar;
+
+                        // Log Tablosuna Kayıt (Opsiyonel ama depo için çok önemli)
+                        // StokHareketKaydet(gercekUrunAdi, miktar, artir ? "Giriş" : "Çıkış");
+
+                        return $"✅ **{gercekUrunAdi}** stoğu güncellendi.\nDeğişim: {(artir ? "+" : "-")}{miktar}\nGüncel Stok: **{yeniStok}**";
                     }
                 }
             }
-            catch (Exception ex) { return "Hata: " + ex.Message; }
+            catch (Exception ex) { return "Hata oluştu: " + ex.Message; }
         }
 
         // TextBox focus kaybettiğinde placeholder'ı geri getir
@@ -1005,7 +1016,7 @@ namespace edts
             {
                 // Image özelliğini veya BackgroundImage özelliğini değiştirebilirsin
                 btnSesliOkumaa.BackgroundImage = Properties.Resources.mic_on;
-                synthesizer.SpeakAsync("Sesli okuma açıldı.");
+               
             }
             else
             {
@@ -1130,11 +1141,36 @@ namespace edts
         private void ChatbotDepo_Load(object sender, EventArgs e)
         {
             panel4.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, panel4.Width, panel4.Height, 25, 25));
-            synthesizer.SetOutputToDefaultAudioDevice(); // hoparlöre gönder
-            synthesizer.Rate = 5; // biraz hızlı
-            synthesizer.SelectVoice("Microsoft Zira Desktop"); // kadın sesi
-                                                               // Formun Load olayına veya Constructor'a ekle:
+            synthesizer.SetOutputToDefaultAudioDevice(); 
+            synthesizer.Rate = 2; 
+            synthesizer.SelectVoice("Microsoft Tolga"); 
+                                                               
 
+        }
+
+        private string UrunAdiniBelirle(string temizSoru)
+        {
+            // Ürün adı olmayabilecek kelimeler (Stop Words)
+            string[] gereksizKelimeler = { "ne", "kadar", "stok", "fiyat", "birim", "var", "mı", "mu", "nerede", "raf", "ciro", "teslim", "tarihi", "peki", "ya", "onun" };
+
+            var kelimeler = temizSoru.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            // Soruda stop words dışında kalan ilk kelimeyi ürün adı kabul edelim
+            string bulunanUrun = kelimeler.FirstOrDefault(k => !gereksizKelimeler.Contains(k)) ?? "";
+
+            if (!string.IsNullOrEmpty(bulunanUrun))
+            {
+                // Yeni bir ürün bulunduysa hafızayı güncelle
+                sonArananUrun = bulunanUrun;
+                return bulunanUrun;
+            }
+            else if (!string.IsNullOrEmpty(sonArananUrun))
+            {
+                // Soruda ürün yok ama hafızada varsa, hafızadakini döndür
+                return sonArananUrun;
+            }
+
+            return "";
         }
 
         private void flowChatt_Paint(object sender, PaintEventArgs e)
@@ -1142,6 +1178,7 @@ namespace edts
 
         }
 
+      
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
 

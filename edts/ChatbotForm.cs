@@ -43,7 +43,7 @@ namespace edts
 
            
 
-            string botAdi = "Stok Yönetim Botu";
+            string botAdi = "Fuzuli";
             _ = GosterHarfHarf($"{botAdi}: Merhaba! Bugün size nasıl yardımcı olabilirim?", false);
 
 
@@ -145,8 +145,39 @@ namespace edts
             string soruAnahtar = "";
 
 
-            // --- YENİ EKLENEN RAPORLAMA KONTROLÜ ---
-            if (formatBekleniyor)
+            if(temizSoru.Contains("havalı söz") || temizSoru.Contains("özlü söz"))
+            {
+
+                Random rnd = new Random();
+                List<string> sozler = new List<string>
+                {
+                    "Önündekini görmek için kendi gözlerin yeter, görünmeyeni görmek için başkalarının gözlerini kullanmalısın.",
+                    "Tanrıyı güldürmek istiyorsan ona planlarından bahset.",
+                    "Maalesef hayat her zaman arzularımızı ve beklentilerimizi karşılamıyor..."
+                };
+                // Listeden rastgele bir söz seç ve geri döndür
+                int index = rnd.Next(sozler.Count);
+                return sozler[index];
+            }
+
+
+            if (temizSoru.Contains("şaka yap") || temizSoru.Contains("beni güldür"))
+            {
+                Random rnd = new Random();
+
+                // SENİN ŞAKALARINI BURAYA EKLEYELİM
+                List<string> sakaListesi = new List<string> {
+        "Buraya kendi 1. şakanı yazabilirsin.",
+        "Buraya kendi 2. şakanı yazabilirsin.",
+        "Adminim, size şaka yapacaktım ama sistemin 'Exception' vermesinden korktum!", // Örnek
+        "Yöneticiye şaka olmaz, olsa olsa rapor olur!" // Örnek
+    };
+                // Rastgele bir şaka seçip döndürüyoruz
+                return sakaListesi[rnd.Next(sakaListesi.Count)];
+            }
+
+                // --- YENİ EKLENEN RAPORLAMA KONTROLÜ ---
+                if (formatBekleniyor)
             {
                 if (soru.Contains("excel"))
                 {
@@ -164,6 +195,7 @@ namespace edts
                 {
                     return "Lütfen sadece 'Excel' veya 'Not Defteri' yazarak format seçiniz.";
                 }
+
             }
 
             // Tetikleyici Komut: Admin Kayıtlarını Kaydet
@@ -981,6 +1013,7 @@ namespace edts
 
         private async void btnGonder_Click(object sender, EventArgs e)
         {
+
             string soru = txtSoru.Text.Trim();
             if (string.IsNullOrEmpty(soru) || soru == "Bana soru sor...")
             {
@@ -996,6 +1029,12 @@ namespace edts
             // Kullanıcı mesajını ekle
             EkleMesaj(soru, true);
             txtSoru.Clear();
+
+            string[] kritikKelimeler = { "stok", "ciro", "analiz", "rapor", "fiyat", "log" };
+            if (kritikKelimeler.Any(k => soru.ToLower().Contains(k)))
+            {
+                await MatrixEfektiYap(); // Burada asenkron bekleme yapar
+            }
 
             // Chatbot cevabı
             string cevap = ChatbotCevapla(soru);
@@ -1013,13 +1052,14 @@ namespace edts
 
         private void btnSesliOkuma_Click(object sender, EventArgs e)
         {
+
             sesliOkumaAcik = !sesliOkumaAcik;
 
             if (sesliOkumaAcik)
             {
                 // Image özelliğini veya BackgroundImage özelliğini değiştirebilirsin
                 btnSesliOkuma.BackgroundImage = Properties.Resources.mic_on;
-                synthesizer.SpeakAsync("Sesli okuma açıldı.");
+
             }
             else
             {
@@ -1056,8 +1096,9 @@ namespace edts
         private void ChatbotForm_Load(object sender, EventArgs e)
         {
             synthesizer.SetOutputToDefaultAudioDevice(); // hoparlöre gönder
-            synthesizer.Rate = 5; // biraz hızlı
-            synthesizer.SelectVoice("Microsoft Zira Desktop"); // kadın sesi
+            synthesizer.Rate = 3; // biraz hızlı
+            synthesizer.SelectVoice("Microsoft Tolga");
+            synthesizer.Volume = 100;
         }
 
         private string UrunStokGuncelle(string soru)
@@ -1403,6 +1444,42 @@ namespace edts
                         }
                     }
                 }
+            }
+        }
+
+        private async Task MatrixEfektiYap()
+        {
+            Random rnd = new Random();
+            string[] mesajlar;
+
+            // Rol bazlı farklı teknik mesajlar
+            if (aktifRolId == 1) // Admin (Daha teknik/root temalı)
+            {
+                mesajlar = new string[] {
+           
+            "Sistem çekirdeğine güvenli bağlantı kuruluyor...",
+            "Admin yetki anahtarları (RSA-4096) doğrulanıyor...",
+            "SQL Server Express üzerinden veri çekiliyor...",
+            "Kernel.dll üzerinden bellek optimizasyonu yapıldı.",
+            "Sistem logları taranıyor: [OK]",
+            "Donanım hızlandırma aktif edildi (GPU-Ready)."
+        };
+            }
+            else // Yönetici (Daha analiz/rapor temalı)
+            {
+                mesajlar = new string[] {
+            "> Departman performans verileri taranıyor...",
+            "> Raporlama motoru başlatıldı...",
+            "> Kritik stok seviyeleri analiz ediliyor..."
+        };
+            }
+            var secilenMesajlar = mesajlar.OrderBy(x => rnd.Next()).Take(1).ToList();
+
+            foreach (string m in secilenMesajlar)
+            {
+                EkleMesaj(m, false);
+                // Her satırın hızı da biraz farklı olsun ki daha gerçekçi dursun
+                await Task.Delay(rnd.Next(400, 800));
             }
         }
 

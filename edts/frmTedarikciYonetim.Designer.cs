@@ -28,62 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnTedarikciGuncellee = new KavisliButon();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTedarikciYonetim));
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
             btnSilSutun = new DataGridViewButtonColumn();
-            tabPage3 = new TabPage();
-            btnTedarikciKaydett = new KavisliButon();
-            lblAdres = new Label();
-            txtTelefon = new TextBox();
-            txtVergiDairesi = new TextBox();
-            txtVergiNo = new TextBox();
-            txtFirmaAdi = new TextBox();
-            lblTelefon = new Label();
-            lblYetkiliKisi = new Label();
-            lblFirmaAdi = new Label();
+            btnGuncelleSutun = new DataGridViewButtonColumn();
             panel1 = new Panel();
-            tabControl1 = new TabControl();
+            button1 = new Button();
+            label1 = new Label();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            tabPage3.SuspendLayout();
             panel1.SuspendLayout();
-            tabControl1.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnTedarikciGuncellee
-            // 
-            btnTedarikciGuncellee.BackColor = Color.White;
-            btnTedarikciGuncellee.BorderRadius = 30;
-            btnTedarikciGuncellee.FlatAppearance.BorderSize = 0;
-            btnTedarikciGuncellee.FlatStyle = FlatStyle.System;
-            btnTedarikciGuncellee.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnTedarikciGuncellee.Location = new Point(338, 292);
-            btnTedarikciGuncellee.Name = "btnTedarikciGuncellee";
-            btnTedarikciGuncellee.Size = new Size(93, 45);
-            btnTedarikciGuncellee.TabIndex = 12;
-            btnTedarikciGuncellee.Text = "Güncelle";
-            btnTedarikciGuncellee.UseVisualStyleBackColor = false;
-            btnTedarikciGuncellee.Click += btnTedarikciGuncellee_Click;
             // 
             // panel2
             // 
             panel2.Controls.Add(dataGridView2);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(666, 0);
+            panel2.Location = new Point(0, 97);
             panel2.Name = "panel2";
-            panel2.Size = new Size(526, 791);
+            panel2.Size = new Size(1192, 694);
             panel2.TabIndex = 5;
             // 
             // dataGridView2
             // 
+            dataGridView2.AllowUserToAddRows = false;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun });
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun, btnGuncelleSutun });
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(526, 791);
+            dataGridView2.Size = new Size(1192, 694);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellClick += dataGridView2_CellClick;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
@@ -93,147 +69,53 @@
             // 
             // btnSilSutun
             // 
-            btnSilSutun.HeaderText = "";
+            btnSilSutun.HeaderText = "Sil";
             btnSilSutun.MinimumWidth = 6;
             btnSilSutun.Name = "btnSilSutun";
-            btnSilSutun.Text = "Sil";
+            btnSilSutun.Text = "🗑";
             btnSilSutun.UseColumnTextForButtonValue = true;
             btnSilSutun.Width = 125;
             // 
-            // tabPage3
+            // btnGuncelleSutun
             // 
-            tabPage3.BackColor = Color.LightSlateGray;
-            tabPage3.Controls.Add(btnTedarikciGuncellee);
-            tabPage3.Controls.Add(btnTedarikciKaydett);
-            tabPage3.Controls.Add(lblAdres);
-            tabPage3.Controls.Add(txtTelefon);
-            tabPage3.Controls.Add(txtVergiDairesi);
-            tabPage3.Controls.Add(txtVergiNo);
-            tabPage3.Controls.Add(txtFirmaAdi);
-            tabPage3.Controls.Add(lblTelefon);
-            tabPage3.Controls.Add(lblYetkiliKisi);
-            tabPage3.Controls.Add(lblFirmaAdi);
-            tabPage3.Location = new Point(4, 37);
-            tabPage3.Margin = new Padding(3, 4, 3, 4);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3, 4, 3, 4);
-            tabPage3.Size = new Size(517, 515);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Tedarikçi Tanımlama";
-            // 
-            // btnTedarikciKaydett
-            // 
-            btnTedarikciKaydett.BackColor = Color.White;
-            btnTedarikciKaydett.BorderRadius = 30;
-            btnTedarikciKaydett.FlatAppearance.BorderSize = 0;
-            btnTedarikciKaydett.FlatStyle = FlatStyle.System;
-            btnTedarikciKaydett.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnTedarikciKaydett.Location = new Point(218, 292);
-            btnTedarikciKaydett.Name = "btnTedarikciKaydett";
-            btnTedarikciKaydett.Size = new Size(93, 45);
-            btnTedarikciKaydett.TabIndex = 11;
-            btnTedarikciKaydett.Text = "Kaydet";
-            btnTedarikciKaydett.UseVisualStyleBackColor = false;
-            btnTedarikciKaydett.Click += btnTedarikciKaydett_Click;
-            // 
-            // lblAdres
-            // 
-            lblAdres.AutoSize = true;
-            lblAdres.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblAdres.ForeColor = SystemColors.ControlLightLight;
-            lblAdres.Location = new Point(52, 232);
-            lblAdres.Name = "lblAdres";
-            lblAdres.Size = new Size(78, 23);
-            lblAdres.TabIndex = 7;
-            lblAdres.Text = "Telefon: ";
-            // 
-            // txtTelefon
-            // 
-            txtTelefon.Location = new Point(184, 220);
-            txtTelefon.Margin = new Padding(3, 4, 3, 4);
-            txtTelefon.Multiline = true;
-            txtTelefon.Name = "txtTelefon";
-            txtTelefon.Size = new Size(291, 29);
-            txtTelefon.TabIndex = 6;
-            // 
-            // txtVergiDairesi
-            // 
-            txtVergiDairesi.Location = new Point(184, 159);
-            txtVergiDairesi.Margin = new Padding(3, 4, 3, 4);
-            txtVergiDairesi.Name = "txtVergiDairesi";
-            txtVergiDairesi.Size = new Size(291, 34);
-            txtVergiDairesi.TabIndex = 5;
-            // 
-            // txtVergiNo
-            // 
-            txtVergiNo.Location = new Point(184, 106);
-            txtVergiNo.Margin = new Padding(3, 4, 3, 4);
-            txtVergiNo.Name = "txtVergiNo";
-            txtVergiNo.Size = new Size(291, 34);
-            txtVergiNo.TabIndex = 4;
-            // 
-            // txtFirmaAdi
-            // 
-            txtFirmaAdi.Location = new Point(184, 58);
-            txtFirmaAdi.Margin = new Padding(3, 4, 3, 4);
-            txtFirmaAdi.Name = "txtFirmaAdi";
-            txtFirmaAdi.Size = new Size(291, 34);
-            txtFirmaAdi.TabIndex = 3;
-            // 
-            // lblTelefon
-            // 
-            lblTelefon.AutoSize = true;
-            lblTelefon.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblTelefon.ForeColor = SystemColors.ControlLightLight;
-            lblTelefon.Location = new Point(52, 172);
-            lblTelefon.Name = "lblTelefon";
-            lblTelefon.Size = new Size(117, 23);
-            lblTelefon.TabIndex = 2;
-            lblTelefon.Text = "Vergi Dairesi:";
-            // 
-            // lblYetkiliKisi
-            // 
-            lblYetkiliKisi.AutoSize = true;
-            lblYetkiliKisi.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblYetkiliKisi.ForeColor = SystemColors.ControlLightLight;
-            lblYetkiliKisi.Location = new Point(52, 120);
-            lblYetkiliKisi.Name = "lblYetkiliKisi";
-            lblYetkiliKisi.Size = new Size(85, 23);
-            lblYetkiliKisi.TabIndex = 1;
-            lblYetkiliKisi.Text = "Vergi No:";
-            // 
-            // lblFirmaAdi
-            // 
-            lblFirmaAdi.AutoSize = true;
-            lblFirmaAdi.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblFirmaAdi.ForeColor = SystemColors.ControlLightLight;
-            lblFirmaAdi.Location = new Point(52, 70);
-            lblFirmaAdi.Name = "lblFirmaAdi";
-            lblFirmaAdi.Size = new Size(94, 23);
-            lblFirmaAdi.TabIndex = 0;
-            lblFirmaAdi.Text = "Firma Adı:";
+            btnGuncelleSutun.HeaderText = "Güncelle";
+            btnGuncelleSutun.MinimumWidth = 6;
+            btnGuncelleSutun.Name = "btnGuncelleSutun";
+            btnGuncelleSutun.Text = "📝";
+            btnGuncelleSutun.UseColumnTextForButtonValue = true;
+            btnGuncelleSutun.Width = 125;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLightLight;
-            panel1.Controls.Add(tabControl1);
-            panel1.Dock = DockStyle.Left;
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(button1);
+            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(666, 791);
+            panel1.Size = new Size(1192, 97);
             panel1.TabIndex = 4;
             // 
-            // tabControl1
+            // button1
             // 
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            tabControl1.Location = new Point(39, 143);
-            tabControl1.Margin = new Padding(3, 4, 3, 4);
-            tabControl1.Multiline = true;
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(525, 556);
-            tabControl1.TabIndex = 2;
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.Location = new Point(26, 55);
+            button1.Name = "button1";
+            button1.Size = new Size(206, 36);
+            button1.TabIndex = 3;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(26, 24);
+            label1.Name = "label1";
+            label1.Size = new Size(206, 28);
+            label1.TabIndex = 4;
+            label1.Text = "Tedarikçi Tanımlama";
             // 
             // frmTedarikciYonetim
             // 
@@ -247,29 +129,18 @@
             Load += frmTedarikciYonetim_Load;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            tabPage3.ResumeLayout(false);
-            tabPage3.PerformLayout();
             panel1.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private KavisliButon btnTedarikciGuncellee;
         private Panel panel2;
         private DataGridView dataGridView2;
-        private TabPage tabPage3;
-        private KavisliButon btnTedarikciKaydett;
-        private Label lblAdres;
-        private TextBox txtTelefon;
-        private TextBox txtVergiDairesi;
-        private TextBox txtVergiNo;
-        private TextBox txtFirmaAdi;
-        private Label lblTelefon;
-        private Label lblYetkiliKisi;
-        private Label lblFirmaAdi;
         private Panel panel1;
-        private TabControl tabControl1;
         private DataGridViewButtonColumn btnSilSutun;
+        private DataGridViewButtonColumn btnGuncelleSutun;
+        private Button button1;
+        private Label label1;
     }
 }
