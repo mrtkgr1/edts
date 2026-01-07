@@ -22,6 +22,8 @@ namespace edts
             InitializeComponent();
         }
 
+        public int GuncellenecekMusteriID = 0;
+
         private void frmMusteriTanimlama_Load(object sender, EventArgs e)
         {
             musteriListele(); // Form açılır açılmaz verileri getirir
@@ -60,25 +62,27 @@ namespace edts
                     MessageBox.Show("Listeleme Hatası: " + ex.Message);
                 }
             }
+            dataGridView2.Columns["btnGuncelleSutun"].DisplayIndex = dataGridView2.Columns.Count - 1;
+            dataGridView2.Columns["btnSilSutun"].DisplayIndex = dataGridView2.Columns.Count - 1;
         }
 
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+           /* if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
                 textMusteriAd.Text = row.Cells["MusteriAd"].Value?.ToString();
                 textMusteriVd.Text = row.Cells["VergiDairesi"].Value?.ToString();
                 textMusteriVNo.Text = row.Cells["VergiNo"].Value?.ToString();
                 textMusteriTel.Text = row.Cells["Telefon"].Value?.ToString();
-            }
+            } */
         }
 
         private void btnMusteriKayit_Click(object sender, EventArgs e)
         {
-
-            // 1. ADIM: Boş kontrolü (Zaten yapmışsın, çok iyi)
+          
+        /*    // 1. ADIM: Boş kontrolü (Zaten yapmışsın, çok iyi)
             if (textMusteriAd.Text.Trim() == "")
             {
                 MessageBox.Show("Müsteri Adı boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -133,12 +137,12 @@ namespace edts
                     MessageBox.Show("Ekleme Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            musteriListele();
+            musteriListele(); */
         }
 
         private void btnMusteriGuncel_Click(object sender, EventArgs e)
         {
-
+            /*
             // 1. ADIM: Önce seçim kontrolü
             if (dataGridView2.SelectedRows.Count == 0)
             {
@@ -201,12 +205,12 @@ namespace edts
             }
 
             // 5. ADIM: Listeyi yenile
-            musteriListele();
+            musteriListele();  */
         }
 
         private void btnMusteriSil_Click(object sender, EventArgs e)
         {
-            // 1. Seçim Kontrolü
+         /*   // 1. Seçim Kontrolü
             if (dataGridView2.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Müsteri güncelleme ve silme işlemleri için listede ilgili satırın solundaki kutuya basarak tüm satırı seçiniz");
@@ -258,12 +262,12 @@ namespace edts
                     }
                 }
             }
-            musteriListele(); // Listeyi güncelle
+            musteriListele(); // Listeyi güncelle  */
         }
 
         private void dataGridView2_MouseLeave(object sender, EventArgs e)
         {
-          dataGridView2.Invalidate();
+            dataGridView2.Invalidate();
         }
 
         private void dataGridView2_MouseMove(object sender, MouseEventArgs e)
@@ -275,31 +279,7 @@ namespace edts
 
         private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (this.DesignMode || e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
-            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
-                var btnRect = new Rectangle(e.CellBounds.X + 10, e.CellBounds.Y + 4, e.CellBounds.Width - 20, e.CellBounds.Height - 8);
-
-                Point mousePos = dataGridView2.PointToClient(Cursor.Position);
-                bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
-
-                // Natalie stili soft kırmızı tonları
-                System.Drawing.Color gecerliRenk = isHovering ? System.Drawing.Color.FromArgb(235, 110, 110) : System.Drawing.Color.FromArgb(255, 148, 148);
-
-                using (Pen p = new Pen(gecerliRenk, 1))
-                using (Brush b = new SolidBrush(gecerliRenk))
-                {
-                    e.Graphics.FillRectangle(b, btnRect);
-                    e.Graphics.DrawRectangle(p, btnRect);
-                }
-
-                TextRenderer.DrawText(e.Graphics, "Sil", e.CellStyle.Font, btnRect, System.Drawing.Color.White,
-                    TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
-
-                e.Handled = true;
-            }
+         
         }
 
         private void MusteriSil(string id)
@@ -331,11 +311,22 @@ namespace edts
         }
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            // 1. ADIM: Başlığa tıklandıysa veya geçersiz bir yere tıklandıysa çık
+            if (e.RowIndex < 0) return;
+
+            // 2. ADIM: ÖNEMLİ! Eğer tıklanan satır en alttaki boş (yeni kayıt) satırıysa 
+            // aşağıdakilerin hiçbirini yapma, çünkü orada ID olmaz.
+            if (dataGridView2.Rows[e.RowIndex].IsNewRow) return;
+
+            // --- SİLME BUTONU KONTROLÜ ---
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
             {
-                // Sütun isimlerini veritabanına göre kontrol et (MusteriAd, MusteriID gibi)
+                // Hücrenin boş olup olmadığını kontrol edelim (Yine de güvenlik için)
+                var cellValue = dataGridView2.Rows[e.RowIndex].Cells["MusteriID"].Value;
+                if (cellValue == null || cellValue == DBNull.Value) return;
+
                 string musteriAd = dataGridView2.Rows[e.RowIndex].Cells["MusteriAd"].Value?.ToString() ?? "Müşteri";
-                string musteriId = dataGridView2.Rows[e.RowIndex].Cells["MusteriID"].Value.ToString();
+                string musteriId = cellValue.ToString();
 
                 DialogResult onay = MessageBox.Show(
                     $"{musteriAd} isimli müşteriyi silmek istediğinize emin misiniz?",
@@ -346,9 +337,43 @@ namespace edts
 
                 if (onay == DialogResult.Yes)
                 {
-                    MusteriSil(musteriId); // Senin silme metodun
-                    musteriListele();    // Listeyi yenileyen metodun
+                    MusteriSil(musteriId);
+                    musteriListele();
                 }
+            }
+
+            // --- GÜNCELLEME BUTONU KONTROLÜ ---
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnGuncelleSutun")
+            {
+                // ÖNEMLİ: Convert etmeden önce hücrenin DBNull olup olmadığını kontrol ediyoruz
+                var cellValue = dataGridView2.Rows[e.RowIndex].Cells["MusteriID"].Value;
+
+                if (cellValue != null && cellValue != DBNull.Value)
+                {
+                    int id = Convert.ToInt32(cellValue);
+
+                    frmMusteriTanimlamaGuncellepopup popup = new frmMusteriTanimlamaGuncellepopup();
+                    popup.GuncellenecekMusteriID = id;
+
+                    if (popup.ShowDialog() == DialogResult.OK)
+                    {
+                        musteriListele();
+                    }
+                }
+            }
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.ReadOnly = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmMusteriTanimlamaKaydetpopup popup = new frmMusteriTanimlamaKaydetpopup();
+
+            // ShowDialog'u bir if içinde çalıştırıyoruz
+            if (popup.ShowDialog() == DialogResult.OK)
+            {
+                // Pop-up OK sinyaliyle kapandığı an burası çalışır
+                musteriListele();
             }
         }
     }
