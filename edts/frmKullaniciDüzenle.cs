@@ -24,10 +24,6 @@ namespace edts {
             KullaniciBilgileriniGetir(id);
         }
 
-        private void DegerAl() {
-
-        }
-
         private void KullaniciBilgileriniGetir(int id) {
             using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
                 string sorgu = "SELECT AdSoyad, KullaniciAdi, RolID, AktifMi FROM tblKullanicilar WHERE KullaniciID = @id";
@@ -83,7 +79,7 @@ namespace edts {
                         komut.Parameters.AddWithValue("@pKullaniciAdi", textBoxKullaniciAd.Text);
                         komut.Parameters.AddWithValue("@pRolID", (int)comboBoxRol.SelectedValue);
                         komut.Parameters.AddWithValue("@pAktifMi", aktifMi ? 1 : 0);
-                        komut.Parameters.AddWithValue("@pID", dID);
+                        komut.Parameters.AddWithValue("@pID", userId);
 
                         if (!string.IsNullOrEmpty(textBoxsifre.Text)) {
                             komut.Parameters.AddWithValue("@pSifreHash", sifreHash);

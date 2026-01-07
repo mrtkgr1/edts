@@ -65,6 +65,8 @@ namespace edts {
                         komut.Parameters.AddWithValue("@ArananKelime", textBoxArama.Text);
 
                         baglanti.Open();
+
+
                         SqlDataAdapter da = new SqlDataAdapter(komut);
                         DataTable dt = new DataTable();
 

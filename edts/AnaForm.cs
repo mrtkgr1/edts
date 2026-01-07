@@ -357,7 +357,8 @@ namespace edts {
         }
 
         private void buttonSistemAyar_Click(object sender, EventArgs e) {
-            SayfaGoster(new frmAdminSistemAyarlari());
+            //SayfaGoster(new frmAdminSistemAyarlari());
+            SayfaGoster(new SistemAyarlari());
         }
 
         private void buttonDenetimKayit_Click(object sender, EventArgs e) {
