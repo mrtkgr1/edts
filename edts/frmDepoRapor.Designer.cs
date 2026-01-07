@@ -28,170 +28,214 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepoRapor));
             panel1 = new Panel();
             panel3 = new Panel();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox2 = new ComboBox();
+            label5 = new Label();
+            txtHizliAra = new TextBox();
+            btnFiltreTemizle = new Button();
+            dtBitis = new DateTimePicker();
+            dtBaslangic = new DateTimePicker();
+            cmbUrunler = new ComboBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            button2 = new Button();
-            button1 = new Button();
+            btnExcelAktar = new Button();
+            btnRaporGetir = new Button();
             label1 = new Label();
-            comboBox1 = new ComboBox();
+            cmbIslemTipi = new ComboBox();
             panel2 = new Panel();
-            dataGridView1 = new DataGridView();
+            dgvStokRaporu = new DataGridView();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvStokRaporu).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.BackColor = Color.DarkOliveGreen;
+            panel1.BackColor = Color.LightSlateGray;
             panel1.Controls.Add(panel3);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1114, 317);
+            panel1.Size = new Size(1114, 305);
             panel1.TabIndex = 0;
             // 
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlLightLight;
-            panel3.Controls.Add(dateTimePicker2);
-            panel3.Controls.Add(dateTimePicker1);
-            panel3.Controls.Add(comboBox2);
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(txtHizliAra);
+            panel3.Controls.Add(btnFiltreTemizle);
+            panel3.Controls.Add(dtBitis);
+            panel3.Controls.Add(dtBaslangic);
+            panel3.Controls.Add(cmbUrunler);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label2);
-            panel3.Controls.Add(button2);
-            panel3.Controls.Add(button1);
+            panel3.Controls.Add(btnExcelAktar);
+            panel3.Controls.Add(btnRaporGetir);
             panel3.Controls.Add(label1);
-            panel3.Controls.Add(comboBox1);
-            panel3.Location = new Point(80, 68);
+            panel3.Controls.Add(cmbIslemTipi);
+            panel3.Location = new Point(80, 38);
             panel3.Name = "panel3";
-            panel3.Size = new Size(871, 215);
+            panel3.Size = new Size(871, 256);
             panel3.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // label5
             // 
-            dateTimePicker2.Location = new Point(181, 116);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 27);
-            dateTimePicker2.TabIndex = 17;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label5.Location = new Point(45, 219);
+            label5.Name = "label5";
+            label5.Size = new Size(128, 23);
+            label5.TabIndex = 20;
+            label5.Text = "Hızlı Ürün Ara:";
             // 
-            // dateTimePicker1
+            // txtHizliAra
             // 
-            dateTimePicker1.Location = new Point(181, 72);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 16;
+            txtHizliAra.Location = new Point(188, 215);
+            txtHizliAra.Name = "txtHizliAra";
+            txtHizliAra.Size = new Size(250, 27);
+            txtHizliAra.TabIndex = 19;
+            txtHizliAra.TextChanged += txtHizliAra_TextChanged;
             // 
-            // comboBox2
+            // btnFiltreTemizle
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(247, 172);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 28);
-            comboBox2.TabIndex = 15;
+            btnFiltreTemizle.BackColor = Color.LightSlateGray;
+            btnFiltreTemizle.FlatAppearance.BorderSize = 0;
+            btnFiltreTemizle.FlatStyle = FlatStyle.Flat;
+            btnFiltreTemizle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            btnFiltreTemizle.ForeColor = SystemColors.ControlLightLight;
+            btnFiltreTemizle.Location = new Point(471, 143);
+            btnFiltreTemizle.Name = "btnFiltreTemizle";
+            btnFiltreTemizle.Size = new Size(128, 34);
+            btnFiltreTemizle.TabIndex = 18;
+            btnFiltreTemizle.Text = "Filtreyi Sıfırla";
+            btnFiltreTemizle.UseVisualStyleBackColor = false;
+            btnFiltreTemizle.Click += btnFiltreTemizle_Click;
+            // 
+            // dtBitis
+            // 
+            dtBitis.Location = new Point(188, 116);
+            dtBitis.Name = "dtBitis";
+            dtBitis.Size = new Size(250, 27);
+            dtBitis.TabIndex = 17;
+            // 
+            // dtBaslangic
+            // 
+            dtBaslangic.Location = new Point(188, 72);
+            dtBaslangic.Name = "dtBaslangic";
+            dtBaslangic.Size = new Size(250, 27);
+            dtBaslangic.TabIndex = 16;
+            // 
+            // cmbUrunler
+            // 
+            cmbUrunler.FormattingEnabled = true;
+            cmbUrunler.Location = new Point(188, 167);
+            cmbUrunler.Name = "cmbUrunler";
+            cmbUrunler.Size = new Size(250, 28);
+            cmbUrunler.TabIndex = 15;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label4.Location = new Point(135, 177);
+            label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label4.Location = new Point(47, 172);
             label4.Name = "label4";
-            label4.Size = new Size(106, 23);
+            label4.Size = new Size(112, 23);
             label4.TabIndex = 14;
             label4.Text = "Ürün Seçimi:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label3.Location = new Point(85, 120);
+            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label3.Location = new Point(47, 120);
             label3.Name = "label3";
-            label3.Size = new Size(90, 23);
+            label3.Size = new Size(100, 23);
             label3.TabIndex = 13;
             label3.Text = "Bitiş Tarihi:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             label2.Location = new Point(45, 76);
             label2.Name = "label2";
-            label2.Size = new Size(130, 23);
+            label2.Size = new Size(140, 23);
             label2.TabIndex = 12;
             label2.Text = "Başlangıç Tarihi:";
             // 
-            // button2
+            // btnExcelAktar
             // 
-            button2.BackColor = Color.DarkCyan;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(531, 173);
-            button2.Name = "button2";
-            button2.Size = new Size(121, 27);
-            button2.TabIndex = 11;
-            button2.Text = "Excel'e Aktar";
-            button2.UseVisualStyleBackColor = false;
+            btnExcelAktar.BackColor = Color.LightSlateGray;
+            btnExcelAktar.BackgroundImage = (Image)resources.GetObject("btnExcelAktar.BackgroundImage");
+            btnExcelAktar.FlatAppearance.BorderSize = 0;
+            btnExcelAktar.FlatStyle = FlatStyle.Flat;
+            btnExcelAktar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnExcelAktar.ForeColor = SystemColors.ControlLightLight;
+            btnExcelAktar.Location = new Point(471, 97);
+            btnExcelAktar.Name = "btnExcelAktar";
+            btnExcelAktar.Size = new Size(128, 34);
+            btnExcelAktar.TabIndex = 11;
+            btnExcelAktar.Text = "Excel'e Aktar";
+            btnExcelAktar.UseVisualStyleBackColor = false;
+            btnExcelAktar.Click += btnExcelAktar_Click;
             // 
-            // button1
+            // btnRaporGetir
             // 
-            button1.BackColor = Color.LimeGreen;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(404, 172);
-            button1.Name = "button1";
-            button1.Size = new Size(121, 28);
-            button1.TabIndex = 10;
-            button1.Text = "Raporu Getir";
-            button1.UseVisualStyleBackColor = false;
+            btnRaporGetir.BackColor = Color.LightSlateGray;
+            btnRaporGetir.FlatAppearance.BorderSize = 0;
+            btnRaporGetir.FlatStyle = FlatStyle.Flat;
+            btnRaporGetir.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnRaporGetir.ForeColor = SystemColors.ControlLightLight;
+            btnRaporGetir.Location = new Point(471, 49);
+            btnRaporGetir.Name = "btnRaporGetir";
+            btnRaporGetir.Size = new Size(128, 35);
+            btnRaporGetir.TabIndex = 10;
+            btnRaporGetir.Text = "Raporu Getir";
+            btnRaporGetir.UseVisualStyleBackColor = false;
+            btnRaporGetir.Click += btnRaporGetir_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label1.Location = new Point(85, 30);
+            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            label1.Location = new Point(47, 30);
             label1.Name = "label1";
-            label1.Size = new Size(86, 23);
+            label1.Size = new Size(93, 23);
             label1.TabIndex = 9;
             label1.Text = "İşlem Tipi:";
             // 
-            // comboBox1
+            // cmbIslemTipi
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(177, 25);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 8;
+            cmbIslemTipi.FormattingEnabled = true;
+            cmbIslemTipi.Location = new Point(188, 25);
+            cmbIslemTipi.Name = "cmbIslemTipi";
+            cmbIslemTipi.Size = new Size(250, 28);
+            cmbIslemTipi.TabIndex = 8;
             // 
             // panel2
             // 
-            panel2.Controls.Add(dataGridView1);
+            panel2.Controls.Add(dgvStokRaporu);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 317);
+            panel2.Location = new Point(0, 305);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1114, 418);
+            panel2.Size = new Size(1114, 430);
             panel2.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgvStokRaporu
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1114, 418);
-            dataGridView1.TabIndex = 1;
+            dgvStokRaporu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStokRaporu.Dock = DockStyle.Fill;
+            dgvStokRaporu.Location = new Point(0, 0);
+            dgvStokRaporu.Name = "dgvStokRaporu";
+            dgvStokRaporu.RowHeadersWidth = 51;
+            dgvStokRaporu.Size = new Size(1114, 430);
+            dgvStokRaporu.TabIndex = 1;
+            dgvStokRaporu.CellFormatting += dgvStokRaporu_CellFormatting;
             // 
             // frmDepoRapor
             // 
@@ -202,11 +246,12 @@
             Controls.Add(panel1);
             Name = "frmDepoRapor";
             Text = "frmDepoRapor";
+            Load += frmDepoRapor_Load;
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvStokRaporu).EndInit();
             ResumeLayout(false);
         }
 
@@ -215,16 +260,19 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
-        private ComboBox comboBox2;
+        private ComboBox cmbUrunler;
         private Label label4;
         private Label label3;
         private Label label2;
-        private Button button2;
-        private Button button1;
+        private Button btnExcelAktar;
+        private Button btnRaporGetir;
         private Label label1;
-        private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
-        private DataGridView dataGridView1;
+        private ComboBox cmbIslemTipi;
+        private DateTimePicker dtBitis;
+        private DateTimePicker dtBaslangic;
+        private DataGridView dgvStokRaporu;
+        private Button btnFiltreTemizle;
+        private TextBox txtHizliAra;
+        private Label label5;
     }
 }

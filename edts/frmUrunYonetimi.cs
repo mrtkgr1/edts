@@ -1,5 +1,4 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
-
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -22,81 +21,83 @@ namespace edts
         {
             InitializeComponent();
             UrunListeGuncelle();
-            KategorileriYukle();
+         
 
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tabControl1.SelectedIndex)
-            {
-                case 0:
-                    UrunListeGuncelle();
-                    KategorileriYukle();
-                    break;
-                case 1:
-                    KategoriListeGuncelle();
-                    break;
+            /*  switch (tabControl1.SelectedIndex)
+              {
+                  case 0:
+                      UrunListeGuncelle();
+                      KategorileriYukle();
+                      break;
+                  case 1:
+                      KategoriListeGuncelle();
+                      break;
 
-                default:
-                    break;
-            }
+                  default:
+                      break;
+              }
+              */
         }
 
         //------------------- ÜRÜN İŞLEMLERİ ------------------//
 
         private void btnKaydet_Click_1(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUrunAd.Text) || string.IsNullOrEmpty(txtAlisFiyati.Text))
-            {
-                MessageBox.Show("Lütfen ürün adı ve alış fiyatı gibi zorunlu alanları doldurun!");
-                return;
-            }
+            /*  if (string.IsNullOrEmpty(txtUrunAd.Text) || string.IsNullOrEmpty(txtAlisFiyati.Text))
+              {
+                  MessageBox.Show("Lütfen ürün adı ve alış fiyatı gibi zorunlu alanları doldurun!");
+                  return;
+              }
 
-            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
-            {
-                try
-                {
-                    baglan.Open();
-                    // Sorguya "BirimTipi" kolonunu ve "@BirimTipi" parametresini ekledik
-                    SqlCommand cmdInsert = new SqlCommand(@"INSERT INTO tblUrunler  
-            (KategoriID, UrunKodu, UrunAd, KritikStok, MevcutStok, Durum, BirimFiyat, AlisFiyat, BirimTipi)  
-            VALUES (@KategoriID, @UrunKodu, @UrunAd, @KritikStok, 0, 'Aktif', @BirimFiyat, @AlisFiyat, @BirimTipi)", baglan);
+              using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
+              {
+                  try
+                  {
+                      baglan.Open();
+                      // Sorguya "BirimTipi" kolonunu ve "@BirimTipi" parametresini ekledik
+                      SqlCommand cmdInsert = new SqlCommand(@"INSERT INTO tblUrunler  
+              (KategoriID, UrunKodu, UrunAd, KritikStok, MevcutStok, Durum, BirimFiyat, AlisFiyat, BirimTipi)  
+              VALUES (@KategoriID, @UrunKodu, @UrunAd, @KritikStok, 0, 'Aktif', @BirimFiyat, @AlisFiyat, @BirimTipi)", baglan);
 
-                    cmdInsert.Parameters.AddWithValue("@KategoriID", comboBoxKategori.SelectedValue ?? DBNull.Value);
-                    cmdInsert.Parameters.AddWithValue("@UrunKodu", txtUrunKod.Text);
-                    cmdInsert.Parameters.AddWithValue("@UrunAd", txtUrunAd.Text);
+                      cmdInsert.Parameters.AddWithValue("@KategoriID", comboBoxKategori.SelectedValue ?? DBNull.Value);
+                      cmdInsert.Parameters.AddWithValue("@UrunKodu", txtUrunKod.Text);
+                      cmdInsert.Parameters.AddWithValue("@UrunAd", txtUrunAd.Text);
 
-                    int kritikStok = 0;
-                    int.TryParse(txtKritik.Text, out kritikStok);
-                    cmdInsert.Parameters.AddWithValue("@KritikStok", kritikStok);
+                      int kritikStok = 0;
+                      int.TryParse(txtKritik.Text, out kritikStok);
+                      cmdInsert.Parameters.AddWithValue("@KritikStok", kritikStok);
 
-                    decimal satisFiyati = 0;
-                    decimal.TryParse(birimFiyat.Value.ToString(), out satisFiyati);
-                    cmdInsert.Parameters.AddWithValue("@BirimFiyat", satisFiyati);
+                      decimal satisFiyati = 0;
+                      decimal.TryParse(birimFiyat.Value.ToString(), out satisFiyati);
+                      cmdInsert.Parameters.AddWithValue("@BirimFiyat", satisFiyati);
 
-                    decimal alisFiyati = 0;
-                    decimal.TryParse(txtAlisFiyati.Text, out alisFiyati);
-                    cmdInsert.Parameters.AddWithValue("@AlisFiyat", alisFiyati);
+                      decimal alisFiyati = 0;
+                      decimal.TryParse(txtAlisFiyati.Text, out alisFiyati);
+                      cmdInsert.Parameters.AddWithValue("@AlisFiyat", alisFiyati);
 
-                    // --- BURAYI EKLEDİK ---
-                    cmdInsert.Parameters.AddWithValue("@BirimTipi", cmbBirimTipi.Text);
+                      // --- BURAYI EKLEDİK ---
+                      cmdInsert.Parameters.AddWithValue("@BirimTipi", cmbBirimTipi.Text);
 
-                    cmdInsert.ExecuteNonQuery();
+                      cmdInsert.ExecuteNonQuery();
 
-                    VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 5, "tblUrunler", $"{txtUrunAd.Text} adlı ürün eklendi.");
-                    MessageBox.Show("Ürün başarıyla kaydedildi.");
+                      VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 5, "tblUrunler", $"{txtUrunAd.Text} adlı ürün eklendi.");
+                      MessageBox.Show("Ürün başarıyla kaydedildi.");
 
-                    txtUrunAd.Clear();
-                    txtUrunKod.Clear();
-                    txtAlisFiyati.Clear();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ürün kayıt edilemedi.\nHata: " + ex.Message);
-                }
-            }
-            UrunListeGuncelle();
+                      txtUrunAd.Clear();
+                      txtUrunKod.Clear();
+                      txtAlisFiyati.Clear();
+                  }
+                  catch (Exception ex)
+                  {
+                      MessageBox.Show("Ürün kayıt edilemedi.\nHata: " + ex.Message);
+                  }
+              }
+              UrunListeGuncelle();
+          */
         }
         private void btnSill_Click(object sender, EventArgs e)
         {
@@ -142,63 +143,63 @@ namespace edts
         private void btnGuncelle_Click_1(object sender, EventArgs e)
         {
 
-            if (dataGridView2.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Lütfen güncellemek istediğiniz ürünün en solundaki boşluğa tıklayarak tüm satırı seçiniz.");
-                return;
-            }
+            /*  if (dataGridView2.SelectedRows.Count == 0)
+              {
+                  MessageBox.Show("Lütfen güncellemek istediğiniz ürünün en solundaki boşluğa tıklayarak tüm satırı seçiniz.");
+                  return;
+              }
 
-            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
-            {
-                try
-                {
-                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["UrunID"].Value);
-                    baglan.Open();
+              using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
+              {
+                  try
+                  {
+                      int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["UrunID"].Value);
+                      baglan.Open();
 
-                    // 1. ADIM: SQL Sorgusuna BirimTipi'ni ekledik
-                    string sorgu = @"UPDATE tblUrunler 
-                             SET KategoriID = @KategoriID, 
-                                 UrunKodu = @UrunKodu, 
-                                 UrunAd = @UrunAd, 
-                                 KritikStok = @KritikStok,
-                                 BirimFiyat = @BirimFiyat,
-                                 AlisFiyat = @AlisFiyat,
-                                 BirimTipi = @BirimTipi
-                             WHERE UrunID = @UrunID";
+                      // 1. ADIM: SQL Sorgusuna BirimTipi'ni ekledik
+                      string sorgu = @"UPDATE tblUrunler 
+                               SET KategoriID = @KategoriID, 
+                                   UrunKodu = @UrunKodu, 
+                                   UrunAd = @UrunAd, 
+                                   KritikStok = @KritikStok,
+                                   BirimFiyat = @BirimFiyat,
+                                   AlisFiyat = @AlisFiyat,
+                                   BirimTipi = @BirimTipi
+                               WHERE UrunID = @UrunID";
 
-                    SqlCommand cmdUpdate = new SqlCommand(sorgu, baglan);
+                      SqlCommand cmdUpdate = new SqlCommand(sorgu, baglan);
 
-                    cmdUpdate.Parameters.AddWithValue("@UrunID", id);
-                    cmdUpdate.Parameters.AddWithValue("@KategoriID", comboBoxKategori.SelectedValue ?? DBNull.Value);
-                    cmdUpdate.Parameters.AddWithValue("@UrunKodu", txtUrunKod.Text);
-                    cmdUpdate.Parameters.AddWithValue("@UrunAd", txtUrunAd.Text);
+                      cmdUpdate.Parameters.AddWithValue("@UrunID", id);
+                      cmdUpdate.Parameters.AddWithValue("@KategoriID", comboBoxKategori.SelectedValue ?? DBNull.Value);
+                      cmdUpdate.Parameters.AddWithValue("@UrunKodu", txtUrunKod.Text);
+                      cmdUpdate.Parameters.AddWithValue("@UrunAd", txtUrunAd.Text);
 
-                    // 2. ADIM: BirimTipi parametresini ComboBox'tan alıp ekledik
-                    cmdUpdate.Parameters.AddWithValue("@BirimTipi", cmbBirimTipi.Text);
+                      // 2. ADIM: BirimTipi parametresini ComboBox'tan alıp ekledik
+                      cmdUpdate.Parameters.AddWithValue("@BirimTipi", cmbBirimTipi.Text);
 
-                    decimal satisFiyat;
-                    decimal.TryParse(birimFiyat.Value.ToString(), out satisFiyat);
-                    cmdUpdate.Parameters.AddWithValue("@BirimFiyat", satisFiyat);
+                      decimal satisFiyat;
+                      decimal.TryParse(birimFiyat.Value.ToString(), out satisFiyat);
+                      cmdUpdate.Parameters.AddWithValue("@BirimFiyat", satisFiyat);
 
-                    decimal alisFiyat;
-                    decimal.TryParse(txtAlisFiyati.Text, out alisFiyat);
-                    cmdUpdate.Parameters.AddWithValue("@AlisFiyat", alisFiyat);
+                      decimal alisFiyat;
+                      decimal.TryParse(txtAlisFiyati.Text, out alisFiyat);
+                      cmdUpdate.Parameters.AddWithValue("@AlisFiyat", alisFiyat);
 
-                    int kritikStok;
-                    int.TryParse(txtKritik.Text, out kritikStok);
-                    cmdUpdate.Parameters.AddWithValue("@KritikStok", kritikStok);
+                      int kritikStok;
+                      int.TryParse(txtKritik.Text, out kritikStok);
+                      cmdUpdate.Parameters.AddWithValue("@KritikStok", kritikStok);
 
-                    cmdUpdate.ExecuteNonQuery();
+                      cmdUpdate.ExecuteNonQuery();
 
-                    VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 5, "tblUrunler", $"{txtUrunAd.Text} adlı ürün güncellendi.");
-                    MessageBox.Show("Ürün bilgileri başarıyla güncellendi.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Güncelleme hatası: " + ex.Message);
-                }
-            }
-            UrunListeGuncelle();
+                      VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 5, "tblUrunler", $"{txtUrunAd.Text} adlı ürün güncellendi.");
+                      MessageBox.Show("Ürün bilgileri başarıyla güncellendi.");
+                  }
+                  catch (Exception ex)
+                  {
+                      MessageBox.Show("Güncelleme hatası: " + ex.Message);
+                  }
+              }
+              UrunListeGuncelle();  */
         }
 
         private void UrunListeGuncelle()
@@ -229,6 +230,37 @@ namespace edts
                     da.Fill(dt);
 
                     dataGridView2.DataSource = dt;
+
+                    // Veriler yüklendikten sonra butonları en sağa (son indexlere) zorla taşıyoruz
+                    dataGridView2.Columns["btnGuncelleSutun"].DisplayIndex = dataGridView2.ColumnCount - 1;
+                    dataGridView2.Columns["btnSilSutun"].DisplayIndex = dataGridView2.ColumnCount - 1;
+                    // Not: İkisine de ColumnCount - 1 dersen C# onları otomatik olarak en sona yan yana dizer.
+
+                    // Önce varsa eski butonları temizleyelim (Listenin her yenilenmesinde üst üste binmesinler)
+                    if (dataGridView2.Columns.Contains("btnGuncelleSutun")) dataGridView2.Columns.Remove("btnGuncelleSutun");
+                    if (dataGridView2.Columns.Contains("btnSilSutun")) dataGridView2.Columns.Remove("btnSilSutun");
+
+                    // GÜNCELLE BUTONU
+                    DataGridViewButtonColumn btnGuncelle = new DataGridViewButtonColumn();
+                    btnGuncelle.Name = "btnGuncelleSutun";
+                    btnGuncelle.HeaderText = "Düzenle";
+                    btnGuncelle.Text = "📝";
+                    btnGuncelle.UseColumnTextForButtonValue = true;
+                    dataGridView2.Columns.Add(btnGuncelle);
+
+                    // SİL BUTONU
+                    DataGridViewButtonColumn btnSil = new DataGridViewButtonColumn();
+                    btnSil.Name = "btnSilSutun";
+                    btnSil.HeaderText = "İşlem";
+                    btnSil.Text = "🗑";
+                    btnSil.UseColumnTextForButtonValue = true;
+                    dataGridView2.Columns.Add(btnSil);
+
+                    // BUTONLARI EN SAĞA SABİTLEME
+                    // DisplayIndex kullanarak ne kadar veri gelirse gelsin butonları en sona atıyoruz
+                    dataGridView2.Columns["btnGuncelleSutun"].DisplayIndex = dataGridView2.ColumnCount - 2;
+                    dataGridView2.Columns["btnSilSutun"].DisplayIndex = dataGridView2.ColumnCount - 1;
+
 
                     // Görünürlük ve Başlık Düzenlemeleri
                     if (dataGridView2.Columns["UrunID"] != null) dataGridView2.Columns["UrunID"].Visible = false;
@@ -283,7 +315,7 @@ namespace edts
                 }
             }
         }
-        void KategorileriYukle()
+      /*  void KategorileriYukle()
         {
             using (SqlConnection baglan = new SqlConnection(ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString))
             {
@@ -306,7 +338,9 @@ namespace edts
                 }
             }
         }
-        public void UrunBilgileriniGetir(int id)
+      */
+
+      /*  public void UrunBilgileriniGetir(int id)
         {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
@@ -339,7 +373,7 @@ namespace edts
                 }
             }
         }
-
+      */
         //------------------- KATEGORİ İŞLEMLERİ ------------------//
 
 
@@ -406,7 +440,7 @@ namespace edts
         //------------------- DataGridView Seçim İşlemleri ------------------//
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            switch (tabControl1.SelectedIndex)
+          /*  switch (tabControl1.SelectedIndex)
             {
                 case 0:
                     if (e.RowIndex >= 0)
@@ -414,30 +448,30 @@ namespace edts
                         UrunBilgileriniGetir(Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["UrunID"].Value));
                     }
                     break;
-
+          */
             }
-        }
+        
 
         private void frmUrunYonetimi_Load(object sender, EventArgs e)
         {
-            KategorileriYukle();
+           /* KategorileriYukle();
             UrunListeGuncelle(); // Form açılır açılmaz liste gelsin
                                  // Bunu Form_Load içine yaz
             cmbBirimTipi.Items.AddRange(new string[] { "Adet", "KG", "Metre", "Paket", "gram" });
-            cmbBirimTipi.SelectedIndex = 0; // İlk sıradakini seçili getirir
+            cmbBirimTipi.SelectedIndex = 0; // İlk sıradakini seçili getirir  */
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            // 1. ADIM: Başlık satırına (-1) veya en alttaki boş yeni satıra (IsNewRow) tıklandıysa işlemi bitir
+           /*  // 1. ADIM: Başlık satırına (-1) veya en alttaki boş yeni satıra (IsNewRow) tıklandıysa işlemi bitir
             if (e.RowIndex < 0 || dataGridView2.Rows[e.RowIndex].IsNewRow)
                 return;
 
             // Tıklanan satırı bir değişkene atayalım
             DataGridViewRow satir = dataGridView2.Rows[e.RowIndex];
 
-            try
+           try
             {
                 // 2. ADIM: Verileri kutulara aktarırken null (boş) kontrolü yapalım
                 // ?.ToString() kullanımı değer null ise hata vermez, boş string döner.
@@ -467,8 +501,9 @@ namespace edts
             {
                 // Beklenmedik bir hata olursa program kapanmasın, bize söylesin.
                 MessageBox.Show("Satır seçilirken hata oluştu: " + ex.Message);
-            }
+            } */
         }
+          
 
         private void btnTedarikciKaydett_Click(object sender, EventArgs e)
         {
@@ -477,47 +512,29 @@ namespace edts
 
         private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (this.DesignMode || e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
-            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
-            {
-                // 1. Arka planı temizle (Gri taşmaları önler)
-                e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
-
-                // 2. Buton boyutunu Natalie örneğine göre ayarla (Hücreden küçük ve ortalı)
-                var btnRect = new Rectangle(e.CellBounds.X + 10, e.CellBounds.Y + 4, e.CellBounds.Width - 20, e.CellBounds.Height - 8);
-
-                // 3. Mouse Durum Kontrolü
-                Point mousePos = dataGridView2.PointToClient(Cursor.Position);
-                bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
-
-                // Renk Tonları: Natalie örneğindeki soft kırmızı (Normal) ve biraz daha koyusu (Hover)
-                Color normalKirmizi = Color.FromArgb(255, 148, 148);
-                Color hoverKirmizi = Color.FromArgb(235, 110, 110);
-
-                Color gecerliRenk = isHovering ? hoverKirmizi : normalKirmizi;
-
-                // 4. Yumuşak Kenarlık ve Dolgu Çizimi
-                using (Pen p = new Pen(gecerliRenk, 1))
-                using (Brush b = new SolidBrush(gecerliRenk))
-                {
-                    // Butonun gövdesi
-                    e.Graphics.FillRectangle(b, btnRect);
-                    // Butonun dış çerçevesi (Daha net durması için)
-                    e.Graphics.DrawRectangle(p, btnRect);
-                }
-
-                // 5. Yazı (Web tarzı: Küçük harf veya İlk harf büyük)
-                TextRenderer.DrawText(e.Graphics, "Sil", e.CellStyle.Font, btnRect, Color.White,
-                    TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
-
-                e.Handled = true;
-            }
+           
         }
+        
 
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            // --- GÜNCELLE BUTONUNA TIKLANDIĞINDA ---
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnGuncelleSutun")
+            {
+                int secilenUrunID = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["UrunID"].Value);
+                frmUrunYonetimiGuncellepopup frm = new frmUrunYonetimiGuncellepopup();
+                frm.GuncellenecekUrunID = secilenUrunID;
+
+                // Formu aç ve eğer OK döndüyse (güncelleme yapıldıysa) listeyi tazele
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    UrunListeGuncelle();
+                }
+            }
+
+
             if (e.RowIndex >= 0 && dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
             {
                 string urunAd = dataGridView2.Rows[e.RowIndex].Cells["UrunAd"].Value?.ToString() ?? "Ürün";
@@ -537,6 +554,8 @@ namespace edts
                     UrunListeGuncelle();
                 }
             }
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.ReadOnly = true;
         }
         // --- SQL SİLME METODU ---
         private void UrunSil(string id)
@@ -573,6 +592,83 @@ namespace edts
         {
             // Mouse grid'den çıktığında butonun rengini eski haline döndürür
             dataGridView2.Invalidate();
+        }
+
+
+        // Kod kalabalığını önlemek için yardımcı metot:
+        private void BoyamaYardimcisi(DataGridViewCellPaintingEventArgs e, Color normalRenk, Color hoverRenk, string metin)
+        {
+            e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
+            var btnRect = new Rectangle(e.CellBounds.X + 5, e.CellBounds.Y + 4, e.CellBounds.Width - 10, e.CellBounds.Height - 8);
+
+            Point mousePos = dataGridView2.PointToClient(Cursor.Position);
+            bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
+            Color gecerliRenk = isHovering ? hoverRenk : normalRenk;
+
+            using (Brush b = new SolidBrush(gecerliRenk))
+            {
+                e.Graphics.FillRectangle(b, btnRect);
+            }
+            TextRenderer.DrawText(e.Graphics, metin, e.CellStyle.Font, btnRect, Color.Black, TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
+            e.Handled = true;
+        }
+
+        private void ButonCiz(DataGridViewCellPaintingEventArgs e, string metin, Color normalRenk, Color hoverRenk)
+        {
+            // 1. Arka planı temizle
+            e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
+
+            // 2. Buton boyutunu ayarla
+            var btnRect = new Rectangle(e.CellBounds.X + 5, e.CellBounds.Y + 4, e.CellBounds.Width - 10, e.CellBounds.Height - 8);
+
+            // 3. Mouse Durum Kontrolü
+            Point mousePos = dataGridView2.PointToClient(Cursor.Position);
+            bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
+
+            Color gecerliRenk = isHovering ? hoverRenk : normalRenk;
+
+            // 4. Çizim
+            using (Pen p = new Pen(gecerliRenk, 1))
+            using (Brush b = new SolidBrush(gecerliRenk))
+            {
+                e.Graphics.FillRectangle(b, btnRect);
+                e.Graphics.DrawRectangle(p, btnRect);
+            }
+
+            // 5. Yazı
+            TextRenderer.DrawText(e.Graphics, metin, e.CellStyle.Font, btnRect, Color.White,
+                TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
+
+            e.Handled = true;
+        }
+
+        private void ButonCizici(DataGridViewCellPaintingEventArgs e, string metin, Color normalRenk, Color hoverRenk)
+        {
+            e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
+            var btnRect = new Rectangle(e.CellBounds.X + 5, e.CellBounds.Y + 4, e.CellBounds.Width - 10, e.CellBounds.Height - 8);
+
+            Point mousePos = dataGridView2.PointToClient(Cursor.Position);
+            bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
+            Color gecerliRenk = isHovering ? hoverRenk : normalRenk;
+
+            using (Pen p = new Pen(gecerliRenk, 1))
+            using (Brush b = new SolidBrush(gecerliRenk))
+            {
+                e.Graphics.FillRectangle(b, btnRect);
+                e.Graphics.DrawRectangle(p, btnRect);
+            }
+
+            TextRenderer.DrawText(e.Graphics, metin, e.CellStyle.Font, btnRect, Color.White,
+                TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
+
+            e.Handled = true;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+            frmUrunTanimlamapopup yeniForm = new frmUrunTanimlamapopup();          
+            yeniForm.ShowDialog();
+            UrunListeGuncelle();
         }
     }
 }

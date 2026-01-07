@@ -26,7 +26,7 @@ namespace edts
         private void btnKategoriKaydett_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(txtKategoriAdi.Text))
+         /*   if (string.IsNullOrWhiteSpace(txtKategoriAdi.Text))
             {
                 MessageBox.Show("Kategori adı boş olamaz!");
                 return;
@@ -54,13 +54,13 @@ namespace edts
                     MessageBox.Show("Kategori eklenemedi.\nHata: " + ex.Message);
                 }
             }
-            KategoriListeGuncelle();
+            KategoriListeGuncelle();  */
         }
 
         private void btnKategoriGuncellee_Click(object sender, EventArgs e)
         {
 
-            if (dataGridView2.SelectedRows.Count == 0) return;
+         /*   if (dataGridView2.SelectedRows.Count == 0) return;
 
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
@@ -83,17 +83,17 @@ namespace edts
                     MessageBox.Show("Güncelleme hatası: " + ex.Message);
                 }
             }
-            KategoriListeGuncelle();
+            KategoriListeGuncelle(); */
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            /*if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
                 txtKategoriAdi.Text = row.Cells["KategoriAd"].Value.ToString();
                 txtKategoriAciklama.Text = row.Cells["KategoriAciklama"].Value.ToString();
-            }
+            } */
         }
 
         private void btnKategoriSill_Click(object sender, EventArgs e)
@@ -130,8 +130,8 @@ namespace edts
                         );
 
                         MessageBox.Show("Kategori başarıyla silindi.");
-                        txtKategoriAdi.Clear();
-                        txtKategoriAciklama.Clear();
+                      /*  txtKategoriAdi.Clear();
+                        txtKategoriAciklama.Clear(); */
                     }
                     catch (SqlException sqlEx) when (sqlEx.Number == 547)
                     {
@@ -167,11 +167,14 @@ namespace edts
                     dataGridView2.Columns["KategoriAciklama"].HeaderText = "Açıklama";
                     dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
+
                 catch (Exception ex)
                 {
                     MessageBox.Show("Veri çekilemedi: " + ex.Message);
                 }
             }
+            btnGuncelleSutun.DisplayIndex = dataGridView2.ColumnCount - 1;
+            btnSilSutun.DisplayIndex = dataGridView2.ColumnCount - 1;
         }
 
         private void frmKategoriYonetimi_Load(object sender, EventArgs e)
@@ -182,13 +185,35 @@ namespace edts
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
+            // Geçersiz tıklamaları (başlık vs.) engelle
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            
+           
+            // --- GÜNCELLEME BUTONU ---
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnGuncelleSutun")
+            {
+                int id = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["KategoriID"].Value);
+           
+                // Formu oluştur ve ID'yi gönder
+                frmKategoriYonetimiGuncellepopup popup = new frmKategoriYonetimiGuncellepopup();
+                popup.GuncellenecekKategoriID = id;
+
+                // Formu aç ve sonuç OK ise listeyi yenile
+                if (popup.ShowDialog() == DialogResult.OK)
+                {
+                    KategoriListeGuncelle();
+                }
+
+            }
+
+            // --- SİLME BUTONU ---
+            else if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
             {
                 string kategoriAd = dataGridView2.Rows[e.RowIndex].Cells["KategoriAd"].Value?.ToString() ?? "Kategori";
                 string kategoriId = dataGridView2.Rows[e.RowIndex].Cells["KategoriID"].Value.ToString();
 
                 DialogResult onay = MessageBox.Show(
-                    $"{kategoriAd} kategorisini silmek istediğinize emin misiniz?\nNot: Eğer bu kategoriye bağlı ürünler varsa silinemez.",
+                    $"{kategoriAd} kategorisini silmek istediğinize emin misiniz?",
                     "Kategori Silme",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning
@@ -196,41 +221,19 @@ namespace edts
 
                 if (onay == DialogResult.Yes)
                 {
-                    // Senin mevcut silme mantığını buraya bağladık
                     KategoriSil(kategoriId);
                     KategoriListeGuncelle();
                 }
             }
+
+            
         }
+        
 
         private void dataGridView2_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (this.DesignMode || e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
-            if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
-
-                // Butonu hücreden biraz küçük ve zarif yapıyoruz
-                var btnRect = new Rectangle(e.CellBounds.X + 10, e.CellBounds.Y + 4, e.CellBounds.Width - 20, e.CellBounds.Height - 8);
-
-                Point mousePos = dataGridView2.PointToClient(Cursor.Position);
-                bool isHovering = dataGridView2.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Contains(mousePos);
-
-                Color gecerliRenk = isHovering ? Color.FromArgb(235, 110, 110) : Color.FromArgb(255, 148, 148);
-
-                using (Pen p = new Pen(gecerliRenk, 1))
-                using (Brush b = new SolidBrush(gecerliRenk))
-                {
-                    e.Graphics.FillRectangle(b, btnRect);
-                    e.Graphics.DrawRectangle(p, btnRect);
-                }
-
-                TextRenderer.DrawText(e.Graphics, "Sil", e.CellStyle.Font, btnRect, Color.White,
-                    TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
-
-                e.Handled = true;
-            }
+           
+            dataGridView2.AllowUserToAddRows = false;
         }
 
         // 4. SQL Silme Metodu (Eğer istersen burayı güncelle)
@@ -269,8 +272,15 @@ namespace edts
 
         private void dataGridView2_MouseLeave(object sender, EventArgs e)
         {
-           dataGridView2.Invalidate();
-    }
+            dataGridView2.Invalidate();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmKategoriYonetimiKaydetpopup yeniForm = new frmKategoriYonetimiKaydetpopup();
+            yeniForm.ShowDialog();
+            KategoriListeGuncelle();
+        }
     }
 }
 
