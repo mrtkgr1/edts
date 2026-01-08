@@ -19,20 +19,20 @@ namespace edts
         static string connectionString =
             "Server=LAPTOP-ECRTR81F\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
 
-        // --- HAFIZA DEĞİŞKENLERİ ---
+        
         private string sonArananUrun = "";
         private string sonKategori = "";
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
-    int nLeftRect,     // Sol üst x-koordinatı
-    int nTopRect,      // Sol üst y-koordinatı
-    int nRightRect,    // Sağ alt x-koordinatı
-    int nBottomRect,   // Sağ alt y-koordinatı
-    int nWidthEllipse, // Köşe yuvarlatma genişliği
-    int nHeightEllipse // Köşe yuvarlatma yüksekliği 
+    int nLeftRect,    
+    int nTopRect,     
+    int nRightRect,    
+    int nBottomRect,   
+    int nWidthEllipse, 
+    int nHeightEllipse 
             );
-        // --- YENİ EKLENEN DEĞİŞKENLER ---
+       
         private bool formatBekleniyor = false;
         private string[] matrixMesajlari = {
     "◈ Veritabanı katmanlarına sızılıyor...",
@@ -42,10 +42,10 @@ namespace edts
     "◈ Fuzuli derinlere iniyor..."
 };
 
-        // Sınıfın başında, constructor'dan önce
+        
         private Dictionary<int, List<string>> RolYetkileri = new Dictionary<int, List<string>>()
     {
-        { 3, new List<string> { "stok", "fiyat", "teslim", "kritik stok","raf", "stok_matematik" } }, // Depo Personeli
+        { 3, new List<string> { "stok", "fiyat", "teslim", "kritik stok","raf", "stok_matematik" } }, 
     };
 
 
@@ -56,7 +56,7 @@ namespace edts
             flowChatt.FlowDirection = FlowDirection.TopDown;
             flowChatt.WrapContents = false;
             flowChatt.AutoScroll = true;
-            flowChatt.Dock = DockStyle.Fill; // panel ekranı kaplasın
+            flowChatt.Dock = DockStyle.Fill; 
 
 
 
@@ -68,7 +68,7 @@ namespace edts
 
 
 
-        // Placeholder metni
+       
         private string placeholder = "Bana soru sor...";
         private bool sesliOkumaAcik = false;
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
@@ -86,7 +86,7 @@ namespace edts
             if (result != null)
                 return Convert.ToInt32(result);
 
-            return 0; // Bulunamadıysa
+            return 0; 
         }
 
 
@@ -99,7 +99,7 @@ namespace edts
             if (string.IsNullOrWhiteSpace(soru))
                 return "Lütfen bir soru yazın.";
 
-            // Noktalama ve küçük harfe çevir
+            
             string temizSoru = new string(soru
                 .Where(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c))
                 .ToArray())
@@ -170,6 +170,21 @@ namespace edts
                 }
                 else kategori = "aktif";
             }
+
+            if (temizSoru.Contains("neden fuzuli") || temizSoru.Contains("ismin neden fuzuli") || temizSoru.Contains("ismini nereden aldın"))
+            {
+                return "İsmim, büyük şair Fuzuli'ye bir saygı duruşu olmasının yanı sıra, projedeki ironik bir dokunuşu temsil ediyor: " +
+                       "Aslında bir depo yönetim sisteminde yapay zeka 'fuzuli' (gereksiz) bir lüks gibi görünebilir; " +
+                       "ancak biz, en karmaşık işleri bile bir sohbet kadar kolay hale getirerek bu lüksü bir standart haline getirdik. " +
+                       "Yani ismim fuzuli, ama işlevim vazgeçilmez!";
+            }
+            if (temizSoru.Contains("fuzuli ne demek") || temizSoru.Contains("fuzulinin tanımı") || temizSoru.Contains("fuzuli anlamı"))
+            {
+                return "Kelime anlamı olarak 'fuzuli'; gereksiz, boşuna veya yersiz demektir. " +
+                       "Ancak edebiyatımızda bu isim, 'faziletli ve bilgili' anlamındaki 'fazl' kelimesinden köken alır. " +
+                       "Biz de projemizde bu ismi; ilk bakışta lüks (fuzuli) görünen bir teknolojinin, aslında derin bir bilgi (fazilet) ve kolaylık sunduğunu vurgulamak için seçtik.";
+            }
+
 
             // 2. STOK İŞLEMLERİ
             else if (temizSoru.Contains("stok") || temizSoru.Contains("miktar"))
