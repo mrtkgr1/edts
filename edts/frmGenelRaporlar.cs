@@ -24,7 +24,7 @@ namespace edts
 
         private void btnRaporuGetir_Click(object sender, EventArgs e)
         {
-            //HareketleriListele(dtpBaslangic.Value, dtpBitis.Value);
+           
             StokHareketleriniListele(dtpBaslangic.Value, dtpBitis.Value);
             StokDurumuHesapla(dtpBaslangic.Value, dtpBitis.Value);
 
@@ -41,7 +41,7 @@ namespace edts
                 {
                     baglan.Open();
 
-                    // Sorguya ht (HareketTipleri) tablosunu ekledik
+                   
                     string sorgu = @"
     SELECT 
         sh.IslemID,
@@ -65,13 +65,13 @@ namespace edts
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // Görseldeki "Oturum Açıldı" karmaşasını bitiren kısım:
-                    dt.Columns.Add("IslemGorsel", typeof(string)); // Yeni bir sütun oluşturuyoruz
+                   
+                    dt.Columns.Add("IslemGorsel", typeof(string));
 
                     foreach (DataRow row in dt.Rows)
                     {
                         string gercekAd = row["HareketAd"].ToString();
-                        // Veritabanındaki HareketID'ye göre ikon atıyoruz (4: Giriş, 2: Çıkış)
+                       
                         int hID = Convert.ToInt32(row["HareketID"]);
                         char ico = (hID == 4) ? '➕' : (hID == 2) ? '➖' : 'ℹ';
 
@@ -80,13 +80,14 @@ namespace edts
 
                     dataGridView1.DataSource = dt;
 
-                    // --- SÜTUN AYARLARI ---
+                  
+
                     if (dataGridView1.Columns["IslemID"] != null) dataGridView1.Columns["IslemID"].Visible = false;
                     if (dataGridView1.Columns["HareketID"] != null) dataGridView1.Columns["HareketID"].Visible = false;
                     if (dataGridView1.Columns["HareketAd"] != null) dataGridView1.Columns["HareketAd"].Visible = false;
 
                     dataGridView1.Columns["IslemGorsel"].HeaderText = "İşlem Tipi";
-                    dataGridView1.Columns["IslemGorsel"].DisplayIndex = 0; // En başa al
+                    dataGridView1.Columns["IslemGorsel"].DisplayIndex = 0; 
                     dataGridView1.Columns["UrunAd"].HeaderText = "Ürün Adı";
                     dataGridView1.Columns["KullaniciAdi"].HeaderText = "İşlemi Yapan";
                     dataGridView1.Columns["Miktar"].HeaderText = "Adet";
@@ -110,8 +111,7 @@ namespace edts
                 {
                     baglan.Open();
 
-                    // 1. Değişiklik: LEFT JOIN yaparak fiyatı olmayan veya eşleşmeyen ürünleri de hesaba katmaya çalışıyoruz.
-                    // 2. Değişiklik: CAST kullanarak para birimi ve miktar çarpmalarında veri tipi hatasını önlüyoruz.
+                    
                     string sorgu = @"
                 SELECT SUM(CAST(h.Miktar AS DECIMAL(18,2)) * CAST(ISNULL(u.BirimFiyat, 0) AS DECIMAL(18,2))) 
                 FROM tblStokHareketleri h
@@ -120,7 +120,7 @@ namespace edts
 
                     SqlCommand cmd = new SqlCommand(sorgu, baglan);
 
-                    // Tarih ayarını garantiye alalım
+                   
                     cmd.Parameters.AddWithValue("@tarih1", baslangic.Date);
                     cmd.Parameters.AddWithValue("@tarih2", bitis.Date.AddDays(1).AddSeconds(-1));
 
@@ -134,7 +134,7 @@ namespace edts
                 }
                 catch (Exception ex)
                 {
-                    // Hatanın tam olarak ne olduğunu görelim
+                   
                     MessageBox.Show("Hesaplama Detay Hatası: " + ex.Message);
                 }
             }
@@ -149,7 +149,7 @@ namespace edts
                 {
                     baglan.Open();
 
-                    // DÜZELTME: HareketID = 4 yerine 1 (Giriş), 2 (Çıkış) kullanıyoruz
+                   
                     string sorgu = @"
                 SELECT 
                     ISNULL(SUM(CASE WHEN HareketID = 1 THEN Miktar ELSE 0 END), 0) AS ToplamGiris,
@@ -167,7 +167,7 @@ namespace edts
                     {
                         if (dr.Read())
                         {
-                            // Artık veritabanındaki HareketID=1 olan kayıtları toplayacak
+                            
                             int giren = Convert.ToInt32(dr["ToplamGiris"]);
                             int cikan = Convert.ToInt32(dr["ToplamCikis"]);
                             int fark = Convert.ToInt32(dr["ToplamFark"]);
@@ -193,7 +193,7 @@ namespace edts
                 {
                     baglan.Open();
 
-                    // Sadece istenen sütunları SELECT kısmına yazdık (Aciklama YOK)
+                    
                     string sorgu = @"
     SELECT 
         sh.IslemID,
@@ -222,7 +222,7 @@ namespace edts
 
                     dataGridView1.DataSource = dt;
 
-                    // --- KOZMETİK AYARLAR ---
+                   
 
                     if (dataGridView1.Columns["IslemID"] != null)
                         dataGridView1.Columns["IslemID"].Visible = false;
@@ -239,15 +239,13 @@ namespace edts
                 {
                     MessageBox.Show("Listeleme hatası: " + ex.Message);
                 }
-                // Satırların daha ferah görünmesi için yüksekliği artır
+               
                 dataGridView1.RowTemplate.Height = 30;
 
-                // Zebra deseni (Bir satır açık renk, diğeri beyaz)
                 dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(242, 242, 242);
 
-                // Başlık stilini özelleştir (Kendi yeşil tonunu kullanabilirsin)
                 dataGridView1.EnableHeadersVisualStyles = false;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(64, 94, 58); // Kavisli butonunla uyumlu yeşil
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(64, 94, 58); 
                 dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(64, 94, 58);
             }
@@ -260,7 +258,7 @@ namespace edts
 
         private void kavisliButon1_Click(object sender, EventArgs e)
         {
-            //HareketleriListele(dtpBaslangic.Value, dtpBitis.Value);
+           
             StokHareketleriniListele(dtpBaslangic.Value, dtpBitis.Value);
             StokDurumuHesapla(dtpBaslangic.Value, dtpBitis.Value);
 
@@ -272,14 +270,14 @@ namespace edts
         private void btnExcelAktar_Click_1(object sender, EventArgs e)
         { 
 
-            // 1. Veri kontrolü
+          
             if (dataGridView1.Rows.Count == 0)
             {
                 MessageBox.Show("Aktarılacak veri bulunamadı!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Dosya Kaydetme Diyaloğu (Kullanıcıya nereye kaydedeceğini soralım)
+            
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Filter = "Excel Dosyası |*.xlsx";
             saveFile.Title = "Raporu Kaydet";
@@ -289,15 +287,15 @@ namespace edts
             {
                 try
                 {
-                    // 3. Excel'i arka planda başlat
+                   
                     Type excelType = Type.GetTypeFromProgID("Excel.Application");
                     dynamic excelApp = Activator.CreateInstance(excelType);
-                    excelApp.Visible = false; // İşlem bitene kadar gizli kalsın (daha hızlıdır)
+                    excelApp.Visible = false; 
                     dynamic workbook = excelApp.Workbooks.Add();
                     dynamic worksheet = workbook.ActiveSheet;
                     worksheet.Name = "Genel Rapor";
 
-                    // 4. Başlıkları Aktar ve Biçimlendir
+                    
                     int excelSutun = 1;
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
@@ -305,14 +303,13 @@ namespace edts
                         {
                             dynamic cell = worksheet.Cells[1, excelSutun];
                             cell.Value = dataGridView1.Columns[j].HeaderText;
-                            cell.Font.Bold = true; // Kalın yazı
-                            cell.Interior.Color = ColorTranslator.ToOle(Color.FromArgb(64, 94, 58)); // Senin yeşil tonun
-                            cell.Font.Color = ColorTranslator.ToOle(Color.White); // Beyaz yazı
+                            cell.Font.Bold = true; 
+                            cell.Interior.Color = ColorTranslator.ToOle(Color.FromArgb(64, 94, 58)); 
+                            cell.Font.Color = ColorTranslator.ToOle(Color.White); 
                             excelSutun++;
                         }
                     }
 
-                    // 5. Verileri Aktar
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         excelSutun = 1;
@@ -326,14 +323,13 @@ namespace edts
                         }
                     }
 
-                    // 6. Sütun Genişliklerini Ayarla ve Kenarlık Ekle
+                   
                     dynamic allCells = worksheet.UsedRange;
                     allCells.Columns.AutoFit();
-                    allCells.Borders.LineStyle = 1; // İnce kenarlıklar
+                    allCells.Borders.LineStyle = 1; 
 
-                    // 7. Dosyayı Kaydet ve Kapat
                     workbook.SaveAs(saveFile.FileName);
-                    excelApp.Visible = true; // İşlem bitince kullanıcıya göster
+                    excelApp.Visible = true; 
 
                     MessageBox.Show("Rapor başarıyla oluşturuldu ve kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -346,11 +342,10 @@ namespace edts
 
         private void frmGenelRaporlar_Load(object sender, EventArgs e)
         {
-            // Form açıldığında son 1 ayın raporunu otomatik getir
+           
             dtpBaslangic.Value = DateTime.Now.AddMonths(-1);
             dtpBitis.Value = DateTime.Now;
 
-            // Raporu getiren butonun içindeki işlemleri başlat
             btnRaporGetir.PerformClick();
         }
       

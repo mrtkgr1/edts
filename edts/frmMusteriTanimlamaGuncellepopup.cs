@@ -51,14 +51,14 @@ namespace edts
                 this.Text = "Müşteri Bilgilerini Güncelle";
                 btnMusteriGuncel.Text = "Bilgileri Güncelle";
 
-                // Bilgileri TextBoxlara doldur
+               
                 MusteriBilgileriniGetir(GuncellenecekMusteriID);
             }
         }
 
         private void btnMusteriGuncel_Click(object sender, EventArgs e)
         {
-            // ONAY SORUSU
+            
             DialogResult soru = MessageBox.Show(
                 $"{textMusteriAd.Text} isimli müşteriyi güncellemek istediğinize emin misiniz?",
                 "Güncelleme Onayı",
@@ -73,7 +73,6 @@ namespace edts
                 try
                 {
                     baglan.Open();
-                    // DİKKAT: ID'yi DataGrid'den değil, yukarıdaki değişkenden alıyoruz!
                     string sorgu = @"UPDATE tblMusteriler 
                                    SET MusteriAd = @Ad, 
                                        VergiDairesi = @VD, 
@@ -92,7 +91,6 @@ namespace edts
 
                     MessageBox.Show("Müşteri başarıyla güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Log Kaydı
                     VeritabaniYardimcisi.LogKaydet(
                         kullaniciID: AktifKullanici.ID,
                         hareketID: 9,
@@ -100,8 +98,8 @@ namespace edts
                         aciklama: $"{textMusteriAd.Text} adlı müşteri güncellendi."
                     );
 
-                    this.DialogResult = DialogResult.OK; // Ana forma "İşlem Tamam" mesajı gönderir
-                    this.Close(); // Formu kapatır
+                    this.DialogResult = DialogResult.OK; 
+                    this.Close(); 
                 }
                 catch (Exception ex)
                 {

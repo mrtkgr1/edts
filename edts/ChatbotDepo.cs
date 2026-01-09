@@ -19,20 +19,20 @@ namespace edts
         static string connectionString =
             "Server=LAPTOP-ECRTR81F\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
 
-        // --- HAFIZA DEĞİŞKENLERİ ---
+        
         private string sonArananUrun = "";
         private string sonKategori = "";
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
-    int nLeftRect,     // Sol üst x-koordinatı
-    int nTopRect,      // Sol üst y-koordinatı
-    int nRightRect,    // Sağ alt x-koordinatı
-    int nBottomRect,   // Sağ alt y-koordinatı
-    int nWidthEllipse, // Köşe yuvarlatma genişliği
-    int nHeightEllipse // Köşe yuvarlatma yüksekliği 
+    int nLeftRect,    
+    int nTopRect,     
+    int nRightRect,    
+    int nBottomRect,   
+    int nWidthEllipse, 
+    int nHeightEllipse 
             );
-        // --- YENİ EKLENEN DEĞİŞKENLER ---
+       
         private bool formatBekleniyor = false;
         private string[] matrixMesajlari = {
     "◈ Veritabanı katmanlarına sızılıyor...",
@@ -42,10 +42,10 @@ namespace edts
     "◈ Fuzuli derinlere iniyor..."
 };
 
-        // Sınıfın başında, constructor'dan önce
+        
         private Dictionary<int, List<string>> RolYetkileri = new Dictionary<int, List<string>>()
     {
-        { 3, new List<string> { "stok", "fiyat", "teslim", "kritik stok","raf", "stok_matematik" } }, // Depo Personeli
+        { 3, new List<string> { "stok", "fiyat", "teslim", "kritik stok","raf", "stok_matematik" } }, 
     };
 
 
@@ -56,7 +56,7 @@ namespace edts
             flowChatt.FlowDirection = FlowDirection.TopDown;
             flowChatt.WrapContents = false;
             flowChatt.AutoScroll = true;
-            flowChatt.Dock = DockStyle.Fill; // panel ekranı kaplasın
+            flowChatt.Dock = DockStyle.Fill; 
 
 
 
@@ -68,7 +68,7 @@ namespace edts
 
 
 
-        // Placeholder metni
+       
         private string placeholder = "Bana soru sor...";
         private bool sesliOkumaAcik = false;
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
@@ -86,7 +86,7 @@ namespace edts
             if (result != null)
                 return Convert.ToInt32(result);
 
-            return 0; // Bulunamadıysa
+            return 0; 
         }
 
 
@@ -99,21 +99,21 @@ namespace edts
             if (string.IsNullOrWhiteSpace(soru))
                 return "Lütfen bir soru yazın.";
 
-            // Noktalama ve küçük harfe çevir
+            
             string temizSoru = new string(soru
                 .Where(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c))
                 .ToArray())
                 .ToLower()
                 .Trim();
 
-            // Kimlik soruları kontrolü EN BAŞTA
+         
             string[] kimlikSorulari = { "sen kimsin", "kimsin sen", "kimsin", "görevin ne", "ne iş yaparsın", "amacın ne", "ne işe yarıyorsun", "neden buradasın", "kim", "bot musun", "chatbot musun" };
             if (kimlikSorulari.Any(k => temizSoru.Contains(k)))
                 return "Ben Fuzuli! Envanter Depo Yönetim Sisteminde sana yardımcı olmak için tasarlanmış bir chatbotum.";
 
             string orijinal = soru.Trim();
 
-            // Küçük kelimeleri kaldırmak için normalize fonksiyonu
+           
             string Normalize(string text)
             {
                 string[] removeWords = { "nedir", "acaba", "mı", "mu", "bilgi", "hakkında", "lütfen", "öğrenebilir miyim" };
@@ -125,7 +125,7 @@ namespace edts
 
             string normalizedSoru = Normalize(temizSoru);
 
-            // Selamlar ve duygu sözleri
+           
             string[] tesekkurler = { "teşekkür", "teşekkür ederim", "teşekkürler", "çok sağ ol", "sağ ol", "sağol" };
             string[] vedalar = { "iyi günler", "görüşürüz", "hoşça kal", "güle güle" };
             string[] iyiDurum = { "iyi", "harika", "güzel", "süper", "mükemmel" };
@@ -135,7 +135,7 @@ namespace edts
 
 
 
-            // Selam ve duygu cevapları
+          
             if (selamlar.Any(s => temizSoru.Contains(s)))
                 return "Merhaba! Gününüz güzel geçiyordur umarım. Nasılsınız?";
 
@@ -148,19 +148,17 @@ namespace edts
             if (kotuDurum.Any(s => temizSoru.Contains(s)))
                 return "Üzgünüm, umarım gününüz daha iyi olur. Nasıl yardımcı olayım?";
 
-            // Yetki kontrolü: aktif kullanıcının rolü
             int rolID = AktifKullanici.RolID;
 
-            // Sorunun hangi kategoriye ait olduğunu belirleme
             string kategori = "";
 
 
 
 
 
-            // --- YENİ AKSİYON VE KATEGORİ KONTROLLERİ ---
+            
 
-            // 1. KULLANICI İŞLEMLERİ (Aktif/Pasif)
+           
             if (temizSoru.Contains("aktif") || temizSoru.Contains("pasif"))
             {
                 if (temizSoru.Contains("yap"))
@@ -171,12 +169,27 @@ namespace edts
                 else kategori = "aktif";
             }
 
-            // 2. STOK İŞLEMLERİ
+            if (temizSoru.Contains("neden fuzuli") || temizSoru.Contains("ismin neden fuzuli") || temizSoru.Contains("ismini nereden aldın"))
+            {
+                return "İsmim, büyük şair Fuzuli'ye bir saygı duruşu olmasının yanı sıra, projedeki ironik bir dokunuşu temsil ediyor: " +
+                       "Aslında bir depo yönetim sisteminde yapay zeka 'fuzuli' (gereksiz) bir lüks gibi görünebilir; " +
+                       "ancak biz, en karmaşık işleri bile bir sohbet kadar kolay hale getirerek bu lüksü bir standart haline getirdik. " +
+                       "Yani ismim fuzuli, ama işlevim vazgeçilmez!";
+            }
+            if (temizSoru.Contains("fuzuli ne demek") || temizSoru.Contains("fuzulinin tanımı") || temizSoru.Contains("fuzuli anlamı"))
+            {
+                return "Kelime anlamı olarak 'fuzuli'; gereksiz, boşuna veya yersiz demektir. " +
+                       "Ancak edebiyatımızda bu isim, 'faziletli ve bilgili' anlamındaki 'fazl' kelimesinden köken alır. " +
+                       "Biz de projemizde bu ismi; ilk bakışta lüks (fuzuli) görünen bir teknolojinin, aslında derin bir bilgi (fazilet) ve kolaylık sunduğunu vurgulamak için seçtik.";
+            }
+
+
+            
             else if (temizSoru.Contains("stok") || temizSoru.Contains("miktar"))
             {
                 if (temizSoru.Contains("yap") || temizSoru.Contains("art") || temizSoru.Contains("azalt") || temizSoru.Contains("ekle"))
                 {
-                    // Depo personeli (2) ve Admin (1) stok güncelleyebilir
+                   
                     if (AktifKullanici.RolID == 1 || AktifKullanici.RolID == 3)
                         kategori = "stok_guncelle";
                     else
@@ -186,7 +199,7 @@ namespace edts
                 else kategori = "stok";
             }
 
-            //Fuzuli İşlemler---------------------------------------------------------------------------
+           
             if (soru.Contains("şaka yap") || soru.Contains("komik bir şey söyle"))
             {
                 string[] sakalar = {
@@ -200,7 +213,7 @@ namespace edts
 
             if (DateTime.Now.Hour >= 0 && DateTime.Now.Hour < 6)
             {
-                // Gece mesajı başlangıcı
+                
                 string sitemliGiris = "Gecenin bu saatinde dertlerinize ortak olurum ama bu verileri sormanız beni biraz yaraladı... Yine de sizin için bakıyorum: ";
 
                 if (soru.Contains("fiyat") || soru.Contains("birim") || soru.Contains("kadar"))
@@ -215,7 +228,7 @@ namespace edts
             }
 
 
-            // 3. FİYAT İŞLEMLERİ (Kritik Nokta Burası)
+           
             else if (temizSoru.Contains("fiyat") || temizSoru.Contains("birim"))
             {
                 if (temizSoru.Contains("yap") || temizSoru.Contains("güncelle") || temizSoru.Contains("değiştir"))
@@ -227,17 +240,17 @@ namespace edts
                 }
                 else
                 {
-                    kategori = "fiyat"; // Sadece sorgulama
+                    kategori = "fiyat";
                 }
             }
-            //Fuzuli işlemler ---------------------------------------------------------------------------------
+           
 
             else if (temizSoru.Contains("stok") || temizSoru.Contains("miktar"))
             {
-                // Artır, azalt, ekle, yap kelimelerinden biri varsa
+                
                 if (temizSoru.Contains("art") || temizSoru.Contains("azalt") || temizSoru.Contains("ekle") || temizSoru.Contains("yap"))
                 {
-                    // ÖNEMLİ: Eğer senin sisteminde depo personeli 3 ise burayı (rolID == 1 || rolID == 3) yapmalısın
+                   
                     if (AktifKullanici.RolID == 1 || AktifKullanici.RolID == 3)
                     {
                         kategori = "stok_matematik";
@@ -251,7 +264,7 @@ namespace edts
                 else kategori = "stok";
             }
 
-            // Önce uzun/spesifik tamlamaları kontrol et
+            
             if (temizSoru.Contains("kritik stok"))
                 kategori = "kritik stok";
             else if (temizSoru.Contains("bugün") && temizSoru.Contains("giriş") && temizSoru.Contains("yapmayan"))
@@ -262,7 +275,7 @@ namespace edts
                 kategori = "yanlış giriş";
             else if (temizSoru.Contains("teslim") && temizSoru.Contains("tarih"))
                 kategori = "teslim";
-            // Sonra tek kelimelik genel kategorileri kontrol et
+            
             else if (temizSoru.Contains("stok") || temizSoru.Contains("mevcut") || temizSoru.Contains("var"))
                 kategori = "stok";
             else if (temizSoru.Contains("fiyat") || temizSoru.Contains("birim"))
@@ -273,40 +286,38 @@ namespace edts
                 kategori = "rol";
             else if (temizSoru.Contains("aktif"))
                 kategori = "aktif";
-            else if (temizSoru.Contains("raf") || temizSoru.Contains("nerede")) // RAF KATEGORİSİNİ EKLEDİK
+            else if (temizSoru.Contains("raf") || temizSoru.Contains("nerede")) 
                 kategori = "raf";
 
 
 
 
 
-            // --- YETKİ KONTROLÜ ---
+           
             if (!string.IsNullOrEmpty(kategori))
             {
-                // Eğer kategori bir "_guncelle" işlemiyse ve rol Admin(1) değilse engelle (veya depo personeline stok için izin ver)
+               
                 if (kategori.EndsWith("_guncelle") && rolID != 1)
                 {
-                    // Özel durum: Depo personeli(2) stok güncelleyebilir ama fiyat/kullanıcı güncelleyemez
+                   
                     if (!(kategori == "stok_guncelle" && rolID == 2))
                         return "Bu işlem için yetkiniz bulunmamaktadır. Lütfen sistem yöneticisine başvurun.";
                 }
 
-                // Genel yetki kontrolü
+               
                 if (!RolYetkileri.ContainsKey(rolID) || !RolYetkileri[rolID].Contains(kategori.Replace("_guncelle", "")))
                 {
                     return "Bu bilgiye erişim yetkiniz bulunmuyor.";
                 }
             }
 
-            // --- YETKİ VE İŞLEM LİSTELEME ---
             if (temizSoru.Contains("yetkim") || temizSoru.Contains("neler yapabilirim") || temizSoru.Contains("görevim ne"))
             {
-                // HATA BURADAYDI: 'int' kelimesini sildik, yukarıdaki rolID'yi kullanıyoruz.
-                if (rolID == 1) // Admin
+                if (rolID == 1) 
                 {
                     return "Sistem Yöneticisiniz (Admin). Tüm yetkilere sahipsiniz: Stok ve fiyat güncelleyebilir, kullanıcıları yönetebilir, ciro ve raporları görebilirsiniz.";
                 }
-                else if (rolID == 3) // Depo Personeli
+                else if (rolID == 3) 
                 {
                     return "Depo Personelisiniz. Yapabileceğiniz işlemler:\n" +
                            "• Stok sorgulama ve ürün konumu öğrenme\n" +
@@ -314,7 +325,7 @@ namespace edts
                            "• Kritik stok ve teslim tarihi sorgulama\n" +
                            "• Ürün fiyatı sorgulama.";
                 }
-                else if (rolID == 2) // Yönetici (Birazdan geçeceğimiz rol)
+                else if (rolID == 2) 
                 {
                     return "Yöneticisiniz. Yapabileceğiniz işlemler:\n" +
                            "• Satış ve ciro raporlarını görme\n" +
@@ -326,7 +337,6 @@ namespace edts
                 }
             }
 
-            // RolYetkileri sözlüğünden yetki kontrolü
             if (!string.IsNullOrEmpty(kategori))
             {
                 if (!RolYetkileri.ContainsKey(rolID) || !RolYetkileri[rolID].Contains(kategori))
@@ -335,12 +345,11 @@ namespace edts
                 }
             }
 
-            // Yetkili ise cevapları çalıştır
             switch (kategori)
             {
                 case "stok_matematik": return UrunStokMatematik(orijinal);
                 case "stok": return UrunStokDurumu(orijinal);
-                case "raf": return UrunKonumuGetir(orijinal); // Yeni metodumuz
+                case "raf": return UrunKonumuGetir(orijinal); 
                 case "kritik stok": return KritikStokUrunleri();
                 case "teslim": return UrunTeslimTarihi(orijinal);
                 case "fiyat": return UrunFiyatiGetir(orijinal);
@@ -353,7 +362,6 @@ namespace edts
 
             }
 
-            // Destek / teşekkür / vedalar
             if (temizSoru.Contains("giriş yapamıyorum") || temizSoru.Contains("destek"))
                 return DestekMesaji();
 
@@ -363,24 +371,22 @@ namespace edts
             if (vedalar.Any(x => temizSoru.Contains(x)))
                 return "İyi günler, tekrar beklerim.";
 
-            // Anlamadıysa tekrar et
             return "Soruyu anlayamadım. Örnek: 'admin aktif mi?' veya 'dolap stokta var mı?'";
         }
 
 
-        // TextBox focus aldığında placeholder'ı temizle
         private void txtSoru_Enter(object sender, EventArgs e)
         {
             if (txtSoruu.Text == placeholder)
             {
                 txtSoruu.Text = "";
-                txtSoruu.ForeColor = Color.Black; // yazı rengini normal yap
+                txtSoruu.ForeColor = Color.Black; 
             }
         }
 
         private string UrunKonumuGetir(string soru)
         {
-            // Ürün adını ayıklayalım (Mevcut TemizleUrunAdi mantığınla)
+           
             string urunAdi = soru.Split(' ', StringSplitOptions.RemoveEmptyEntries)
                                  .FirstOrDefault(x => x != "nerede" && x != "raf" && x != "konum") ?? "";
 
@@ -388,7 +394,7 @@ namespace edts
 
             using SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            // Tablonda 'RafNo' veya 'Konum' kolonunun olduğunu varsayıyorum
+            
             using SqlCommand cmd = new SqlCommand("SELECT RafNo FROM tblUrunler WHERE LOWER(UrunAd) = @ad", conn);
             cmd.Parameters.AddWithValue("@ad", urunAdi.ToLower().Trim());
 
@@ -416,18 +422,18 @@ namespace edts
         {
             if (kullaniciMesaji)
             {
-                // Kullanıcı balonu
+               
                 Panel balon = new Panel();
                 balon.BackColor = Color.FromArgb(250, 250, 250);
                 balon.AutoSize = true;
                 balon.Padding = new Padding(10);
-                balon.Margin = new Padding(150, 5, 10, 5); // Sağ tarafta
+                balon.Margin = new Padding(150, 5, 10, 5);
                 balon.MaximumSize = new Size(400, 0);
 
                 Label lbl = new Label();
                 lbl.Text = mesaj;
                 lbl.AutoSize = true;
-                lbl.MaximumSize = new Size(380, 0); // balonun içine sığacak
+                lbl.MaximumSize = new Size(380, 0); 
                 lbl.BackColor = Color.Transparent;
                 lbl.Font = new Font("Segoe UI", 10);
                 lbl.TextAlign = ContentAlignment.MiddleRight;
@@ -440,7 +446,7 @@ namespace edts
             }
             else
             {
-                // Chatbot mesajı
+               
                 Label lbl = new Label();
                 lbl.Text = mesaj;
                 lbl.AutoSize = true;
@@ -525,7 +531,7 @@ namespace edts
         private string UrunStokDurumu(string soru)
         {
 
-            // ARTIK SPLIT YERİNE MERKEZİ METODU KULLANIYORUZ
+
             string urunAdi = UrunAdiniBelirle(soru.ToLower().Trim());
 
             if (string.IsNullOrEmpty(urunAdi))
@@ -535,8 +541,6 @@ namespace edts
             conn.Open();
 
            
-
-            // önce birebir arayalım
             using (SqlCommand cmd = new SqlCommand(
                 "SELECT MevcutStok FROM tblUrunler WHERE LOWER(UrunAd) = @UrunAdi", conn))
             {
@@ -550,7 +554,7 @@ namespace edts
                 }
             }
 
-            // ❗ Ürün bulunamazsa en yakın ürünü önerelim
+         
 
             List<string> tumUrunler = new List<string>();
 
@@ -565,7 +569,7 @@ namespace edts
                 .OrderBy(x => Mesafe(x, urunAdi))
                 .First();
 
-            if (Mesafe(tahmin, urunAdi) <= 2) // 2 harf tolerans
+            if (Mesafe(tahmin, urunAdi) <= 2) 
             {
                 return $"‘{urunAdi}’ adlı ürün bulunamadı. Şunu mu demek istediniz: {tahmin}?";
             }
@@ -583,7 +587,7 @@ namespace edts
             using SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
 
-            // önce birebir arayalım
+           
             using SqlCommand cmd = new SqlCommand(
                 "SELECT BirimFiyat FROM tblUrunler WHERE LOWER(UrunAd) = @UrunAdi", conn);
             cmd.Parameters.AddWithValue("@UrunAdi", urunAdi.ToLower().Trim());
@@ -596,7 +600,7 @@ namespace edts
                 return $"{urunAdi} ürününün fiyatı: {fiyat:C}";
             }
 
-            // ❗ ürün bulunamadı → tahmin dene
+           
             List<string> tumUrunler = new List<string>();
 
             using (SqlCommand cmd2 = new SqlCommand(
@@ -702,7 +706,7 @@ namespace edts
             if (string.IsNullOrWhiteSpace(urunAdi))
                 return "Ürün adı algılanamadı.";
 
-            // 1️⃣ teslim tarihi sorgusu
+           
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -721,7 +725,7 @@ namespace edts
             }
 
 
-            // 2️⃣ ilgili ürün bulunamadı → tahmin öner
+       
             List<string> tumUrunler = new();
 
             using (SqlConnection conn2 = new SqlConnection(connectionString))
@@ -738,7 +742,7 @@ namespace edts
                 }
             }
 
-            // 3️⃣ en benzer ürün öner
+       
             string benzer = tumUrunler
                 .FirstOrDefault(x => x.StartsWith(urunAdi[..2])) ?? "Benzer ürün bulunamadı.";
 
@@ -881,10 +885,10 @@ namespace edts
             {
                 lbl.Text += c;
 
-                // Her harf eklenince FlowPanel otomatik olarak en alta kayıyor
+                
                 flowChatt.ScrollControlIntoView(lbl);
 
-                await Task.Delay(20); // Harf harf animasyon
+                await Task.Delay(20);
             }
         }
 
@@ -893,26 +897,25 @@ namespace edts
             try
             {
                 int miktar = 0;
-                // 1. Sayıyı Ayıkla (Senin yöntemin gayet iyi)
+               
                 var sayiKismi = new string(soru.Where(char.IsDigit).ToArray());
                 if (!int.TryParse(sayiKismi, out miktar) || miktar <= 0)
                     return "Lütfen geçerli bir miktar belirtin. (Örn: 10 ekle)";
 
-                // 2. İşlem Yönü
+               
                 bool artir = soru.Contains("art") || soru.Contains("ekle") || soru.Contains("geldi");
 
-                // 3. Ürün Adını Bul (Hafızadaki veya sorudaki en yakın ürünü bulalım)
-                string hamUrunAdi = UrunAdiniBelirle(soru); // Önceki mesajda yazdığımız metod
+               
+                string hamUrunAdi = UrunAdiniBelirle(soru); 
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
-                    // ÖNCE: Ürünü ve mevcut stoğunu net bir şekilde bulalım (Levenshtein burada devreye girer)
-                    // Tüm ürün adlarını çekip Mesafe algoritmanla en yakını bulduğunu varsayıyorum
-                    string gercekUrunAdi = hamUrunAdi; // Burada Mesafe(hamUrunAdi, dbUrunAdi) çalışmalı
+                    
+                    string gercekUrunAdi = hamUrunAdi; 
 
-                    // Mevcut stoğu kontrol et
+                   
                     SqlCommand kontrolCmd = new SqlCommand("SELECT MevcutStok FROM tblUrunler WHERE UrunAd = @ad", conn);
                     kontrolCmd.Parameters.AddWithValue("@ad", gercekUrunAdi);
                     object currentStockObj = kontrolCmd.ExecuteScalar();
@@ -922,11 +925,11 @@ namespace edts
 
                     int mevcutStok = Convert.ToInt32(currentStockObj);
 
-                    // NEGATİF STOK KONTROLÜ
+                   
                     if (!artir && mevcutStok < miktar)
                         return $"Yetersiz stok! Mevcut: {mevcutStok}, Azaltılmak istenen: {miktar}. İşlem iptal edildi.";
 
-                    // 4. GÜNCELLEME (Tam isimle güncelleme yapıyoruz, LIKE değil!)
+                  
                     string sql = artir
                         ? "UPDATE tblUrunler SET MevcutStok = MevcutStok + @m WHERE UrunAd = @ad"
                         : "UPDATE tblUrunler SET MevcutStok = MevcutStok - @m WHERE UrunAd = @ad";
@@ -939,8 +942,7 @@ namespace edts
 
                         int yeniStok = artir ? mevcutStok + miktar : mevcutStok - miktar;
 
-                        // Log Tablosuna Kayıt (Opsiyonel ama depo için çok önemli)
-                        // StokHareketKaydet(gercekUrunAdi, miktar, artir ? "Giriş" : "Çıkış");
+                       
 
                         return $"✅ **{gercekUrunAdi}** stoğu güncellendi.\nDeğişim: {(artir ? "+" : "-")}{miktar}\nGüncel Stok: **{yeniStok}**";
                     }
@@ -949,13 +951,13 @@ namespace edts
             catch (Exception ex) { return "Hata oluştu: " + ex.Message; }
         }
 
-        // TextBox focus kaybettiğinde placeholder'ı geri getir
+       
         private void txtSoru_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtSoruu.Text))
             {
                 txtSoruu.Text = placeholder;
-                txtSoruu.ForeColor = Color.Gray; // placeholder rengi
+                txtSoruu.ForeColor = Color.Gray; 
             }
         }
         int Mesafe(string a, string b)
@@ -985,7 +987,7 @@ namespace edts
 
 
 
-        // İstersen placeholder Label'a tıklayınca TextBox focus almasını sağlayabilirsin:
+       
         private void lblPlaceholder_Click(object sender, EventArgs e)
         {
             txtSoruu.Focus();
@@ -999,7 +1001,7 @@ namespace edts
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true; // Enter sesini kapat
+                e.SuppressKeyPress = true; 
                 btnGonderr.PerformClick();
             }
         }
@@ -1014,7 +1016,7 @@ namespace edts
             sesliOkumaAcik = !sesliOkumaAcik;
             if (sesliOkumaAcik)
             {
-                // Image özelliğini veya BackgroundImage özelliğini değiştirebilirsin
+               
                 btnSesliOkumaa.BackgroundImage = Properties.Resources.mic_on;
                
             }
@@ -1028,13 +1030,13 @@ namespace edts
 
         private string UrunFiyatGuncelle(string soru)
         {
-            // Değişkeni metodun en başında tanımlıyoruz (Hata buradaydı)
+          
             string urunAdi = "";
             decimal yeniFiyat = 0;
 
             try
             {
-                // 1. Sayıyı (Fiyatı) ayıklayalım
+              
                 string[] kelimeler = soru.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 foreach (var kelime in kelimeler)
                 {
@@ -1048,7 +1050,7 @@ namespace edts
 
                 if (yeniFiyat <= 0) return "Geçerli bir fiyat belirtmediniz.";
 
-                // 2. Ürün adını ayıklayalım
+              
                 string temizSoru = soru.ToLower();
                 string[] temizlenecekler = { "fiyat", "fiyatını", "yap", "tl", "₺", "güncelle", yeniFiyat.ToString() };
                 foreach (var w in temizlenecekler)
@@ -1058,7 +1060,7 @@ namespace edts
 
                 if (string.IsNullOrEmpty(urunAdi)) return "Ürün adı belirlenemedi.";
 
-                // 3. Veritabanı İşlemi
+               
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -1093,49 +1095,48 @@ namespace edts
                 return;
             }
 
-            // 1. Kullanıcı mesajını ekle
+            
             EkleMesaj(soru, true);
             txtSoruu.Clear();
 
-            // --- MATRIX EFEKTİ BURADA BAŞLIYOR ---
-            // Sadece belirli kelimelerde çıksın (isteğe bağlı)
+           
+           
             if (soru.Contains("stok") || soru.Contains("kaydet") || soru.Contains("log") || soru.Contains("ciro"))
             {
-                await MatrixEfektiYap(); // Bot sahte işlem mesajlarını yazar
+                await MatrixEfektiYap(); 
             }
-            // -------------------------------------
+            
 
-            // 2. Chatbot cevabı hazırlanıyor
+          
             string cevap = ChatbotCevapla(soru);
 
-            // 3. Sesli okuma (Paralel çalışır)
+           
             if (sesliOkumaAcik)
             {
                 synthesizer.SpeakAsyncCancelAll();
                 synthesizer.SpeakAsync(cevap);
             }
 
-            // 4. Asıl cevabı harf harf yazdır
+           
             await GosterHarfHarf(cevap, false);
 
         }
 
-        // MATRIX EFEKTİ METODU
+      
         private async Task MatrixEfektiYap()
         {
             Random rnd = new Random();
-            for (int i = 0; i < 2; i++) // 2 tane rastgele matrix mesajı seçer
+            for (int i = 0; i < 2; i++) 
             {
                 string secilen = matrixMesajlari[rnd.Next(matrixMesajlari.Length)];
                 await GosterHarfHarf(secilen, false);
-                await Task.Delay(400); // Yarım saniye bekle
+                await Task.Delay(400); 
             }
         }
 
-        // DOSYA HAZIRLAMA METODU
         private void BotDosyaHazirla(string tip)
         {
-            // Buraya yukarıda verdiğim SQL'den veri çekip masaüstüne kaydeden kodu yapıştıracaksın.
+            
         }
 
         private void ChatbotDepo_Load(object sender, EventArgs e)
@@ -1150,23 +1151,23 @@ namespace edts
 
         private string UrunAdiniBelirle(string temizSoru)
         {
-            // Ürün adı olmayabilecek kelimeler (Stop Words)
+            
             string[] gereksizKelimeler = { "ne", "kadar", "stok", "fiyat", "birim", "var", "mı", "mu", "nerede", "raf", "ciro", "teslim", "tarihi", "peki", "ya", "onun" };
 
             var kelimeler = temizSoru.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            // Soruda stop words dışında kalan ilk kelimeyi ürün adı kabul edelim
+          
             string bulunanUrun = kelimeler.FirstOrDefault(k => !gereksizKelimeler.Contains(k)) ?? "";
 
             if (!string.IsNullOrEmpty(bulunanUrun))
             {
-                // Yeni bir ürün bulunduysa hafızayı güncelle
+                
                 sonArananUrun = bulunanUrun;
                 return bulunanUrun;
             }
             else if (!string.IsNullOrEmpty(sonArananUrun))
             {
-                // Soruda ürün yok ama hafızada varsa, hafızadakini döndür
+               
                 return sonArananUrun;
             }
 

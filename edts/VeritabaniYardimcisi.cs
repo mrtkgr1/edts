@@ -85,12 +85,10 @@ public static class VeritabaniYardimcisi
         return 0;
     }
 
-    // 1. DÜZELTME (Sistem Ayarları Yükleme Sorgusu - Alias sorunu çözülmüş hali)
     public static DataTable SistemAyarlariGetir()
     {
         string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
-        // KRİTİK DÜZELTME: Alias'lar kaldırıldı. SQL tablonuzdaki gerçek adlar kullanılıyor.
         string sorgu = @"SELECT AyarID, 
                            kritikstok,               -- Tablonuzdaki gerçek ad
                            VarsayilanDepoAd,         -- Tablonuzdaki gerçek ad
@@ -103,7 +101,6 @@ public static class VeritabaniYardimcisi
 
         try
         {
-            // ... (Kalan kod aynı: SqlConnection, SqlDataAdapter, da.Fill(dt), return dt)
             using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
             using (SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti))
             {
@@ -119,13 +116,11 @@ public static class VeritabaniYardimcisi
         }
     }
 
-    // 2. DÜZELTME (Sistem Ayarlarını Kaydetme - Değişmedi, bool dönüşü doğru)
     public static bool SistemAyarlariniKaydet(int kritikStok, string varsayilanDepo,
                                          int sifreGecerlilikGunu, int girisHataLimiti, int oturumZamanAsimiDk)
     {
         string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
-        // KRİTİK: SELECT sorgusunda çalışan aynı isimleri kullanıyoruz.
         string sorgu = @"UPDATE tblSistemAyarlari 
                      SET kritikstok = @pKritikStok,          
                          VarsayilanDepoAd = @pVarsayilanDepo,    
@@ -158,7 +153,6 @@ public static class VeritabaniYardimcisi
         }
     }
 
-    // 3. DÜZELTME (DataTableGetir - Hata Dönüşü Düzeltilmiş Hali)
     public static DataTable DataTableGetir(string sorgu)
     {
         string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
@@ -177,12 +171,10 @@ public static class VeritabaniYardimcisi
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine("DataTable Getirilirken Hata: " + ex.Message);
-            // KRİTİK DÜZELTME: Hata durumunda null döndürülmeli.
-            return null; // DataTable döndürdüğü için null dönebilir. (Doğru)
+            return null; 
         }
     }
 
-    // 4. DÜZELTME (ExecuteNonQuery - Değişmedi, bool dönüşü doğru)
     public static bool ExecuteNonQuery(string sorgu, params SqlParameter[] parameters)
     {
         string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
@@ -204,7 +196,7 @@ public static class VeritabaniYardimcisi
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine("ExecuteNonQuery Hata: " + ex.Message + " Sorgu: " + sorgu);
-            return false; // bool döndürdüğü için false dönmeli. (Doğru)
+            return false; 
         }
     }
 }
