@@ -24,7 +24,7 @@ namespace edts
 
         private void btnSepetEkle_Click(object sender, EventArgs e)
         {
-          
+
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 baglan.Open();
@@ -59,7 +59,7 @@ namespace edts
                     txtUrunBarkod.Clear();
                     txtUrunBarkod.Focus();
 
-                  
+
                     lblGenelToplam.Text = Convert.ToDecimal(sepetTablosu.Compute("Sum(Toplam)", "")).ToString("C2");
                 }
                 else
@@ -68,7 +68,7 @@ namespace edts
                 }
             }
         }
-        
+
 
         private void btnSatisOnay_Click(object sender, EventArgs e)
         {
@@ -101,18 +101,18 @@ namespace edts
 
                     foreach (DataRow row in sepetTablosu.Rows)
                     {
-                       
+
                         SqlCommand cmdDetay = new SqlCommand(@"INSERT INTO tblSatisDetay (SatisID, UrunID, Miktar, BirimFiyat) 
                                                        VALUES (@sid, @uid, @miktar, @fiyat)", baglan, işlem);
 
                         cmdDetay.Parameters.AddWithValue("@sid", satisID);
-                       
+
                         cmdDetay.Parameters.AddWithValue("@uid", row["UrunID"]);
                         cmdDetay.Parameters.AddWithValue("@miktar", row["Adet"]);
                         cmdDetay.Parameters.AddWithValue("@fiyat", row["Fiyat"]);
                         cmdDetay.ExecuteNonQuery();
 
-                       
+
                         SqlCommand cmdStok = new SqlCommand(@"UPDATE tblUrunler SET MevcutStok = MevcutStok - @adet 
                                                        WHERE UrunKodu = @barkod", baglan, işlem);
                         cmdStok.Parameters.AddWithValue("@adet", row["Adet"]);
@@ -126,10 +126,10 @@ namespace edts
 
                     VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 10, "tblSatislar", "Satış yapıldı. ID: " + satisID);
 
-                   
+
                     lblGenelToplam.Text = "0.00";
 
-                   
+
                     txtUrunBarkod.Focus();
                 }
                 catch (Exception ex)
@@ -139,21 +139,21 @@ namespace edts
                 }
             }
         }
-        
-        
+
+
 
         private void MusterileriGetir()
         {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
-              
+
                 SqlDataAdapter da = new SqlDataAdapter("SELECT MusteriID, MusteriAd FROM tblMusteriler", baglan);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 cmbMusteri.DataSource = dt;
                 cmbMusteri.DisplayMember = "MusteriAd";
-                cmbMusteri.ValueMember = "MusteriID";   
+                cmbMusteri.ValueMember = "MusteriID";
 
                 cmbMusteri.SelectedIndex = -1;
             }
@@ -171,16 +171,16 @@ namespace edts
                 SqlDataAdapter da = new SqlDataAdapter(sorgu, baglan);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                dgvSatislar.DataSource = dt; 
+                dgvSatislar.DataSource = dt;
             }
         }
         private void frmSatisFatura_Load(object sender, EventArgs e)
         {
-            sepetTablosu.Columns.Add("UrunID", typeof(int));   
-            sepetTablosu.Columns.Add("Barkod");                 
-            sepetTablosu.Columns.Add("UrunAd");               
-            sepetTablosu.Columns.Add("Adet", typeof(decimal));  
-            sepetTablosu.Columns.Add("Fiyat", typeof(decimal)); 
+            sepetTablosu.Columns.Add("UrunID", typeof(int));
+            sepetTablosu.Columns.Add("Barkod");
+            sepetTablosu.Columns.Add("UrunAd");
+            sepetTablosu.Columns.Add("Adet", typeof(decimal));
+            sepetTablosu.Columns.Add("Fiyat", typeof(decimal));
             sepetTablosu.Columns.Add("Toplam", typeof(decimal));
 
             dgvSepet.DataSource = sepetTablosu;
@@ -188,8 +188,14 @@ namespace edts
             dgvSepet.Columns["UrunID"].Visible = false;
 
             MusterileriGetir();
-            SatislariGetir(); 
+            SatislariGetir();
+            dgvSatislar.AllowUserToAddRows = false;
+        }
+
+        private void dgvSatislar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
-    }
+}
 
