@@ -13,10 +13,11 @@ namespace edts {
         static private readonly string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
         public static List<SistemAyar> Ayarlar = new List<SistemAyar>() {
+            //new("sifre_yenile_zorunlu", "Şifre yenilemeyi zorunlu kıl","false",AyarTuru.Mantik, ""),
             new("giri_sure_engel", "Hatalı Girişlerde Geçici Süreli Engel", "true", AyarTuru.Mantik, "Giriş Güvenliği ve Kısıtlamalar"),
             new("giris_sure_denemesi", "Geçici Engel İçin Hata Sınırı", "3", AyarTuru.Sayi, "Giriş Güvenliği ve Kısıtlamalar"),
             new("girs_sure_zaman", "Geçici Engelleme Süresi (Dakika)", "3", AyarTuru.Sayi, "Giriş Güvenliği ve Kısıtlamalar"),
-            new("hesabi_kilitleme", "Hatalı Girişlerde Hesabı Tamamen Kilitleme", "true", AyarTuru.Mantik, "Giriş Güvenliği ve Kısıtlamalar"),
+            new("hesabi_kilitleme", "Hatalı Girişlerde Hesabı Tamamen Kilitleme", "false", AyarTuru.Mantik, "Giriş Güvenliği ve Kısıtlamalar"),
             new("giris_denemesi", "Hesap Kilitleme Hata Sınırı", "15", AyarTuru.Sayi, "Giriş Güvenliği ve Kısıtlamalar"),
 
         };
