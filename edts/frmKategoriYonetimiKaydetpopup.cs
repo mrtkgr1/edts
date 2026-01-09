@@ -34,7 +34,7 @@ namespace edts
                 try
                 {
                     baglan.Open();
-                    // Sorguyu ve parametreleri kontrol ettim
+                   
                     SqlCommand cmdInsert = new SqlCommand("INSERT INTO tblKategoriler (KategoriAd, KategoriAciklama) VALUES (@kat, @aci)", baglan);
                     cmdInsert.Parameters.AddWithValue("@kat", txtKategoriAdi.Text.Trim());
                     cmdInsert.Parameters.AddWithValue("@aci", txtKategoriAciklama.Text.Trim());

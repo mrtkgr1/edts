@@ -64,6 +64,7 @@
             // 
             // dgvSatislar
             // 
+            dgvSatislar.AllowUserToAddRows = false;
             dgvSatislar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSatislar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSatislar.Dock = DockStyle.Fill;
@@ -72,6 +73,7 @@
             dgvSatislar.RowHeadersWidth = 51;
             dgvSatislar.Size = new Size(521, 878);
             dgvSatislar.TabIndex = 0;
+            dgvSatislar.CellContentClick += dgvSatislar_CellContentClick;
             // 
             // tabPage5
             // 
@@ -204,6 +206,7 @@
             // 
             // dgvSepet
             // 
+            dgvSepet.AllowUserToAddRows = false;
             dgvSepet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSepet.Location = new Point(16, 24);
             dgvSepet.Name = "dgvSepet";
