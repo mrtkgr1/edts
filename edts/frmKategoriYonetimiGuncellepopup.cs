@@ -41,7 +41,7 @@ namespace edts
 
         private void frmKategoriYonetimiGuncellepopup_Load(object sender, EventArgs e)
         {
-            // Form açıldığında ID kontrolü yap ve verileri yükle
+           
             if (GuncellenecekKategoriID > 0)
             {
                 KategoriBilgileriniGetir(GuncellenecekKategoriID);
@@ -50,7 +50,7 @@ namespace edts
 
         private void btnKategoriGuncellee_Click(object sender, EventArgs e)
         {
-            // --- ONAY SORUSU BURADA ---
+           
             DialogResult soru = MessageBox.Show(
                 $"{txtKategoriAdi.Text} kategorisini güncellemek istediğinize emin misiniz?",
                 "Güncelleme Onayı",

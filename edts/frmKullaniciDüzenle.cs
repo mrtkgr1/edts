@@ -63,7 +63,7 @@ namespace edts {
                  RolID = @pRolID, AktifMi = @pAktifMi 
                  WHERE KullaniciID = @pID";
                 } else {
-                    // Şifreyi değiştirmeyen (mevcut hash'i koruyan) sorgu
+
                     sorgu = @"UPDATE tblKullanicilar SET 
                  AdSoyad = @pAdSoyad, KullaniciAdi = @pKullaniciAdi, 
                  RolID = @pRolID, AktifMi = @pAktifMi 

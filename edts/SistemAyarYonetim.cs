@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace edts {
     public class SistemAyarYonetim {
-        //56 20
+
         static private readonly string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
         public static List<SistemAyar> Ayarlar = new List<SistemAyar>() {
@@ -66,7 +66,6 @@ namespace edts {
             }
         }
 
-        //kayııt
         public static void AyarlariKaydet(int userId) {
             using (SqlConnection connection = new SqlConnection(baglantiDizesi)) {
                 connection.Open();
@@ -82,7 +81,6 @@ namespace edts {
         }
 
 
-        //Getter
         public static string AyarGetir(string ayarId) {
             SistemAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
             return ayar != null ? ayar.Deger : string.Empty;
@@ -98,7 +96,6 @@ namespace edts {
             return ayar != null ? ayar.BoolAl() : false;
         }
 
-        //getter kontrol
         public static bool AyarGetir(string ayarId, out string? cvp) {
             SistemAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
             if (ayar == null) {
@@ -127,7 +124,6 @@ namespace edts {
             return true;
         }
 
-        //---
         public static void AyarDegistir(string ayarId, string yeniDeger) {
             SistemAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
             if (ayar != null) {

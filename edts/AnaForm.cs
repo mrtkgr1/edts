@@ -59,7 +59,6 @@ namespace edts {
             yanMenuPanel.Top = yeniY;
         }
 
-        //-----Sayfa gösterme işlemleri -----
         private void SayfaGoster(Form yeniForm) {
             if (panelForm.Controls.Count > 0) {
                 panelForm.Controls[0].Dispose();
@@ -96,7 +95,7 @@ namespace edts {
 
         }
 
-        //----Ayarlar ----
+       
         public void AyarKurulum() {
             TemaGuncelle();
 
@@ -127,7 +126,6 @@ namespace edts {
             kayitMenuPanel.BackColor = tema.solMenuAltMenu;
         }
 
-        //-----Menü açma kapama işlemleri -----
         bool isKayitMenuAcik = false;
         private void menuHareket_Tick(object sender, EventArgs e) {
             if (isKayitMenuAcik) {
@@ -173,7 +171,6 @@ namespace edts {
             menuKayitHareket.Start();
         }
 
-        //-----Form kontrol buton işlemleri -----
         private void button8_Click(object sender, EventArgs e) {
             this.Close();
         }
@@ -211,7 +208,6 @@ namespace edts {
             prefPictureBox.Image = Properties.Resources.kayan_liste_assa;
         }
 
-        //bildirim
         bool bildiirmVar = true;
         private void pictureBox4_Click(object sender, EventArgs e) {
             BildirimGoster("xsa","sasa");
@@ -235,7 +231,6 @@ namespace edts {
 
         }
 
-        //-----Hesap popup işlemleri -----
         private void kullaniciAyarlari_Tiklandi() {
             SayfaGoster(new frmKullaniciAyarlari());
         }
@@ -245,72 +240,53 @@ namespace edts {
             tmp.ShowDialog();
         }
 
-        //-----Form çerçeve işlemleri ----- 
-        //
+        
         private void panel1_MouseDown(object sender, MouseEventArgs e) {
-            ReleaseCapture(); //Panelin fare ileetkileşimini kesiyoruz
-            //normalde windows uygulama için çerçeve çizer ve o çerçeve üzerinden taşıma işlemi yapar
-            //SendMessage ile genel api kullanarak windowsa tıklanan panele, çerçeve gibi davranmasını söylüyoruz
+            ReleaseCapture();
+            
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-            //Tasıma işlemini windowsa bırakıyoruz
+           
         }
 
-        //WndProc: windows ile programın iletişimi yönetiyor
-        //override ederek manipüle ediyoruz
         protected override void WndProc(ref Message m) {
             const int WM_NCCALCSIZE = 0x0083;
             const int WM_NCHITTEST = 0x0084;
             const int resizeArea = 10;
 
-            //WM_NCCALCSIZE: windows çerçeve çizmek için programa boyut soruları soruyor
-            //Base.WndProc çalışmadan return diyoruz winforms bilgileri veremiyor, çerçeve olmuyor
             if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1) {
                 return;
             }
 
-            //Boyutlandırma 
-            //WM_NCHITTEST: windows fare imlecinin nerede olduğunu soruyor
+            
             if (m.Msg == WM_NCHITTEST) {
                 base.WndProc(ref m);
-                //1 çıktısıÇ fare boş alan üzerinde
+               
                 if ((int)m.Result == 1) {
 
-                    //Farenin konumunu pencerenin sol üst köşesine göre alıyor
                     Point screenPoint = new Point(m.LParam.ToInt32());
                     Point clientPoint = this.PointToClient(screenPoint);
 
-                    //Farenin, pencrenin hangi kenar/köşesinde olduğunu tespit edip sayısal kodu windowsa veriyor
-                    if (clientPoint.Y <= resizeArea) { // üst kontrol
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)13; //sol üst
-                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)14; //sağ üst
-                        else m.Result = (IntPtr)12; //üst
-                    } else if (clientPoint.Y >= (this.Size.Height - resizeArea)) {// alt kontrol
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)16; //sol alt
-                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)17; //sağ alt
-                        else m.Result = (IntPtr)15; //alt
-                    } else { // sol-sağ kontrol
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)10; //sol
-                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)11; //sağ
+                    if (clientPoint.Y <= resizeArea) { 
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)13; 
+                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)14; 
+                        else m.Result = (IntPtr)12; 
+                    } else if (clientPoint.Y >= (this.Size.Height - resizeArea)) {
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)16; 
+                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)17;
+                        else m.Result = (IntPtr)15; 
+                    } else { 
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)10; 
+                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)11; 
                     }
                 }
                 return;
             }
 
-            //Farenin, elemanlar (textbox,button vb.) ile etkileşimini sağlamak için base çağrısı yapıyoruz
             base.WndProc(ref m);
         }
 
-        // Kodda fare pencerenin içinde ve kenare 10 pixel yakında ise boyutlandırma yapıyor
-        // Aynı anda hem boyutlandırma hem eleman etkileşimi olamaz ve kenara 10 pixel elemalar çalışmaz
-        // Butonlar ayarlansa bile scroll bar mecbur kenarda olacak
-        // Fare elemanın üstünde değil diye kontrol yapıyoruz
-        // Farenin hem pencere içinde olması hem de bir elemanın üstünde olmaması lazım
-        // Tüm sahnede panel doluğu için boşluk yani Padding ekliyoruz
-        // Yine çerçeve oluyor ancak her kenarın boyutunu ayarlayabiliyoruz, üst panelde grinin üzerinde beyaz güzel durmuyordu
-
+       
         private void AnaForm_Resize(object sender, EventArgs e) {
-            //Tam ekran yapıldığında windows kenarlardan 8 pixel ekran dışına çıkartıyor.
-            //Tam ekran yapınca fazladan boşluk ekliyoruz
             if (this.WindowState == FormWindowState.Maximized) {
                 if (this.Padding.All != 8) this.Padding = new Padding(8);
             } else {
@@ -320,7 +296,6 @@ namespace edts {
         }
 
 
-        //-----Yan menü buton işlemleri -----
 
         private void buttonKontrol_Click(object sender, EventArgs e) {
             KontrolFormGoster();
@@ -357,7 +332,6 @@ namespace edts {
         }
 
         private void buttonSistemAyar_Click(object sender, EventArgs e) {
-            //SayfaGoster(new frmAdminSistemAyarlari());
             SayfaGoster(new SistemAyarlari());
         }
 
