@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using System.Configuration;
 namespace edts
 {
-    // Bu, formunuzun başlangıç tanımıdır.
     public partial class GirişForm : Form
     {
         private int aktifRolID;
@@ -135,15 +134,10 @@ namespace edts
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // 1. Yeni Destek/Yardım formunun bir örneğini oluştur
             frmSupport supportForm = new frmSupport();
 
-            // 2. Destek formunu göster
             supportForm.Show();
 
-            // Not: Bu formu (frmLogin) kapatmak/gizlemek isteyip istemediğiniz size kalmış.
-            // Eğer kullanıcının giriş yapana kadar Login ekranını görmesini istiyorsanız, 
-            // alttaki satırı KULLANMAYIN.
         }
 
         private void button2_Click(object sender, EventArgs e) {

@@ -23,78 +23,11 @@ namespace edts
             InitializeComponent();
         }
 
-        private void btnKategoriKaydett_Click(object sender, EventArgs e)
-        {
+       
 
-         /*   if (string.IsNullOrWhiteSpace(txtKategoriAdi.Text))
-            {
-                MessageBox.Show("Kategori adı boş olamaz!");
-                return;
-            }
+       
 
-            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
-            {
-                try
-                {
-                    baglan.Open();
-                    // Sorguyu ve parametreleri kontrol ettim
-                    SqlCommand cmdInsert = new SqlCommand("INSERT INTO tblKategoriler (KategoriAd, KategoriAciklama) VALUES (@kat, @aci)", baglan);
-                    cmdInsert.Parameters.AddWithValue("@kat", txtKategoriAdi.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@aci", txtKategoriAciklama.Text.Trim());
-                    cmdInsert.ExecuteNonQuery();
-
-                    VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 6, "tblKategoriler", $"{txtKategoriAdi.Text} adlı kategori eklendi.");
-
-                    MessageBox.Show("Kategori başarıyla eklendi.");
-                    txtKategoriAdi.Clear();
-                    txtKategoriAciklama.Clear();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Kategori eklenemedi.\nHata: " + ex.Message);
-                }
-            }
-            KategoriListeGuncelle();  */
-        }
-
-        private void btnKategoriGuncellee_Click(object sender, EventArgs e)
-        {
-
-         /*   if (dataGridView2.SelectedRows.Count == 0) return;
-
-            using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
-            {
-                try
-                {
-                    int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["KategoriID"].Value);
-                    baglan.Open();
-                    // SQL sorgusundaki yazım hataları düzeltildi
-                    SqlCommand cmd = new SqlCommand("UPDATE tblKategoriler SET KategoriAd = @ad, KategoriAciklama = @aciklama WHERE KategoriID = @id", baglan);
-                    cmd.Parameters.AddWithValue("@ad", txtKategoriAdi.Text); // .Text eklendi
-                    cmd.Parameters.AddWithValue("@aciklama", txtKategoriAciklama.Text); // .Text eklendi
-                    cmd.Parameters.AddWithValue("@id", id);
-
-                    cmd.ExecuteNonQuery();
-                    VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 6, "tblKategoriler", $"{txtKategoriAdi.Text} güncellendi.");
-                    MessageBox.Show("Güncelleme başarılı.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Güncelleme hatası: " + ex.Message);
-                }
-            }
-            KategoriListeGuncelle(); */
-        }
-
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            /*if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
-                txtKategoriAdi.Text = row.Cells["KategoriAd"].Value.ToString();
-                txtKategoriAciklama.Text = row.Cells["KategoriAciklama"].Value.ToString();
-            } */
-        }
+       
 
         private void btnKategoriSill_Click(object sender, EventArgs e)
         {
@@ -105,7 +38,6 @@ namespace edts
                 return;
             }
 
-            // Kullanıcıya onay soralım
             DialogResult onay = MessageBox.Show("Bu kategoriyi silmek istediğinize emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (onay == DialogResult.Yes)
@@ -130,8 +62,6 @@ namespace edts
                         );
 
                         MessageBox.Show("Kategori başarıyla silindi.");
-                      /*  txtKategoriAdi.Clear();
-                        txtKategoriAciklama.Clear(); */
                     }
                     catch (SqlException sqlEx) when (sqlEx.Number == 547)
                     {
@@ -152,7 +82,6 @@ namespace edts
                 try
                 {
                     baglan.Open();
-                    // Sorguya KategoriAciklama eklendi
                     string sorgu = "SELECT KategoriID, KategoriAd, KategoriAciklama FROM tblKategoriler";
 
                     SqlDataAdapter da = new SqlDataAdapter(sorgu, baglan);
@@ -161,8 +90,7 @@ namespace edts
 
                     dataGridView2.DataSource = dt;
 
-                    // Görsel iyileştirme
-                    dataGridView2.Columns["KategoriID"].Visible = false; // ID'yi gizle
+                    dataGridView2.Columns["KategoriID"].Visible = false; 
                     dataGridView2.Columns["KategoriAd"].HeaderText = "Kategori Adı";
                     dataGridView2.Columns["KategoriAciklama"].HeaderText = "Açıklama";
                     dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -179,26 +107,21 @@ namespace edts
 
         private void frmKategoriYonetimi_Load(object sender, EventArgs e)
         {
-            // Kategori formunda olduğumuz için doğru metodu çağıralım
             KategoriListeGuncelle();
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Geçersiz tıklamaları (başlık vs.) engelle
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
             
            
-            // --- GÜNCELLEME BUTONU ---
             if (dataGridView2.Columns[e.ColumnIndex].Name == "btnGuncelleSutun")
             {
                 int id = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["KategoriID"].Value);
            
-                // Formu oluştur ve ID'yi gönder
                 frmKategoriYonetimiGuncellepopup popup = new frmKategoriYonetimiGuncellepopup();
                 popup.GuncellenecekKategoriID = id;
 
-                // Formu aç ve sonuç OK ise listeyi yenile
                 if (popup.ShowDialog() == DialogResult.OK)
                 {
                     KategoriListeGuncelle();
@@ -206,7 +129,6 @@ namespace edts
 
             }
 
-            // --- SİLME BUTONU ---
             else if (dataGridView2.Columns[e.ColumnIndex].Name == "btnSilSutun")
             {
                 string kategoriAd = dataGridView2.Rows[e.RowIndex].Cells["KategoriAd"].Value?.ToString() ?? "Kategori";
@@ -236,7 +158,6 @@ namespace edts
             dataGridView2.AllowUserToAddRows = false;
         }
 
-        // 4. SQL Silme Metodu (Eğer istersen burayı güncelle)
         private void KategoriSil(string id)
         {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))

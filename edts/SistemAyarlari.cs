@@ -180,18 +180,7 @@ namespace edts {
                     combo.Width = 150;
                     combo.Dock = DockStyle.Right;
 
-                    /*if(SistemAyarYonetim.SecenekListesi.TryGetValue(ayarG.Id,out (string,string)[] v)) {
-                        List<ComboboxDItem> itms = ComboboxDItem.ListeOlustur(v);
-                        combo.DisplayMember = "text";
-                        combo.ValueMember= "id";
-                        combo.DataSource = itms;
-
-                        ComboboxDItem secilecekOge = itms.FirstOrDefault(x => x.id == ayarG.Deger);
-                        if (secilecekOge != null) {
-                            
-                            combo.SelectedItem = secilecekOge;
-                        }
-                    }*/
+                   
 
                     resultControl = combo;
                     break;

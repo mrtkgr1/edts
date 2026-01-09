@@ -8,14 +8,13 @@ namespace edts
 {
     public class BasitGrafik : Control
     {
-        // Grafik verileri (Değerler 0-100 arası olmalı)
         public List<int> Veriler { get; set; } = new List<int> { 40, 70, 50, 90, 30, 85, 60 };
         public Color GrafikRengi { get; set; } = Color.DodgerBlue;
 
         public BasitGrafik()
         {
             this.Size = new Size(300, 150);
-            this.DoubleBuffered = true; // Titremeyi önler
+            this.DoubleBuffered = true; 
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -23,7 +22,6 @@ namespace edts
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // Arka planı temizle ve kavisli yap (Panel gibi)
             GraphicsPath path = new GraphicsPath();
             int kavis = 20;
             path.AddArc(0, 0, kavis, kavis, 180, 90);
@@ -32,14 +30,14 @@ namespace edts
             path.AddArc(0, Height - kavis, kavis, kavis, 90, 90);
             this.Region = new Region(path);
 
-            g.Clear(Color.FromArgb(245, 245, 250)); // Hafif gri arka plan
+            g.Clear(Color.FromArgb(245, 245, 250)); 
 
             // Sütunları çiz
             if (Veriler == null || Veriler.Count == 0) return;
 
             float sutunGenisligi = (float)Width / (Veriler.Count * 1.5f);
             float bosluk = sutunGenisligi / 2;
-            float maxDeger = 100f; // Yüzdelik baz aldık
+            float maxDeger = 100f; 
 
             for (int i = 0; i < Veriler.Count; i++)
             {
@@ -47,19 +45,19 @@ namespace edts
                 float x = bosluk + i * (sutunGenisligi + bosluk);
                 float y = Height - sutunBoyu - 20;
 
-                // Sütunları kavisli çizmek için RectanglePath
+                
                 RectangleF rect = new RectangleF(x, y, sutunGenisligi, sutunBoyu);
 
                 using (LinearGradientBrush firca = new LinearGradientBrush(rect, GrafikRengi, Color.FromArgb(150, GrafikRengi), LinearGradientMode.Vertical))
                 {
-                    // Sütunların üst kısımlarını hafif yuvarlak yapalım
+                    
                     GraphicsPath sutunPath = GetRoundedRect(rect, 5);
                     g.FillPath(firca, sutunPath);
                 }
             }
         }
 
-        // Yardımcı fonksiyon: Sütunların köşelerini yuvarlatmak için
+        
         private GraphicsPath GetRoundedRect(RectangleF baseRect, float radius)
         {
             GraphicsPath path = new GraphicsPath();

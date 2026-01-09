@@ -31,14 +31,14 @@ namespace edts
         private void btnTedarikciKaydett_Click(object sender, EventArgs e)
         {
 
-            // 1. ADIM: Boş kontrolü (Zaten harika bir şekilde yapmışsın)
+           
             if (txtFirmaAdi.Text.Trim() == "")
             {
                 MessageBox.Show("Firma Adı boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. ADIM: ONAY SORUSU (Kullanıcıya soruyoruz)
+          
             DialogResult soru = MessageBox.Show(
                 $"{txtFirmaAdi.Text} firmasını yeni tedarikçi olarak kaydetmek istiyor musunuz?",
                 "Tedarikçi Kayıt Onayı",
@@ -46,7 +46,7 @@ namespace edts
                 MessageBoxIcon.Question
             );
 
-            // Eğer kullanıcı 'Hayır' derse işlemi burada bitir
+            
             if (soru != DialogResult.Yes) return;
 
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
@@ -68,7 +68,7 @@ namespace edts
 
                     cmd.ExecuteNonQuery();
 
-                    // 3. ADIM: BAŞARI MESAJI (Kullanıcıyı bilgilendiriyoruz)
+                   
                     MessageBox.Show("Tedarikçi kaydı başarıyla tamamlandı.", "İşlem Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     VeritabaniYardimcisi.LogKaydet(
@@ -78,7 +78,7 @@ namespace edts
                         aciklama: $"{txtFirmaAdi.Text} adlı tedarikçi eklendi."
                     );
 
-                    // İsteğe bağlı: Kayıttan sonra kutuları temizleyebilirsin
+                  
                     txtFirmaAdi.Clear();
                     txtVergiDairesi.Clear();
                     txtVergiNo.Clear();

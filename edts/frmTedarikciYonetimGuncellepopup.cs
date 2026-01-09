@@ -51,7 +51,7 @@ namespace edts
 
         private void frmTedarikciYonetimGuncellepopup_Load(object sender, EventArgs e)
         {
-            // Form açıldığında eğer bir ID gelmişse verileri doldur
+         
             if (GuncellenecekUrunID > 0)
             {
                 TedarikciBilgileriniYukle(GuncellenecekUrunID);
@@ -60,10 +60,8 @@ namespace edts
 
         private void btnTedarikciGuncellee_Click(object sender, EventArgs e)
         {
-            // 1. Boş kontrolü
             if (string.IsNullOrWhiteSpace(txtFirmaAdi.Text)) { MessageBox.Show("Firma adı boş olamaz!"); return; }
 
-            // 2. Güncelleme İşlemi
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
             {
                 try
@@ -82,12 +80,11 @@ namespace edts
 
                     cmd.ExecuteNonQuery();
 
-                    // Loglama (İsteğe bağlı)
                     VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 8, "tblTedarikciler", $"{txtFirmaAdi.Text} güncellendi.");
 
                     MessageBox.Show("Bilgiler başarıyla güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.DialogResult = DialogResult.OK; // Ana forma "başarılı" bilgisini dön
+                    this.DialogResult = DialogResult.OK; 
                     this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show("Güncelleme hatası: " + ex.Message); }

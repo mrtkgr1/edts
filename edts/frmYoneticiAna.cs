@@ -55,7 +55,6 @@ namespace edts
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            //SayfaGoster(new frmAdminSistemAyarlari());
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
