@@ -39,14 +39,14 @@ namespace edts {
         }
 
         public enum IslemTuru {
-            Oturum_Acildi = 1,            //1
-            Satım = 2,                  //2
-            Alim = 4,                   //4
-            Urun_Degisiklik = 5,        //5
-            Kategori_Degisiklik = 6,    //6
-            Tedarikci_Degisiklik = 8,   //8
-            Musteri_Degisiklik = 9,     //9
-            Oturum_Kapandi = 11          //11
+            Oturum_Acildi = 1,           
+            Satım = 2,                 
+            Alim = 4,                  
+            Urun_Degisiklik = 5,        
+            Kategori_Degisiklik = 6,   
+            Tedarikci_Degisiklik = 8,  
+            Musteri_Degisiklik = 9,    
+            Oturum_Kapandi = 11         
         }
 
         public enum Rol {

@@ -58,9 +58,9 @@
             // panel1
             // 
             panel1.Controls.Add(txtSoru);
-            panel1.Location = new Point(211, 400);
+            panel1.Location = new Point(205, 390);
             panel1.Name = "panel1";
-            panel1.Size = new Size(430, 27);
+            panel1.Size = new Size(430, 26);
             panel1.TabIndex = 4;
             // 
             // txtSoru
@@ -68,7 +68,7 @@
             txtSoru.Dock = DockStyle.Fill;
             txtSoru.Location = new Point(0, 0);
             txtSoru.Name = "txtSoru";
-            txtSoru.Size = new Size(430, 27);
+            txtSoru.Size = new Size(430, 26);
             txtSoru.TabIndex = 8;
             txtSoru.Text = "";
             txtSoru.TextChanged += txtSoru_TextChanged_1;
@@ -114,6 +114,7 @@
             // 
             // flowChat
             // 
+            flowChat.BackColor = SystemColors.ControlLightLight;
             flowChat.Dock = DockStyle.Bottom;
             flowChat.Location = new Point(0, 0);
             flowChat.Name = "flowChat";
@@ -124,6 +125,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightSlateGray;
             ClientSize = new Size(1039, 602);
             Controls.Add(panel4);
             Controls.Add(panel3);
