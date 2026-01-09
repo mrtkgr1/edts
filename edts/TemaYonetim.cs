@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace edts {
     class TemaYonetim {
-        //static bool ayarAlindi = false;
         static List<Tema> temalar = new List<Tema>() {
             new("siyah",false,Color.FromArgb(24, 24, 27),Color.FromArgb(32, 32, 35),Color.FromArgb(45, 45, 48),Color.FromArgb(20, 20, 22),Color.FromArgb(225, 225, 225)),
             new("beyaz",true,Color.FromArgb(245, 245, 245),Color.FromArgb(225, 225, 225),Color.FromArgb(230, 240, 255),Color.FromArgb(249, 249, 249),Color.FromArgb(33, 33, 33)),

@@ -24,14 +24,13 @@ namespace edts
         public int GuncellenecekMusteriID = 0;
         private void btnMusteriKayit_Click(object sender, EventArgs e)
         {
-            // 1. ADIM: Boş kontrolü (Zaten yapmışsın, çok iyi)
+            
             if (textMusteriAd.Text.Trim() == "")
             {
                 MessageBox.Show("Müsteri Adı boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. ADIM: ONAY SORUSU (Kritik Nokta)
             DialogResult soru = MessageBox.Show(
                 $"{textMusteriAd.Text} isimli müşteriyi kaydetmek istediğinize emin misiniz?",
                 "Kayıt Onayı",
@@ -39,7 +38,6 @@ namespace edts
                 MessageBoxIcon.Question
             );
 
-            // Eğer kullanıcı 'Hayır' derse kodu burada durduruyoruz
             if (soru != DialogResult.Yes) return;
 
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
@@ -61,7 +59,6 @@ namespace edts
 
                     cmd.ExecuteNonQuery();
 
-                    // 3. ADIM: BAŞARI MESAJI
                     MessageBox.Show("Müşteri başarıyla sisteme kaydedildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     VeritabaniYardimcisi.LogKaydet(
@@ -70,11 +67,10 @@ namespace edts
                         tabloAdi: "tblMusteriler",
                         aciklama: $"{textMusteriAd.Text} adlı müsteri eklendi."
                     );
-                    this.DialogResult = DialogResult.OK; // Ana forma "İşlem başarılı" sinyali gönderir
-                    this.Close(); // Formu kapatır
+                    this.DialogResult = DialogResult.OK; 
+                    this.Close(); 
 
-                    // İsteğe bağlı: Kayıttan sonra kutuları temizleyebilirsin
-                    // textMusteriAd.Clear(); textMusteriVd.Clear(); ...
+                    
                 }
                 catch (Exception ex)
                 {
@@ -108,11 +104,10 @@ namespace edts
 
         private void frmMusteriTanimlamaKaydetpopup_Load(object sender, EventArgs e)
         {
-            // Eğer dışarıdan bir ID gönderilmişse (yani güncelleme modundaysak)
             if (GuncellenecekMusteriID > 0)
             {
                 this.Text = "Müşteri Bilgilerini Güncelle";
-                btnMusteriKayit.Text = "Bilgileri Güncelle"; // Butonun yazısını değiştiririz
+                btnMusteriKayit.Text = "Bilgileri Güncelle"; 
 
                 MusteriBilgileriniGetir(GuncellenecekMusteriID);
             }
