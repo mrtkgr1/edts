@@ -34,8 +34,8 @@
             btnSilSutun = new DataGridViewButtonColumn();
             btnGuncelleSutun = new DataGridViewButtonColumn();
             panel1 = new Panel();
-            button1 = new Button();
             label1 = new Label();
+            button1 = new Button();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             panel1.SuspendLayout();
@@ -61,7 +61,6 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(1227, 534);
             dataGridView2.TabIndex = 0;
-           
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             dataGridView2.CellPainting += dataGridView2_CellPainting;
             dataGridView2.MouseLeave += dataGridView2_MouseLeave;
@@ -96,28 +95,28 @@
             panel1.Size = new Size(1227, 89);
             panel1.TabIndex = 4;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(28, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(194, 28);
+            label1.TabIndex = 4;
+            label1.Text = "Müşteri Tanımlama";
+            // 
             // button1
             // 
             button1.BackColor = Color.Transparent;
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = ImageLayout.Zoom;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button1.Location = new Point(12, 51);
+            button1.Location = new Point(28, 51);
             button1.Name = "button1";
             button1.Size = new Size(194, 35);
             button1.TabIndex = 3;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(12, 20);
-            label1.Name = "label1";
-            label1.Size = new Size(194, 28);
-            label1.TabIndex = 4;
-            label1.Text = "Müşteri Tanımlama";
             // 
             // frmMusteriTanimlama
             // 
