@@ -246,7 +246,6 @@
             ClientSize = new Size(635, 597);
             Controls.Add(tabControl1);
             Name = "frmUrunYonetimiGuncellepopup";
-            Text = "frmUrunYonetimiGuncellepopup";
             Load += frmUrunYonetimiGuncellepopup_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);

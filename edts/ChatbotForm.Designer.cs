@@ -132,7 +132,6 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ChatbotForm";
-            Text = "ChatbotForm";
             Load += ChatbotForm_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);

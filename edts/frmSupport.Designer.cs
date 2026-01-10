@@ -175,7 +175,6 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmSupport";
-            Text = "frmSupport";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
