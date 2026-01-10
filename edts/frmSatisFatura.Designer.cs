@@ -59,19 +59,20 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(796, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(521, 878);
+            panel2.Size = new Size(521, 906);
             panel2.TabIndex = 5;
             // 
             // dgvSatislar
             // 
             dgvSatislar.AllowUserToAddRows = false;
             dgvSatislar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSatislar.BackgroundColor = Color.WhiteSmoke;
             dgvSatislar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSatislar.Dock = DockStyle.Fill;
             dgvSatislar.Location = new Point(0, 0);
             dgvSatislar.Name = "dgvSatislar";
             dgvSatislar.RowHeadersWidth = 51;
-            dgvSatislar.Size = new Size(521, 878);
+            dgvSatislar.Size = new Size(521, 906);
             dgvSatislar.TabIndex = 0;
             dgvSatislar.CellContentClick += dgvSatislar_CellContentClick;
             // 
@@ -190,7 +191,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(796, 878);
+            panel1.Size = new Size(796, 906);
             panel1.TabIndex = 4;
             // 
             // label1
@@ -198,7 +199,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.DarkGray;
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(309, 9);
+            label1.Location = new Point(309, 23);
             label1.Name = "label1";
             label1.Size = new Size(114, 25);
             label1.TabIndex = 4;
@@ -208,7 +209,7 @@
             // 
             dgvSepet.AllowUserToAddRows = false;
             dgvSepet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSepet.Location = new Point(16, 24);
+            dgvSepet.Location = new Point(16, 40);
             dgvSepet.Name = "dgvSepet";
             dgvSepet.RowHeadersWidth = 51;
             dgvSepet.Size = new Size(735, 408);
@@ -218,7 +219,7 @@
             // 
             tabControl1.Controls.Add(tabPage5);
             tabControl1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            tabControl1.Location = new Point(16, 442);
+            tabControl1.Location = new Point(16, 455);
             tabControl1.Margin = new Padding(3, 4, 3, 4);
             tabControl1.Multiline = true;
             tabControl1.Name = "tabControl1";
@@ -230,7 +231,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1317, 878);
+            ClientSize = new Size(1317, 906);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmSatisFatura";
