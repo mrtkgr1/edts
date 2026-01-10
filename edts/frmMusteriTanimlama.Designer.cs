@@ -127,7 +127,6 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmMusteriTanimlama";
-            Text = "frmMusteriTanimlama";
             Load += frmMusteriTanimlama_Load;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();

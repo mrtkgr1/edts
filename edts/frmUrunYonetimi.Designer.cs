@@ -131,7 +131,6 @@
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmUrunYonetimi";
-            Text = "frmUrunYonetimi";
             Load += frmUrunYonetimi_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
