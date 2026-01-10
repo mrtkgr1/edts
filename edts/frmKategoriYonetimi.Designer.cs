@@ -35,6 +35,7 @@
             btnGuncelleSutun = new DataGridViewButtonColumn();
             panel1 = new Panel();
             button1 = new Button();
+            label1 = new Label();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             panel1.SuspendLayout();
@@ -60,7 +61,6 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(1266, 621);
             dataGridView2.TabIndex = 0;
-           
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             dataGridView2.CellPainting += dataGridView2_CellPainting;
             dataGridView2.MouseLeave += dataGridView2_MouseLeave;
@@ -87,6 +87,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLightLight;
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(button1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -98,12 +99,22 @@
             // 
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.Location = new Point(35, 17);
+            button1.Location = new Point(36, 45);
             button1.Name = "button1";
-            button1.Size = new Size(111, 51);
+            button1.Size = new Size(141, 38);
             button1.TabIndex = 3;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(39, 15);
+            label1.Name = "label1";
+            label1.Size = new Size(138, 28);
+            label1.TabIndex = 4;
+            label1.Text = "Kategori Ekle";
             // 
             // frmKategoriYonetimi
             // 
@@ -118,6 +129,7 @@
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -128,5 +140,6 @@
         private Button button1;
         private DataGridViewButtonColumn btnSilSutun;
         private DataGridViewButtonColumn btnGuncelleSutun;
+        private Label label1;
     }
 }
