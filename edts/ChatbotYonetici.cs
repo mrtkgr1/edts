@@ -55,7 +55,7 @@ namespace edts
 
 
 
-            string botAdi = "Fuzuli)";
+            string botAdi = "Fuzuli";
             _ = GosterHarfHarf($"{botAdi}: Merhaba! Bugün size nasıl yardımcı olabilirim?", false);
 
 
@@ -151,15 +151,29 @@ namespace edts
 
             if (kotuDurum.Any(s => temizSoru.Contains(s)))
                 return "Üzgünüm, umarım gününüz daha iyi olur. Nasıl yardımcı olayım?";
+            if (tesekkurler.Any(t => temizSoru.Contains(t)))
+            {
+                string[] cevaplar = {
+        "Rica ederim efendim, görevim!",
+        "Ne demek, her zaman yardımcı olmaya hazırım.",
+        "Lafı bile olmaz, başka bir isteğiniz var mı?",
+        "Benim için bir zevkti!"
+    };
+                Random rnd = new Random();
+                return cevaplar[rnd.Next(cevaplar.Length)];
+            }
 
-           
             int rolID = AktifKullanici.RolID;
 
             if (!RolYetkileri.ContainsKey(rolID))
                 return "Geçersiz rol. Lütfen tekrar giriş yapın.";
 
+            if (vedalar.Any(v => temizSoru.Contains(v)))
+            {
+                return "İyi günler dilerim! Depo verileri bana emanet, gözünüz arkada kalmasın.";
+            }
 
-           
+
             if (temizSoru == "evet" || temizSoru == "olur" || temizSoru == "isterim" || temizSoru == "getir")
             {
                 if (sonOneri == "fiyat_sor")
@@ -173,6 +187,18 @@ namespace edts
                     return UrunStokDurumu(sonArananUrun);
                 }
                 return "Neye evet dediğinizi tam anlayamadım, başka bir şey sormak ister misiniz?";
+            }
+            if (temizSoru == "hayır" || temizSoru == "istemem" || temizSoru == "kalsın" || temizSoru == "yeterli")
+            {
+                sonOneri = ""; 
+                sonArananUrun = "";
+
+                string[] redCevaplari = {
+        "Anlaşıldı. Başka bir konuda yardımcı olabilir miyim?",
+        "Peki efendim. Yeni bir sorgulama yapmak isterseniz buradayım.",
+        "Tamamdır. Başka bir işlem yapmamı ister misiniz?"
+    };
+                return redCevaplari[new Random().Next(redCevaplari.Length)];
             }
 
             if (temizSoru.Contains("neden fuzuli") || temizSoru.Contains("ismin neden fuzuli") || temizSoru.Contains("ismini nereden aldın"))
@@ -259,6 +285,7 @@ namespace edts
 
             if (soru.Contains("şaka yap") || soru.Contains("beni güldür"))
             {
+
                 string[] yoneticiSakalari = {
             "Yöneticim, size bir şaka yapacaktım ama performans primimi etkilemesinden korktum... Şaka şaka, bakıyorum hemen!\"Bir gün bir veritabanı hatası yöneticiye çıkmış. Yazılımcı 'Kod bozuk' demiş, sistemci 'Sunucu kapalı' demiş. Yönetici gelip 'Hallederiz' demiş ve hata korkudan düzelmiş. Sizin 'Hallederiz' demeniz bile bu sisteme güven veriyor efendim!\"",
             "Bir gün bir yönetici Fuzuli'ye sormuş: 'Benim neden hiç boş vaktim yok?' Fuzuli cevap vermiş: 'Çünkü her şeyi bana soruyorsunuz efendim!'",
@@ -270,7 +297,20 @@ namespace edts
                 return yoneticiSakalari[rnd.Next(yoneticiSakalari.Length)];
             }
 
+            if (temizSoru.Contains("havalı söz") || temizSoru.Contains("özlü söz"))
+            {
 
+                Random rnd = new Random();
+                List<string> sozler = new List<string>
+                {
+                    "Önündekini görmek için kendi gözlerin yeter, görünmeyeni görmek için başkalarının gözlerini kullanmalısın.",
+                    "Tanrıyı güldürmek istiyorsan ona planlarından bahset.",
+                    "Maalesef hayat her zaman arzularımızı ve beklentilerimizi karşılamıyor..."
+                };
+
+                int index = rnd.Next(sozler.Count);
+                return sozler[index];
+            }
 
             if (temizSoru.Contains("not al") || temizSoru.Contains("hatırlat"))
             {
@@ -925,34 +965,30 @@ namespace edts
 
 
 
-        int Mesafe(string a, string b)
+        private int Mesafe(string s, string t)
         {
-            int[,] dp = new int[a.Length + 1, b.Length + 1];
-
-            for (int i = 0; i <= a.Length; i++)
-                dp[i, 0] = i;
-
-            for (int j = 0; j <= b.Length; j++)
-                dp[0, j] = j;
-
-            for (int i = 1; i <= a.Length; i++)
-                for (int j = 1; j <= b.Length; j++)
+            int n = s.Length;
+            int m = t.Length;
+            int[,] d = new int[n + 1, m + 1];
+            if (n == 0) return m;
+            if (m == 0) return n;
+            for (int i = 0; i <= n; d[i, 0] = i++) ;
+            for (int j = 0; j <= m; d[0, j] = j++) ;
+            for (int i = 1; i <= n; i++)
+            {
+                for (int j = 1; j <= m; j++)
                 {
-                    int cost = (a[i - 1] == b[j - 1]) ? 0 : 1;
-
-                    dp[i, j] = Math.Min(Math.Min(
-                        dp[i - 1, j] + 1,
-                        dp[i, j - 1] + 1),
-                        dp[i - 1, j - 1] + cost);
+                    int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
+                    d[i, j] = Math.Min(Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1), d[i - 1, j - 1] + cost);
                 }
-
-            return dp[a.Length, b.Length];
+            }
+            return d[n, m];
         }
 
 
 
 
-       
+
         private void lblPlaceholder_Click(object sender, EventArgs e)
         {
             txtSoruuu.Focus();
@@ -1287,6 +1323,9 @@ namespace edts
         {
             await Task.Run(() => synthesizer.Speak(cevap));
         }
+
+
+       
 
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
