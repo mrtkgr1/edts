@@ -74,7 +74,7 @@ namespace edts {
             panelForm.Controls.Add(yeniForm);
             yeniForm.Show();
 
-            labelBaslik.Text = yeniForm.Name;
+            labelBaslik.Text = yeniForm.Text;
         }
 
         private void SolMenuButtonAyarla() {
