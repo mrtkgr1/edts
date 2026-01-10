@@ -34,8 +34,8 @@
             btnSilSutun = new DataGridViewButtonColumn();
             btnGuncelleSutun = new DataGridViewButtonColumn();
             panel1 = new Panel();
-            button1 = new Button();
             label1 = new Label();
+            button1 = new Button();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             panel1.SuspendLayout();
@@ -96,26 +96,26 @@
             panel1.Size = new Size(1192, 97);
             panel1.TabIndex = 4;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(49, 24);
+            label1.Name = "label1";
+            label1.Size = new Size(206, 28);
+            label1.TabIndex = 4;
+            label1.Text = "Tedarikçi Tanımlama";
+            // 
             // button1
             // 
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.Location = new Point(26, 55);
+            button1.Location = new Point(49, 55);
             button1.Name = "button1";
             button1.Size = new Size(206, 36);
             button1.TabIndex = 3;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(26, 24);
-            label1.Name = "label1";
-            label1.Size = new Size(206, 28);
-            label1.TabIndex = 4;
-            label1.Text = "Tedarikçi Tanımlama";
             // 
             // frmTedarikciYonetim
             // 

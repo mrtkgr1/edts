@@ -99,7 +99,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(28, 20);
+            label1.Location = new Point(50, 20);
             label1.Name = "label1";
             label1.Size = new Size(194, 28);
             label1.TabIndex = 4;
@@ -111,7 +111,7 @@
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = ImageLayout.Zoom;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button1.Location = new Point(28, 51);
+            button1.Location = new Point(50, 51);
             button1.Name = "button1";
             button1.Size = new Size(194, 35);
             button1.TabIndex = 3;

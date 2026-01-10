@@ -93,7 +93,7 @@
             groupBox8.ForeColor = SystemColors.ControlLightLight;
             groupBox8.Location = new Point(20, 52);
             groupBox8.Name = "groupBox8";
-            groupBox8.Size = new Size(429, 172);
+            groupBox8.Size = new Size(589, 172);
             groupBox8.TabIndex = 0;
             groupBox8.TabStop = false;
             groupBox8.Text = "Toplam Kar/Zarar";
@@ -111,7 +111,7 @@
             // 
             pbKarZarar.Location = new Point(20, 55);
             pbKarZarar.Name = "pbKarZarar";
-            pbKarZarar.Size = new Size(391, 63);
+            pbKarZarar.Size = new Size(546, 63);
             pbKarZarar.TabIndex = 0;
             // 
             // groupBox4
@@ -145,7 +145,7 @@
             kavisliButon9.FlatAppearance.BorderSize = 0;
             kavisliButon9.FlatStyle = FlatStyle.Flat;
             kavisliButon9.ForeColor = SystemColors.Control;
-            kavisliButon9.Location = new Point(0, 33);
+            kavisliButon9.Location = new Point(6, 35);
             kavisliButon9.Name = "kavisliButon9";
             kavisliButon9.Size = new Size(162, 116);
             kavisliButon9.TabIndex = 6;
@@ -182,7 +182,7 @@
             kavisliButon8.FlatAppearance.BorderSize = 0;
             kavisliButon8.FlatStyle = FlatStyle.Flat;
             kavisliButon8.ForeColor = SystemColors.Control;
-            kavisliButon8.Location = new Point(0, 33);
+            kavisliButon8.Location = new Point(6, 37);
             kavisliButon8.Name = "kavisliButon8";
             kavisliButon8.Size = new Size(162, 116);
             kavisliButon8.TabIndex = 6;
@@ -233,7 +233,7 @@
             kavisliButon7.FlatAppearance.BorderSize = 0;
             kavisliButon7.FlatStyle = FlatStyle.Flat;
             kavisliButon7.ForeColor = SystemColors.Control;
-            kavisliButon7.Location = new Point(0, 33);
+            kavisliButon7.Location = new Point(6, 35);
             kavisliButon7.Name = "kavisliButon7";
             kavisliButon7.Size = new Size(162, 116);
             kavisliButon7.TabIndex = 6;
@@ -270,7 +270,7 @@
             kavisliButon10.FlatAppearance.BorderSize = 0;
             kavisliButon10.FlatStyle = FlatStyle.Flat;
             kavisliButon10.ForeColor = SystemColors.Control;
-            kavisliButon10.Location = new Point(0, 33);
+            kavisliButon10.Location = new Point(6, 35);
             kavisliButon10.Name = "kavisliButon10";
             kavisliButon10.Size = new Size(162, 116);
             kavisliButon10.TabIndex = 6;
@@ -280,7 +280,7 @@
             // 
             lblEnCok.AutoSize = true;
             lblEnCok.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblEnCok.Location = new Point(168, 38);
+            lblEnCok.Location = new Point(195, 37);
             lblEnCok.Name = "lblEnCok";
             lblEnCok.Size = new Size(199, 28);
             lblEnCok.TabIndex = 6;
@@ -290,7 +290,7 @@
             // 
             lblYuksekKar.AutoSize = true;
             lblYuksekKar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblYuksekKar.Location = new Point(168, 47);
+            lblYuksekKar.Location = new Point(195, 35);
             lblYuksekKar.Name = "lblYuksekKar";
             lblYuksekKar.Size = new Size(191, 28);
             lblYuksekKar.TabIndex = 5;
@@ -319,7 +319,7 @@
             pnlHomeYonetici.Location = new Point(0, 0);
             pnlHomeYonetici.Margin = new Padding(3, 4, 3, 4);
             pnlHomeYonetici.Name = "pnlHomeYonetici";
-            pnlHomeYonetici.Size = new Size(1403, 871);
+            pnlHomeYonetici.Size = new Size(1620, 871);
             pnlHomeYonetici.TabIndex = 7;
             // 
             // groupBox9
@@ -328,7 +328,7 @@
             groupBox9.Controls.Add(groupBox11);
             groupBox9.Controls.Add(groupBox12);
             groupBox9.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            groupBox9.Location = new Point(965, 50);
+            groupBox9.Location = new Point(1128, 50);
             groupBox9.Name = "groupBox9";
             groupBox9.Size = new Size(470, 776);
             groupBox9.TabIndex = 3;
@@ -352,7 +352,7 @@
             // 
             lblToplamUser.AutoSize = true;
             lblToplamUser.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblToplamUser.Location = new Point(208, 86);
+            lblToplamUser.Location = new Point(208, 99);
             lblToplamUser.Name = "lblToplamUser";
             lblToplamUser.Size = new Size(221, 31);
             lblToplamUser.TabIndex = 1;
@@ -365,7 +365,7 @@
             kavisliButon1.BorderRadius = 30;
             kavisliButon1.FlatAppearance.BorderSize = 0;
             kavisliButon1.FlatStyle = FlatStyle.Flat;
-            kavisliButon1.Location = new Point(19, 47);
+            kavisliButon1.Location = new Point(19, 53);
             kavisliButon1.Name = "kavisliButon1";
             kavisliButon1.Size = new Size(183, 125);
             kavisliButon1.TabIndex = 0;
@@ -402,7 +402,7 @@
             kavisliButon2.BorderRadius = 30;
             kavisliButon2.FlatAppearance.BorderSize = 0;
             kavisliButon2.FlatStyle = FlatStyle.Flat;
-            kavisliButon2.Location = new Point(19, 33);
+            kavisliButon2.Location = new Point(19, 35);
             kavisliButon2.Name = "kavisliButon2";
             kavisliButon2.Size = new Size(183, 125);
             kavisliButon2.TabIndex = 1;
@@ -426,7 +426,7 @@
             lblAktifUser.AutoSize = true;
             lblAktifUser.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblAktifUser.ForeColor = Color.ForestGreen;
-            lblAktifUser.Location = new Point(208, 79);
+            lblAktifUser.Location = new Point(217, 95);
             lblAktifUser.Name = "lblAktifUser";
             lblAktifUser.Size = new Size(196, 31);
             lblAktifUser.TabIndex = 3;
@@ -440,7 +440,7 @@
             kavisliButon3.BorderRadius = 30;
             kavisliButon3.FlatAppearance.BorderSize = 0;
             kavisliButon3.FlatStyle = FlatStyle.Flat;
-            kavisliButon3.Location = new Point(19, 33);
+            kavisliButon3.Location = new Point(19, 50);
             kavisliButon3.Name = "kavisliButon3";
             kavisliButon3.Size = new Size(183, 125);
             kavisliButon3.TabIndex = 2;
@@ -455,7 +455,7 @@
             groupBox5.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox5.Location = new Point(489, 50);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(470, 776);
+            groupBox5.Size = new Size(633, 776);
             groupBox5.TabIndex = 2;
             groupBox5.TabStop = false;
             groupBox5.Text = "Kar/Zarar";
@@ -468,7 +468,7 @@
             groupBox14.ForeColor = SystemColors.ControlLightLight;
             groupBox14.Location = new Point(20, 586);
             groupBox14.Name = "groupBox14";
-            groupBox14.Size = new Size(429, 172);
+            groupBox14.Size = new Size(589, 172);
             groupBox14.TabIndex = 6;
             groupBox14.TabStop = false;
             groupBox14.Text = "En Az Satılan Ürün";
@@ -477,8 +477,8 @@
             // 
             lblEnAz.AutoSize = true;
             lblEnAz.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblEnAz.ForeColor = Color.OrangeRed;
-            lblEnAz.Location = new Point(179, 45);
+            lblEnAz.ForeColor = Color.Crimson;
+            lblEnAz.Location = new Point(195, 35);
             lblEnAz.Name = "lblEnAz";
             lblEnAz.Size = new Size(188, 28);
             lblEnAz.TabIndex = 6;
@@ -505,7 +505,7 @@
             groupBox6.ForeColor = SystemColors.ControlLightLight;
             groupBox6.Location = new Point(20, 408);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(429, 172);
+            groupBox6.Size = new Size(589, 172);
             groupBox6.TabIndex = 1;
             groupBox6.TabStop = false;
             groupBox6.Text = "En Çok Satılan Ürün";
@@ -531,7 +531,7 @@
             groupBox7.ForeColor = SystemColors.ControlLightLight;
             groupBox7.Location = new Point(20, 230);
             groupBox7.Name = "groupBox7";
-            groupBox7.Size = new Size(429, 172);
+            groupBox7.Size = new Size(589, 172);
             groupBox7.TabIndex = 1;
             groupBox7.TabStop = false;
             groupBox7.Text = "Yüksek Kar Getiren Ürünler";
@@ -546,7 +546,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1403, 871);
+            ClientSize = new Size(1620, 871);
             Controls.Add(pnlHomeYonetici);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmYoneticiHomeIcerik";
