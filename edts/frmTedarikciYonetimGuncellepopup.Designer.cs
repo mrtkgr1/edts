@@ -174,7 +174,6 @@
             ClientSize = new Size(565, 619);
             Controls.Add(tabControl1);
             Name = "frmTedarikciYonetimGuncellepopup";
-            Text = "frmTedarikciYonetimGuncellepopup";
             Load += frmTedarikciYonetimGuncellepopup_Load;
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
