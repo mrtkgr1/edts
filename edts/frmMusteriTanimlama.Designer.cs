@@ -47,19 +47,20 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 89);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1227, 534);
+            panel2.Size = new Size(1227, 691);
             panel2.TabIndex = 5;
             // 
             // dataGridView2
             // 
             dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.BackgroundColor = Color.WhiteSmoke;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun, btnGuncelleSutun });
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(1227, 534);
+            dataGridView2.Size = new Size(1227, 691);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             dataGridView2.CellPainting += dataGridView2_CellPainting;
@@ -122,7 +123,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1227, 623);
+            ClientSize = new Size(1227, 780);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmMusteriTanimlama";
