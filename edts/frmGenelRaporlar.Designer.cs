@@ -286,7 +286,6 @@
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmGenelRaporlar";
-            Text = "frmGenelRaporlar";
             Load += frmGenelRaporlar_Load;
             panel1.ResumeLayout(false);
             panel7.ResumeLayout(false);

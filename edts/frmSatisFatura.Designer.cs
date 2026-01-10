@@ -235,7 +235,6 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmSatisFatura";
-            Text = "frmSatisFatura";
             Load += frmSatisFatura_Load;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSatislar).EndInit();

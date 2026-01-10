@@ -126,7 +126,6 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmTedarikciYonetim";
-            Text = "frmTedarikciYonetim";
             Load += frmTedarikciYonetim_Load;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();

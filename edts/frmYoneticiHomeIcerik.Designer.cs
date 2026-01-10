@@ -458,7 +458,7 @@
             groupBox5.Size = new Size(633, 776);
             groupBox5.TabIndex = 2;
             groupBox5.TabStop = false;
-            groupBox5.Text = "Kar/Zarar";
+            groupBox5.Text = "Kâr/Zarar";
             // 
             // groupBox14
             // 
@@ -550,7 +550,6 @@
             Controls.Add(pnlHomeYonetici);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmYoneticiHomeIcerik";
-            Text = "frmYoneticiHomeIcerik";
             FormClosing += frmYoneticiHomeIcerik_FormClosing;
             Load += frmYoneticiHomeIcerik_Load;
             groupBox8.ResumeLayout(false);
