@@ -60,13 +60,14 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.LightSlateGray;
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel3);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1182, 196);
+            panel1.Size = new Size(1228, 196);
             panel1.TabIndex = 2;
             // 
             // panel7
@@ -260,7 +261,7 @@
             panel2.Location = new Point(0, 196);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1182, 397);
+            panel2.Size = new Size(1228, 397);
             panel2.TabIndex = 3;
             // 
             // dataGridView1
@@ -274,14 +275,14 @@
             dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1182, 397);
+            dataGridView1.Size = new Size(1228, 397);
             dataGridView1.TabIndex = 0;
             // 
             // frmGenelRaporlar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1182, 593);
+            ClientSize = new Size(1228, 593);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
