@@ -64,11 +64,14 @@
             // 
             dgvKullaniciListesi.AllowUserToAddRows = false;
             dgvKullaniciListesi.AllowUserToDeleteRows = false;
+            dgvKullaniciListesi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvKullaniciListesi.BackgroundColor = Color.WhiteSmoke;
             dgvKullaniciListesi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvKullaniciListesi.Dock = DockStyle.Fill;
             dgvKullaniciListesi.Location = new Point(0, 46);
             dgvKullaniciListesi.Name = "dgvKullaniciListesi";
             dgvKullaniciListesi.ReadOnly = true;
+            dgvKullaniciListesi.RowHeadersVisible = false;
             dgvKullaniciListesi.RowHeadersWidth = 51;
             dgvKullaniciListesi.Size = new Size(858, 511);
             dgvKullaniciListesi.TabIndex = 0;
@@ -250,7 +253,7 @@
             ClientSize = new Size(858, 557);
             Controls.Add(panel2);
             Name = "frmKullaniciYonetimi";
-            Text = "frmKullaniciYonetimi";
+            Text = "Kullanıcı Yönetimi";
             Load += frmKullaniciYonetimi_Load;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvKullaniciListesi).EndInit();

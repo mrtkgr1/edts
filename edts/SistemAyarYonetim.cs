@@ -13,7 +13,14 @@ namespace edts {
         static private readonly string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
         public static List<SistemAyar> Ayarlar = new List<SistemAyar>() {
-            //new("sifre_yenile_zorunlu", "Şifre yenilemeyi zorunlu kıl","false",AyarTuru.Mantik, ""),
+            new("hesap_ayark_kad", "Kullanıcılar Kullanıcı Adlarını Değiştirebilir","false",AyarTuru.Mantik, "Hesap Ayarları Kısıtlaması"),
+            new("hesap_ayark_tad", "Kullanıcılar Adlarını Değiştirebilir","false",AyarTuru.Mantik, "Hesap Ayarları Kısıtlaması"),
+            new("hesap_ayark_sfr", "Kullanıcılar Şifrelerini Değiştirebilir","true",AyarTuru.Mantik, "Hesap Ayarları Kısıtlaması"),
+            new("hesap_ayark_pp", "Kullanıcılar Profil Resimlerini Değiştirebilir","true",AyarTuru.Mantik, "Hesap Ayarları Kısıtlaması"),
+
+            new("sifre_yenile_zorunlu", "Şifre Yenilemeyi Zorunlu Kıl","false",AyarTuru.Mantik, "Hesap Güvenliği"),
+            new("sifre_yenile_gun", "Şifre yenileme süresi (gün)","90",AyarTuru.Sayi, "Hesap Güvenliği"),
+
             new("giri_sure_engel", "Hatalı Girişlerde Geçici Süreli Engel", "true", AyarTuru.Mantik, "Giriş Güvenliği ve Kısıtlamalar"),
             new("giris_sure_denemesi", "Geçici Engel İçin Hata Sınırı", "3", AyarTuru.Sayi, "Giriş Güvenliği ve Kısıtlamalar"),
             new("girs_sure_zaman", "Geçici Engelleme Süresi (Dakika)", "3", AyarTuru.Sayi, "Giriş Güvenliği ve Kısıtlamalar"),
@@ -67,7 +74,8 @@ namespace edts {
             }
         }
 
-        public static void AyarlariKaydet(int userId) {
+        //kayııt
+        public static void AyarlariKaydet() {
             using (SqlConnection connection = new SqlConnection(baglantiDizesi)) {
                 connection.Open();
                 foreach (var ayar in Ayarlar) {
