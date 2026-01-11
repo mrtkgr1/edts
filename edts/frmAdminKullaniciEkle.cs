@@ -22,7 +22,7 @@ namespace edts {
             RolleriDoldur();
         }
 
-        //işlev
+       
         private Boolean KullaniciEkle() {
             if (string.IsNullOrEmpty(textBoxKullaniciAd.Text) ||
             string.IsNullOrEmpty(textBoxTamAd.Text) ||
@@ -126,13 +126,13 @@ namespace edts {
             textBoxKullaniciAd.Clear();
             textBoxTamAd.Clear();
             textBoxsifre.Clear();
-            comboBoxRol.SelectedIndex = -1; // Seçimi sıfırla
-            // CheckBox'ı sıfırla (veya true yapabilirsiniz)
+            comboBoxRol.SelectedIndex = -1; 
+            
             textBoxKullaniciAd.Focus();
         }
 
 
-        //event
+       
         private void RolleriDoldur() {
             var rolListesi = Enum.GetValues(typeof(Rol))
             .Cast<Rol>()
@@ -156,7 +156,7 @@ namespace edts {
 
         }
 
-    //EKLE
+   
         private void button1_Click(object sender, EventArgs e) {
             bool ekleBasarili = KullaniciEkle();
             if (!checkBox1.Checked) {

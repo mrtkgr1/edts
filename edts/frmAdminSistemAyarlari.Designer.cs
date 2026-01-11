@@ -309,7 +309,6 @@ namespace edts
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmAdminSistemAyarlari";
-            Text = "frmAdminSistemAyarlari";
             Load += frmAdminSistemAyarlari_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
