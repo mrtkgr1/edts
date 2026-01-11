@@ -60,14 +60,14 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1051, 92);
+            panel1.Size = new Size(1051, 71);
             panel1.TabIndex = 0;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label4.Location = new Point(596, 17);
+            label4.Location = new Point(435, 9);
             label4.Name = "label4";
             label4.Size = new Size(127, 21);
             label4.TabIndex = 15;
@@ -77,7 +77,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label3.Location = new Point(458, 17);
+            label3.Location = new Point(296, 9);
             label3.Name = "label3";
             label3.Size = new Size(103, 21);
             label3.TabIndex = 14;
@@ -87,7 +87,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label2.Location = new Point(254, 17);
+            label2.Location = new Point(148, 9);
             label2.Name = "label2";
             label2.Size = new Size(90, 21);
             label2.TabIndex = 13;
@@ -97,7 +97,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            label1.Location = new Point(49, 16);
+            label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(130, 21);
             label1.TabIndex = 12;
@@ -110,9 +110,9 @@
             btnExcelAktar.FlatStyle = FlatStyle.Flat;
             btnExcelAktar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnExcelAktar.ForeColor = SystemColors.ControlLightLight;
-            btnExcelAktar.Location = new Point(739, 37);
+            btnExcelAktar.Location = new Point(716, 32);
             btnExcelAktar.Name = "btnExcelAktar";
-            btnExcelAktar.Size = new Size(117, 25);
+            btnExcelAktar.Size = new Size(130, 25);
             btnExcelAktar.TabIndex = 11;
             btnExcelAktar.Text = "Excel'e Aktar";
             btnExcelAktar.UseVisualStyleBackColor = false;
@@ -125,9 +125,9 @@
             btnKayitlariGetir.FlatStyle = FlatStyle.Flat;
             btnKayitlariGetir.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnKayitlariGetir.ForeColor = SystemColors.ControlLightLight;
-            btnKayitlariGetir.Location = new Point(862, 37);
+            btnKayitlariGetir.Location = new Point(580, 32);
             btnKayitlariGetir.Name = "btnKayitlariGetir";
-            btnKayitlariGetir.Size = new Size(115, 25);
+            btnKayitlariGetir.Size = new Size(130, 25);
             btnKayitlariGetir.TabIndex = 10;
             btnKayitlariGetir.Text = "Kayıtları Getir";
             btnKayitlariGetir.UseVisualStyleBackColor = false;
@@ -136,50 +136,58 @@
             // cmbHareketTipi
             // 
             cmbHareketTipi.FormattingEnabled = true;
-            cmbHareketTipi.Location = new Point(458, 38);
+            cmbHareketTipi.Location = new Point(296, 33);
             cmbHareketTipi.Name = "cmbHareketTipi";
             cmbHareketTipi.Size = new Size(133, 25);
             cmbHareketTipi.TabIndex = 9;
+            cmbHareketTipi.SelectedIndexChanged += cmbHareketTipi_SelectedIndexChanged;
             // 
             // cmbKullaniciSecim
             // 
             cmbKullaniciSecim.FormattingEnabled = true;
-            cmbKullaniciSecim.Location = new Point(596, 37);
+            cmbKullaniciSecim.Location = new Point(435, 33);
             cmbKullaniciSecim.Name = "cmbKullaniciSecim";
             cmbKullaniciSecim.Size = new Size(139, 25);
             cmbKullaniciSecim.TabIndex = 8;
+            cmbKullaniciSecim.SelectedIndexChanged += cmbKullaniciSecim_SelectedIndexChanged;
             // 
             // dtpBitis
             // 
-            dtpBitis.Location = new Point(254, 37);
+            dtpBitis.CustomFormat = "dd MMM yy";
+            dtpBitis.Format = DateTimePickerFormat.Custom;
+            dtpBitis.Location = new Point(148, 33);
             dtpBitis.Name = "dtpBitis";
-            dtpBitis.Size = new Size(200, 25);
+            dtpBitis.Size = new Size(130, 25);
             dtpBitis.TabIndex = 7;
+            dtpBitis.ValueChanged += dtpBitis_ValueChanged;
             // 
             // dtpBaslangic
             // 
-            dtpBaslangic.Location = new Point(49, 37);
+            dtpBaslangic.CustomFormat = "dd MMM yy";
+            dtpBaslangic.Format = DateTimePickerFormat.Custom;
+            dtpBaslangic.Location = new Point(12, 33);
             dtpBaslangic.Name = "dtpBaslangic";
-            dtpBaslangic.Size = new Size(200, 25);
+            dtpBaslangic.Size = new Size(130, 25);
             dtpBaslangic.TabIndex = 6;
+            dtpBaslangic.ValueChanged += dtpBaslangic_ValueChanged;
             // 
             // panel2
             // 
             panel2.Controls.Add(dgvDenetimKayitlari);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 92);
+            panel2.Location = new Point(0, 71);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1051, 353);
+            panel2.Size = new Size(1051, 374);
             panel2.TabIndex = 1;
             // 
             // dgvDenetimKayitlari
             // 
             dgvDenetimKayitlari.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDenetimKayitlari.Dock = DockStyle.Fill;
             dgvDenetimKayitlari.Location = new Point(0, 0);
             dgvDenetimKayitlari.Name = "dgvDenetimKayitlari";
+            dgvDenetimKayitlari.RowHeadersVisible = false;
             dgvDenetimKayitlari.RowHeadersWidth = 51;
-            dgvDenetimKayitlari.Size = new Size(1051, 353);
+            dgvDenetimKayitlari.Size = new Size(1051, 374);
             dgvDenetimKayitlari.TabIndex = 0;
             // 
             // frmAdminDenetimKayitlari

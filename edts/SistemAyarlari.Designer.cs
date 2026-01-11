@@ -38,7 +38,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 400);
+            panel1.Size = new Size(800, 406);
             panel1.TabIndex = 1;
             // 
             // pnlSettings
@@ -46,29 +46,30 @@
             pnlSettings.Dock = DockStyle.Fill;
             pnlSettings.Location = new Point(0, 0);
             pnlSettings.Name = "pnlSettings";
-            pnlSettings.Size = new Size(800, 400);
+            pnlSettings.Size = new Size(800, 406);
             pnlSettings.TabIndex = 0;
             // 
             // panel2
             // 
             panel2.Controls.Add(resizableButton1);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 400);
+            panel2.Location = new Point(0, 406);
             panel2.Name = "panel2";
-            panel2.Size = new Size(800, 50);
+            panel2.Size = new Size(800, 44);
             panel2.TabIndex = 0;
             // 
             // resizableButton1
             // 
             resizableButton1.Image = null;
             resizableButton1.KaynakResim = null;
-            resizableButton1.Location = new Point(348, 6);
+            resizableButton1.Location = new Point(344, 0);
             resizableButton1.Name = "resizableButton1";
             resizableButton1.ResimBoyutu = 24;
             resizableButton1.Size = new Size(101, 41);
             resizableButton1.TabIndex = 0;
-            resizableButton1.Text = "resizableButton1";
+            resizableButton1.Text = "Kaydet";
             resizableButton1.UseVisualStyleBackColor = true;
+            resizableButton1.Click += resizableButton1_Click;
             // 
             // SistemAyarlari
             // 

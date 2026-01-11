@@ -41,6 +41,35 @@ namespace edts {
                 }
                 baglanti.Close();
             }
+
+
+            TimeSpan? kalanZaman = null;
+            DateTime? unlockDate = null;
+
+            using (var connection = new SqlConnection(baglantiDizesi)) {
+                string query = "SELECT kilit_acilma_tarih FROM tblKullaniciGuvenlik WHERE userId = @UserId";
+                using (var command = new SqlCommand(query, connection)) {
+                    command.Parameters.Add("@UserId", SqlDbType.Int).Value = id;
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value) {
+                        unlockDate = Convert.ToDateTime(result);
+                        if (unlockDate > DateTime.Now) {
+                            kalanZaman = unlockDate - DateTime.Now;
+                        }
+                    }
+                }
+            }
+
+            if (kalanZaman != null) {
+                buttonKilit.Enabled = true;
+                labelKilit.Text = unlockDate.Value.ToString("dd.MM.yyyy HH:mm:ss") + " tarihine kadar kilitli.";
+            }
+
+            DateTime? hataliGiris = GuvenlikKullanici.GetDate(id, "son_basarisiz_giris");
+
+            labelHataliGiris.Text = "Son hatalı giriş: "+(hataliGiris != null ? hataliGiris.ToString() : "yok.");
         }
 
         private void btnHesapGuncelle_Click(int dID) {
@@ -63,11 +92,11 @@ namespace edts {
                  RolID = @pRolID, AktifMi = @pAktifMi 
                  WHERE KullaniciID = @pID";
                 } else {
-
                     sorgu = @"UPDATE tblKullanicilar SET 
                  AdSoyad = @pAdSoyad, KullaniciAdi = @pKullaniciAdi, 
                  RolID = @pRolID, AktifMi = @pAktifMi 
                  WHERE KullaniciID = @pID";
+
                 }
 
                 bool aktifMi = checkBoxAktiflik.Checked;
@@ -89,6 +118,12 @@ namespace edts {
                         komut.ExecuteNonQuery();
                     }
                 }
+                if(!string.IsNullOrEmpty(textBoxsifre.Text))
+                VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, IslemTuru.Kullanici_Sifre_Degisiklik, "tblKullanicilar",
+                 "\"" + textBoxKullaniciAd.Text + "(" + userId + ")\" adlı kullanıcının şifresi güncellendi.");
+
+                VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, IslemTuru.Kullanini_Degisiklik, "tblKullanicilar", 
+                    "\"" + textBoxKullaniciAd.Text + "("+ userId +")\" adlı kullanıcı bilgileri değiştiirldi.");
 
                 MessageBox.Show("Kullanıcı bilgileri başarıyla güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -118,6 +153,12 @@ namespace edts {
         }
         private void button2_Click(object sender, EventArgs e) {
             btnHesapGuncelle_Click(userId);
+        }
+
+        private void buttonKilit_Click(object sender, EventArgs e) {
+            buttonKilit.Enabled = false;
+            labelKilit.Text = "Kilit kaldırıldı.";
+            GuvenlikKullanici.SetDate(userId, "kilit_acilma_tarih", null);
         }
     }
 }
