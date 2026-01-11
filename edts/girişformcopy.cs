@@ -20,6 +20,15 @@ namespace edts
         private void girişformcopy_Load(object sender, EventArgs e)
         {
             loginForm.BackColor = Color.FromArgb(100, 255, 255, 255);
+            if (string.IsNullOrWhiteSpace(txtKullanici.Text)) {
+                txtKullanici.Text = "Kullanıcı Adı";
+                txtKullanici.ForeColor = Color.Gray;
+            }
+            if (string.IsNullOrWhiteSpace(txtSifre.Text)) {
+                txtSifre.Text = "Şifre";
+                txtSifre.ForeColor = Color.Gray;
+                txtSifre.PasswordChar = '\0';
+            }
         }
 
         private void txtKullanici_Enter(object sender, EventArgs e)
