@@ -22,6 +22,7 @@ namespace edts
 
         private string sonArananUrun = "";
         private string sonKategori = "";
+        private string beklenenIslem = "";
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
@@ -155,7 +156,30 @@ namespace edts
 
 
 
+            if (beklenenIslem == "rapor_secimi")
+            {
+                beklenenIslem = ""; // Durumu hemen sıfırla ki her kelimeyi rapor seçimi sanmasın
 
+                if (temizSoru.Contains("excel") || temizSoru.Contains("eksell"))
+                {
+                    return DepoRaporuExcelKaydet(); // Daha önce yazdığımız Excel hazırlama metodu
+                }
+                else if (temizSoru.Contains("not") || temizSoru.Contains("defter") || temizSoru.Contains("metin"))
+                {
+                    return DepoRaporuMetinKaydet(); // Daha önce yazdığımız Not Defteri hazırlama metodu
+                }
+                else
+                {
+                    return "Anlayamadım, rapor işlemini iptal ettim. Tekrar 'rapor oluştur' diyerek baştan başlayabilirsiniz.";
+                }
+            }
+
+            // 2. Kullanıcı ilk kez "rapor oluştur" dediğinde tetiklenen kısım
+            if (temizSoru.Contains("rapor oluştur") || temizSoru.Contains("rapor hazırla"))
+            {
+                beklenenIslem = "rapor_secimi"; // Chatbot'u "cevap bekleme" moduna sokar
+                return "Tabii ki, depo raporunu hazırlıyorum. Hangi formatta kaydetmemi istersiniz? \n\n • **Excel** \n • **Not Defteri**";
+            }
 
 
 
@@ -755,7 +779,7 @@ namespace edts
             conn.Open();
 
             using SqlCommand cmd = new SqlCommand(
-                "SELECT UrunAd FROM tblUrunler WHERE MevcutStok <= KritikStokSeviyesi", conn);
+                "SELECT UrunAd FROM tblUrunler WHERE MevcutStok <= KritikStok", conn);
 
             using SqlDataReader reader = cmd.ExecuteReader();
 
@@ -1126,7 +1150,7 @@ namespace edts
         private async Task MatrixEfektiYap()
         {
             Random rnd = new Random();
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 1; i++)
             {
                 string secilen = matrixMesajlari[rnd.Next(matrixMesajlari.Length)];
                 await GosterHarfHarf(secilen, false);
@@ -1180,6 +1204,71 @@ namespace edts
         }
 
 
+
+        private string DepoRaporuExcelKaydet()
+        {
+            try
+            {
+                string yol = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Tum_Depo_Raporu.csv");
+                StringBuilder csv = new StringBuilder();
+
+                csv.AppendLine("Ürün Kodu;Ürün Adı;Mevcut Stok;Kritik Seviye;Raf No");
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT UrunID, UrunAd, MevcutStok, KritikStok, RafNo FROM tblUrunler";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                csv.AppendLine($"{rdr["UrunID"]};{rdr["UrunAd"]};{rdr["MevcutStok"]};{rdr["KritikStokş"]};{rdr["RafNo"]}");
+                            }
+                        }
+                    }
+                }
+
+                File.WriteAllText(yol, csv.ToString(), Encoding.UTF8);
+                return "Tüm depo raporu (Excel formatında) masaüstüne kaydedildi.";
+            }
+            catch (Exception ex)
+            {
+                return "Hata: Veritabanı sütun isimlerini kontrol edin! Detay: " + ex.Message;
+            }
+        }
+
+        private string DepoRaporuMetinKaydet()
+        {
+            try
+            {
+                string yol = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Depo_Stok_Listesi.txt");
+                StringBuilder txt = new StringBuilder();
+                txt.AppendLine($"DEPO STOK RAPORU - Tarih: {DateTime.Now}\n");
+                txt.AppendLine("--------------------------------------------------");
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT UrunAd, MevcutStok, RafNo FROM tblUrunler";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        txt.AppendLine($"Ürün: {rdr["UrunAd"]} | Stok: {rdr["MevcutStok"]} | Raf: {rdr["RafNo"]}");
+                    }
+                }
+
+                File.WriteAllText(yol, txt.ToString(), Encoding.UTF8);
+                return "Stok listesi Not Defteri olarak masaüstüne kaydedildi.";
+            }
+            catch (Exception ex) { return "Hata: " + ex.Message; }
+        }
+
+
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
@@ -1193,6 +1282,9 @@ namespace edts
                 txtSoruu.ForeColor = Color.Black; 
             }
         }
+
+
+
 
         private void txtSoruu_Leave(object sender, EventArgs e)
         {
