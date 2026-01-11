@@ -22,7 +22,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             panel1 = new Panel();
             pnlSettings = new FlowLayoutPanel();
             panel2 = new Panel();
@@ -37,35 +38,39 @@
             panel1.Controls.Add(pnlSettings);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 406);
+            panel1.Size = new Size(914, 477);
             panel1.TabIndex = 1;
             // 
             // pnlSettings
             // 
             pnlSettings.Dock = DockStyle.Fill;
             pnlSettings.Location = new Point(0, 0);
+            pnlSettings.Margin = new Padding(3, 4, 3, 4);
             pnlSettings.Name = "pnlSettings";
-            pnlSettings.Size = new Size(800, 406);
+            pnlSettings.Size = new Size(914, 477);
             pnlSettings.TabIndex = 0;
             // 
             // panel2
             // 
             panel2.Controls.Add(resizableButton1);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 406);
+            panel2.Location = new Point(0, 477);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(800, 44);
+            panel2.Size = new Size(914, 52);
             panel2.TabIndex = 0;
             // 
             // resizableButton1
             // 
             resizableButton1.Image = null;
             resizableButton1.KaynakResim = null;
-            resizableButton1.Location = new Point(344, 0);
+            resizableButton1.Location = new Point(393, 0);
+            resizableButton1.Margin = new Padding(3, 4, 3, 4);
             resizableButton1.Name = "resizableButton1";
             resizableButton1.ResimBoyutu = 24;
-            resizableButton1.Size = new Size(101, 41);
+            resizableButton1.Size = new Size(115, 48);
             resizableButton1.TabIndex = 0;
             resizableButton1.Text = "Kaydet";
             resizableButton1.UseVisualStyleBackColor = true;
@@ -73,13 +78,13 @@
             // 
             // SistemAyarlari
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 529);
             Controls.Add(panel1);
             Controls.Add(panel2);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "SistemAyarlari";
-            Text = "Sistem Ayarları";
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ResumeLayout(false);
