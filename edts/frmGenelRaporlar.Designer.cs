@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             panel1 = new Panel();
             panel7 = new Panel();
             btnExcelAktar = new KavisliButon();
@@ -65,9 +64,8 @@
             panel1.Controls.Add(panel3);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1228, 196);
+            panel1.Size = new Size(1074, 167);
             panel1.TabIndex = 2;
             // 
             // panel7
@@ -80,10 +78,9 @@
             panel7.Controls.Add(label1);
             panel7.Controls.Add(dtpBaslangic);
             panel7.Controls.Add(dtpBitis);
-            panel7.Location = new Point(3, 9);
-            panel7.Margin = new Padding(3, 4, 3, 4);
+            panel7.Location = new Point(3, 8);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1177, 74);
+            panel7.Size = new Size(1030, 63);
             panel7.TabIndex = 8;
             // 
             // btnExcelAktar
@@ -94,9 +91,9 @@
             btnExcelAktar.FlatStyle = FlatStyle.Flat;
             btnExcelAktar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnExcelAktar.ForeColor = SystemColors.ControlLightLight;
-            btnExcelAktar.Location = new Point(593, 38);
+            btnExcelAktar.Location = new Point(519, 32);
             btnExcelAktar.Name = "btnExcelAktar";
-            btnExcelAktar.Size = new Size(140, 29);
+            btnExcelAktar.Size = new Size(122, 25);
             btnExcelAktar.TabIndex = 15;
             btnExcelAktar.Text = "Excel'e Aktar";
             btnExcelAktar.UseVisualStyleBackColor = false;
@@ -110,9 +107,9 @@
             btnRaporGetir.FlatStyle = FlatStyle.Flat;
             btnRaporGetir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnRaporGetir.ForeColor = SystemColors.ControlLightLight;
-            btnRaporGetir.Location = new Point(593, 3);
+            btnRaporGetir.Location = new Point(519, 3);
             btnRaporGetir.Name = "btnRaporGetir";
-            btnRaporGetir.Size = new Size(140, 29);
+            btnRaporGetir.Size = new Size(122, 25);
             btnRaporGetir.TabIndex = 14;
             btnRaporGetir.Text = "Raporu Getir";
             btnRaporGetir.UseVisualStyleBackColor = false;
@@ -122,9 +119,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label2.Location = new Point(181, 44);
+            label2.Location = new Point(158, 37);
             label2.Name = "label2";
-            label2.Size = new Size(95, 23);
+            label2.Size = new Size(91, 21);
             label2.TabIndex = 10;
             label2.Text = "Bitiş Tarihi :";
             // 
@@ -132,26 +129,24 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label1.Location = new Point(181, 6);
+            label1.Location = new Point(158, 5);
             label1.Name = "label1";
-            label1.Size = new Size(135, 23);
+            label1.Size = new Size(128, 21);
             label1.TabIndex = 9;
             label1.Text = "Başlangıç Tarihi :";
             // 
             // dtpBaslangic
             // 
-            dtpBaslangic.Location = new Point(321, 6);
-            dtpBaslangic.Margin = new Padding(3, 4, 3, 4);
+            dtpBaslangic.Location = new Point(281, 5);
             dtpBaslangic.Name = "dtpBaslangic";
-            dtpBaslangic.Size = new Size(250, 27);
+            dtpBaslangic.Size = new Size(219, 25);
             dtpBaslangic.TabIndex = 7;
             // 
             // dtpBitis
             // 
-            dtpBitis.Location = new Point(321, 39);
-            dtpBitis.Margin = new Padding(3, 4, 3, 4);
+            dtpBitis.Location = new Point(281, 33);
             dtpBitis.Name = "dtpBitis";
-            dtpBitis.Size = new Size(250, 27);
+            dtpBitis.Size = new Size(219, 25);
             dtpBitis.TabIndex = 8;
             // 
             // panel3
@@ -161,10 +156,9 @@
             panel3.Controls.Add(panel5);
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(pnlOzetGiris);
-            panel3.Location = new Point(3, 89);
-            panel3.Margin = new Padding(3, 4, 3, 4);
+            panel3.Location = new Point(3, 76);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1175, 98);
+            panel3.Size = new Size(1028, 83);
             panel3.TabIndex = 7;
             // 
             // panel6
@@ -172,10 +166,9 @@
             panel6.BackColor = Color.LightSlateGray;
             panel6.Controls.Add(label6);
             panel6.ForeColor = SystemColors.ControlLightLight;
-            panel6.Location = new Point(883, 15);
-            panel6.Margin = new Padding(3, 4, 3, 4);
+            panel6.Location = new Point(773, 13);
             panel6.Name = "panel6";
-            panel6.Size = new Size(283, 66);
+            panel6.Size = new Size(248, 56);
             panel6.TabIndex = 3;
             // 
             // label6
@@ -183,9 +176,9 @@
             label6.AutoSize = true;
             label6.BackColor = Color.LightSlateGray;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label6.Location = new Point(3, 21);
+            label6.Location = new Point(3, 18);
             label6.Name = "label6";
-            label6.Size = new Size(138, 23);
+            label6.Size = new Size(130, 21);
             label6.TabIndex = 0;
             label6.Text = "Toplam Değeri :";
             // 
@@ -193,10 +186,9 @@
             // 
             panel5.BackColor = Color.LightSlateGray;
             panel5.Controls.Add(label4);
-            panel5.Location = new Point(299, 15);
-            panel5.Margin = new Padding(3, 4, 3, 4);
+            panel5.Location = new Point(262, 13);
             panel5.Name = "panel5";
-            panel5.Size = new Size(287, 66);
+            panel5.Size = new Size(251, 56);
             panel5.TabIndex = 2;
             // 
             // label4
@@ -205,9 +197,9 @@
             label4.BackColor = Color.LightSlateGray;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label4.ForeColor = SystemColors.ControlLightLight;
-            label4.Location = new Point(11, 21);
+            label4.Location = new Point(10, 18);
             label4.Name = "label4";
-            label4.Size = new Size(186, 23);
+            label4.Size = new Size(174, 21);
             label4.TabIndex = 0;
             label4.Text = "Toplam Çıkış Miktarı :";
             // 
@@ -215,10 +207,9 @@
             // 
             panel4.BackColor = Color.LightSlateGray;
             panel4.Controls.Add(label5);
-            panel4.Location = new Point(593, 15);
-            panel4.Margin = new Padding(3, 4, 3, 4);
+            panel4.Location = new Point(519, 13);
             panel4.Name = "panel4";
-            panel4.Size = new Size(283, 66);
+            panel4.Size = new Size(248, 56);
             panel4.TabIndex = 1;
             // 
             // label5
@@ -226,9 +217,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label5.ForeColor = SystemColors.ControlLightLight;
-            label5.Location = new Point(21, 21);
+            label5.Location = new Point(18, 18);
             label5.Name = "label5";
-            label5.Size = new Size(135, 23);
+            label5.Size = new Size(125, 21);
             label5.TabIndex = 0;
             label5.Text = "Net Stok Farkı :";
             // 
@@ -238,19 +229,18 @@
             pnlOzetGiris.Controls.Add(label3);
             pnlOzetGiris.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
             pnlOzetGiris.ForeColor = SystemColors.ControlLightLight;
-            pnlOzetGiris.Location = new Point(13, 15);
-            pnlOzetGiris.Margin = new Padding(3, 4, 3, 4);
+            pnlOzetGiris.Location = new Point(11, 13);
             pnlOzetGiris.Name = "pnlOzetGiris";
-            pnlOzetGiris.Size = new Size(281, 66);
+            pnlOzetGiris.Size = new Size(246, 56);
             pnlOzetGiris.TabIndex = 0;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label3.Location = new Point(3, 21);
+            label3.Location = new Point(3, 18);
             label3.Name = "label3";
-            label3.Size = new Size(184, 23);
+            label3.Size = new Size(172, 21);
             label3.TabIndex = 0;
             label3.Text = "Toplam Giriş Miktarı :";
             // 
@@ -258,10 +248,9 @@
             // 
             panel2.Controls.Add(dataGridView1);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 196);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(0, 167);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1228, 397);
+            panel2.Size = new Size(1074, 337);
             panel2.TabIndex = 3;
             // 
             // dataGridView1
@@ -272,21 +261,20 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1228, 397);
+            dataGridView1.Size = new Size(1074, 337);
             dataGridView1.TabIndex = 0;
             // 
             // frmGenelRaporlar
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1228, 593);
+            ClientSize = new Size(1074, 504);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmGenelRaporlar";
+            Text = "Genel Rapor";
             Load += frmGenelRaporlar_Load;
             panel1.ResumeLayout(false);
             panel7.ResumeLayout(false);

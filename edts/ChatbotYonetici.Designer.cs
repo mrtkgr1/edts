@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatbotYonetici));
             panel4 = new Panel();
             flowChattt = new FlowLayoutPanel();
@@ -46,10 +45,10 @@
             // panel4
             // 
             panel4.Controls.Add(flowChattt);
-            panel4.Location = new Point(185, 103);
+            panel4.Location = new Point(162, 88);
             panel4.Name = "panel4";
             panel4.Padding = new Padding(2);
-            panel4.Size = new Size(589, 289);
+            panel4.Size = new Size(515, 246);
             panel4.TabIndex = 11;
             panel4.Paint += panel4_Paint;
             // 
@@ -59,16 +58,16 @@
             flowChattt.Dock = DockStyle.Bottom;
             flowChattt.Location = new Point(2, -2);
             flowChattt.Name = "flowChattt";
-            flowChattt.Size = new Size(585, 289);
+            flowChattt.Size = new Size(511, 246);
             flowChattt.TabIndex = 3;
             flowChattt.Paint += flowChattt_Paint;
             // 
             // panel3
             // 
             panel3.Controls.Add(btnGonderrr);
-            panel3.Location = new Point(690, 398);
+            panel3.Location = new Point(604, 338);
             panel3.Name = "panel3";
-            panel3.Size = new Size(84, 30);
+            panel3.Size = new Size(74, 26);
             panel3.TabIndex = 10;
             // 
             // btnGonderrr
@@ -78,7 +77,7 @@
             btnGonderrr.Dock = DockStyle.Fill;
             btnGonderrr.Location = new Point(0, 0);
             btnGonderrr.Name = "btnGonderrr";
-            btnGonderrr.Size = new Size(84, 30);
+            btnGonderrr.Size = new Size(74, 26);
             btnGonderrr.TabIndex = 0;
             btnGonderrr.UseVisualStyleBackColor = true;
             btnGonderrr.Click += btnGonderrr_Click;
@@ -86,9 +85,9 @@
             // panel2
             // 
             panel2.Controls.Add(btnSesliOkumaaa);
-            panel2.Location = new Point(602, 398);
+            panel2.Location = new Point(527, 338);
             panel2.Name = "panel2";
-            panel2.Size = new Size(82, 30);
+            panel2.Size = new Size(72, 26);
             panel2.TabIndex = 9;
             // 
             // btnSesliOkumaaa
@@ -98,7 +97,7 @@
             btnSesliOkumaaa.Dock = DockStyle.Fill;
             btnSesliOkumaaa.Location = new Point(0, 0);
             btnSesliOkumaaa.Name = "btnSesliOkumaaa";
-            btnSesliOkumaaa.Size = new Size(82, 30);
+            btnSesliOkumaaa.Size = new Size(72, 26);
             btnSesliOkumaaa.TabIndex = 1;
             btnSesliOkumaaa.UseVisualStyleBackColor = true;
             btnSesliOkumaaa.Click += btnSesliOkumaaa_Click;
@@ -106,9 +105,9 @@
             // panel1
             // 
             panel1.Controls.Add(txtSoruuu);
-            panel1.Location = new Point(187, 398);
+            panel1.Location = new Point(164, 338);
             panel1.Name = "panel1";
-            panel1.Size = new Size(406, 30);
+            panel1.Size = new Size(355, 26);
             panel1.TabIndex = 8;
             // 
             // txtSoruuu
@@ -117,7 +116,7 @@
             txtSoruuu.Location = new Point(0, 0);
             txtSoruuu.Multiline = true;
             txtSoruuu.Name = "txtSoruuu";
-            txtSoruuu.Size = new Size(406, 30);
+            txtSoruuu.Size = new Size(355, 26);
             txtSoruuu.TabIndex = 3;
             txtSoruuu.TextChanged += txtSoruuu_TextChanged;
             txtSoruuu.Enter += txtSoruuu_Enter;
@@ -126,15 +125,16 @@
             // 
             // ChatbotYonetici
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSlateGray;
-            ClientSize = new Size(979, 570);
+            ClientSize = new Size(857, 484);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ChatbotYonetici";
+            Text = "Fuzuli";
             Load += ChatbotYonetici_Load;
             panel4.ResumeLayout(false);
             panel3.ResumeLayout(false);

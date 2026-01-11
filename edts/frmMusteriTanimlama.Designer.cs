@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMusteriTanimlama));
             panel2 = new Panel();
             dataGridView2 = new DataGridView();
@@ -45,9 +44,9 @@
             // 
             panel2.Controls.Add(dataGridView2);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 89);
+            panel2.Location = new Point(0, 76);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1227, 691);
+            panel2.Size = new Size(1074, 587);
             panel2.TabIndex = 5;
             // 
             // dataGridView2
@@ -60,7 +59,7 @@
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(1227, 691);
+            dataGridView2.Size = new Size(1074, 587);
             dataGridView2.TabIndex = 0;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             dataGridView2.CellPainting += dataGridView2_CellPainting;
@@ -93,7 +92,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1227, 89);
+            panel1.Size = new Size(1074, 76);
             panel1.TabIndex = 4;
             // 
             // label1
@@ -101,9 +100,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(50, 20);
+            label1.Location = new Point(44, 17);
             label1.Name = "label1";
-            label1.Size = new Size(194, 28);
+            label1.Size = new Size(174, 25);
             label1.TabIndex = 4;
             label1.Text = "Müşteri Tanımlama";
             // 
@@ -113,21 +112,22 @@
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = ImageLayout.Zoom;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button1.Location = new Point(50, 51);
+            button1.Location = new Point(44, 43);
             button1.Name = "button1";
-            button1.Size = new Size(194, 35);
+            button1.Size = new Size(170, 30);
             button1.TabIndex = 3;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // frmMusteriTanimlama
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1227, 780);
+            ClientSize = new Size(1074, 663);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmMusteriTanimlama";
+            Text = "Müsteri Yönetimi";
             Load += frmMusteriTanimlama_Load;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
