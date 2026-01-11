@@ -20,6 +20,7 @@ namespace edts {
         private void AyarListesiOlustur() {
             pnlSettings.Controls.Clear();
             pnlSettings.AutoScroll = true;
+            pnlSettings.VerticalScroll.Enabled = false;
 
             pnlSettings.FlowDirection = FlowDirection.LeftToRight;
             pnlSettings.WrapContents = true;

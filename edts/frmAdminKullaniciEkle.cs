@@ -61,6 +61,8 @@ namespace edts {
 
                 MesajGoruntule(mIcon.Onay, "\"" + textBoxKullaniciAd.Text + "\" adlı kullanıcı " + comboBoxRol.Text +
                 " rolü ile başarıyla eklendi.");
+                VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, IslemTuru.Kullanici_Ekle, "tblKullanicilar",
+                 "\"" + textBoxKullaniciAd.Text + "\" adlı kullanıcı eklendi.");
                 AlanlariTemizle();
 
             } catch (SqlException sqlEx) {
