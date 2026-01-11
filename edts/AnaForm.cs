@@ -248,7 +248,7 @@ namespace edts {
 
         private void hesapDuzenle_Tiklandi() {
             KullaniciBilgi tmp = new KullaniciBilgi(AktifKullanici.ID);
-            tmp.ShowDialog();
+            tmp.ShowDialog(this);
         }
 
         

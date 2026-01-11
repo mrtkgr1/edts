@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmYoneticiAnacopy));
             tableLayoutPanel1 = new TableLayoutPanel();
             panel2 = new Panel();
@@ -55,17 +54,16 @@
             // 
             tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 394F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 345F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.Controls.Add(panel2, 1, 0);
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1321, 872);
+            tableLayoutPanel1.Size = new Size(1156, 741);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // panel2
@@ -73,10 +71,9 @@
             panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel2.BackColor = Color.LightSteelBlue;
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(397, 4);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(348, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1170, 864);
+            panel2.Size = new Size(1024, 735);
             panel2.TabIndex = 1;
             // 
             // panel1
@@ -98,19 +95,18 @@
             panel1.Controls.Add(kavisliButon2);
             panel1.Controls.Add(kavisliButon1);
             panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(3, 4);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(388, 864);
+            panel1.Size = new Size(339, 735);
             panel1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(76, 112);
+            label1.Location = new Point(66, 95);
             label1.Name = "label1";
-            label1.Size = new Size(238, 25);
+            label1.Size = new Size(214, 21);
             label1.TabIndex = 20;
             label1.Text = "Hoşgeldiniz,[Kullanıcı Adı]";
             // 
@@ -121,9 +117,9 @@
             kavisliButon14.BorderRadius = 20;
             kavisliButon14.FlatAppearance.BorderSize = 0;
             kavisliButon14.FlatStyle = FlatStyle.Flat;
-            kavisliButon14.Location = new Point(94, 8);
+            kavisliButon14.Location = new Point(82, 7);
             kavisliButon14.Name = "kavisliButon14";
-            kavisliButon14.Size = new Size(188, 101);
+            kavisliButon14.Size = new Size(164, 86);
             kavisliButon14.TabIndex = 19;
             kavisliButon14.UseVisualStyleBackColor = true;
             // 
@@ -135,9 +131,9 @@
             kavisliButon13.FlatStyle = FlatStyle.Flat;
             kavisliButon13.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             kavisliButon13.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon13.Location = new Point(121, 559);
+            kavisliButon13.Location = new Point(106, 475);
             kavisliButon13.Name = "kavisliButon13";
-            kavisliButon13.Size = new Size(161, 54);
+            kavisliButon13.Size = new Size(141, 46);
             kavisliButon13.TabIndex = 18;
             kavisliButon13.Text = "Destek";
             kavisliButon13.UseVisualStyleBackColor = false;
@@ -150,9 +146,9 @@
             btnCikisYapp.FlatStyle = FlatStyle.Flat;
             btnCikisYapp.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             btnCikisYapp.ForeColor = SystemColors.ControlLightLight;
-            btnCikisYapp.Location = new Point(121, 497);
+            btnCikisYapp.Location = new Point(106, 422);
             btnCikisYapp.Name = "btnCikisYapp";
-            btnCikisYapp.Size = new Size(161, 54);
+            btnCikisYapp.Size = new Size(141, 46);
             btnCikisYapp.TabIndex = 17;
             btnCikisYapp.Text = "Çıkış Yap";
             btnCikisYapp.UseVisualStyleBackColor = false;
@@ -165,9 +161,9 @@
             kavisliButon11.FlatStyle = FlatStyle.Flat;
             kavisliButon11.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             kavisliButon11.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon11.Location = new Point(121, 439);
+            kavisliButon11.Location = new Point(106, 373);
             kavisliButon11.Name = "kavisliButon11";
-            kavisliButon11.Size = new Size(161, 54);
+            kavisliButon11.Size = new Size(141, 46);
             kavisliButon11.TabIndex = 16;
             kavisliButon11.Text = "Ayarlar";
             kavisliButon11.UseVisualStyleBackColor = false;
@@ -180,9 +176,9 @@
             kavisliButon10.FlatStyle = FlatStyle.Flat;
             kavisliButon10.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             kavisliButon10.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon10.Location = new Point(121, 379);
+            kavisliButon10.Location = new Point(106, 322);
             kavisliButon10.Name = "kavisliButon10";
-            kavisliButon10.Size = new Size(161, 54);
+            kavisliButon10.Size = new Size(141, 46);
             kavisliButon10.TabIndex = 15;
             kavisliButon10.Text = "Fuzuli(ChatBot)";
             kavisliButon10.UseVisualStyleBackColor = false;
@@ -195,9 +191,9 @@
             kavisliButon8.FlatStyle = FlatStyle.Flat;
             kavisliButon8.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             kavisliButon8.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon8.Location = new Point(121, 257);
+            kavisliButon8.Location = new Point(106, 218);
             kavisliButon8.Name = "kavisliButon8";
-            kavisliButon8.Size = new Size(161, 54);
+            kavisliButon8.Size = new Size(141, 46);
             kavisliButon8.TabIndex = 14;
             kavisliButon8.Text = "Genel Raporlar";
             kavisliButon8.UseVisualStyleBackColor = false;
@@ -210,9 +206,9 @@
             kavisliButon9.FlatStyle = FlatStyle.Flat;
             kavisliButon9.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             kavisliButon9.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon9.Location = new Point(121, 317);
+            kavisliButon9.Location = new Point(106, 269);
             kavisliButon9.Name = "kavisliButon9";
-            kavisliButon9.Size = new Size(161, 54);
+            kavisliButon9.Size = new Size(141, 46);
             kavisliButon9.TabIndex = 8;
             kavisliButon9.Text = "Ürün Yönetimi";
             kavisliButon9.UseVisualStyleBackColor = false;
@@ -224,9 +220,9 @@
             kavisliButon7.BackgroundImageLayout = ImageLayout.Zoom;
             kavisliButon7.BorderRadius = 20;
             kavisliButon7.FlatStyle = FlatStyle.Flat;
-            kavisliButon7.Location = new Point(9, 559);
+            kavisliButon7.Location = new Point(8, 475);
             kavisliButon7.Name = "kavisliButon7";
-            kavisliButon7.Size = new Size(101, 54);
+            kavisliButon7.Size = new Size(88, 46);
             kavisliButon7.TabIndex = 6;
             kavisliButon7.UseVisualStyleBackColor = false;
             // 
@@ -237,9 +233,9 @@
             btnCikisYap.BackgroundImageLayout = ImageLayout.Zoom;
             btnCikisYap.BorderRadius = 20;
             btnCikisYap.FlatStyle = FlatStyle.Flat;
-            btnCikisYap.Location = new Point(9, 499);
+            btnCikisYap.Location = new Point(8, 424);
             btnCikisYap.Name = "btnCikisYap";
-            btnCikisYap.Size = new Size(101, 54);
+            btnCikisYap.Size = new Size(88, 46);
             btnCikisYap.TabIndex = 5;
             btnCikisYap.UseVisualStyleBackColor = false;
             btnCikisYap.Click += kavisliButon6_Click;
@@ -251,9 +247,9 @@
             kavisliButon5.BackgroundImageLayout = ImageLayout.Zoom;
             kavisliButon5.BorderRadius = 20;
             kavisliButon5.FlatStyle = FlatStyle.Flat;
-            kavisliButon5.Location = new Point(9, 317);
+            kavisliButon5.Location = new Point(8, 269);
             kavisliButon5.Name = "kavisliButon5";
-            kavisliButon5.Size = new Size(101, 54);
+            kavisliButon5.Size = new Size(88, 46);
             kavisliButon5.TabIndex = 4;
             kavisliButon5.UseVisualStyleBackColor = false;
             // 
@@ -264,9 +260,9 @@
             kavisliButon4.BackgroundImageLayout = ImageLayout.Zoom;
             kavisliButon4.BorderRadius = 20;
             kavisliButon4.FlatStyle = FlatStyle.Flat;
-            kavisliButon4.Location = new Point(9, 379);
+            kavisliButon4.Location = new Point(8, 322);
             kavisliButon4.Name = "kavisliButon4";
-            kavisliButon4.Size = new Size(101, 54);
+            kavisliButon4.Size = new Size(88, 46);
             kavisliButon4.TabIndex = 3;
             kavisliButon4.UseVisualStyleBackColor = false;
             // 
@@ -277,9 +273,9 @@
             kavisliButon3.BackgroundImageLayout = ImageLayout.Zoom;
             kavisliButon3.BorderRadius = 20;
             kavisliButon3.FlatStyle = FlatStyle.Flat;
-            kavisliButon3.Location = new Point(9, 439);
+            kavisliButon3.Location = new Point(8, 373);
             kavisliButon3.Name = "kavisliButon3";
-            kavisliButon3.Size = new Size(101, 54);
+            kavisliButon3.Size = new Size(88, 46);
             kavisliButon3.TabIndex = 2;
             kavisliButon3.UseVisualStyleBackColor = false;
             // 
@@ -290,9 +286,9 @@
             kavisliButon2.BackgroundImageLayout = ImageLayout.Zoom;
             kavisliButon2.BorderRadius = 20;
             kavisliButon2.FlatStyle = FlatStyle.Flat;
-            kavisliButon2.Location = new Point(9, 257);
+            kavisliButon2.Location = new Point(8, 218);
             kavisliButon2.Name = "kavisliButon2";
-            kavisliButon2.Size = new Size(101, 54);
+            kavisliButon2.Size = new Size(88, 46);
             kavisliButon2.TabIndex = 1;
             kavisliButon2.UseVisualStyleBackColor = false;
             // 
@@ -303,17 +299,17 @@
             kavisliButon1.BackgroundImageLayout = ImageLayout.Zoom;
             kavisliButon1.BorderRadius = 20;
             kavisliButon1.FlatStyle = FlatStyle.Flat;
-            kavisliButon1.Location = new Point(9, 197);
+            kavisliButon1.Location = new Point(8, 167);
             kavisliButon1.Name = "kavisliButon1";
-            kavisliButon1.Size = new Size(101, 54);
+            kavisliButon1.Size = new Size(88, 46);
             kavisliButon1.TabIndex = 0;
             kavisliButon1.UseVisualStyleBackColor = false;
             // 
             // frmYoneticiAnacopy
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1321, 872);
+            ClientSize = new Size(1156, 741);
             Controls.Add(tableLayoutPanel1);
             Name = "frmYoneticiAnacopy";
             tableLayoutPanel1.ResumeLayout(false);

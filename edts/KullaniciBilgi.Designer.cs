@@ -34,12 +34,10 @@
             panelAdminAyar = new Panel();
             button1 = new Button();
             panelBildirim = new Panel();
-            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
             panelKullaniciAyar.SuspendLayout();
             panelAdminAyar.SuspendLayout();
-            panelBildirim.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -143,31 +141,18 @@
             button1.TabStop = false;
             button1.Text = "Admin Araçları";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // panelBildirim
             // 
             panelBildirim.AutoSize = true;
             panelBildirim.BorderStyle = BorderStyle.FixedSingle;
-            panelBildirim.Controls.Add(button2);
-            panelBildirim.Location = new Point(40, 0);
+            panelBildirim.Location = new Point(149, 0);
             panelBildirim.Margin = new Padding(0, 0, 3, 2);
             panelBildirim.Name = "panelBildirim";
-            panelBildirim.Size = new Size(111, 31);
+            panelBildirim.Size = new Size(2, 2);
             panelBildirim.TabIndex = 7;
             panelBildirim.Visible = false;
-            // 
-            // button2
-            // 
-            button2.AutoSize = true;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.Location = new Point(0, 0);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(109, 29);
-            button2.TabIndex = 0;
-            button2.TabStop = false;
-            button2.Text = "Bildirim Gönder";
-            button2.UseVisualStyleBackColor = false;
             // 
             // KullaniciBilgi
             // 
@@ -191,8 +176,6 @@
             panelKullaniciAyar.PerformLayout();
             panelAdminAyar.ResumeLayout(false);
             panelAdminAyar.PerformLayout();
-            panelBildirim.ResumeLayout(false);
-            panelBildirim.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -209,6 +192,5 @@
         private Panel panelAdminAyar;
         private Button button1;
         private Panel panelBildirim;
-        private Button button2;
     }
 }

@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(girişformcopy));
             kavisliButon1 = new KavisliButon();
             loginForm = new Panel();
@@ -48,9 +47,9 @@
             kavisliButon1.FlatStyle = FlatStyle.Flat;
             kavisliButon1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             kavisliButon1.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon1.Location = new Point(108, 338);
+            kavisliButon1.Location = new Point(94, 287);
             kavisliButon1.Name = "kavisliButon1";
-            kavisliButon1.Size = new Size(108, 42);
+            kavisliButon1.Size = new Size(94, 36);
             kavisliButon1.TabIndex = 0;
             kavisliButon1.Text = "Giriş Yap";
             kavisliButon1.UseVisualStyleBackColor = false;
@@ -64,7 +63,7 @@
             loginForm.Controls.Add(txtSifre);
             loginForm.Controls.Add(txtKullanici);
             loginForm.Controls.Add(kavisliButon1);
-            loginForm.Location = new Point(646, 1);
+            loginForm.Location = new Point(424, -1);
             loginForm.Name = "loginForm";
             loginForm.Size = new Size(295, 626);
             loginForm.TabIndex = 1;
@@ -72,18 +71,18 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(33, 292);
+            label2.Location = new Point(29, 248);
             label2.Name = "label2";
-            label2.Size = new Size(30, 20);
+            label2.Size = new Size(26, 17);
             label2.TabIndex = 7;
             label2.Text = "🔒";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(33, 245);
+            label1.Location = new Point(29, 208);
             label1.Name = "label1";
-            label1.Size = new Size(30, 20);
+            label1.Size = new Size(26, 17);
             label1.TabIndex = 6;
             label1.Text = "👤";
             // 
@@ -91,18 +90,18 @@
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(73, 11);
+            pictureBox1.Location = new Point(64, 9);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(143, 92);
+            pictureBox1.Size = new Size(125, 78);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
             // txtSifre
             // 
             txtSifre.BorderStyle = BorderStyle.FixedSingle;
-            txtSifre.Location = new Point(69, 290);
+            txtSifre.Location = new Point(60, 246);
             txtSifre.Name = "txtSifre";
-            txtSifre.Size = new Size(190, 27);
+            txtSifre.Size = new Size(166, 25);
             txtSifre.TabIndex = 4;
             txtSifre.Enter += txtSifre_Enter;
             txtSifre.Leave += txtSifre_Leave;
@@ -110,16 +109,16 @@
             // txtKullanici
             // 
             txtKullanici.BorderStyle = BorderStyle.FixedSingle;
-            txtKullanici.Location = new Point(69, 243);
+            txtKullanici.Location = new Point(60, 207);
             txtKullanici.Name = "txtKullanici";
-            txtKullanici.Size = new Size(190, 27);
+            txtKullanici.Size = new Size(166, 25);
             txtKullanici.TabIndex = 3;
             txtKullanici.Enter += txtKullanici_Enter;
             txtKullanici.Leave += txtKullanici_Leave;
             // 
             // girişformcopy
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
