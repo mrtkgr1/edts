@@ -25,6 +25,18 @@ namespace edts {
                     return "Müşteri Değişiklik";
                 case IslemTuru.Oturum_Kapandi:
                     return "Oturum Kapandı";
+                case IslemTuru.Oturum_Basarisiz:
+                    return "Oturum Başarısız";
+                case IslemTuru.Kullanici_Ekle:
+                    return "Kullanıcı Eklendi";
+                    case IslemTuru.Kullanini_Degisiklik:
+                        return "Kullanıcı Değişiklik";
+                    case IslemTuru.Kullanici_Sifre_Degisiklik:
+                        return "Kullanıcı Şifre Değişiklik";
+                    case IslemTuru.Sistem_Ayar_Degisiklik:
+                        return "Sistem Ayar Değişiklik";
+                    case IslemTuru.Kullanici_Silindi:
+                        return "Kullanıcı Silindi";
                 default:
                     return "Tanımlanmamış";
             }
@@ -46,7 +58,13 @@ namespace edts {
             Kategori_Degisiklik = 6,    //6
             Tedarikci_Degisiklik = 8,   //8
             Musteri_Degisiklik = 9,     //9
-            Oturum_Kapandi = 11          //11
+            Oturum_Kapandi = 11,        //11
+            Oturum_Basarisiz = 12, //++
+            Kullanici_Ekle = 13, //++
+            Kullanini_Degisiklik = 14, //++
+            Kullanici_Sifre_Degisiklik = 15, //++
+            Sistem_Ayar_Degisiklik = 16, //++
+            Kullanici_Silindi = 17
         }
 
         public enum Rol {

@@ -40,12 +40,19 @@
             checkBoxAktiflik = new CheckBox();
             lbla = new Label();
             button2 = new Button();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            panel6 = new Panel();
+            buttonKilit = new Button();
+            labelKilit = new Label();
+            labelHataliGiris = new Label();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            panel6.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -204,7 +211,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(69, 208);
+            button2.Location = new Point(225, 211);
             button2.Name = "button2";
             button2.Size = new Size(131, 25);
             button2.TabIndex = 9;
@@ -212,13 +219,63 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.AutoSize = true;
+            flowLayoutPanel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            flowLayoutPanel2.Controls.Add(panel6);
+            flowLayoutPanel2.Controls.Add(labelHataliGiris);
+            flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel2.Location = new Point(284, 12);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(267, 87);
+            flowLayoutPanel2.TabIndex = 10;
+            // 
+            // panel6
+            // 
+            panel6.AutoSize = true;
+            panel6.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel6.Controls.Add(buttonKilit);
+            panel6.Controls.Add(labelKilit);
+            panel6.Location = new Point(3, 3);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(261, 60);
+            panel6.TabIndex = 4;
+            // 
+            // buttonKilit
+            // 
+            buttonKilit.Enabled = false;
+            buttonKilit.Location = new Point(63, 26);
+            buttonKilit.Name = "buttonKilit";
+            buttonKilit.Size = new Size(135, 31);
+            buttonKilit.TabIndex = 2;
+            buttonKilit.Text = "Kısıtlamayı kaldır";
+            buttonKilit.UseVisualStyleBackColor = true;
+            buttonKilit.Click += buttonKilit_Click;
+            // 
+            // labelKilit
+            // 
+            labelKilit.Location = new Point(3, 6);
+            labelKilit.Name = "labelKilit";
+            labelKilit.Size = new Size(255, 17);
+            labelKilit.TabIndex = 1;
+            labelKilit.Text = "Kısıtlama yok.";
+            // 
+            // labelHataliGiris
+            // 
+            labelHataliGiris.Location = new Point(3, 66);
+            labelHataliGiris.Name = "labelHataliGiris";
+            labelHataliGiris.Size = new Size(255, 21);
+            labelHataliGiris.TabIndex = 5;
+            // 
             // frmKullaniciDüzenle
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(283, 245);
-            Controls.Add(button2);
+            ClientSize = new Size(598, 245);
+            Controls.Add(flowLayoutPanel2);
             Controls.Add(flowLayoutPanel1);
+            Controls.Add(button2);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -238,6 +295,9 @@
             panel3.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
+            panel6.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -261,5 +321,10 @@
         private Label lbla;
         private CheckBox checkBoxAktiflik;
         private Button button2;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private Panel panel6;
+        private Button buttonKilit;
+        private Label labelKilit;
+        private Label labelHataliGiris;
     }
 }

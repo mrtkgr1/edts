@@ -14,27 +14,20 @@ using System.IO;       // StreamWriter yerine bu gerekli
 
 namespace edts
 {
-    public partial class frmAdminDenetimKayitlari : Form
-    {
-        public frmAdminDenetimKayitlari()
-        {
+    public partial class frmAdminDenetimKayitlari : Form {
+        public frmAdminDenetimKayitlari() {
             InitializeComponent();
         }
-        private void KullaniciSecimleriniDoldur()
-        {
-            try
-            {
+        private void KullaniciSecimleriniDoldur() {
+            try {
                 string baglantiDizesi = System.Configuration.ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-                // KullanıcıID ve KullaniciAdi çekiliyor
                 string sorgu = "SELECT KullaniciID, KullaniciAdi FROM tblKullanicilar ORDER BY KullaniciAdi";
 
-                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-                {
+                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
                     SqlDataAdapter da = new SqlDataAdapter(sorgu, baglanti);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // "Tümü" seçeneğini ekle (ID=0 ile filtreleme kolaylığı için)
                     DataRow tumuRow = dt.NewRow();
                     tumuRow["KullaniciID"] = 0;
                     tumuRow["KullaniciAdi"] = "Tümü";
@@ -45,20 +38,17 @@ namespace edts
                     cmbKullaniciSecim.DataSource = dt;
                     cmbKullaniciSecim.SelectedIndex = 0;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show("Kullanıcı listesi yüklenirken hata: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void HareketTipleriniDoldur()
-        {
+        private void HareketTipleriniDoldur() {
             var veriListesi = Enum.GetValues(typeof(Sabitler.IslemTuru))
-            .Cast<Sabitler.IslemTuru>() 
+            .Cast<Sabitler.IslemTuru>()
             .Select(x => new {
                 HareketAd = x.ToString(),
-                HareketID = (int)x    
+                HareketID = (int)x
             })
             .ToList();
 
@@ -66,24 +56,20 @@ namespace edts
 
             cmbHareketTipi.DataSource = veriListesi;
             cmbHareketTipi.DisplayMember = "HareketAd";
-            cmbHareketTipi.ValueMember = "HareketID"; 
+            cmbHareketTipi.ValueMember = "HareketID";
         }
 
 
-        private void KayitlariGetir()
-        {
-            try
-            {
+        private void KayitlariGetir() {
+            try {
                 string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
                 DateTime baslangicTarihi = dtpBaslangic.Value.Date;
                 DateTime bitisTarihi = dtpBitis.Value.Date.AddDays(1).AddSeconds(-1);
 
                 int? hareketID = null;
-                if (cmbHareketTipi.SelectedIndex > 0 && cmbHareketTipi.SelectedValue != null)
-                {
-                    if (int.TryParse(cmbHareketTipi.SelectedValue.ToString(), out int id))
-                    {
+                if (cmbHareketTipi.SelectedIndex > 0 && cmbHareketTipi.SelectedValue != null) {
+                    if (int.TryParse(cmbHareketTipi.SelectedValue.ToString(), out int id)) {
                         hareketID = id;
                     }
                 }
@@ -104,23 +90,19 @@ namespace edts
                     D.IslemTarihi >= @pBaslangicTarihi 
                     AND D.IslemTarihi <= @pBitisTarihi";
 
-                if (hareketID.HasValue)
-                {
+                if (hareketID.HasValue) {
                     sorgu += " AND D.HareketID = @pHareketID";
                 }
 
-                sorgu += " ORDER BY D.IslemTarihi DESC"; 
+                sorgu += " ORDER BY D.IslemTarihi DESC";
 
-                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-                {
-                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
-                    {
+                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
+                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti)) {
                         // 2. Parametreleri Ekle
                         komut.Parameters.AddWithValue("@pBaslangicTarihi", baslangicTarihi);
                         komut.Parameters.AddWithValue("@pBitisTarihi", bitisTarihi);
 
-                        if (hareketID.HasValue)
-                        {
+                        if (hareketID.HasValue) {
                             komut.Parameters.AddWithValue("@pHareketID", hareketID.Value);
                         }
 
@@ -143,78 +125,63 @@ namespace edts
                         dgvDenetimKayitlari.Columns["HareketID"].Visible = false;
                         dgvDenetimKayitlari.Columns["TabloAdi"].Visible = false;
 
-                        if (dgvDenetimKayitlari.Columns.Count > 0)
-                        {
-                            dgvDenetimKayitlari.Columns["LogID"].Visible = false; // LogID'yi gizle
+                        if (dgvDenetimKayitlari.Columns.Count > 0) {
+                            dgvDenetimKayitlari.Columns["LogID"].Visible = false;
                             dgvDenetimKayitlari.Columns["IslemTarihi"].HeaderText = "İşlem Tarihi";
                             dgvDenetimKayitlari.Columns["KullaniciAdi"].HeaderText = "Kullanıcı Adı";
-                            //dgvDenetimKayitlari.Columns["HareketID"].HeaderText = "Hareket Tipi";
                             dgvDenetimKayitlari.Columns["TabloAdi"].HeaderText = "Tablo";
                             dgvDenetimKayitlari.Columns["Aciklama"].HeaderText = "Açıklama";
 
-                            // Sütun boyutlarını otomatik ayarla
+                            dgvDenetimKayitlari.Columns["IslemTarihi"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                            dgvDenetimKayitlari.Columns["IslemTarihi"].Width = 150;
+
+                            dgvDenetimKayitlari.Columns["KullaniciAdi"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                            dgvDenetimKayitlari.Columns["KullaniciAdi"].Width = 120;
+
+                            dgvDenetimKayitlari.Columns["IslemAdi"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                            dgvDenetimKayitlari.Columns["IslemAdi"].Width = 150;
+
+                            dgvDenetimKayitlari.Columns["Aciklama"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
                             dgvDenetimKayitlari.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show("Kayıtları getirirken hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnKayitlariGetir_Click(object sender, EventArgs e)
-        {
-            // Tarih, Kullanıcı ve Hareket Tipi filtrelerine göre verileri yeniler.
+        private void btnKayitlariGetir_Click(object sender, EventArgs e) {
             KayitlariGetir();
         }
 
-        private void btnExcelAktar_Click(object sender, EventArgs e)
-        {
-            // 1. DataGridView'de veri olup olmadığını kontrol et
-            if (dgvDenetimKayitlari.Rows.Count == 0 || dgvDenetimKayitlari.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow || r.Visible == false))
-            {
+        private void btnExcelAktar_Click(object sender, EventArgs e) {
+            if (dgvDenetimKayitlari.Rows.Count == 0 || dgvDenetimKayitlari.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow || r.Visible == false)) {
                 MessageBox.Show("Aktarılacak kayıt bulunmamaktadır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Kullanıcıdan dosyayı nereye kaydedeceğini sor
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            // Filtreyi sadece XLSX olarak ayarla
             saveFileDialog.Filter = "Excel Dosyaları (*.xlsx)|*.xlsx";
             saveFileDialog.FileName = "DenetimKayitlari_" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx";
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    // Yeni kütüphaneyi kullanmak için üst kısımlara ekleyin: using ClosedXML.Excel;
-
-                    // 3. DataGridView verilerini DataTable'a aktar
+            if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                try {
                     DataTable dt = new DataTable();
 
-                    // Başlıkları (Sütunları) ekle
-                    foreach (DataGridViewColumn column in dgvDenetimKayitlari.Columns)
-                    {
-                        // Gizli sütunları (LogID gibi) ve görünmezleri atla
-                        if (column.Visible)
-                        {
+                    foreach (DataGridViewColumn column in dgvDenetimKayitlari.Columns) {
+                        if (column.Visible) {
                             dt.Columns.Add(column.HeaderText);
                         }
                     }
 
-                    // Satır verilerini ekle
-                    foreach (DataGridViewRow row in dgvDenetimKayitlari.Rows)
-                    {
-                        if (!row.IsNewRow)
-                        {
+                    foreach (DataGridViewRow row in dgvDenetimKayitlari.Rows) {
+                        if (!row.IsNewRow) {
                             DataRow newRow = dt.NewRow();
                             int dtColumnIndex = 0;
 
-                            for (int i = 0; i < dgvDenetimKayitlari.Columns.Count; i++)
-                            {
-                                if (dgvDenetimKayitlari.Columns[i].Visible)
-                                {
+                            for (int i = 0; i < dgvDenetimKayitlari.Columns.Count; i++) {
+                                if (dgvDenetimKayitlari.Columns[i].Visible) {
                                     newRow[dtColumnIndex] = row.Cells[i].Value;
                                     dtColumnIndex++;
                                 }
@@ -223,43 +190,48 @@ namespace edts
                         }
                     }
 
-                    // 4. ClosedXML kullanarak Excel dosyasını oluştur ve kaydet
-                    using (var wb = new XLWorkbook())
-                    {
-                        // DataTable'ı Çalışma Sayfası olarak ekle
+                    using (var wb = new XLWorkbook()) {
                         var ws = wb.Worksheets.Add(dt, "Denetim Kayıtları");
 
-                        // İlk satırı (Başlıkları) kalın yap
                         ws.Row(1).Style.Font.Bold = true;
 
-                        // Sütunları içeriğe göre otomatik boyutlandır
                         ws.Columns().AdjustToContents();
 
-                        // Dosyayı kaydet
                         wb.SaveAs(saveFileDialog.FileName);
                     }
 
                     MessageBox.Show("Kayıtlar başarıyla XLSX formatında Excel dosyasına aktarıldı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     MessageBox.Show("Excel'e aktarım sırasında hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-       
 
-        private void frmAdminDenetimKayitlari_Load_1(object sender, EventArgs e)
-        {
-            
-            // 1. ComboBox'ları doldur (Bu, formun boş görünmesini engeller)
+
+        private void frmAdminDenetimKayitlari_Load_1(object sender, EventArgs e) {
+
             KullaniciSecimleriniDoldur();
             HareketTipleriniDoldur();
 
-            // 2. Varsayılan kayıtları getir
+            KayitlariGetir();
+        }
+
+        private void cmbHareketTipi_SelectedIndexChanged(object sender, EventArgs e) {
+            KayitlariGetir();
+        }
+
+        private void cmbKullaniciSecim_SelectedIndexChanged(object sender, EventArgs e) {
+            KayitlariGetir();
+        }
+
+        private void dtpBaslangic_ValueChanged(object sender, EventArgs e) {
+            KayitlariGetir();
+        }
+
+        private void dtpBitis_ValueChanged(object sender, EventArgs e) {
             KayitlariGetir();
         }
     }
-    }
+}
 
