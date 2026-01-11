@@ -120,7 +120,9 @@
             txtSoruuu.Size = new Size(406, 30);
             txtSoruuu.TabIndex = 3;
             txtSoruuu.TextChanged += txtSoruuu_TextChanged;
+            txtSoruuu.Enter += txtSoruuu_Enter;
             txtSoruuu.KeyDown += txtSoruuu_KeyDown;
+            txtSoruuu.Leave += txtSoruuu_Leave;
             // 
             // ChatbotYonetici
             // 
