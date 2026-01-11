@@ -6,28 +6,27 @@ namespace edts
     public partial class frmAdminAnaMenu : Form
     {
         private bool isMenuAcik = true; 
-        // Constructor, formun başlatıldığı yerdir ve tüm kritik yüklemeler burada olmalıdır.
+       
         public frmAdminAnaMenu()
         {
             InitializeComponent();
 
-            // Yükleme mantığını doğrudan constructor'a taşıyoruz
+           
             SolPaneliYukle();
-            IcerikDegistir(new frmAdminHomeIcerik()); // Varsayılan: Ana Sayfa
+            IcerikDegistir(new frmAdminHomeIcerik()); 
 
-            // Uygulama kapanışını yöneten olayı atayın
+           
             this.FormClosed += frmAdminAnaMenu_FormClosed;
         }
 
-        // Bu metot artık kullanılmadığı için SİLİNDİ veya yerine kod taşındı.
-        // private void frmAdminAnaMenu_Load(object? sender, EventArgs e) { ... }
+        
 
-        // Sol menüyü (frmAdminSolPanel) sol panele sabitleyen metot.
+       
         private void SolPaneliYukle()
         {
             frmAdminSolPanel solMenu = new frmAdminSolPanel();
 
-            solMenu.TopLevel = false;          // <-- KRİTİK: Çerçevesiz alt form olarak ayarla.
+            solMenu.TopLevel = false;          
             solMenu.FormBorderStyle = FormBorderStyle.None;
             solMenu.Dock = DockStyle.Fill;
 
@@ -36,7 +35,7 @@ namespace edts
             solMenu.Show();
         }
 
-        // Sağdaki içeriği değiştirmek için genel metot (Tek içerik yönetimi)
+       
         public void IcerikDegistir(Form yeniForm)
         {
             yeniForm.TopLevel = false;
@@ -48,24 +47,24 @@ namespace edts
             yeniForm.Show();
         }
 
-        // Sol Panel Büyüt/Küçült İşlevi
+       
         public bool SolPanelDurumunuDegistir()
         {
             if (isMenuAcik) {
-                // 1. MENÜYÜ KAPAT
+               
                 tableLayoutPanel1.ColumnStyles[0].Width = 100;
-                isMenuAcik = false; // Durumu Kapatıldı olarak ayarla
+                isMenuAcik = false; 
 
             } else {
-                // 2. MENÜYÜ AÇ
+               
                 tableLayoutPanel1.ColumnStyles[0].Width = 280;
-                isMenuAcik = true; // Durumu Açık olarak ayarla
+                isMenuAcik = true;
             }
             return isMenuAcik;
         }
 
-        // Form kapandığında tüm uygulamayı sonlandırma.
-        private void frmAdminAnaMenu_FormClosed(object? sender, FormClosedEventArgs e) // <-- Burası değişti!
+      
+        private void frmAdminAnaMenu_FormClosed(object? sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
