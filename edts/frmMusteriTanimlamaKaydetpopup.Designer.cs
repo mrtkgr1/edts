@@ -173,7 +173,6 @@
             ClientSize = new Size(664, 579);
             Controls.Add(tabControl1);
             Name = "frmMusteriTanimlamaKaydetpopup";
-            Text = "frmMusteriTanimlamaKaydetpopup";
             Load += frmMusteriTanimlamaKaydetpopup_Load;
             tabControl1.ResumeLayout(false);
             tabPage4.ResumeLayout(false);

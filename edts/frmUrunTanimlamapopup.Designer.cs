@@ -247,7 +247,6 @@
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "frmUrunTanimlamapopup";
-            Text = "frmUrunTanimlamapopup";
             Load += frmUrunTanimlamapopup_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);

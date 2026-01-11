@@ -43,7 +43,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ControlLightLight;
+            panel1.BackColor = Color.LightSlateGray;
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
@@ -58,7 +58,7 @@
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = ImageLayout.Zoom;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button1.Location = new Point(12, 54);
+            button1.Location = new Point(50, 54);
             button1.Name = "button1";
             button1.Size = new Size(143, 37);
             button1.TabIndex = 3;
@@ -69,7 +69,8 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.Location = new Point(12, 23);
+            label1.ForeColor = SystemColors.ControlLightLight;
+            label1.Location = new Point(50, 23);
             label1.Name = "label1";
             label1.Size = new Size(143, 28);
             label1.TabIndex = 4;
@@ -87,6 +88,7 @@
             // dataGridView2
             // 
             dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.BackgroundColor = Color.WhiteSmoke;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { btnSilSutun, btnGuncelleSutun });
             dataGridView2.Dock = DockStyle.Fill;
@@ -130,7 +132,6 @@
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmUrunYonetimi";
-            Text = "frmUrunYonetimi";
             Load += frmUrunYonetimi_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
