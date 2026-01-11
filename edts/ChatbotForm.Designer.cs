@@ -72,7 +72,9 @@
             txtSoru.TabIndex = 8;
             txtSoru.Text = "";
             txtSoru.TextChanged += txtSoru_TextChanged_1;
+            txtSoru.Enter += txtSoru_Enter_1;
             txtSoru.KeyDown += txtSoru_KeyDown_1;
+            txtSoru.Leave += txtSoru_Leave_1;
             // 
             // panel2
             // 

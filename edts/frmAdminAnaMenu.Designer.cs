@@ -79,7 +79,6 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmAdminAnaMenu";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmAdminAnaMenu";
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }

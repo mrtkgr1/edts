@@ -449,7 +449,6 @@
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmAdminSolPanel";
-            Text = "frmAdminSolPanel";
             panel1.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
