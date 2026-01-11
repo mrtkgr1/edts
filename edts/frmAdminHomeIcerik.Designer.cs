@@ -89,7 +89,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(987, 608);
+            panel2.Size = new Size(987, 697);
             panel2.TabIndex = 1;
             // 
             // panel1
@@ -98,7 +98,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(987, 608);
+            panel1.Size = new Size(987, 697);
             panel1.TabIndex = 17;
             // 
             // panel3
@@ -134,7 +134,7 @@
             groupBox11.Controls.Add(pictureBox2);
             groupBox11.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox11.ForeColor = SystemColors.ControlLightLight;
-            groupBox11.Location = new Point(639, 49);
+            groupBox11.Location = new Point(331, 49);
             groupBox11.Name = "groupBox11";
             groupBox11.Size = new Size(293, 142);
             groupBox11.TabIndex = 1;
@@ -167,7 +167,7 @@
             groupBox12.Controls.Add(pictureBox5);
             groupBox12.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox12.ForeColor = SystemColors.ControlLightLight;
-            groupBox12.Location = new Point(331, 49);
+            groupBox12.Location = new Point(21, 49);
             groupBox12.Name = "groupBox12";
             groupBox12.Size = new Size(293, 142);
             groupBox12.TabIndex = 1;
@@ -200,7 +200,7 @@
             groupBox13.Controls.Add(pictureBox4);
             groupBox13.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             groupBox13.ForeColor = SystemColors.ControlLightLight;
-            groupBox13.Location = new Point(21, 49);
+            groupBox13.Location = new Point(639, 49);
             groupBox13.Name = "groupBox13";
             groupBox13.Size = new Size(293, 142);
             groupBox13.TabIndex = 0;
@@ -219,11 +219,12 @@
             // 
             // pictureBox4
             // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
             pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
             pictureBox4.Location = new Point(14, 54);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(109, 53);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 1;
             pictureBox4.TabStop = false;
             // 
@@ -458,7 +459,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSlateGray;
-            ClientSize = new Size(987, 608);
+            ClientSize = new Size(987, 697);
             Controls.Add(panel2);
             Name = "frmAdminHomeIcerik";
             Load += frmAdminHomeIcerik_Load;
