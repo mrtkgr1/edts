@@ -1,16 +1,16 @@
-﻿using Microsoft.Data.SqlClient; // SQL kütüphanesini ekleyin
+﻿using Microsoft.Data.SqlClient; 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration; // ConfigurationManager için ekleyin
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClosedXML.Excel; // XLSX işlemleri için yeni kütüphane
-using System.IO;       // StreamWriter yerine bu gerekli
+using ClosedXML.Excel;
+using System.IO;      
 
 namespace edts
 {
@@ -98,7 +98,7 @@ namespace edts
 
                 using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
                     using (SqlCommand komut = new SqlCommand(sorgu, baglanti)) {
-                        // 2. Parametreleri Ekle
+                       
                         komut.Parameters.AddWithValue("@pBaslangicTarihi", baslangicTarihi);
                         komut.Parameters.AddWithValue("@pBitisTarihi", bitisTarihi);
 
@@ -215,6 +215,7 @@ namespace edts
             HareketTipleriniDoldur();
 
             KayitlariGetir();
+            dgvDenetimKayitlari.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void cmbHareketTipi_SelectedIndexChanged(object sender, EventArgs e) {

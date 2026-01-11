@@ -45,7 +45,6 @@ namespace edts
             }
         }
 
-        // 2. pbSistemAyarlari (frmAdminSistemAyarlari açar)
         private void pbSistemAyarlari_Click(object sender, EventArgs e)
         {
             frmAdminAnaMenu? anaForm = GetParentAdminForm();
@@ -76,10 +75,9 @@ namespace edts
             }
         }
 
-        // Menünün varsayılan (açık) genişliği
-        private const int AcikMenuGenislik = 300; // Bu değeri kendi tasarımınıza göre ayarlayın
-                                                  // Menünün katlanmış (sadece ikon) genişliği
-        private const int KapaliMenuGenislik = 100;  // Bu değeri ikon boyutuna göre ayarlayın
+        private const int AcikMenuGenislik = 300; 
+                                                  
+        private const int KapaliMenuGenislik = 100;  
 
         private void pbKategori_Click(object sender, EventArgs e)
         {
@@ -98,7 +96,6 @@ namespace edts
         }
         private void LabellariGizle()
         {
-            // Tüm Label (etiket) kontrollerini burada listeleyin ve Visible = false yapın.
             lblAnasayfa.Visible = false;
             lblSistemAyarlari.Visible = false;
             lblDenetimKayitlari.Visible = false;
@@ -106,14 +103,12 @@ namespace edts
             lblCikis.Visible = false;
             lblSupport.Visible = false;
             lblAyarlar.Visible = false;
-            // Opsiyonel: "Hoşgeldiniz" ve kullanıcı adı etiketlerini de gizleyebilirsiniz
             label1.Visible = false;
             pictureBox1.Visible = false;
         }
 
         private void LabellariGoster()
         {
-            // Tüm Label (etiket) kontrollerini burada listeleyin ve Visible = true yapın.
             lblAnasayfa.Visible = true;
             lblSistemAyarlari.Visible = true;
             lblDenetimKayitlari.Visible = true;
@@ -121,17 +116,13 @@ namespace edts
             lblCikis.Visible = true;
             lblSupport.Visible = true;
             lblAyarlar.Visible = true;
-            // Opsiyonel: "Hoşgeldiniz" ve kullanıcı adı etiketlerini de gösterin
             label1.Visible = true;
             pictureBox1.Visible = true;
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            // Varsayılan olarak altındaki kontrollerin Visible=false olduğunu varsayıyoruz.
             {
-                // Altındaki kontrollerin Visible özelliğini tersine çevir
-                // (Lütfen alt menü kontrollerinizin isimlerini buraya yazın)
                 pbCikisYap.Visible = !pbCikisYap.Visible;
                 pbDestek.Visible = !pbDestek.Visible;
             }
@@ -140,7 +131,6 @@ namespace edts
 
         private void pbCikisYap_Click(object sender, EventArgs e)
         {
-            // Bu kodun içini, label5_Click'teki loglama bloğuyla aynı şekilde doldurun.
             try
             {
                 VeritabaniYardimcisi.LogKaydet(
@@ -173,53 +163,41 @@ namespace edts
                 anaForm.IcerikDegistir(new frmSupport());
             }
         }
-        // Bu metot, form adını alıp ilgili içeriği Ana Menüde açar.
         private void IcerikAc(Type formTipi)
         {
-            // 1. Ana formu (frmAdminAnaMenu) bulma
             frmAdminAnaMenu? anaForm = this.ParentForm as frmAdminAnaMenu;
 
             if (anaForm == null)
             {
-                // Hata yönetimi veya return
                 return;
             }
 
-            // Buradan sonra anaForm'un null olmadığından emin olarak işlem yapabilirsin.
 
             if (anaForm != null)
             {
-                // 2. Dinamik olarak form örneği oluşturma
-                // (Not: Activator.CreateInstance() kullanmak, formları daha esnek açmanızı sağlar)
                 var instance = Activator.CreateInstance(formTipi);
 
                 if (instance is Form yeniIcerikFormu)
                 {
-                    // Form başarıyla oluşturuldu, burada kullanabilirsin
                     yeniIcerikFormu.TopLevel = false;
                     yeniIcerikFormu.Show();
                 }
             }
         }
-        // 1. ANASAYFA Label'ı
         private void lblAnasayfa_Click(object sender, EventArgs e)
         {
-            // PictureBox'ın açtığı formun aynısını açar.
             IcerikAc(typeof(frmAdminHomeIcerik));
         }
-        // 2. SİSTEM AYARLARI Label'ı
         private void lblSistemAyarlari_Click(object sender, EventArgs e)
         {
             IcerikAc(typeof(frmAdminSistemAyarlari));
         }
 
-        // 3. DENETİM KAYITLARI Label'ı
         private void lblDenetimKayitlari_Click(object sender, EventArgs e)
         {
             IcerikAc(typeof(frmAdminDenetimKayitlari));
         }
 
-        // 4. KULLANICI KAYIT Label'ı
         private void lblKullaniciKayit_Click(object sender, EventArgs e)
         {
             IcerikAc(typeof(frmKullaniciYonetimi));
@@ -234,20 +212,16 @@ namespace edts
         private void label5_Click(object sender, EventArgs e)
         {
 
-            // 1. LOG KAYDINI YAP (Veritabanı bağlantı kütüphanelerini kullan)
             try
             {
-                // KullanıcıID: Çıkış yapan kullanıcının ID'si
-                // HareketID: 2 (Çıkış)
 
                 VeritabaniYardimcisi.LogKaydet(
                     kullaniciID: AktifKullanici.ID,
                     hareketID: CikisHareketID,
-                    tabloAdi: "tblKullanicilar", // Uygulamadan çıkış olduğu için genelde bu tablo verilir.
+                    tabloAdi: "tblKullanicilar", 
                     aciklama: AktifKullanici.KullaniciAdi + " menüden çıkış yaptı."
                 );
 
-                // Önemli: Loglama başarılı olduktan sonra aktif kullanıcı bilgilerini temizlemek isteyebilirsiniz.
                 AktifKullanici.ID = 0;
                 AktifKullanici.KullaniciAdi = "";
 
@@ -257,7 +231,6 @@ namespace edts
                 System.Diagnostics.Debug.WriteLine("Çıkış logu kaydedilirken hata oluştu: " + ex.Message);
             }
 
-            // 2. FORMU KAPAT ve Giriş Formunu Aç
             this.ParentForm?.Close();
             edts.GirişForm girisFormu = new edts.GirişForm();
             girisFormu.Show();
