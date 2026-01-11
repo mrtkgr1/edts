@@ -166,10 +166,10 @@ namespace edts
 
                 
                 List<string> sakaListesi = new List<string> {
-        "Buraya kendi 1. şakanı yazabilirsin.",
-        "Buraya kendi 2. şakanı yazabilirsin.",
+        "Bilgisayar doktora neden gitmiş?\r\nÇünkü virüs kapmış! 💻😂",
+        "Matematik kitabı neden üzgünmüş?\r\nÇünkü çok problemi var",
         "Adminim, size şaka yapacaktım ama sistemin 'Exception' vermesinden korktum!", 
-        "Yöneticiye şaka olmaz, olsa olsa rapor olur!" 
+        
     };
                
                 return sakaListesi[rnd.Next(sakaListesi.Count)];

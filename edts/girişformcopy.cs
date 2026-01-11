@@ -19,7 +19,7 @@ namespace edts
 
         private void girişformcopy_Load(object sender, EventArgs e)
         {
-
+            loginForm.BackColor = Color.FromArgb(100, 255, 255, 255);
         }
 
         private void txtKullanici_Enter(object sender, EventArgs e)
