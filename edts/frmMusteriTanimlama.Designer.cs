@@ -61,7 +61,7 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(1227, 534);
             dataGridView2.TabIndex = 0;
-            dataGridView2.CellClick += dataGridView2_CellClick;
+           
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             dataGridView2.CellPainting += dataGridView2_CellPainting;
             dataGridView2.MouseLeave += dataGridView2_MouseLeave;

@@ -25,7 +25,6 @@ namespace edts
 
         public int GuncellenecekUrunID;
 
-        // Bu metodu popup formunun içine ekle
         private void MevcutBilgileriGetir()
         {
             using (SqlConnection baglan = new SqlConnection(baglantiDizesi))
@@ -33,7 +32,6 @@ namespace edts
                 try
                 {
                     baglan.Open();
-                    // Ana formdan gelen GuncellenecekUrunID'yi kullanıyoruz
                     string sorgu = "SELECT * FROM tblUrunler WHERE UrunID = @id";
                     SqlCommand cmd = new SqlCommand(sorgu, baglan);
                     cmd.Parameters.AddWithValue("@id", GuncellenecekUrunID);
@@ -48,8 +46,7 @@ namespace edts
                         txtKritik.Text = dr["KritikStok"].ToString();
                         cmbBirimTipi.Text = dr["BirimTipi"].ToString();
 
-                        // Kategorinin listeden otomatik seçilmesi için:
-                        // Önce KategorileriYukle() çalışmış olmalı!
+                      
                         comboBoxKategori.SelectedValue = dr["KategoriID"];
                     }
                 }
@@ -83,7 +80,7 @@ namespace edts
                     cmdUpdate.Parameters.AddWithValue("@BirimTipi", cmbBirimTipi.Text);
                     cmdUpdate.Parameters.AddWithValue("@BirimFiyat", birimFiyat.Value);
 
-                    // Sayısal değerlerde boş kutu kontrolü (Hata almanı önler)
+                   
                     decimal alisFiyat = 0;
                     decimal.TryParse(txtAlisFiyati.Text, out alisFiyat);
                     cmdUpdate.Parameters.AddWithValue("@AlisFiyat", alisFiyat);
@@ -99,7 +96,7 @@ namespace edts
                         VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, 5, "tblUrunler", $"{txtUrunAd.Text} güncellendi.");
                         MessageBox.Show("Başarıyla güncellendi!");
 
-                        this.DialogResult = DialogResult.OK; // Ana forma 'Yenile' sinyali gönderir
+                        this.DialogResult = DialogResult.OK;
                         this.Close();
                     }
                 }
@@ -174,14 +171,11 @@ namespace edts
 
         private void frmUrunYonetimiGuncellepopup_Load(object sender, EventArgs e)
         {
-            // 1. Önce kategorileri doldur ki SelectedValue çalışabilsin
             KategorileriYukle();
 
-            // 2. Birim tiplerini doldur
             cmbBirimTipi.Items.Clear();
             cmbBirimTipi.Items.AddRange(new string[] { "Adet", "KG", "Metre", "Paket", "gram" });
 
-            // 3. Bilgileri veritabanından çekip kutulara doldur
             if (GuncellenecekUrunID > 0)
             {
                 MevcutBilgileriGetir();

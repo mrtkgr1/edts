@@ -273,13 +273,12 @@ namespace edts {
             comboxIslev();
         }
 
-        //----Aktar----
-        //EXCEL
+       
         private void resizableButtonyenile_Click(object sender, EventArgs e) {
             KullanicilariListele();
         }
 
-        //pdf yazdir
+        
         private void resizableButton4_Click(object sender, EventArgs e) {
 
         }
@@ -306,7 +305,7 @@ namespace edts {
         private void dgvKullaniciListesi_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
             if (this.dgvKullaniciListesi.Columns[e.ColumnIndex].Name == "RolID" && e.Value != null) {
                 e.Value = ((Rol)(int)e.Value).ToString();
-                e.FormattingApplied = true; // İşlemin tamamlandığını belirtir
+                e.FormattingApplied = true;
             }
         }
     }

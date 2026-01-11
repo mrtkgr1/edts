@@ -14,7 +14,6 @@ namespace edts {
 
         public static List<KullaniciAyar> Ayarlar = new List<KullaniciAyar>() {
             new("tema", "Tema", "def", "def", AyarTuru.Liste, "Görünüm"),
-            //new("font_boyutu", "Font Boyutu", "12", "12", AyarTuru.Sayi, "Görünüm"),
             new("dinamik_renk_onay", "Sekmenin pencere rengini değiştirmesine izin ver", "true", "true", AyarTuru.Mantik, "Görünüm"),
             new("bildirim_durum","Bildirimleri aç","true","true",AyarTuru.Mantik,"Bildirim"),
             new("bildirim_masaustu","Bildirimleri masaüstünde göster","true","true",AyarTuru.Mantik,"Bildirim"),
@@ -72,7 +71,6 @@ namespace edts {
             }
         }
 
-        //kayııt
         public static void AyarlariKaydet(int userId) {
             using (SqlConnection connection = new SqlConnection(baglantiDizesi)) {
                 connection.Open();
@@ -89,7 +87,6 @@ namespace edts {
         }
 
 
-        //Getter
         public static string AyarGetir(string ayarId) {
             KullaniciAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
             return ayar != null ? ayar.Deger : string.Empty;
@@ -105,7 +102,6 @@ namespace edts {
             return ayar != null ? ayar.BoolAl() : false;
         }
 
-        //getter kontrol
         public static bool AyarGetir(string ayarId, out string? cvp) {
             KullaniciAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
             if (ayar == null) {
@@ -134,7 +130,6 @@ namespace edts {
             return true;
         }
 
-        //---
         public static void AyarDegistir(string ayarId, string yeniDeger) {
             KullaniciAyar? ayar = Ayarlar.FirstOrDefault(a => a.Id == ayarId);
             if (ayar != null) {

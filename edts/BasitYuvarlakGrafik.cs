@@ -8,11 +8,10 @@ namespace edts
 {
     public class BasitYuvarlakGrafik : Control
     {
-        // Tasarımcı hatasını önlemek için basit float dizisi kullanıyoruz
         public float[] Degerler { get; set; } = { 30, 20, 50 };
         public Color[] Renkler { get; set; } = { Color.FromArgb(52, 152, 219), Color.FromArgb(46, 204, 113), Color.FromArgb(231, 76, 60), Color.FromArgb(241, 196, 15) };
 
-        public bool DonutModu { get; set; } = true; // Ortası boş olsun mu?
+        public bool DonutModu { get; set; } = true; 
 
         public BasitYuvarlakGrafik()
         {
@@ -30,7 +29,7 @@ namespace edts
             float toplam = Degerler.Sum();
             if (toplam == 0) return;
 
-            float baslangicAcisi = -90; // En tepeden başlasın
+            float baslangicAcisi = -90; 
             RectangleF rect = new RectangleF(10, 10, Width - 20, Height - 20);
 
             for (int i = 0; i < Degerler.Length; i++)
@@ -44,10 +43,9 @@ namespace edts
                 baslangicAcisi += supürmeAcisi;
             }
 
-            // Eğer DonutModu aktifse ortayı formun arka plan rengiyle kapat
             if (DonutModu)
             {
-                float boslukOrani = 0.65f; // İç boşluk miktarı
+                float boslukOrani = 0.65f; 
                 float icCap = rect.Width * boslukOrani;
                 float merkezX = rect.X + (rect.Width - icCap) / 2;
                 float merkezY = rect.Y + (rect.Height - icCap) / 2;
