@@ -51,7 +51,8 @@ namespace edts
         {
            
             cmbBirimTipi.Items.AddRange(new string[] { "Adet", "KG", "Metre", "Paket", "gram" });
-            cmbBirimTipi.SelectedIndex = 0; // İlk sıradakini seçili getirir
+            cmbBirimTipi.SelectedIndex = 0; 
+
         }
 
         private void btnKaydett_Click(object sender, EventArgs e)
@@ -67,7 +68,8 @@ namespace edts
                 try
                 {
                     baglan.Open();
-                    // Sorguya "BirimTipi" kolonunu ve "@BirimTipi" parametresini ekledik
+                    
+
                     SqlCommand cmdInsert = new SqlCommand(@"INSERT INTO tblUrunler  
             (KategoriID, UrunKodu, UrunAd, KritikStok, MevcutStok, Durum, BirimFiyat, AlisFiyat, BirimTipi)  
             VALUES (@KategoriID, @UrunKodu, @UrunAd, @KritikStok, 0, 'Aktif', @BirimFiyat, @AlisFiyat, @BirimTipi)", baglan);
@@ -88,7 +90,6 @@ namespace edts
                     decimal.TryParse(txtAlisFiyati.Text, out alisFiyati);
                     cmdInsert.Parameters.AddWithValue("@AlisFiyat", alisFiyati);
 
-                    // --- BURAYI EKLEDİK ---
                     cmdInsert.Parameters.AddWithValue("@BirimTipi", cmbBirimTipi.Text);
 
                     cmdInsert.ExecuteNonQuery();
@@ -107,26 +108,6 @@ namespace edts
             }
        
         }
-
-       
-
-
-
-       // --------------------------------------------------------------------
-
-
-
-
-           
-           
-          
-         
-
-
-
-
-       
-
 
 
         private void musteriBilgiAl(int id, out string ad, out string verigiNo, out string vergiDairesi, out string tel)

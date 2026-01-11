@@ -6,7 +6,6 @@ using System.Data;
 using System.Windows.Forms;
 namespace edts
 {
-    // Bu, formunuzun başlangıç tanımıdır.
     public partial class GirişForm : Form
     {
         private int aktifRolID;

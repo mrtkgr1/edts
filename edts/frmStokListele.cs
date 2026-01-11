@@ -235,11 +235,11 @@ namespace EnvanterDepoSistemitaslak2
             {
                 var worksheet = workbook.Worksheets.Add("Stok Listesi");
 
-                // 1. Başlıkları Aktar ve Formatla
+               
                 int gecerliSutun = 1;
                 for (int i = 0; i < dgv.Columns.Count; i++)
                 {
-                    if (dgv.Columns[i].Visible) // Sadece görünür sütunları aktar
+                    if (dgv.Columns[i].Visible)
                     {
                         var cell = worksheet.Cell(1, gecerliSutun);
                         cell.Value = dgv.Columns[i].HeaderText;
@@ -250,7 +250,7 @@ namespace EnvanterDepoSistemitaslak2
                     }
                 }
 
-                // 2. Verileri Aktar
+              
                 for (int i = 0; i < dgv.Rows.Count; i++)
                 {
                     gecerliSutun = 1;
@@ -265,10 +265,10 @@ namespace EnvanterDepoSistemitaslak2
                     }
                 }
 
-                // 3. Sütun Genişliklerini Ayarla
+                
                 worksheet.Columns().AdjustToContents();
 
-                // 4. Kaydetme Penceresi
+              
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "Excel Workbook|*.xlsx";
                 sfd.FileName = "Stok_Raporu_" + DateTime.Now.ToString("dd_MM_yyyy");

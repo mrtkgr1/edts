@@ -58,7 +58,7 @@ namespace edts {
                     lbl.Width = 450;
                     lbl.Padding = new Padding(15, 0, 0, 0);
 
-                    Control inputControl = AyarOzelKontrolOlustur(ayar); //----
+                    Control inputControl = AyarOzelKontrolOlustur(ayar); 
 
                     Panel pnlDegerInput = new Panel();
                     pnlDegerInput.Dock = DockStyle.Right;
@@ -66,7 +66,7 @@ namespace edts {
                     pnlDegerInput.Padding = new Padding(0, 15, 15, 0);
                     pnlDegerInput.Controls.Add(inputControl);
 
-                    pnlSatir.Controls.Add(pnlDegerInput); //----
+                    pnlSatir.Controls.Add(pnlDegerInput);
                     pnlSatir.Controls.Add(lbl);
 
 
@@ -158,18 +158,7 @@ namespace edts {
                     combo.Width = 150;
                     combo.Dock = DockStyle.Right;
 
-                    /*if(AyarYonetimi.SecenekListesi.TryGetValue(ayarG.Id,out (string,string)[] v)) {
-                        List<ComboboxDItem> itms = ComboboxDItem.ListeOlustur(v);
-                        combo.DisplayMember = "text";
-                        combo.ValueMember= "id";
-                        combo.DataSource = itms;
-
-                        ComboboxDItem secilecekOge = itms.FirstOrDefault(x => x.id == ayarG.Deger);
-                        if (secilecekOge != null) {
-                            
-                            combo.SelectedItem = secilecekOge;
-                        }
-                    }*/
+                    
 
                     resultControl = combo;
                     break;

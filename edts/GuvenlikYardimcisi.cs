@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Security.Cryptography; // SHA256 için gerekli kütüphane
-using System.Text; // Encoding ve StringBuilder için gerekli kütüphane
+using System.Security.Cryptography; 
+using System.Text; 
 
-namespace edts // Projenizin ana namespace'i
+namespace edts 
 {
     public static class GuvenlikYardimcisi
     {
@@ -10,10 +10,8 @@ namespace edts // Projenizin ana namespace'i
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                // Şifreyi bayt dizisine dönüştür
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(sifre));
 
-                // Baytları Hexadecimal (onaltılık) stringe dönüştür
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {
