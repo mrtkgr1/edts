@@ -464,7 +464,6 @@
             Margin = new Padding(3, 4, 3, 4);
             MinimumSize = new Size(1369, 580);
             Name = "frmDepoHome";
-            Text = "frmDepoHome";
             Load += frmDepoHome_Load;
             ((System.ComponentModel.ISupportInitialize)pbxKategori).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

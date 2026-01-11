@@ -143,7 +143,6 @@
             ClientSize = new Size(1017, 704);
             Controls.Add(panel5);
             Name = "ChatbotDepo";
-            Text = "ChatbotDepo";
             Load += ChatbotDepo_Load;
             panel4.ResumeLayout(false);
             panel3.ResumeLayout(false);

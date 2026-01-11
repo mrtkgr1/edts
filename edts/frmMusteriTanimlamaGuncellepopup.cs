@@ -48,7 +48,7 @@ namespace edts
         {
             if (GuncellenecekMusteriID > 0)
             {
-                this.Text = "Müşteri Bilgilerini Güncelle";
+                
                 btnMusteriGuncel.Text = "Bilgileri Güncelle";
 
                

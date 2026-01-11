@@ -174,7 +174,6 @@
             ClientSize = new Size(560, 588);
             Controls.Add(tabControl1);
             Name = "frmTedarikciYonetimKaydetpopup";
-            Text = "frmTedarikciYonetimKaydetpopup";
             Load += frmTedarikciYonetimKaydetpopup_Load;
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
