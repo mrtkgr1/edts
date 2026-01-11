@@ -15,16 +15,14 @@ namespace edts {
         public static List<KullaniciAyar> Ayarlar = new List<KullaniciAyar>() {
             new("tema", "Tema", "def", "def", AyarTuru.Liste, "Görünüm"),
             new("dinamik_renk_onay", "Sekmenin pencere rengini değiştirmesine izin ver", "true", "true", AyarTuru.Mantik, "Görünüm"),
-            new("bildirim_durum","Bildirimleri aç","true","true",AyarTuru.Mantik,"Bildirim"),
-            new("bildirim_masaustu","Bildirimleri masaüstünde göster","true","true",AyarTuru.Mantik,"Bildirim"),
-            new("bildirim_sesi","Bildirim sesini değiştir","def","def",AyarTuru.Liste,"Bildirim"),
+
 
 
         };
 
         public static Dictionary<string, (string, string)[]> SecenekListesi = new() {
             ["tema"] = [("Varsayılan", "def"),("Siyah","siyah"),("Beyaz","beyaz"),("Mavi","mavi"),("Mavi-Gri","mavi_gri")],
-            ["bildirim_sesi"] = [("Ses kapalı","off"), ("Varsayılan", "def")]
+            ["bildirim_sesi"] = [("Ses kapalı","off"), ("Varsayılan", "def")],
         };
 
         public static void AyarlariSenkronizeEt(int userId) {
