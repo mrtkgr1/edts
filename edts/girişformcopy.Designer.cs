@@ -63,28 +63,10 @@
             loginForm.Controls.Add(txtSifre);
             loginForm.Controls.Add(txtKullanici);
             loginForm.Controls.Add(kavisliButon1);
-            loginForm.Location = new Point(646, 1);
+            loginForm.Location = new Point(424, -1);
             loginForm.Name = "loginForm";
             loginForm.Size = new Size(295, 626);
             loginForm.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(33, 292);
-            label2.Name = "label2";
-            label2.Size = new Size(30, 20);
-            label2.TabIndex = 7;
-            label2.Text = "🔒";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(33, 245);
-            label1.Name = "label1";
-            label1.Size = new Size(30, 20);
-            label1.TabIndex = 6;
-            label1.Text = "👤";
             // 
             // label2
             // 

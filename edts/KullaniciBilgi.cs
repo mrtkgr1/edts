@@ -89,7 +89,7 @@ namespace edts {
 
         private void buttonKullaniciAyar_Click(object sender, EventArgs e) {
             pGuvenlikAyarDegistir tmp = new pGuvenlikAyarDegistir();
-            tmp.ShowDialog();
+            tmp.ShowDialog(this);
 
             kullaniciBilgileriDoldur(kullaniciID);
         }
@@ -100,7 +100,7 @@ namespace edts {
 
         private void button1_Click(object sender, EventArgs e) {
             frmKullaniciDüzenle tmp = new frmKullaniciDüzenle(kullaniciID);
-            tmp.ShowDialog();
+            tmp.ShowDialog(this);
 
             kullaniciBilgileriDoldur(kullaniciID);
         }
