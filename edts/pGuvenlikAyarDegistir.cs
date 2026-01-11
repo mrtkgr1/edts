@@ -40,6 +40,11 @@ namespace edts {
             if (!SistemAyarYonetim.AyarBoolGetir("hesap_ayark_sfr")) {
                 buttonSfr.Enabled = false;
             }
+
+            if (!SistemAyarYonetim.AyarBoolGetir("hesap_ayark_sfr")) {
+                btnPPSec.Enabled = false;
+                btnResimKaldir.Enabled = false;
+            }
         }
 
         private void buttonKad_Click(object sender, EventArgs e) {
@@ -106,6 +111,12 @@ namespace edts {
         }
 
         private void buttonSfr_Click(object sender, EventArgs e) {
+            pSfrD sifreDegistir = new pSfrD();
+            sifreDegistir.ShowDialog(this);
+            AyarKurulum();
+        }
+
+        private void btnPPSec_Click(object sender, EventArgs e) {
 
         }
     }

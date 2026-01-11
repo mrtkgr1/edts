@@ -63,9 +63,9 @@
             flowLayoutPanel1.Controls.Add(panel2);
             flowLayoutPanel1.Controls.Add(panel3);
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(0, 76);
+            flowLayoutPanel1.Location = new Point(0, 66);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(320, 114);
+            flowLayoutPanel1.Size = new Size(316, 114);
             flowLayoutPanel1.TabIndex = 8;
             // 
             // panel1
@@ -76,8 +76,9 @@
             panel1.Controls.Add(buttonKad);
             panel1.Controls.Add(label1);
             panel1.Location = new Point(3, 3);
+            panel1.Margin = new Padding(3, 3, 0, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(314, 34);
+            panel1.Size = new Size(313, 34);
             panel1.TabIndex = 4;
             // 
             // textBoxKAd
@@ -89,7 +90,7 @@
             // 
             // buttonKad
             // 
-            buttonKad.Location = new Point(237, 6);
+            buttonKad.Location = new Point(236, 6);
             buttonKad.Name = "buttonKad";
             buttonKad.Size = new Size(74, 25);
             buttonKad.TabIndex = 3;
@@ -114,8 +115,9 @@
             panel2.Controls.Add(buttonTad);
             panel2.Controls.Add(label2);
             panel2.Location = new Point(3, 43);
+            panel2.Margin = new Padding(3, 3, 0, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(314, 34);
+            panel2.Size = new Size(313, 34);
             panel2.TabIndex = 5;
             // 
             // textBoxTad
@@ -127,7 +129,7 @@
             // 
             // buttonTad
             // 
-            buttonTad.Location = new Point(238, 6);
+            buttonTad.Location = new Point(237, 6);
             buttonTad.Name = "buttonTad";
             buttonTad.Size = new Size(73, 25);
             buttonTad.TabIndex = 3;
@@ -151,13 +153,14 @@
             panel3.Controls.Add(buttonSfr);
             panel3.Controls.Add(labelSfr);
             panel3.Location = new Point(3, 83);
+            panel3.Margin = new Padding(3, 3, 0, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(314, 28);
+            panel3.Size = new Size(313, 28);
             panel3.TabIndex = 6;
             // 
             // buttonSfr
             // 
-            buttonSfr.Location = new Point(240, 0);
+            buttonSfr.Location = new Point(239, 0);
             buttonSfr.Name = "buttonSfr";
             buttonSfr.Size = new Size(71, 25);
             buttonSfr.TabIndex = 2;
@@ -180,9 +183,10 @@
             panel4.BackgroundImageLayout = ImageLayout.None;
             panel4.Controls.Add(label4);
             panel4.Controls.Add(pictureBox1);
-            panel4.Location = new Point(0, 3);
+            panel4.Location = new Point(0, -1);
+            panel4.Margin = new Padding(3, 3, 0, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(317, 67);
+            panel4.Size = new Size(319, 67);
             panel4.TabIndex = 9;
             // 
             // label4
@@ -221,17 +225,18 @@
             panelSagUst.Location = new Point(228, 9);
             panelSagUst.Margin = new Padding(0);
             panelSagUst.Name = "panelSagUst";
-            panelSagUst.Size = new Size(325, 195);
+            panelSagUst.Size = new Size(321, 185);
             panelSagUst.TabIndex = 11;
             // 
             // btnPPSec
             // 
-            btnPPSec.Location = new Point(-1, 196);
+            btnPPSec.Location = new Point(3, 196);
             btnPPSec.Name = "btnPPSec";
-            btnPPSec.Size = new Size(152, 33);
+            btnPPSec.Size = new Size(151, 33);
             btnPPSec.TabIndex = 12;
             btnPPSec.Text = "Profil Resmi Seç";
             btnPPSec.UseVisualStyleBackColor = true;
+            btnPPSec.Click += btnPPSec_Click;
             // 
             // btnResimKaldir
             // 
@@ -264,8 +269,10 @@
             ClientSize = new Size(565, 327);
             Controls.Add(panel5);
             Controls.Add(panelSagUst);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "pGuvenlikAyarDegistir";
-            Text = "pGuvenlikAyarDegistir";
+            Text = "Hesap ayarlarını değiştir";
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             panel1.ResumeLayout(false);
