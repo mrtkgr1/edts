@@ -123,10 +123,13 @@ namespace EnvanterDepoSistemitaslak2
         }
 
        
+      
+
+       
         private void UrunleriYukle()
         {
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-            
+
             string sorgu = "SELECT UrunID, UrunKodu + ' - ' + UrunAd AS UrunTamAd FROM tblUrunler ORDER BY UrunTamAd";
 
             using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
@@ -141,13 +144,6 @@ namespace EnvanterDepoSistemitaslak2
                 cmbUrunSecimi.SelectedIndex = -1;
             }
         }
-
-        private void frmStokGiris_Load(object sender, EventArgs e)
-        {
-            dgvStokDetaylari.AllowUserToAddRows = false;
-
-        }
-
         private void btnEkle_Click(object sender, EventArgs e)
         {
            
@@ -267,6 +263,13 @@ namespace EnvanterDepoSistemitaslak2
             {
                 MessageBox.Show("Lütfen silinecek bir satır seçin.", "Uyarı");
             }
+        }
+
+ private void frmStokGiris_Load(object sender, EventArgs e)
+        {
+            dgvStokDetaylari.AllowUserToAddRows = false;
+            dgvStokDetaylari.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void dgvStokDetaylari_CellContentClick(object sender, DataGridViewCellEventArgs e)

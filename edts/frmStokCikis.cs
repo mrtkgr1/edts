@@ -345,6 +345,7 @@ namespace EnvanterDepoSistemitaslak2
         private void frmStokCikis_Load(object sender, EventArgs e)
         {
             dgvSevkiyatListesi.AllowUserToAddRows = false;
+
         }
 
         private void dgvSevkiyatListesi_CellContentClick(object sender, DataGridViewCellEventArgs e)

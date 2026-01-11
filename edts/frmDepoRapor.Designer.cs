@@ -228,6 +228,7 @@
             // 
             // dgvStokRaporu
             // 
+            dgvStokRaporu.BackgroundColor = Color.WhiteSmoke;
             dgvStokRaporu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStokRaporu.Dock = DockStyle.Fill;
             dgvStokRaporu.Location = new Point(0, 0);
@@ -245,7 +246,6 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmDepoRapor";
-            Text = "frmDepoRapor";
             Load += frmDepoRapor_Load;
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);

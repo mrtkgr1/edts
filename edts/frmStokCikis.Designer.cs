@@ -253,6 +253,7 @@
             // 
             dgvSevkiyatListesi.AllowUserToAddRows = false;
             dgvSevkiyatListesi.AllowUserToDeleteRows = false;
+            dgvSevkiyatListesi.BackgroundColor = Color.WhiteSmoke;
             dgvSevkiyatListesi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSevkiyatListesi.Dock = DockStyle.Fill;
             dgvSevkiyatListesi.Location = new Point(0, 0);
@@ -345,7 +346,6 @@
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmStokCikis";
-            Text = "frmStokCikis";
             Load += frmStokCikis_Load;
             panel1.ResumeLayout(false);
             groupBox3.ResumeLayout(false);

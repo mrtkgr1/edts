@@ -316,7 +316,6 @@
             ClientSize = new Size(1321, 872);
             Controls.Add(tableLayoutPanel1);
             Name = "frmYoneticiAnacopy";
-            Text = "frmYoneticiAnacopy";
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

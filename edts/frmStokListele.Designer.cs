@@ -172,6 +172,7 @@
             // dgvStoklar
             // 
             dgvStoklar.AllowUserToAddRows = false;
+            dgvStoklar.BackgroundColor = Color.WhiteSmoke;
             dgvStoklar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStoklar.Dock = DockStyle.Fill;
             dgvStoklar.Location = new Point(0, 0);
@@ -189,7 +190,6 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmStokListele";
-            Text = "frmStokListele";
             Load += frmStokListele_Load;
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
