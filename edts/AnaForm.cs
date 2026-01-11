@@ -108,6 +108,14 @@ namespace edts {
 
        
         public void AyarKurulum() {
+            if (!AyarYonetimi.AyarBoolGetir("sol_panel_acik")) {
+                yanMenuAcik = false;
+                SolHPanel.Width = 54;
+            }
+            if (AyarYonetimi.AyarBoolGetir("tam_ekran_basla")) {
+                this.WindowState = FormWindowState.Maximized;
+                btnBuyut.Text = "2";
+            }
             TemaGuncelle();
 
         }
@@ -135,6 +143,25 @@ namespace edts {
             SolHPanel.ForeColor = tema.yaziRengi;
 
             kayitMenuPanel.BackColor = tema.solMenuAltMenu;
+
+            switch (AyarYonetimi.AyarGetir("kenar")) {
+                case "beyaz":
+                    this.BackColor = Color.White;
+                    break;
+                case "siyah":
+                    this.BackColor = Color.Black;
+                    break;
+                case "mavi":
+                    this.BackColor = Color.FromArgb(15, 30, 50);
+                    break;
+                case "red":
+                    this.BackColor = Color.DarkRed;
+                    break;
+                default:
+                    this.BackColor = Color.Black;
+                    break;
+            }
+
         }
 
         bool isKayitMenuAcik = false;
@@ -160,8 +187,8 @@ namespace edts {
         private void yanPanel_Tick(object sender, EventArgs e) {
             if (yanMenuAcik) {
                 SolHPanel.Width -= 10;
-                if (SolHPanel.Width <= 53) {
-                    SolHPanel.Width = 53;
+                if (SolHPanel.Width <= 54) {
+                    SolHPanel.Width = 54;
                     yanMenuAcik = false;
                     yanPanelHareket.Stop();
                 }
@@ -183,7 +210,13 @@ namespace edts {
         }
 
         private void button8_Click(object sender, EventArgs e) {
-            this.Close();
+            if (AyarYonetimi.AyarBoolGetir("cikista_sor")) {
+                if (MessageBox.Show("Programdan çıkmak istediğinize emin misiniz?\nBu uyarı ayarlardan kapatılabilir.", "Çıkış Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                    this.Close();
+                }
+            } else {
+                this.Close();
+            }
         }
 
         private void button10_Click(object sender, EventArgs e) {
