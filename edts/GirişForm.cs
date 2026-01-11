@@ -233,6 +233,16 @@ namespace edts
         private void GirişForm_Load(object sender, EventArgs e) {
 
             loginForm.BackColor = Color.FromArgb(100, 255, 255, 255);
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text)) {
+                textBox1.Text = "Kullanıcı Adı";
+                textBox1.ForeColor = Color.Gray;
+            }
+            if (string.IsNullOrWhiteSpace(loginpsw.Text)) {
+                loginpsw.Text = "Şifre";
+                loginpsw.ForeColor = Color.Gray;
+                loginpsw.PasswordChar = '\0';
+            }
         }
 
         private void textBox1_Enter(object sender, EventArgs e) {
@@ -265,9 +275,6 @@ namespace edts
             }
         }
 
-        private void txtKullanici_Enter(object sender, EventArgs e) {
-
-        }
 
     }
 } 
