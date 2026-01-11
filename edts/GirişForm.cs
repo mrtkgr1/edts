@@ -190,7 +190,7 @@ namespace edts
         }
 
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        private void linkLabel1_LinkClicked() {
             frmSupport supportForm = new frmSupport();
 
             supportForm.Show();
@@ -275,6 +275,8 @@ namespace edts
             }
         }
 
-
+        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
+            linkLabel1_LinkClicked();
+        }
     }
 } 
