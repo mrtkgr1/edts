@@ -33,13 +33,13 @@ namespace edts {
         }
 
         private void kullaniciBilgileriDoldur(int id) {
-            if (id == AktifKullanici.ID) { 
+            if (id == AktifKullanici.ID) {
                 lblAd.Text = AktifKullanici.TamAd;
                 lblKullanici.Text = AktifKullanici.KullaniciAdi;
                 lblYetki.Text = ((Sabitler.Rol)AktifKullanici.RolID).ToString();
             } else {
                 string sorgu = "SELECT AdSoyad, KullaniciAdi, RolID, AktifMi FROM tblKullanicilar WHERE KullaniciID=@id";
-                using(SqlConnection conn = new SqlConnection(baglantiDizesi)) {
+                using (SqlConnection conn = new SqlConnection(baglantiDizesi)) {
                     try {
                         conn.Open();
                         SqlCommand cmd = new SqlCommand(sorgu, conn);
@@ -50,9 +50,9 @@ namespace edts {
                             lblAd.Text = reader.GetString(0);
                             lblKullanici.Text = reader.GetString(1);
                             lblYetki.Text = ((Sabitler.Rol)(int)reader["RolID"]).ToString();
-                        } 
+                        }
                     } catch (Exception ex) {
-                        MessageBox.Show("Profil penceresi gösterilemiyor. Hata:\n"+ex.Message);
+                        MessageBox.Show("Profil penceresi gösterilemiyor. Hata:\n" + ex.Message);
                     }
                 }
             }
@@ -74,26 +74,35 @@ namespace edts {
                 } catch (Exception ex) {
                     MessageBox.Show("Profil penceresi gösterilemiyor. Hata:\n" + ex.Message);
                 }
-                
+
             }
         }
 
         private void butonOlustur() {
             if (AktifKullanici.RolID == (int)Sabitler.Rol.Admin) {
-                if(AktifKullanici.ID != kullaniciID) panelAdminAyar.Enabled = Visible;
-                panelBildirim.Visible = true;
+                if (AktifKullanici.ID != kullaniciID) panelAdminAyar.Visible = true;
             }
-            if (AktifKullanici.ID==kullaniciID) {
+            if (AktifKullanici.ID == kullaniciID) {
                 panelKullaniciAyar.Visible = true;
             }
         }
 
         private void buttonKullaniciAyar_Click(object sender, EventArgs e) {
+            pGuvenlikAyarDegistir tmp = new pGuvenlikAyarDegistir();
+            tmp.ShowDialog();
 
+            kullaniciBilgileriDoldur(kullaniciID);
         }
 
         private void buttonBildirim_Click(object sender, EventArgs e) {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            frmKullaniciDüzenle tmp = new frmKullaniciDüzenle(kullaniciID);
+            tmp.ShowDialog();
+
+            kullaniciBilgileriDoldur(kullaniciID);
         }
     }
 }

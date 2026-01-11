@@ -26,16 +26,15 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(girişformcopy));
             kavisliButon1 = new KavisliButon();
             panel1 = new Panel();
+            label2 = new Label();
+            label1 = new Label();
             pictureBox1 = new PictureBox();
             txtSifre = new TextBox();
             txtKullanici = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -48,43 +47,61 @@
             kavisliButon1.FlatStyle = FlatStyle.Flat;
             kavisliButon1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             kavisliButon1.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon1.Location = new Point(108, 338);
+            kavisliButon1.Location = new Point(94, 287);
             kavisliButon1.Name = "kavisliButon1";
-            kavisliButon1.Size = new Size(108, 42);
+            kavisliButon1.Size = new Size(94, 36);
             kavisliButon1.TabIndex = 0;
             kavisliButon1.Text = "Giriş Yap";
             kavisliButon1.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Gainsboro;
+            panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(txtSifre);
             panel1.Controls.Add(txtKullanici);
             panel1.Controls.Add(kavisliButon1);
-            panel1.Location = new Point(646, 1);
+            panel1.Location = new Point(384, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(295, 626);
+            panel1.Size = new Size(258, 532);
             panel1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(29, 248);
+            label2.Name = "label2";
+            label2.Size = new Size(26, 17);
+            label2.TabIndex = 7;
+            label2.Text = "🔒";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(29, 208);
+            label1.Name = "label1";
+            label1.Size = new Size(26, 17);
+            label1.TabIndex = 6;
+            label1.Text = "👤";
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(73, 11);
+            pictureBox1.Location = new Point(64, 9);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(143, 92);
+            pictureBox1.Size = new Size(125, 78);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
             // txtSifre
             // 
             txtSifre.BorderStyle = BorderStyle.FixedSingle;
-            txtSifre.Location = new Point(69, 290);
+            txtSifre.Location = new Point(60, 246);
             txtSifre.Name = "txtSifre";
-            txtSifre.Size = new Size(190, 27);
+            txtSifre.Size = new Size(166, 25);
             txtSifre.TabIndex = 4;
             txtSifre.Enter += txtSifre_Enter;
             txtSifre.Leave += txtSifre_Leave;
@@ -92,38 +109,20 @@
             // txtKullanici
             // 
             txtKullanici.BorderStyle = BorderStyle.FixedSingle;
-            txtKullanici.Location = new Point(69, 243);
+            txtKullanici.Location = new Point(60, 207);
             txtKullanici.Name = "txtKullanici";
-            txtKullanici.Size = new Size(190, 27);
+            txtKullanici.Size = new Size(166, 25);
             txtKullanici.TabIndex = 3;
             txtKullanici.Enter += txtKullanici_Enter;
             txtKullanici.Leave += txtKullanici_Leave;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(33, 245);
-            label1.Name = "label1";
-            label1.Size = new Size(30, 20);
-            label1.TabIndex = 6;
-            label1.Text = "👤";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(33, 292);
-            label2.Name = "label2";
-            label2.Size = new Size(30, 20);
-            label2.TabIndex = 7;
-            label2.Text = "🔒";
-            // 
             // girişformcopy
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1144, 627);
+            ClientSize = new Size(1001, 533);
             Controls.Add(panel1);
             Name = "girişformcopy";
             Text = "girişformcopy";
