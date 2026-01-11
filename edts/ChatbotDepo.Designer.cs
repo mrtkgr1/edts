@@ -121,7 +121,9 @@
             txtSoruu.Size = new Size(407, 30);
             txtSoruu.TabIndex = 3;
             txtSoruu.TextChanged += txtSoruu_TextChanged;
+            txtSoruu.Enter += txtSoruu_Enter;
             txtSoruu.KeyDown += txtSoruu_KeyDown;
+            txtSoruu.Leave += txtSoruu_Leave;
             // 
             // panel5
             // 
