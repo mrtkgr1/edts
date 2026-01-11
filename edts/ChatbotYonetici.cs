@@ -63,7 +63,7 @@ namespace edts
 
         }
 
-        private string placeholder = "Bana soru sor...";
+        private string placeholder = "Fuzuli'ye Soru Sor...";
         private bool sesliOkumaAcik = false;
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
@@ -1056,6 +1056,8 @@ namespace edts
             synthesizer.Rate = 5;
             synthesizer.SelectVoice("Microsoft Tolga");
             panel4.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, panel4.Width, panel4.Height, 30, 30));
+            txtSoruuu.Text = placeholder;
+            txtSoruuu.ForeColor = Color.Gray;
 
 
         }
