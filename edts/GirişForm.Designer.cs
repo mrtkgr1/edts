@@ -46,13 +46,14 @@ namespace edts {
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(199, 248);
+            button2.Location = new Point(200, 422);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(26, 21);
             button2.TabIndex = 6;
             button2.TabStop = false;
             button2.UseVisualStyleBackColor = false;
+            button2.Visible = false;
             button2.Click += button2_Click;
             // 
             // loginForm
@@ -106,6 +107,8 @@ namespace edts {
             loginpsw.PasswordChar = '*';
             loginpsw.Size = new Size(166, 25);
             loginpsw.TabIndex = 4;
+            loginpsw.Enter += loginpsw_Enter;
+            loginpsw.Leave += loginpsw_Leave;
             // 
             // textBox1
             // 
@@ -114,6 +117,8 @@ namespace edts {
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(166, 25);
             textBox1.TabIndex = 3;
+            textBox1.Enter += textBox1_Enter;
+            textBox1.Leave += textBox1_Leave;
             // 
             // kavisliButon1
             // 
@@ -145,6 +150,7 @@ namespace edts {
             MaximizeBox = false;
             MinimumSize = new Size(387, 405);
             Name = "GirişForm";
+            Load += GirişForm_Load;
             loginForm.ResumeLayout(false);
             loginForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
