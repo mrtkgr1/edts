@@ -1,5 +1,6 @@
 ﻿using edts.Properties;
 using EnvanterDepoSistemitaslak2;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,16 @@ namespace edts {
             KontrolFormGoster();
             SolPanelScroll();
             AyarKurulum();
+            kullaniciGuvenlikKurulum();
+        }
+
+        private void kullaniciGuvenlikKurulum() {
+            if (GuvenlikKullanici.GetInt(AktifKullanici.ID,"basarisiz_giris_sayi") != 0) {
+                MessageBox.Show("Hesabınızda başarısız giriş denemeleri tespit edildi.\nSon başarısız giriş: " + GuvenlikKullanici.GetDate(AktifKullanici.ID, "son_basarisiz_giris"), "Güvenlik Uyarısı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                GuvenlikKullanici.SetInt(AktifKullanici.ID, "basarisiz_giris_sayi", 0);
+            }
+
+            GuvenlikKullanici.SetDate(AktifKullanici.ID, "son_giris", DateTime.Now);
         }
 
         private void SolPanelScroll() {

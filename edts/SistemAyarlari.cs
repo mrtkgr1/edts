@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace edts {
             if (genelGenislik <= 0) genelGenislik = 500;
 
             var gruplar = SistemAyarYonetim.Ayarlar.GroupBy(x => x.Kategori);
-            
+
             foreach (var grup in gruplar) {
                 Panel pnlGrupBorder = new Panel();
                 pnlGrupBorder.Name = "pnlGroup_" + grup.Key;
@@ -40,7 +41,7 @@ namespace edts {
                 pnlGrupBorder.BackColor = Color.Silver;
                 pnlGrupBorder.Padding = new Padding(1);
                 pnlGrupBorder.Margin = new Padding(0, 0, 0, 15);
-                pnlGrupBorder.Width = genelGenislik; 
+                pnlGrupBorder.Width = genelGenislik;
 
                 FlowLayoutPanel pnlGrupMain = new FlowLayoutPanel();
                 pnlGrupMain.Dock = DockStyle.Fill;
@@ -54,7 +55,7 @@ namespace edts {
                 pnlHeader.Height = 45;
                 pnlHeader.BackColor = Color.FromArgb(230, 230, 230);
                 pnlHeader.Margin = new Padding(0);
-                pnlHeader.Width = genelGenislik - 2; 
+                pnlHeader.Width = genelGenislik - 2;
 
                 Label lblBaslik = new Label();
                 lblBaslik.Text = "  " + grup.Key.ToUpper();
@@ -82,9 +83,9 @@ namespace edts {
                 pnlContent.WrapContents = false;
                 pnlContent.BackColor = Color.White;
                 pnlContent.Margin = new Padding(0);
-                pnlContent.Width = pnlHeader.Width; 
+                pnlContent.Width = pnlHeader.Width;
 
-               
+
                 btnToggle.Click += (s, e) => {
                     pnlContent.Visible = !pnlContent.Visible;
                     btnToggle.Text = pnlContent.Visible ? "−" : "+";
@@ -95,7 +96,7 @@ namespace edts {
                     Panel pnlSatir = new Panel();
                     pnlSatir.Height = 55;
                     pnlSatir.BackColor = Color.White;
-                    pnlSatir.Margin = new Padding(0); 
+                    pnlSatir.Margin = new Padding(0);
                     pnlSatir.Width = pnlContent.Width;
 
                     Label lbl = new Label();
@@ -222,11 +223,39 @@ namespace edts {
                     }
                 }
             }
+
+
+            resizableButton1.Location = new Point((pnlSettings.ClientSize.Width - resizableButton1.Width) / 2, 0);
+
             pnlSettings.ResumeLayout();
         }
 
-       
-
-
+        private void resizableButton1_Click(object sender, EventArgs e) {
+            foreach (Control row in pnlSettings.Controls) {
+                foreach (Control row2 in row.Controls) {
+                    foreach(Control row3 in row2.Controls) {
+                        foreach(Control row4 in row3.Controls) {
+                            foreach (Control row5 in row4.Controls) {
+                                foreach (Control ctrl in row5.Controls) {
+                                    if (ctrl == null) continue;
+                                    if (ctrl.Tag is SistemAyar ayarG) {
+                                        if (ctrl is CheckBox chk)
+                                            ayarG.Deger = chk.Checked.ToString();
+                                        else if (ctrl is NumericUpDown num)
+                                            ayarG.Deger = num.Value.ToString();
+                                        else if (ctrl is TextBox txt)
+                                            ayarG.Deger = txt.Text.ToString();
+                                        else if (ctrl is ComboBox combo)
+                                            ayarG.Deger = combo.SelectedValue.ToString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, Sabitler.IslemTuru.Sistem_Ayar_Degisiklik, "SistemAyarlari", "Sistem ayarlari guncellendi.");
+            SistemAyarYonetim.AyarlariKaydet();
+        }
     }
 }

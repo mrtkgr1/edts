@@ -77,7 +77,7 @@ namespace edts {
                         dgvKullaniciListesi.Columns["KullaniciID"].HeaderText = "ID";
                         dgvKullaniciListesi.Columns["AdSoyad"].HeaderText = "Adı Soyadı";
                         dgvKullaniciListesi.Columns["KullaniciAdi"].HeaderText = "Kullanıcı Adı";
-                        dgvKullaniciListesi.Columns["RolID"].HeaderText = "Rol ID";
+                        dgvKullaniciListesi.Columns["RolID"].HeaderText = "Rol";
                         dgvKullaniciListesi.Columns["AktifMi"].HeaderText = "Aktif";
 
                         if (!dgvKullaniciListesi.Columns.Contains("btnDuzenle")) {
@@ -86,17 +86,33 @@ namespace edts {
                             dzn.HeaderText = "D";
                             dzn.Text = "📝";
                             dzn.UseColumnTextForButtonValue = true;
+                            dzn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                             dzn.Width = 35;
+
                             dgvKullaniciListesi.Columns.Add(dzn);
 
                             DataGridViewButtonColumn sil = new DataGridViewButtonColumn();
                             sil.Name = "btnSil";
                             sil.HeaderText = "S";
                             sil.Text = "🗑";
+                            sil.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                             sil.UseColumnTextForButtonValue = true;
                             sil.Width = 35;
+
                             dgvKullaniciListesi.Columns.Add(sil);
                         }
+
+                        dgvKullaniciListesi.Columns["KullaniciID"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                        dgvKullaniciListesi.Columns["KullaniciID"].Width = 50;
+
+                        dgvKullaniciListesi.Columns["RolID"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                        dgvKullaniciListesi.Columns["RolID"].Width = 60;
+
+                        dgvKullaniciListesi.Columns["AktifMi"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                        dgvKullaniciListesi.Columns["AktifMi"].Width = 50;
+
+                        dgvKullaniciListesi.Columns["AdSoyad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dgvKullaniciListesi.Columns["KullaniciAdi"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     }
 
                 }
@@ -204,7 +220,11 @@ namespace edts {
                      }
 
                      MessageBox.Show("Kullanıcı başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    VeritabaniYardimcisi.LogKaydet(
+                       AktifKullanici.ID,
+                       Sabitler.IslemTuru.Kullanici_Silindi,
+                       "tblKullanicilar",
+                       "\"" + kullaniciAdi + "\" adlı kullanıcı silindi.");
                      KullanicilariListele();
 
                  } catch (Exception ex) {
