@@ -22,7 +22,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             button1 = new Button();
             label1 = new Label();
             textBoxKullaniciAd = new TextBox();
@@ -53,9 +54,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(196, 177);
+            button1.Location = new Point(224, 208);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(83, 25);
+            button1.Size = new Size(95, 29);
             button1.TabIndex = 0;
             button1.Text = "Ekle";
             button1.UseVisualStyleBackColor = true;
@@ -64,25 +66,27 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 6);
+            label1.Location = new Point(3, 7);
             label1.Name = "label1";
-            label1.Size = new Size(81, 17);
+            label1.Size = new Size(95, 20);
             label1.TabIndex = 1;
             label1.Text = "Kullanıcı Adı:";
             // 
             // textBoxKullaniciAd
             // 
-            textBoxKullaniciAd.Location = new Point(110, 3);
+            textBoxKullaniciAd.Location = new Point(126, 4);
+            textBoxKullaniciAd.Margin = new Padding(3, 4, 3, 4);
             textBoxKullaniciAd.Name = "textBoxKullaniciAd";
-            textBoxKullaniciAd.Size = new Size(155, 25);
+            textBoxKullaniciAd.Size = new Size(177, 27);
             textBoxKullaniciAd.TabIndex = 2;
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(5, 180);
+            checkBox1.Location = new Point(6, 212);
+            checkBox1.Margin = new Padding(3, 4, 3, 4);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(143, 21);
+            checkBox1.Size = new Size(163, 24);
             checkBox1.TabIndex = 3;
             checkBox1.TabStop = false;
             checkBox1.Text = "Çoklu hesap ekleme";
@@ -95,9 +99,10 @@
             panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBoxKullaniciAd);
-            panel1.Location = new Point(3, 3);
+            panel1.Location = new Point(3, 4);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(268, 31);
+            panel1.Size = new Size(306, 35);
             panel1.TabIndex = 4;
             // 
             // panel2
@@ -106,25 +111,27 @@
             panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(textBoxTamAd);
-            panel2.Location = new Point(3, 40);
+            panel2.Location = new Point(3, 47);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(268, 31);
+            panel2.Size = new Size(306, 35);
             panel2.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(26, 6);
+            label2.Location = new Point(30, 7);
             label2.Name = "label2";
-            label2.Size = new Size(58, 17);
+            label2.Size = new Size(66, 20);
             label2.TabIndex = 1;
             label2.Text = "Tam Adı:";
             // 
             // textBoxTamAd
             // 
-            textBoxTamAd.Location = new Point(110, 3);
+            textBoxTamAd.Location = new Point(126, 4);
+            textBoxTamAd.Margin = new Padding(3, 4, 3, 4);
             textBoxTamAd.Name = "textBoxTamAd";
-            textBoxTamAd.Size = new Size(155, 25);
+            textBoxTamAd.Size = new Size(177, 27);
             textBoxTamAd.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -136,9 +143,10 @@
             flowLayoutPanel1.Controls.Add(panel4);
             flowLayoutPanel1.Controls.Add(panel3);
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(5, 6);
+            flowLayoutPanel1.Location = new Point(6, 7);
+            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(274, 146);
+            flowLayoutPanel1.Size = new Size(312, 170);
             flowLayoutPanel1.TabIndex = 6;
             // 
             // panel4
@@ -147,26 +155,28 @@
             panel4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel4.Controls.Add(comboBoxRol);
             panel4.Controls.Add(label4);
-            panel4.Location = new Point(3, 77);
+            panel4.Location = new Point(3, 90);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(268, 29);
+            panel4.Size = new Size(306, 33);
             panel4.TabIndex = 7;
             // 
             // comboBoxRol
             // 
             comboBoxRol.FormattingEnabled = true;
-            comboBoxRol.Location = new Point(110, 1);
+            comboBoxRol.Location = new Point(126, 1);
+            comboBoxRol.Margin = new Padding(3, 4, 3, 4);
             comboBoxRol.Name = "comboBoxRol";
-            comboBoxRol.Size = new Size(155, 25);
+            comboBoxRol.Size = new Size(177, 28);
             comboBoxRol.TabIndex = 2;
             comboBoxRol.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(54, 4);
+            label4.Location = new Point(62, 5);
             label4.Name = "label4";
-            label4.Size = new Size(30, 17);
+            label4.Size = new Size(34, 20);
             label4.TabIndex = 1;
             label4.Text = "Rol:";
             // 
@@ -176,25 +186,27 @@
             panel3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel3.Controls.Add(label3);
             panel3.Controls.Add(textBoxsifre);
-            panel3.Location = new Point(3, 112);
+            panel3.Location = new Point(3, 131);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(268, 31);
+            panel3.Size = new Size(306, 35);
             panel3.TabIndex = 6;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(47, 6);
+            label3.Location = new Point(54, 7);
             label3.Name = "label3";
-            label3.Size = new Size(37, 17);
+            label3.Size = new Size(42, 20);
             label3.TabIndex = 1;
             label3.Text = "Şifre:";
             // 
             // textBoxsifre
             // 
-            textBoxsifre.Location = new Point(110, 3);
+            textBoxsifre.Location = new Point(126, 4);
+            textBoxsifre.Margin = new Padding(3, 4, 3, 4);
             textBoxsifre.Name = "textBoxsifre";
-            textBoxsifre.Size = new Size(155, 25);
+            textBoxsifre.Size = new Size(177, 27);
             textBoxsifre.TabIndex = 2;
             // 
             // panel5
@@ -202,27 +214,29 @@
             panel5.Controls.Add(labelBildirim);
             panel5.Controls.Add(resizableButton2);
             panel5.Controls.Add(pictureBox1);
-            panel5.Location = new Point(5, 228);
+            panel5.Location = new Point(6, 268);
+            panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(274, 143);
+            panel5.Size = new Size(313, 168);
             panel5.TabIndex = 7;
             panel5.Visible = false;
             // 
             // labelBildirim
             // 
-            labelBildirim.Location = new Point(108, 8);
+            labelBildirim.Location = new Point(123, 9);
             labelBildirim.Name = "labelBildirim";
-            labelBildirim.Size = new Size(160, 90);
+            labelBildirim.Size = new Size(183, 106);
             labelBildirim.TabIndex = 6;
             // 
             // resizableButton2
             // 
             resizableButton2.Image = null;
             resizableButton2.KaynakResim = null;
-            resizableButton2.Location = new Point(68, 113);
+            resizableButton2.Location = new Point(78, 133);
+            resizableButton2.Margin = new Padding(3, 4, 3, 4);
             resizableButton2.Name = "resizableButton2";
             resizableButton2.ResimBoyutu = 24;
-            resizableButton2.Size = new Size(137, 25);
+            resizableButton2.Size = new Size(157, 29);
             resizableButton2.TabIndex = 5;
             resizableButton2.Text = "Profili görüntüle";
             resizableButton2.UseVisualStyleBackColor = true;
@@ -231,22 +245,24 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(4, 3);
+            pictureBox1.Location = new Point(5, 4);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(97, 95);
+            pictureBox1.Size = new Size(111, 112);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // frmAdminKullaniciEkle
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(286, 376);
+            ClientSize = new Size(327, 442);
             Controls.Add(panel5);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(checkBox1);
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAdminKullaniciEkle";

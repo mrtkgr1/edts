@@ -22,7 +22,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
             label1 = new Label();
@@ -65,9 +66,10 @@
             flowLayoutPanel1.Controls.Add(panel3);
             flowLayoutPanel1.Controls.Add(panel5);
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(12, 12);
+            flowLayoutPanel1.Location = new Point(14, 14);
+            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(255, 179);
+            flowLayoutPanel1.Size = new Size(290, 209);
             flowLayoutPanel1.TabIndex = 7;
             // 
             // panel1
@@ -76,25 +78,27 @@
             panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBoxKullaniciAd);
-            panel1.Location = new Point(3, 3);
+            panel1.Location = new Point(3, 4);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(249, 31);
+            panel1.Size = new Size(284, 35);
             panel1.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 6);
+            label1.Location = new Point(3, 7);
             label1.Name = "label1";
-            label1.Size = new Size(81, 17);
+            label1.Size = new Size(95, 20);
             label1.TabIndex = 1;
             label1.Text = "Kullanıcı Adı:";
             // 
             // textBoxKullaniciAd
             // 
-            textBoxKullaniciAd.Location = new Point(90, 3);
+            textBoxKullaniciAd.Location = new Point(103, 4);
+            textBoxKullaniciAd.Margin = new Padding(3, 4, 3, 4);
             textBoxKullaniciAd.Name = "textBoxKullaniciAd";
-            textBoxKullaniciAd.Size = new Size(156, 25);
+            textBoxKullaniciAd.Size = new Size(178, 27);
             textBoxKullaniciAd.TabIndex = 2;
             // 
             // panel2
@@ -103,25 +107,27 @@
             panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(textBoxTamAd);
-            panel2.Location = new Point(3, 40);
+            panel2.Location = new Point(3, 47);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(249, 31);
+            panel2.Size = new Size(284, 35);
             panel2.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(26, 6);
+            label2.Location = new Point(30, 7);
             label2.Name = "label2";
-            label2.Size = new Size(58, 17);
+            label2.Size = new Size(66, 20);
             label2.TabIndex = 1;
             label2.Text = "Tam Adı:";
             // 
             // textBoxTamAd
             // 
-            textBoxTamAd.Location = new Point(90, 3);
+            textBoxTamAd.Location = new Point(103, 4);
+            textBoxTamAd.Margin = new Padding(3, 4, 3, 4);
             textBoxTamAd.Name = "textBoxTamAd";
-            textBoxTamAd.Size = new Size(156, 25);
+            textBoxTamAd.Size = new Size(178, 27);
             textBoxTamAd.TabIndex = 2;
             // 
             // panel4
@@ -130,25 +136,27 @@
             panel4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel4.Controls.Add(comboBoxRol);
             panel4.Controls.Add(label4);
-            panel4.Location = new Point(3, 77);
+            panel4.Location = new Point(3, 90);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(249, 29);
+            panel4.Size = new Size(284, 33);
             panel4.TabIndex = 7;
             // 
             // comboBoxRol
             // 
             comboBoxRol.FormattingEnabled = true;
-            comboBoxRol.Location = new Point(90, 1);
+            comboBoxRol.Location = new Point(103, 1);
+            comboBoxRol.Margin = new Padding(3, 4, 3, 4);
             comboBoxRol.Name = "comboBoxRol";
-            comboBoxRol.Size = new Size(156, 25);
+            comboBoxRol.Size = new Size(178, 28);
             comboBoxRol.TabIndex = 2;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(54, 4);
+            label4.Location = new Point(62, 5);
             label4.Name = "label4";
-            label4.Size = new Size(30, 17);
+            label4.Size = new Size(34, 20);
             label4.TabIndex = 1;
             label4.Text = "Rol:";
             // 
@@ -158,25 +166,27 @@
             panel3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel3.Controls.Add(label3);
             panel3.Controls.Add(textBoxsifre);
-            panel3.Location = new Point(3, 112);
+            panel3.Location = new Point(3, 131);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(249, 28);
+            panel3.Size = new Size(284, 31);
             panel3.TabIndex = 6;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(47, 6);
+            label3.Location = new Point(54, 7);
             label3.Name = "label3";
-            label3.Size = new Size(37, 17);
+            label3.Size = new Size(42, 20);
             label3.TabIndex = 1;
             label3.Text = "Şifre:";
             // 
             // textBoxsifre
             // 
-            textBoxsifre.Location = new Point(90, 0);
+            textBoxsifre.Location = new Point(103, 0);
+            textBoxsifre.Margin = new Padding(3, 4, 3, 4);
             textBoxsifre.Name = "textBoxsifre";
-            textBoxsifre.Size = new Size(156, 25);
+            textBoxsifre.Size = new Size(178, 27);
             textBoxsifre.TabIndex = 2;
             // 
             // panel5
@@ -185,17 +195,19 @@
             panel5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel5.Controls.Add(checkBoxAktiflik);
             panel5.Controls.Add(lbla);
-            panel5.Location = new Point(3, 146);
+            panel5.Location = new Point(3, 170);
+            panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(214, 30);
+            panel5.Size = new Size(247, 35);
             panel5.TabIndex = 8;
             // 
             // checkBoxAktiflik
             // 
             checkBoxAktiflik.AutoSize = true;
-            checkBoxAktiflik.Location = new Point(159, 6);
+            checkBoxAktiflik.Location = new Point(182, 7);
+            checkBoxAktiflik.Margin = new Padding(3, 4, 3, 4);
             checkBoxAktiflik.Name = "checkBoxAktiflik";
-            checkBoxAktiflik.Size = new Size(52, 21);
+            checkBoxAktiflik.Size = new Size(62, 24);
             checkBoxAktiflik.TabIndex = 2;
             checkBoxAktiflik.Text = "Aktif";
             checkBoxAktiflik.UseVisualStyleBackColor = true;
@@ -203,17 +215,18 @@
             // lbla
             // 
             lbla.AutoSize = true;
-            lbla.Location = new Point(48, 3);
+            lbla.Location = new Point(55, 4);
             lbla.Name = "lbla";
-            lbla.Size = new Size(36, 17);
+            lbla.Size = new Size(43, 20);
             lbla.TabIndex = 1;
             lbla.Text = "Aktif:";
             // 
             // button2
             // 
-            button2.Location = new Point(225, 211);
+            button2.Location = new Point(257, 248);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(131, 25);
+            button2.Size = new Size(150, 29);
             button2.TabIndex = 9;
             button2.Text = "Kaydet";
             button2.UseVisualStyleBackColor = true;
@@ -226,9 +239,10 @@
             flowLayoutPanel2.Controls.Add(panel6);
             flowLayoutPanel2.Controls.Add(labelHataliGiris);
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(284, 12);
+            flowLayoutPanel2.Location = new Point(325, 14);
+            flowLayoutPanel2.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(267, 87);
+            flowLayoutPanel2.Size = new Size(303, 104);
             flowLayoutPanel2.TabIndex = 10;
             // 
             // panel6
@@ -237,17 +251,19 @@
             panel6.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel6.Controls.Add(buttonKilit);
             panel6.Controls.Add(labelKilit);
-            panel6.Location = new Point(3, 3);
+            panel6.Location = new Point(3, 4);
+            panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(261, 60);
+            panel6.Size = new Size(297, 71);
             panel6.TabIndex = 4;
             // 
             // buttonKilit
             // 
             buttonKilit.Enabled = false;
-            buttonKilit.Location = new Point(63, 26);
+            buttonKilit.Location = new Point(72, 31);
+            buttonKilit.Margin = new Padding(3, 4, 3, 4);
             buttonKilit.Name = "buttonKilit";
-            buttonKilit.Size = new Size(135, 31);
+            buttonKilit.Size = new Size(154, 36);
             buttonKilit.TabIndex = 2;
             buttonKilit.Text = "Kısıtlamayı kaldır";
             buttonKilit.UseVisualStyleBackColor = true;
@@ -255,28 +271,29 @@
             // 
             // labelKilit
             // 
-            labelKilit.Location = new Point(3, 6);
+            labelKilit.Location = new Point(3, 7);
             labelKilit.Name = "labelKilit";
-            labelKilit.Size = new Size(255, 17);
+            labelKilit.Size = new Size(291, 20);
             labelKilit.TabIndex = 1;
             labelKilit.Text = "Kısıtlama yok.";
             // 
             // labelHataliGiris
             // 
-            labelHataliGiris.Location = new Point(3, 66);
+            labelHataliGiris.Location = new Point(3, 79);
             labelHataliGiris.Name = "labelHataliGiris";
-            labelHataliGiris.Size = new Size(255, 21);
+            labelHataliGiris.Size = new Size(291, 25);
             labelHataliGiris.TabIndex = 5;
             // 
             // frmKullaniciDüzenle
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(598, 245);
+            ClientSize = new Size(683, 288);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(button2);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmKullaniciDüzenle";
