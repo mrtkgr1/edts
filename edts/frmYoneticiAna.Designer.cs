@@ -401,7 +401,6 @@
             Margin = new Padding(3, 4, 3, 4);
             MinimumSize = new Size(1369, 580);
             Name = "frmYoneticiAna";
-            Text = "frmYoneticiAna";
             panel1.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
