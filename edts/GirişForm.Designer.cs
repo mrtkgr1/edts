@@ -150,6 +150,7 @@ namespace edts {
             MaximizeBox = false;
             MinimumSize = new Size(387, 405);
             Name = "GirişForm";
+            Text = "EDTS - Giriş Ekranı";
             Load += GirişForm_Load;
             loginForm.ResumeLayout(false);
             loginForm.PerformLayout();
