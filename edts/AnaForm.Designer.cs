@@ -117,7 +117,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1046, 36);
+            panel1.Size = new Size(1146, 36);
             panel1.TabIndex = 0;
             panel1.MouseDown += panel1_MouseDown;
             // 
@@ -135,7 +135,7 @@
             // 
             pictureBoxNotf.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBoxNotf.Image = Properties.Resources.notf_yok_beyaz;
-            pictureBoxNotf.Location = new Point(839, 1);
+            pictureBoxNotf.Location = new Point(939, 1);
             pictureBoxNotf.Name = "pictureBoxNotf";
             pictureBoxNotf.Size = new Size(36, 33);
             pictureBoxNotf.SizeMode = PictureBoxSizeMode.Zoom;
@@ -148,7 +148,7 @@
             // 
             pictureBoxProfile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBoxProfile.Image = Properties.Resources.profile_beyaz;
-            pictureBoxProfile.Location = new Point(881, 1);
+            pictureBoxProfile.Location = new Point(981, 1);
             pictureBoxProfile.Name = "pictureBoxProfile";
             pictureBoxProfile.Size = new Size(36, 33);
             pictureBoxProfile.SizeMode = PictureBoxSizeMode.Zoom;
@@ -163,7 +163,7 @@
             button8.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
             button8.FlatStyle = FlatStyle.Flat;
             button8.Font = new Font("Marlett", 8.830189F);
-            button8.Location = new Point(1007, 1);
+            button8.Location = new Point(1107, 1);
             button8.Name = "button8";
             button8.Size = new Size(36, 33);
             button8.TabIndex = 2;
@@ -177,7 +177,7 @@
             prefPictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             prefPictureBox.Image = Properties.Resources.kayan_liste_beyaz_assa;
             prefPictureBox.InitialImage = (Image)resources.GetObject("prefPictureBox.InitialImage");
-            prefPictureBox.Location = new Point(797, 1);
+            prefPictureBox.Location = new Point(897, 1);
             prefPictureBox.Name = "prefPictureBox";
             prefPictureBox.Size = new Size(36, 33);
             prefPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
@@ -192,7 +192,7 @@
             button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Marlett", 8.830189F);
-            button10.Location = new Point(923, 1);
+            button10.Location = new Point(1023, 1);
             button10.Name = "button10";
             button10.Size = new Size(36, 33);
             button10.TabIndex = 4;
@@ -207,7 +207,7 @@
             btnBuyut.FlatAppearance.BorderSize = 0;
             btnBuyut.FlatStyle = FlatStyle.Flat;
             btnBuyut.Font = new Font("Marlett", 8.830189F);
-            btnBuyut.Location = new Point(965, 1);
+            btnBuyut.Location = new Point(1065, 1);
             btnBuyut.Name = "btnBuyut";
             btnBuyut.Size = new Size(36, 33);
             btnBuyut.TabIndex = 3;
@@ -664,7 +664,7 @@
             AnaHPanel.Location = new Point(4, 2);
             AnaHPanel.Margin = new Padding(0);
             AnaHPanel.Name = "AnaHPanel";
-            AnaHPanel.Size = new Size(1046, 424);
+            AnaHPanel.Size = new Size(1146, 424);
             AnaHPanel.TabIndex = 2;
             // 
             // panelForm
@@ -673,7 +673,7 @@
             panelForm.Location = new Point(178, 36);
             panelForm.Margin = new Padding(0);
             panelForm.Name = "panelForm";
-            panelForm.Size = new Size(868, 388);
+            panelForm.Size = new Size(968, 388);
             panelForm.TabIndex = 2;
             // 
             // SolHPanel
@@ -692,7 +692,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(1054, 430);
+            ClientSize = new Size(1154, 430);
             ControlBox = false;
             Controls.Add(AnaHPanel);
             MinimumSize = new Size(900, 400);
