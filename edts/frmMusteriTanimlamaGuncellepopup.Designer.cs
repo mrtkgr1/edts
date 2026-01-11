@@ -173,7 +173,6 @@
             ClientSize = new Size(660, 587);
             Controls.Add(tabControl1);
             Name = "frmMusteriTanimlamaGuncellepopup";
-            Text = "frmMusteriTanimlamaGuncellepopup";
             Load += frmMusteriTanimlamaGuncellepopup_Load;
             tabControl1.ResumeLayout(false);
             tabPage4.ResumeLayout(false);

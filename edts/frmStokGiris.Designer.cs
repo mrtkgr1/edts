@@ -43,11 +43,11 @@
             label1 = new Label();
             panel2 = new Panel();
             dgvStokDetaylari = new DataGridView();
+            btnSilGrid = new DataGridViewButtonColumn();
             panel3 = new Panel();
             btnGirisOnayla = new Button();
             btnSil = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
-            btnSilGrid = new DataGridViewButtonColumn();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel2.SuspendLayout();
@@ -220,6 +220,7 @@
             dgvStokDetaylari.AllowUserToAddRows = false;
             dgvStokDetaylari.AllowUserToDeleteRows = false;
             dgvStokDetaylari.AllowUserToResizeRows = false;
+            dgvStokDetaylari.BackgroundColor = Color.WhiteSmoke;
             dgvStokDetaylari.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStokDetaylari.Columns.AddRange(new DataGridViewColumn[] { btnSilGrid });
             dgvStokDetaylari.Dock = DockStyle.Fill;
@@ -230,6 +231,16 @@
             dgvStokDetaylari.Size = new Size(755, 643);
             dgvStokDetaylari.TabIndex = 0;
             dgvStokDetaylari.CellContentClick += dgvStokDetaylari_CellContentClick;
+            // 
+            // btnSilGrid
+            // 
+            btnSilGrid.FlatStyle = FlatStyle.Flat;
+            btnSilGrid.HeaderText = "Sil";
+            btnSilGrid.MinimumWidth = 6;
+            btnSilGrid.Name = "btnSilGrid";
+            btnSilGrid.Text = "🗑";
+            btnSilGrid.UseColumnTextForButtonValue = true;
+            btnSilGrid.Width = 125;
             // 
             // panel3
             // 
@@ -290,16 +301,6 @@
             tableLayoutPanel1.Size = new Size(761, 735);
             tableLayoutPanel1.TabIndex = 2;
             // 
-            // btnSilGrid
-            // 
-            btnSilGrid.FlatStyle = FlatStyle.Flat;
-            btnSilGrid.HeaderText = "Sil";
-            btnSilGrid.MinimumWidth = 6;
-            btnSilGrid.Name = "btnSilGrid";
-            btnSilGrid.Text = "🗑";
-            btnSilGrid.UseColumnTextForButtonValue = true;
-            btnSilGrid.Width = 125;
-            // 
             // frmStokGiris
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -309,7 +310,6 @@
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmStokGiris";
-            Text = "frmStokGiris";
             Load += frmStokGiris_Load;
             panel1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
