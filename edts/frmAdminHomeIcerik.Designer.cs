@@ -462,6 +462,7 @@
             ClientSize = new Size(987, 697);
             Controls.Add(panel2);
             Name = "frmAdminHomeIcerik";
+            Text = "Kontrol Paneli";
             Load += frmAdminHomeIcerik_Load;
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
