@@ -127,7 +127,6 @@
             ClientSize = new Size(673, 558);
             Controls.Add(tabControl1);
             Name = "frmKategoriYonetimiKaydetpopup";
-            Text = "frmKategoriYonetimiKaydetpopup";
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();

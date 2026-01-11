@@ -133,7 +133,6 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ChatbotYonetici";
-            Text = "ChatbotYonetici";
             Load += ChatbotYonetici_Load;
             panel4.ResumeLayout(false);
             panel3.ResumeLayout(false);
