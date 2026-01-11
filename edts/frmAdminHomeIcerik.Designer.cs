@@ -1,7 +1,5 @@
-﻿namespace edts
-{
-    partial class frmAdminHomeIcerik
-    {
+﻿namespace edts {
+    partial class frmAdminHomeIcerik {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -11,10 +9,8 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -30,19 +26,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdminHomeIcerik));
             panel2 = new Panel();
             panel3 = new Panel();
-            groupBox2 = new GroupBox();
-            panel6 = new Panel();
-            label7 = new Label();
-            pictureBox6 = new PictureBox();
-            lblHataKayitlariSayisi = new Label();
-            panel5 = new Panel();
-            label3 = new Label();
-            pictureBox3 = new PictureBox();
-            lblEskiSifreKullananSayisi = new Label();
-            panel4 = new Panel();
-            label4 = new Label();
-            pictureBox1 = new PictureBox();
-            lblKilitliHesapSayisi = new Label();
             groupBox3 = new GroupBox();
             groupBox7 = new GroupBox();
             groupBox6 = new GroupBox();
@@ -74,13 +57,6 @@
             groupBox12 = new GroupBox();
             groupBox13 = new GroupBox();
             panel3.SuspendLayout();
-            groupBox2.SuspendLayout();
-            panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox3.SuspendLayout();
             groupBox7.SuspendLayout();
             groupBox6.SuspendLayout();
@@ -123,146 +99,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1128, 1061);
             panel3.TabIndex = 1;
-            // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(panel6);
-            groupBox2.Controls.Add(panel5);
-            groupBox2.Controls.Add(panel4);
-            groupBox2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            groupBox2.ForeColor = Color.Firebrick;
-            groupBox2.Location = new Point(33, 45);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(920, 125);
-            groupBox2.TabIndex = 13;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Kritik Sistem Bilgileri!";
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.LightSlateGray;
-            panel6.Controls.Add(label7);
-            panel6.Controls.Add(pictureBox6);
-            panel6.Controls.Add(lblHataKayitlariSayisi);
-            panel6.Location = new Point(618, 22);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(298, 96);
-            panel6.TabIndex = 2;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label7.ForeColor = SystemColors.ControlLightLight;
-            label7.Location = new Point(3, 65);
-            label7.Name = "label7";
-            label7.Size = new Size(170, 21);
-            label7.TabIndex = 2;
-            label7.Text = "Hatalı Giriş Yapanlar:";
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
-            pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox6.Location = new Point(3, 10);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(109, 53);
-            pictureBox6.TabIndex = 1;
-            pictureBox6.TabStop = false;
-            // 
-            // lblHataKayitlariSayisi
-            // 
-            lblHataKayitlariSayisi.AutoSize = true;
-            lblHataKayitlariSayisi.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblHataKayitlariSayisi.ForeColor = SystemColors.ControlLightLight;
-            lblHataKayitlariSayisi.Location = new Point(164, 61);
-            lblHataKayitlariSayisi.Name = "lblHataKayitlariSayisi";
-            lblHataKayitlariSayisi.Size = new Size(0, 25);
-            lblHataKayitlariSayisi.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.LightSlateGray;
-            panel5.Controls.Add(label3);
-            panel5.Controls.Add(pictureBox3);
-            panel5.Controls.Add(lblEskiSifreKullananSayisi);
-            panel5.Location = new Point(312, 22);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(300, 98);
-            panel5.TabIndex = 2;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label3.ForeColor = SystemColors.ControlLightLight;
-            label3.Location = new Point(13, 65);
-            label3.Name = "label3";
-            label3.Size = new Size(176, 21);
-            label3.TabIndex = 4;
-            label3.Text = "Eski Şifre Kullananlar:";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(16, 10);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(109, 53);
-            pictureBox3.TabIndex = 3;
-            pictureBox3.TabStop = false;
-            // 
-            // lblEskiSifreKullananSayisi
-            // 
-            lblEskiSifreKullananSayisi.AutoSize = true;
-            lblEskiSifreKullananSayisi.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblEskiSifreKullananSayisi.ForeColor = SystemColors.ControlLightLight;
-            lblEskiSifreKullananSayisi.Location = new Point(189, 65);
-            lblEskiSifreKullananSayisi.Name = "lblEskiSifreKullananSayisi";
-            lblEskiSifreKullananSayisi.Size = new Size(0, 25);
-            lblEskiSifreKullananSayisi.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.LightSlateGray;
-            panel4.Controls.Add(label4);
-            panel4.Controls.Add(pictureBox1);
-            panel4.Controls.Add(lblKilitliHesapSayisi);
-            panel4.Location = new Point(5, 22);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(298, 98);
-            panel4.TabIndex = 1;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label4.ForeColor = SystemColors.ControlLightLight;
-            label4.Location = new Point(4, 65);
-            label4.Name = "label4";
-            label4.Size = new Size(154, 21);
-            label4.TabIndex = 2;
-            label4.Text = "Kilitli Hesap Sayısı:";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(14, 10);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(109, 53);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
-            // lblKilitliHesapSayisi
-            // 
-            lblKilitliHesapSayisi.AutoSize = true;
-            lblKilitliHesapSayisi.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblKilitliHesapSayisi.ForeColor = SystemColors.ControlLightLight;
-            lblKilitliHesapSayisi.Location = new Point(160, 65);
-            lblKilitliHesapSayisi.Name = "lblKilitliHesapSayisi";
-            lblKilitliHesapSayisi.Size = new Size(0, 25);
-            lblKilitliHesapSayisi.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -394,7 +230,7 @@
             lblToplamKullaniciSayisi.ForeColor = SystemColors.ControlLightLight;
             lblToplamKullaniciSayisi.Location = new Point(200, 87);
             lblToplamKullaniciSayisi.Name = "lblToplamKullaniciSayisi";
-            lblToplamKullaniciSayisi.Size = new Size(0, 25);
+            lblToplamKullaniciSayisi.Size = new Size(0, 28);
             lblToplamKullaniciSayisi.TabIndex = 0;
             // 
             // pictureBox5
@@ -414,7 +250,7 @@
             lblAdminOturumlariSayisi.ForeColor = SystemColors.ControlLightLight;
             lblAdminOturumlariSayisi.Location = new Point(201, 87);
             lblAdminOturumlariSayisi.Name = "lblAdminOturumlariSayisi";
-            lblAdminOturumlariSayisi.Size = new Size(0, 25);
+            lblAdminOturumlariSayisi.Size = new Size(0, 28);
             lblAdminOturumlariSayisi.TabIndex = 0;
             // 
             // pictureBox2
@@ -423,7 +259,7 @@
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox2.Location = new Point(21, 64);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(109, 53);
+            pictureBox2.Size = new Size(125, 62);
             pictureBox2.TabIndex = 5;
             pictureBox2.TabStop = false;
             // 
@@ -434,7 +270,7 @@
             lblBekleyenIslemSayisi.ForeColor = SystemColors.ControlLightLight;
             lblBekleyenIslemSayisi.Location = new Point(222, 87);
             lblBekleyenIslemSayisi.Name = "lblBekleyenIslemSayisi";
-            lblBekleyenIslemSayisi.Size = new Size(0, 25);
+            lblBekleyenIslemSayisi.Size = new Size(0, 28);
             lblBekleyenIslemSayisi.TabIndex = 4;
             // 
             // pictureBox7
@@ -454,7 +290,7 @@
             lblYoneticiSayisi.ForeColor = SystemColors.ControlLightLight;
             lblYoneticiSayisi.Location = new Point(200, 85);
             lblYoneticiSayisi.Name = "lblYoneticiSayisi";
-            lblYoneticiSayisi.Size = new Size(0, 25);
+            lblYoneticiSayisi.Size = new Size(0, 28);
             lblYoneticiSayisi.TabIndex = 3;
             // 
             // pictureBox9
@@ -474,7 +310,7 @@
             lblAdminSayisi.ForeColor = SystemColors.ControlLightLight;
             lblAdminSayisi.Location = new Point(216, 85);
             lblAdminSayisi.Name = "lblAdminSayisi";
-            lblAdminSayisi.Size = new Size(0, 25);
+            lblAdminSayisi.Size = new Size(0, 28);
             lblAdminSayisi.TabIndex = 4;
             // 
             // pictureBox8
@@ -494,7 +330,7 @@
             lblDepoPersoneliSayisi.ForeColor = SystemColors.ControlLightLight;
             lblDepoPersoneliSayisi.Location = new Point(195, 85);
             lblDepoPersoneliSayisi.Name = "lblDepoPersoneliSayisi";
-            lblDepoPersoneliSayisi.Size = new Size(0, 25);
+            lblDepoPersoneliSayisi.Size = new Size(0, 28);
             lblDepoPersoneliSayisi.TabIndex = 5;
             // 
             // groupBox2
@@ -605,25 +441,15 @@
             // 
             // frmAdminHomeIcerik
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1128, 1061);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Name = "frmAdminHomeIcerik";
-            Text = "Kontrol PAneli";
+            Text = "frmAdminHomeIcerik";
             Load += frmAdminHomeIcerik_Load;
             panel3.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox7.ResumeLayout(false);
             groupBox7.PerformLayout();
