@@ -70,7 +70,7 @@ namespace edts
 
 
 
-        private string placeholder = "Bana soru sor...";
+        private string placeholder = "Fuzuli'ye Soru Sor...";
         private bool sesliOkumaAcik = false;
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
@@ -158,15 +158,15 @@ namespace edts
 
             if (beklenenIslem == "rapor_secimi")
             {
-                beklenenIslem = ""; // Durumu hemen sıfırla ki her kelimeyi rapor seçimi sanmasın
+                beklenenIslem = ""; 
 
                 if (temizSoru.Contains("excel") || temizSoru.Contains("eksell"))
                 {
-                    return DepoRaporuExcelKaydet(); // Daha önce yazdığımız Excel hazırlama metodu
+                    return DepoRaporuExcelKaydet();
                 }
                 else if (temizSoru.Contains("not") || temizSoru.Contains("defter") || temizSoru.Contains("metin"))
                 {
-                    return DepoRaporuMetinKaydet(); // Daha önce yazdığımız Not Defteri hazırlama metodu
+                    return DepoRaporuMetinKaydet(); 
                 }
                 else
                 {
@@ -174,10 +174,10 @@ namespace edts
                 }
             }
 
-            // 2. Kullanıcı ilk kez "rapor oluştur" dediğinde tetiklenen kısım
+           
             if (temizSoru.Contains("rapor oluştur") || temizSoru.Contains("rapor hazırla"))
             {
-                beklenenIslem = "rapor_secimi"; // Chatbot'u "cevap bekleme" moduna sokar
+                beklenenIslem = "rapor_secimi"; 
                 return "Tabii ki, depo raporunu hazırlıyorum. Hangi formatta kaydetmemi istersiniz? \n\n • **Excel** \n • **Not Defteri**";
             }
 
@@ -1169,6 +1169,8 @@ namespace edts
             synthesizer.SetOutputToDefaultAudioDevice();
             synthesizer.Rate = 2;
             synthesizer.SelectVoice("Microsoft Tolga");
+            txtSoruu.Text = placeholder;
+            txtSoruu.ForeColor = Color.Gray;
 
 
         }
