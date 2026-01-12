@@ -1108,7 +1108,7 @@ namespace edts
             synthesizer.Volume = 100;
            
 
-            txtSoru.ForeColor = Color.Gray;
+            txtSoru.ForeColor = Color.Black;
         }
 
         private string UrunStokGuncelle(string soru)
@@ -1528,7 +1528,7 @@ namespace edts
             if (string.IsNullOrWhiteSpace(txtSoru.Text))
             {
                 txtSoru.Text = "Fuzuli'ye Sor";
-                txtSoru.ForeColor = Color.Gray; 
+                txtSoru.ForeColor = Color.Black; 
             }
         }
     }
