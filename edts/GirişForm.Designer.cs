@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using System.Data.SqlClient; // SQL Server ile iletişim için
 using System.Configuration;
 namespace edts {
