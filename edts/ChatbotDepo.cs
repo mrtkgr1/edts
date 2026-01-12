@@ -70,7 +70,7 @@ namespace edts
 
 
 
-        private string placeholder = "Fuzuli'ye Soru Sor...";
+       
         private bool sesliOkumaAcik = false;
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
@@ -401,11 +401,7 @@ namespace edts
 
         private void txtSoru_Enter(object sender, EventArgs e)
         {
-            if (txtSoruu.Text == placeholder)
-            {
-                txtSoruu.Text = "";
-                txtSoruu.ForeColor = Color.Black;
-            }
+          
         }
 
         private string UrunKonumuGetir(string soru)
@@ -978,11 +974,7 @@ namespace edts
 
         private void txtSoru_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSoruu.Text))
-            {
-                txtSoruu.Text = placeholder;
-                txtSoruu.ForeColor = Color.Gray;
-            }
+          
         }
         int Mesafe(string a, string b)
         {
@@ -1169,7 +1161,7 @@ namespace edts
             synthesizer.SetOutputToDefaultAudioDevice();
             synthesizer.Rate = 2;
             synthesizer.SelectVoice("Microsoft Tolga");
-            txtSoruu.Text = placeholder;
+           
             txtSoruu.ForeColor = Color.Gray;
 
 
