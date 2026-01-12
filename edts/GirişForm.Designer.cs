@@ -25,7 +25,8 @@ namespace edts {
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GirişForm));
             button2 = new Button();
             loginForm = new Panel();
@@ -46,10 +47,10 @@ namespace edts {
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(200, 422);
+            button2.Location = new Point(229, 496);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
-            button2.Size = new Size(26, 21);
+            button2.Size = new Size(30, 25);
             button2.TabIndex = 6;
             button2.TabStop = false;
             button2.UseVisualStyleBackColor = false;
@@ -66,46 +67,50 @@ namespace edts {
             loginForm.Controls.Add(loginpsw);
             loginForm.Controls.Add(textBox1);
             loginForm.Controls.Add(kavisliButon1);
-            loginForm.Location = new Point(425, 0);
+            loginForm.Location = new Point(486, 0);
+            loginForm.Margin = new Padding(3, 4, 3, 4);
             loginForm.Name = "loginForm";
-            loginForm.Size = new Size(295, 626);
+            loginForm.Size = new Size(337, 736);
             loginForm.TabIndex = 7;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(29, 248);
+            label2.Location = new Point(33, 292);
             label2.Name = "label2";
-            label2.Size = new Size(26, 17);
+            label2.Size = new Size(30, 20);
             label2.TabIndex = 7;
             label2.Text = "🔒";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(29, 208);
+            label1.Location = new Point(33, 245);
             label1.Name = "label1";
-            label1.Size = new Size(26, 17);
+            label1.Size = new Size(30, 20);
             label1.TabIndex = 6;
             label1.Text = "👤";
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(64, 9);
+            pictureBox1.Location = new Point(69, 13);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(125, 78);
+            pictureBox1.Size = new Size(189, 131);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
             // loginpsw
             // 
             loginpsw.BorderStyle = BorderStyle.FixedSingle;
-            loginpsw.Location = new Point(60, 246);
+            loginpsw.Location = new Point(69, 289);
+            loginpsw.Margin = new Padding(3, 4, 3, 4);
             loginpsw.Name = "loginpsw";
             loginpsw.PasswordChar = '*';
-            loginpsw.Size = new Size(166, 25);
+            loginpsw.Size = new Size(189, 27);
             loginpsw.TabIndex = 4;
             loginpsw.Enter += loginpsw_Enter;
             loginpsw.Leave += loginpsw_Leave;
@@ -113,9 +118,10 @@ namespace edts {
             // textBox1
             // 
             textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Location = new Point(60, 207);
+            textBox1.Location = new Point(69, 244);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(166, 25);
+            textBox1.Size = new Size(189, 27);
             textBox1.TabIndex = 3;
             textBox1.Enter += textBox1_Enter;
             textBox1.Leave += textBox1_Leave;
@@ -128,9 +134,10 @@ namespace edts {
             kavisliButon1.FlatStyle = FlatStyle.Flat;
             kavisliButon1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             kavisliButon1.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon1.Location = new Point(94, 287);
+            kavisliButon1.Location = new Point(107, 338);
+            kavisliButon1.Margin = new Padding(3, 4, 3, 4);
             kavisliButon1.Name = "kavisliButon1";
-            kavisliButon1.Size = new Size(94, 36);
+            kavisliButon1.Size = new Size(107, 42);
             kavisliButon1.TabIndex = 0;
             kavisliButon1.Text = "Giriş Yap";
             kavisliButon1.UseVisualStyleBackColor = false;
@@ -138,17 +145,18 @@ namespace edts {
             // 
             // GirişForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(31, 41, 55);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1144, 627);
+            ClientSize = new Size(1307, 738);
             Controls.Add(loginForm);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             KeyPreview = true;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
-            MinimumSize = new Size(387, 405);
+            MinimumSize = new Size(440, 468);
             Name = "GirişForm";
             Text = "EDTS - Giriş Ekranı";
             Load += GirişForm_Load;
