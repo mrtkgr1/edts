@@ -1162,7 +1162,7 @@ namespace edts
             synthesizer.Rate = 2;
             synthesizer.SelectVoice("Microsoft Tolga");
            
-            txtSoruu.ForeColor = Color.Gray;
+            txtSoruu.ForeColor = Color.Black;
 
 
         }
@@ -1285,7 +1285,7 @@ namespace edts
             if (string.IsNullOrWhiteSpace(txtSoruu.Text))
             {
                 txtSoruu.Text = "Fuzuli'ye Sor";
-                txtSoruu.ForeColor = Color.Gray; 
+                txtSoruu.ForeColor = Color.Black; 
             }
         }
     }
