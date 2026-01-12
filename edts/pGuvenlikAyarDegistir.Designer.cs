@@ -272,6 +272,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "pGuvenlikAyarDegistir";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Hesap ayarlarını değiştir";
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();

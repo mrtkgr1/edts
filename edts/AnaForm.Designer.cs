@@ -119,6 +119,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1146, 36);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             panel1.MouseDown += panel1_MouseDown;
             // 
             // labelBaslik
@@ -135,7 +136,7 @@
             // 
             pictureBoxNotf.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBoxNotf.Image = Properties.Resources.notf_yok_beyaz;
-            pictureBoxNotf.Location = new Point(939, 1);
+            pictureBoxNotf.Location = new Point(931, 1);
             pictureBoxNotf.Name = "pictureBoxNotf";
             pictureBoxNotf.Size = new Size(36, 33);
             pictureBoxNotf.SizeMode = PictureBoxSizeMode.Zoom;
@@ -148,7 +149,7 @@
             // 
             pictureBoxProfile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBoxProfile.Image = Properties.Resources.profile_beyaz;
-            pictureBoxProfile.Location = new Point(981, 1);
+            pictureBoxProfile.Location = new Point(973, 1);
             pictureBoxProfile.Name = "pictureBoxProfile";
             pictureBoxProfile.Size = new Size(36, 33);
             pictureBoxProfile.SizeMode = PictureBoxSizeMode.Zoom;
@@ -160,6 +161,7 @@
             // 
             button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button8.FlatAppearance.BorderSize = 0;
+            button8.FlatAppearance.MouseDownBackColor = Color.Red;
             button8.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
             button8.FlatStyle = FlatStyle.Flat;
             button8.Font = new Font("Marlett", 8.830189F);
@@ -177,7 +179,7 @@
             prefPictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             prefPictureBox.Image = Properties.Resources.kayan_liste_beyaz_assa;
             prefPictureBox.InitialImage = (Image)resources.GetObject("prefPictureBox.InitialImage");
-            prefPictureBox.Location = new Point(897, 1);
+            prefPictureBox.Location = new Point(889, 1);
             prefPictureBox.Name = "prefPictureBox";
             prefPictureBox.Size = new Size(36, 33);
             prefPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
@@ -190,6 +192,7 @@
             // 
             button10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button10.FlatAppearance.BorderSize = 0;
+            button10.FlatAppearance.MouseOverBackColor = Color.FromArgb(65, 65, 65);
             button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Marlett", 8.830189F);
             button10.Location = new Point(1023, 1);
@@ -205,6 +208,7 @@
             // 
             btnBuyut.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnBuyut.FlatAppearance.BorderSize = 0;
+            btnBuyut.FlatAppearance.MouseOverBackColor = Color.FromArgb(65, 65, 65);
             btnBuyut.FlatStyle = FlatStyle.Flat;
             btnBuyut.Font = new Font("Marlett", 8.830189F);
             btnBuyut.Location = new Point(1065, 1);
