@@ -63,7 +63,7 @@ namespace edts
 
         }
 
-        private string placeholder = "Fuzuli'ye Soru Sor...";
+        private string placeholder = "";
         private bool sesliOkumaAcik = false;
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
@@ -959,7 +959,7 @@ namespace edts
             if (string.IsNullOrWhiteSpace(txtSoruuu.Text))
             {
                 txtSoruuu.Text = placeholder;
-                txtSoruuu.ForeColor = Color.Gray;
+                txtSoruuu.ForeColor = Color.Black;
             }
         }
 
@@ -1057,7 +1057,6 @@ namespace edts
             synthesizer.SelectVoice("Microsoft Tolga");
             panel4.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, panel4.Width, panel4.Height, 30, 30));
             txtSoruuu.Text = placeholder;
-            txtSoruuu.ForeColor = Color.Gray;
 
 
         }
@@ -1336,20 +1335,12 @@ namespace edts
 
         private void txtSoruuu_Enter(object sender, EventArgs e)
         {
-            if (txtSoruuu.Text == "Fuzuli'ye Sor")
-            {
-                txtSoruuu.Text = "";
-                txtSoruuu.ForeColor = Color.Black; 
-            }
+          
         }
 
         private void txtSoruuu_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSoruuu.Text))
-            {
-                txtSoruuu.Text = "Fuzuli'ye Sor";
-                txtSoruuu.ForeColor = Color.Gray; 
-            }
+           
         }
     }
 }
