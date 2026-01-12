@@ -34,7 +34,7 @@ namespace edts {
         }
 
         private void kullaniciGuvenlikKurulum() {
-            if (GuvenlikKullanici.GetInt(AktifKullanici.ID,"basarisiz_giris_sayi") != 0) {
+            if (GuvenlikKullanici.GetInt(AktifKullanici.ID, "basarisiz_giris_sayi") != 0) {
                 MessageBox.Show("Hesabınızda başarısız giriş denemeleri tespit edildi.\nSon başarısız giriş: " + GuvenlikKullanici.GetDate(AktifKullanici.ID, "son_basarisiz_giris"), "Güvenlik Uyarısı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 GuvenlikKullanici.SetInt(AktifKullanici.ID, "basarisiz_giris_sayi", 0);
             }
@@ -106,7 +106,7 @@ namespace edts {
 
         }
 
-       
+
         public void AyarKurulum() {
             if (!AyarYonetimi.AyarBoolGetir("sol_panel_acik")) {
                 yanMenuAcik = false;
@@ -237,7 +237,7 @@ namespace edts {
         private void prefPictureBox_click(object sender, EventArgs e) {
             Control senderControl = (Control)sender;
             if (isListeAcik) {
-                prefPictureBox.Image = (TemaYonetim.TemaAl().siyahIcon ? 
+                prefPictureBox.Image = (TemaYonetim.TemaAl().siyahIcon ?
                     Resources.kayan_liste_assa : Resources.kayan_liste_beyaz_assa);
                 isListeAcik = false;
             } else {
@@ -254,7 +254,7 @@ namespace edts {
 
         bool bildiirmVar = true;
         private void pictureBox4_Click(object sender, EventArgs e) {
-            BildirimGoster("xsa","sasa");
+            BildirimGoster("xsa", "sasa");
             if (bildiirmVar) {
                 pictureBoxNotf.Image = Properties.Resources.notf_var;
                 bildiirmVar = false;
@@ -268,7 +268,7 @@ namespace edts {
 
             bildirimCubugu.Icon = SystemIcons.Information;
 
-            
+
             bildirimCubugu.Visible = true;
 
             bildirimCubugu.ShowBalloonTip(3000, baslik, mesaj, ToolTipIcon.Info);
@@ -284,12 +284,12 @@ namespace edts {
             tmp.ShowDialog(this);
         }
 
-        
+
         private void panel1_MouseDown(object sender, MouseEventArgs e) {
             ReleaseCapture();
-            
+
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-           
+
         }
 
         protected override void WndProc(ref Message m) {
@@ -301,26 +301,26 @@ namespace edts {
                 return;
             }
 
-            
+
             if (m.Msg == WM_NCHITTEST) {
                 base.WndProc(ref m);
-               
+
                 if ((int)m.Result == 1) {
 
                     Point screenPoint = new Point(m.LParam.ToInt32());
                     Point clientPoint = this.PointToClient(screenPoint);
 
-                    if (clientPoint.Y <= resizeArea) { 
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)13; 
-                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)14; 
-                        else m.Result = (IntPtr)12; 
+                    if (clientPoint.Y <= resizeArea) {
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)13;
+                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)14;
+                        else m.Result = (IntPtr)12;
                     } else if (clientPoint.Y >= (this.Size.Height - resizeArea)) {
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)16; 
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)16;
                         else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)17;
-                        else m.Result = (IntPtr)15; 
-                    } else { 
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)10; 
-                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)11; 
+                        else m.Result = (IntPtr)15;
+                    } else {
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)10;
+                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)11;
                     }
                 }
                 return;
@@ -329,7 +329,7 @@ namespace edts {
             base.WndProc(ref m);
         }
 
-       
+
         private void AnaForm_Resize(object sender, EventArgs e) {
             if (this.WindowState == FormWindowState.Maximized) {
                 if (this.Padding.All != 8) this.Padding = new Padding(8);
@@ -439,6 +439,10 @@ namespace edts {
 
         private void buttonSatisF_Click(object sender, EventArgs e) {
             SayfaGoster(new frmSatisFatura());
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e) {
+
         }
     }
 }
