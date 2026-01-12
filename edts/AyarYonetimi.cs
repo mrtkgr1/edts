@@ -14,15 +14,18 @@ namespace edts {
 
         public static List<KullaniciAyar> Ayarlar = new List<KullaniciAyar>() {
             new("tema", "Tema", "def", "def", AyarTuru.Liste, "Görünüm"),
-            new("dinamik_renk_onay", "Sekmenin pencere rengini değiştirmesine izin ver", "true", "true", AyarTuru.Mantik, "Görünüm"),
+            new("kenar", "Küçültülmüş modda pencere kenar rengi", "def", "def", AyarTuru.Liste, "Görünüm"),
 
-
+            new("sol_panel_acik", "Sol panel geniş modda başlar", "true", "true", AyarTuru.Mantik, "Başlangıç"),
+            new("tam_ekran_basla", "Programı tam ekran (maximized) başlat", "false", "false", AyarTuru.Mantik, "Başlangıç"),
+            new("cikista_sor", "Programdan çıkarken onay al", "true", "true", AyarTuru.Mantik, "Sistem"),
 
         };
 
         public static Dictionary<string, (string, string)[]> SecenekListesi = new() {
             ["tema"] = [("Varsayılan", "def"),("Siyah","siyah"),("Beyaz","beyaz"),("Mavi","mavi"),("Mavi-Gri","mavi_gri")],
             ["bildirim_sesi"] = [("Ses kapalı","off"), ("Varsayılan", "def")],
+            ["kenar"] = [("Varsayılan", "def"), ("Siyah", "siyah"), ("Beyaz", "beyaz"),("Mavi","mavi"),("Kırmızı","red")],
         };
 
         public static void AyarlariSenkronizeEt(int userId) {

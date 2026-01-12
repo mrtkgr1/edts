@@ -34,7 +34,7 @@ namespace edts {
         }
 
         private void kullaniciGuvenlikKurulum() {
-            if (GuvenlikKullanici.GetInt(AktifKullanici.ID,"basarisiz_giris_sayi") != 0) {
+            if (GuvenlikKullanici.GetInt(AktifKullanici.ID, "basarisiz_giris_sayi") != 0) {
                 MessageBox.Show("Hesabınızda başarısız giriş denemeleri tespit edildi.\nSon başarısız giriş: " + GuvenlikKullanici.GetDate(AktifKullanici.ID, "son_basarisiz_giris"), "Güvenlik Uyarısı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 GuvenlikKullanici.SetInt(AktifKullanici.ID, "basarisiz_giris_sayi", 0);
             }
@@ -106,8 +106,16 @@ namespace edts {
 
         }
 
-       
+
         public void AyarKurulum() {
+            if (!AyarYonetimi.AyarBoolGetir("sol_panel_acik")) {
+                yanMenuAcik = false;
+                SolHPanel.Width = 54;
+            }
+            if (AyarYonetimi.AyarBoolGetir("tam_ekran_basla")) {
+                this.WindowState = FormWindowState.Maximized;
+                btnBuyut.Text = "2";
+            }
             TemaGuncelle();
 
         }
@@ -135,6 +143,25 @@ namespace edts {
             SolHPanel.ForeColor = tema.yaziRengi;
 
             kayitMenuPanel.BackColor = tema.solMenuAltMenu;
+
+            switch (AyarYonetimi.AyarGetir("kenar")) {
+                case "beyaz":
+                    this.BackColor = Color.White;
+                    break;
+                case "siyah":
+                    this.BackColor = Color.Black;
+                    break;
+                case "mavi":
+                    this.BackColor = Color.FromArgb(15, 30, 50);
+                    break;
+                case "red":
+                    this.BackColor = Color.DarkRed;
+                    break;
+                default:
+                    this.BackColor = Color.Black;
+                    break;
+            }
+
         }
 
         bool isKayitMenuAcik = false;
@@ -160,8 +187,8 @@ namespace edts {
         private void yanPanel_Tick(object sender, EventArgs e) {
             if (yanMenuAcik) {
                 SolHPanel.Width -= 10;
-                if (SolHPanel.Width <= 53) {
-                    SolHPanel.Width = 53;
+                if (SolHPanel.Width <= 54) {
+                    SolHPanel.Width = 54;
                     yanMenuAcik = false;
                     yanPanelHareket.Stop();
                 }
@@ -183,7 +210,13 @@ namespace edts {
         }
 
         private void button8_Click(object sender, EventArgs e) {
-            this.Close();
+            if (AyarYonetimi.AyarBoolGetir("cikista_sor")) {
+                if (MessageBox.Show("Programdan çıkmak istediğinize emin misiniz?\nBu uyarı ayarlardan kapatılabilir.", "Çıkış Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                    this.Close();
+                }
+            } else {
+                this.Close();
+            }
         }
 
         private void button10_Click(object sender, EventArgs e) {
@@ -204,7 +237,7 @@ namespace edts {
         private void prefPictureBox_click(object sender, EventArgs e) {
             Control senderControl = (Control)sender;
             if (isListeAcik) {
-                prefPictureBox.Image = (TemaYonetim.TemaAl().siyahIcon ? 
+                prefPictureBox.Image = (TemaYonetim.TemaAl().siyahIcon ?
                     Resources.kayan_liste_assa : Resources.kayan_liste_beyaz_assa);
                 isListeAcik = false;
             } else {
@@ -221,7 +254,7 @@ namespace edts {
 
         bool bildiirmVar = true;
         private void pictureBox4_Click(object sender, EventArgs e) {
-            BildirimGoster("xsa","sasa");
+            BildirimGoster("xsa", "sasa");
             if (bildiirmVar) {
                 pictureBoxNotf.Image = Properties.Resources.notf_var;
                 bildiirmVar = false;
@@ -235,7 +268,7 @@ namespace edts {
 
             bildirimCubugu.Icon = SystemIcons.Information;
 
-            
+
             bildirimCubugu.Visible = true;
 
             bildirimCubugu.ShowBalloonTip(3000, baslik, mesaj, ToolTipIcon.Info);
@@ -251,12 +284,12 @@ namespace edts {
             tmp.ShowDialog(this);
         }
 
-        
+
         private void panel1_MouseDown(object sender, MouseEventArgs e) {
             ReleaseCapture();
-            
+
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-           
+
         }
 
         protected override void WndProc(ref Message m) {
@@ -268,26 +301,26 @@ namespace edts {
                 return;
             }
 
-            
+
             if (m.Msg == WM_NCHITTEST) {
                 base.WndProc(ref m);
-               
+
                 if ((int)m.Result == 1) {
 
                     Point screenPoint = new Point(m.LParam.ToInt32());
                     Point clientPoint = this.PointToClient(screenPoint);
 
-                    if (clientPoint.Y <= resizeArea) { 
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)13; 
-                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)14; 
-                        else m.Result = (IntPtr)12; 
+                    if (clientPoint.Y <= resizeArea) {
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)13;
+                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)14;
+                        else m.Result = (IntPtr)12;
                     } else if (clientPoint.Y >= (this.Size.Height - resizeArea)) {
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)16; 
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)16;
                         else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)17;
-                        else m.Result = (IntPtr)15; 
-                    } else { 
-                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)10; 
-                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)11; 
+                        else m.Result = (IntPtr)15;
+                    } else {
+                        if (clientPoint.X <= resizeArea) m.Result = (IntPtr)10;
+                        else if (clientPoint.X >= (this.Size.Width - resizeArea)) m.Result = (IntPtr)11;
                     }
                 }
                 return;
@@ -296,7 +329,7 @@ namespace edts {
             base.WndProc(ref m);
         }
 
-       
+
         private void AnaForm_Resize(object sender, EventArgs e) {
             if (this.WindowState == FormWindowState.Maximized) {
                 if (this.Padding.All != 8) this.Padding = new Padding(8);
@@ -406,6 +439,10 @@ namespace edts {
 
         private void buttonSatisF_Click(object sender, EventArgs e) {
             SayfaGoster(new frmSatisFatura());
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e) {
+
         }
     }
 }
