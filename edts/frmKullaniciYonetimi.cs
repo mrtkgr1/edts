@@ -199,39 +199,51 @@ namespace edts {
 
         private void HesapSil(string? kullaniciAdi, int id) {
 
-             DialogResult result = MessageBox.Show(
-             "\"" + kullaniciAdi + "\" adlı kullanıcyı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
-             "Silme Onayı",
-             MessageBoxButtons.YesNo,
-             MessageBoxIcon.Question);
+            // "Silme" yerine "Pasifleştirme" vurgusu yapmak açık kaynakta daha profesyonel durur
+            DialogResult result = MessageBox.Show(
+                "\"" + kullaniciAdi + "\" adlı kullanıcıyı pasifleştirmek istediğinizden emin misiniz? \n(Kullanıcının geçmiş kayıtları korunacak ancak sisteme giriş yapamayacaktır.)",
+                "Kullanıcıyı Pasif Yap",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
-             if (result == DialogResult.Yes) {
-                 try {
-                     string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-                     string sorgu = "DELETE FROM tblKullanicilar WHERE KullaniciID = @pID";
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
-                     using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
-                         using (SqlCommand komut = new SqlCommand(sorgu, baglanti)) {
-                             komut.Parameters.AddWithValue("@pID", id);
+                    // DEĞİŞİKLİK BURADA: DELETE yerine UPDATE yapıyoruz
+                    string sorgu = "UPDATE tblKullanicilar SET AktifMi = 0 WHERE KullaniciID = @pID";
 
-                             baglanti.Open();
-                             komut.ExecuteNonQuery();
-                         }
-                     }
+                    using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
+                    {
+                        using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
+                        {
+                            komut.Parameters.AddWithValue("@pID", id);
 
-                     MessageBox.Show("Kullanıcı başarıyla silindi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            baglanti.Open();
+                            komut.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Kullanıcı başarıyla pasifleştirildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Log kaydını da "Pasifleştirildi" olarak güncelleyelim
                     VeritabaniYardimcisi.LogKaydet(
-                       AktifKullanici.ID,
-                       Sabitler.IslemTuru.Kullanici_Silindi,
-                       "tblKullanicilar",
-                       "\"" + kullaniciAdi + "\" adlı kullanıcı silindi.");
-                     KullanicilariListele();
+                        AktifKullanici.ID,
+                        Sabitler.IslemTuru.Kullanici_Silindi, // Enum ismini bozmamak için böyle bıraktım
+                        "tblKullanicilar",
+                        "\"" + kullaniciAdi + "\" adlı kullanıcı pasif duruma getirildi.");
 
-                 } catch (Exception ex) {
-                     MessageBox.Show("Silme işlemi sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 }
-             }
-         }
+                    KullanicilariListele();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("İşlem sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
 
 
