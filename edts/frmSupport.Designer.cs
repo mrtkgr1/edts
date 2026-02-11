@@ -39,14 +39,12 @@
             label2 = new Label();
             panel3 = new Panel();
             panel4 = new Panel();
-            pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -153,23 +151,12 @@
             panel4.Size = new Size(164, 48);
             panel4.TabIndex = 9;
             // 
-            // pictureBox3
-            // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(679, 134);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(616, 428);
-            pictureBox3.TabIndex = 10;
-            pictureBox3.TabStop = false;
-            // 
             // frmSupport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSlateGray;
             ClientSize = new Size(1380, 834);
-            Controls.Add(pictureBox3);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
@@ -185,7 +172,6 @@
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
         }
 
@@ -201,6 +187,5 @@
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
-        private PictureBox pictureBox3;
     }
 }

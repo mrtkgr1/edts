@@ -26,7 +26,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatbotForm));
             btnSesliOkuma = new Button();
             panel1 = new Panel();
@@ -36,6 +37,7 @@
             btnGonder = new Button();
             panel4 = new Panel();
             flowChat = new FlowLayoutPanel();
+            label1 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -48,8 +50,9 @@
             btnSesliOkuma.BackgroundImageLayout = ImageLayout.Zoom;
             btnSesliOkuma.Dock = DockStyle.Fill;
             btnSesliOkuma.Location = new Point(0, 0);
+            btnSesliOkuma.Margin = new Padding(3, 4, 3, 4);
             btnSesliOkuma.Name = "btnSesliOkuma";
-            btnSesliOkuma.Size = new Size(72, 35);
+            btnSesliOkuma.Size = new Size(82, 41);
             btnSesliOkuma.TabIndex = 1;
             btnSesliOkuma.UseVisualStyleBackColor = true;
             btnSesliOkuma.Click += btnSesliOkuma_Click;
@@ -57,17 +60,19 @@
             // panel1
             // 
             panel1.Controls.Add(txtSoru);
-            panel1.Location = new Point(179, 332);
+            panel1.Location = new Point(205, 391);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(376, 22);
+            panel1.Size = new Size(430, 26);
             panel1.TabIndex = 4;
             // 
             // txtSoru
             // 
             txtSoru.Dock = DockStyle.Fill;
             txtSoru.Location = new Point(0, 0);
+            txtSoru.Margin = new Padding(3, 4, 3, 4);
             txtSoru.Name = "txtSoru";
-            txtSoru.Size = new Size(376, 22);
+            txtSoru.Size = new Size(430, 26);
             txtSoru.TabIndex = 8;
             txtSoru.Text = "";
             txtSoru.TextChanged += txtSoru_TextChanged_1;
@@ -78,17 +83,19 @@
             // panel2
             // 
             panel2.Controls.Add(btnSesliOkuma);
-            panel2.Location = new Point(566, 328);
+            panel2.Location = new Point(647, 386);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(72, 35);
+            panel2.Size = new Size(82, 41);
             panel2.TabIndex = 5;
             // 
             // panel3
             // 
             panel3.Controls.Add(btnGonder);
-            panel3.Location = new Point(643, 328);
+            panel3.Location = new Point(735, 386);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(74, 35);
+            panel3.Size = new Size(85, 41);
             panel3.TabIndex = 6;
             // 
             // btnGonder
@@ -97,8 +104,9 @@
             btnGonder.BackgroundImageLayout = ImageLayout.Zoom;
             btnGonder.Dock = DockStyle.Fill;
             btnGonder.Location = new Point(0, 0);
+            btnGonder.Margin = new Padding(3, 4, 3, 4);
             btnGonder.Name = "btnGonder";
-            btnGonder.Size = new Size(74, 35);
+            btnGonder.Size = new Size(85, 41);
             btnGonder.TabIndex = 0;
             btnGonder.UseVisualStyleBackColor = true;
             btnGonder.Click += btnGonder_Click;
@@ -107,9 +115,10 @@
             // 
             panel4.AutoSize = true;
             panel4.Controls.Add(flowChat);
-            panel4.Location = new Point(179, 75);
+            panel4.Location = new Point(205, 88);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(537, 252);
+            panel4.Size = new Size(614, 296);
             panel4.TabIndex = 8;
             panel4.Paint += panel4_Paint_1;
             // 
@@ -118,20 +127,32 @@
             flowChat.BackColor = SystemColors.ControlLightLight;
             flowChat.Dock = DockStyle.Bottom;
             flowChat.Location = new Point(0, 0);
+            flowChat.Margin = new Padding(3, 4, 3, 4);
             flowChat.Name = "flowChat";
-            flowChat.Size = new Size(537, 252);
+            flowChat.Size = new Size(614, 296);
             flowChat.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(328, 441);
+            label1.Name = "label1";
+            label1.Size = new Size(421, 20);
+            label1.TabIndex = 9;
+            label1.Text = "Fuzuli hata yapabilir. Önemli bilgileri kontrol etmenizi öneririz.";
             // 
             // ChatbotForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSlateGray;
-            ClientSize = new Size(909, 512);
+            ClientSize = new Size(1039, 602);
+            Controls.Add(label1);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "ChatbotForm";
             Text = "Fuzuli";
             Load += ChatbotForm_Load;
@@ -153,5 +174,6 @@
         private Button btnGonder;
         private Panel panel4;
         private FlowLayoutPanel flowChat;
+        private Label label1;
     }
 }
