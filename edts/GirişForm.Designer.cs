@@ -34,7 +34,7 @@ namespace edts {
             pictureBox1 = new PictureBox();
             loginpsw = new TextBox();
             textBox1 = new TextBox();
-            kavisliButon1 = new KavisliButon();
+            btnGiris = new KavisliButon();
             loginForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -167,6 +167,6 @@ namespace edts {
         private PictureBox pictureBox1;
         private TextBox loginpsw;
         private TextBox textBox1;
-        private KavisliButon kavisliButon1;
+        private KavisliButon btnGiris;
     }
 }
