@@ -18,7 +18,7 @@ namespace edts
     public partial class ChatbotForm : Form
     {
         static string connectionString =
-            "Server=.\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;";
+            "Server=.\\SQLEXPRESS;Database=StokYonetimDB;Trusted_Connection=True;Encrypt=False;"; 
 
         private bool formatBekleniyor = false;
 

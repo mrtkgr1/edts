@@ -63,7 +63,7 @@ namespace edts
 
         }
 
-        private string placeholder = "";
+        private readonly string placeholder = "Bana soru sor...";
         private bool sesliOkumaAcik = false;
         private SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
@@ -1020,26 +1020,22 @@ namespace edts
         private async void btnGonderrr_Click(object sender, EventArgs e)
         {
             string soru = txtSoruuu.Text.Trim();
-            if (string.IsNullOrEmpty(soru) || soru == "Bana soru sor...")
+            if (string.IsNullOrEmpty(soru) || soru == placeholder)
             {
                 MessageBox.Show("Lütfen bir soru yazın.");
                 return;
             }
 
-
             EkleMesaj(soru, true);
             txtSoruuu.Clear();
 
-
             string cevap = ChatbotCevapla(soru);
-
 
             if (sesliOkumaAcik)
             {
                 synthesizer.SpeakAsyncCancelAll();
                 synthesizer.SpeakAsync(cevap);
             }
-
 
             await GosterHarfHarf(cevap, false);
 
@@ -1054,10 +1050,18 @@ namespace edts
         {
             synthesizer.SetOutputToDefaultAudioDevice();
             synthesizer.Rate = 5;
-            synthesizer.SelectVoice("Microsoft Tolga");
+            try
+            {
+                synthesizer.SelectVoice("Microsoft Tolga");
+            }
+            catch
+            {
+                // Sistemde "Microsoft Tolga" yoksa varsayılan sesi kullan
+            }
+
             panel4.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, panel4.Width, panel4.Height, 30, 30));
             txtSoruuu.Text = placeholder;
-
+            txtSoruuu.ForeColor = Color.Gray;
 
         }
 
@@ -1335,12 +1339,20 @@ namespace edts
 
         private void txtSoruuu_Enter(object sender, EventArgs e)
         {
-          
+            if (txtSoruuu.Text == placeholder)
+            {
+                txtSoruuu.Text = "";
+                txtSoruuu.ForeColor = Color.Black;
+            }
         }
 
         private void txtSoruuu_Leave(object sender, EventArgs e)
         {
-           
+            if (string.IsNullOrWhiteSpace(txtSoruuu.Text))
+            {
+                txtSoruuu.Text = placeholder;
+                txtSoruuu.ForeColor = Color.Gray;
+            }
         }
     }
 }
