@@ -31,7 +31,7 @@ namespace edts {
             }
         }
 
-        public static Image? Al(int kullaniciID, string gorselKod) {
+        public static Image? Yukle(int kullaniciID, string gorselKod) {
             using (SqlConnection conn = new SqlConnection(baglantiDizesi)) {
                 string query = "SELECT ImgData FROM UserImages WHERE UserID = @uid AND ImgCode = @code";
 

@@ -303,6 +303,16 @@ namespace edts.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap var_pp {
+            get {
+                object obj = ResourceManager.GetObject("var_pp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap yenile_siyah {
             get {
                 object obj = ResourceManager.GetObject("yenile_siyah", resourceCulture);
