@@ -6,15 +6,23 @@ using System.Data;
 using System.Windows.Forms;
 namespace edts
 {
-    public partial class GirişForm : Form {
+    public partial class GirişForm : Form
+    {
         private int aktifRolID;
         private int denemeSayisi = 0;
-        public GirişForm() {
+        public GirişForm()
+        {
             InitializeComponent();
             button2.Image = Properties.Resources.eyek;
             SistemAyarYonetim.AyarlariSenkronizeEt();
+
+            // Klavye ile adım adım gezinme için KeyDown event'leri kaydediliyor
+            textBox1.KeyDown += TextBox1_KeyDown;
+            loginpsw.KeyDown += Loginpsw_KeyDown;
+            btnGiris.KeyDown += BtnGiris_KeyDown;
         }
-        public GirişForm(int gelenRolID) {
+        public GirişForm(int gelenRolID)
+        {
             InitializeComponent();
             aktifRolID = gelenRolID;
 
@@ -22,11 +30,16 @@ namespace edts
             this.Visible = false;
         }
 
-        private void AnaMenuForm_Load(object sender, EventArgs e) {
+        private void AnaMenuForm_Load(object sender, EventArgs e)
+        {
+            // Form açıldığında kullanıcı adı kutusuna odaklan
+            textBox1.Focus();
+
             Form? acilacakForm = null;
 
 
-            switch (aktifRolID) {
+            switch (aktifRolID)
+            {
                 case 1:
                     acilacakForm = new frmAdminAnaMenu();
                     break;
@@ -37,38 +50,48 @@ namespace edts
                     return;
             }
 
-            if (acilacakForm != null) {
+            if (acilacakForm != null)
+            {
                 acilacakForm.Show();
             }
 
             this.Close();
         }
-        private void btnGiris_Click(object sender, EventArgs e) {
+        private void btnGiris_Click(object sender, EventArgs e)
+        {
 
-            string kullaniciAdi = textBox1.Text;
-            string sifre = loginpsw.Text;
+            string kullaniciAdi = (textBox1.Text ?? "").Trim();
+            string sifre = (loginpsw.Text ?? "").Trim();
 
-            if (string.IsNullOrEmpty(kullaniciAdi) || string.IsNullOrEmpty(sifre)) {
+            // Placeholder kontrolleri eklendi: kullanıcı gerçek değer girmediyse deneme sayısı artmamalı
+            bool kullaniciAdiPlaceholder = string.Equals(kullaniciAdi, "Kullanıcı Adı", StringComparison.OrdinalIgnoreCase);
+            bool sifrePlaceholder = string.Equals(sifre, "Şifre", StringComparison.OrdinalIgnoreCase);
 
+            if (string.IsNullOrEmpty(kullaniciAdi) || string.IsNullOrEmpty(sifre) || kullaniciAdiPlaceholder || sifrePlaceholder)
+            {
                 MessageBox.Show("Kullanıcı adı ve şifre boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            try {
+            try
+            {
                 string girisHash = GuvenlikYardimcisi.HashSifre(sifre);
                 string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
 
                 string sorgu = "SELECT KullaniciID, RolID, AdSoyad, SifreHash FROM tblKullanicilar WHERE KullaniciAdi=@pKullaniciAdi AND AktifMi=1";
 
-                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi)) {
-                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti)) {
+                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
+                {
+                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
+                    {
                         komut.Parameters.AddWithValue("@pKullaniciAdi", kullaniciAdi);
 
                         baglanti.Open();
                         SqlDataReader okuyucu = komut.ExecuteReader();
 
-                        if (okuyucu.Read()) {
+                        if (okuyucu.Read())
+                        {
 
                             int kullaniciID = (int)okuyucu["KullaniciID"];
                             int rolID = (int)okuyucu["RolID"];
@@ -79,28 +102,34 @@ namespace edts
 
                             TimeSpan? kalanZaman = null;
 
-                            using (var connection = new SqlConnection(baglantiDizesi)) {
+                            using (var connection = new SqlConnection(baglantiDizesi))
+                            {
                                 string query = "SELECT kilit_acilma_tarih FROM tblKullaniciGuvenlik WHERE userId = @UserId";
-                                using (var command = new SqlCommand(query, connection)) {
+                                using (var command = new SqlCommand(query, connection))
+                                {
                                     command.Parameters.Add("@UserId", SqlDbType.Int).Value = kullaniciID;
                                     connection.Open();
                                     object result = command.ExecuteScalar();
 
-                                    if (result != null && result != DBNull.Value) {
+                                    if (result != null && result != DBNull.Value)
+                                    {
                                         DateTime unlockDate = Convert.ToDateTime(result);
-                                        if (unlockDate > DateTime.Now) {
+                                        if (unlockDate > DateTime.Now)
+                                        {
                                             kalanZaman = unlockDate - DateTime.Now;
                                         }
                                     }
                                 }
                             }
 
-                            if (kalanZaman != null) {
+                            if (kalanZaman != null)
+                            {
                                 MessageBox.Show("Çok fazla hatalı giriş yapma denemesi yapıldı. " + kalanZaman.Value.Hours + "saat " + kalanZaman.Value.Minutes + "dakika " + kalanZaman.Value.Seconds + "saniye" + " sonra tekrar deneyin.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
 
-                            if (girisHash != sifreHash) {
+                            if (girisHash != sifreHash)
+                            {
 
                                 VeritabaniYardimcisi.LogKaydet(
                                      kullaniciID,
@@ -116,12 +145,16 @@ namespace edts
                                 int denemeHak = SistemAyarYonetim.AyarIntGetir("giris_sure_denemesi");
                                 int denemeHak2 = SistemAyarYonetim.AyarIntGetir("giris_denemesi");
 
-                                if (SistemAyarYonetim.AyarBoolGetir("hesabi_kilitleme")) {
-                                    if (hata_sayi >= denemeHak2) {
+                                if (SistemAyarYonetim.AyarBoolGetir("hesabi_kilitleme"))
+                                {
+                                    if (hata_sayi >= denemeHak2)
+                                    {
 
-                                        using (var connection = new SqlConnection(baglantiDizesi)) {
+                                        using (var connection = new SqlConnection(baglantiDizesi))
+                                        {
                                             string sorguIc = "UPDATE tblKullanicilar SET AktifMi = @aa WHERE KullaniciID = @UserId";
-                                            using (var command = new SqlCommand(sorguIc, connection)) {
+                                            using (var command = new SqlCommand(sorguIc, connection))
+                                            {
                                                 command.Parameters.AddWithValue("@UserId", kullaniciID);
                                                 command.Parameters.AddWithValue("@aa", 0);
                                                 connection.Open();
@@ -139,13 +172,17 @@ namespace edts
                                     }
                                 }
 
-                                if (SistemAyarYonetim.AyarBoolGetir("giri_sure_engel")) {
-                                    if (hata_sayi >= denemeHak) {
+                                if (SistemAyarYonetim.AyarBoolGetir("giri_sure_engel"))
+                                {
+                                    if (hata_sayi >= denemeHak)
+                                    {
                                         GuvenlikKullanici.SetDate(kullaniciID, "kilit_acilma_tarih", DateTime.Now.AddMinutes(SistemAyarYonetim.AyarIntGetir("girs_sure_zaman")));
 
                                     }
                                     MessageBox.Show("Hatalı şifre girildi. " + ((denemeHak - hata_sayi) > 0 ? (denemeHak - hata_sayi) + " deneme hakkınız kaldı." : " Çok fazla hatalı giriş yapıldığı için hesap geçici süre kilitlendi."), "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                } else {
+                                }
+                                else
+                                {
                                     MessageBox.Show("Kullanıcı Adı veya Şifre Hatalı.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
 
@@ -178,29 +215,36 @@ namespace edts
                             this.Close();
 
                             return;
-                        } else {
+                        }
+                        else
+                        {
                             MessageBox.Show("Kullanıcı Adı veya Şifre Hatalı.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("Veritabanı Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
 
-        private void linkLabel1_LinkClicked() {
+        private void linkLabel1_LinkClicked()
+        {
             frmSupport supportForm = new frmSupport();
 
             supportForm.Show();
         }
 
-        public void GuvenlikKullaniciKontrol(int userId) {
+        public void GuvenlikKullaniciKontrol(int userId)
+        {
 
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
 
-            using (SqlConnection connection = new SqlConnection(baglantiDizesi)) {
+            using (SqlConnection connection = new SqlConnection(baglantiDizesi))
+            {
                 string query = @"
             IF NOT EXISTS (SELECT 1 FROM tblKullaniciGuvenlik WHERE userId = @userId)
             BEGIN
@@ -210,7 +254,8 @@ namespace edts
                 (@userId, 0, 0, 0, 1, 0)
             END";
 
-                using (SqlCommand command = new SqlCommand(query, connection)) {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
                     command.Parameters.AddWithValue("@userId", userId);
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -220,63 +265,110 @@ namespace edts
 
 
 
-        private void button2_Click(object sender, EventArgs e) {
-            if (loginpsw.PasswordChar == '*') {
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (loginpsw.PasswordChar == '*')
+            {
                 button2.Image = Properties.Resources.eye;
                 loginpsw.PasswordChar = '\0';
-            } else {
+            }
+            else
+            {
                 button2.Image = Properties.Resources.eyek;
                 loginpsw.PasswordChar = '*';
             }
         }
 
-        private void GirişForm_Load(object sender, EventArgs e) {
+        private void GirişForm_Load(object sender, EventArgs e)
+        {
 
             loginForm.BackColor = Color.FromArgb(100, 255, 255, 255);
 
-            if (string.IsNullOrWhiteSpace(textBox1.Text)) {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
                 textBox1.Text = "Kullanıcı Adı";
                 textBox1.ForeColor = Color.Gray;
             }
-            if (string.IsNullOrWhiteSpace(loginpsw.Text)) {
+            if (string.IsNullOrWhiteSpace(loginpsw.Text))
+            {
                 loginpsw.Text = "Şifre";
                 loginpsw.ForeColor = Color.Gray;
                 loginpsw.PasswordChar = '\0';
             }
+
+            // Form açıldığında kullanıcı adı alanına odaklan
+            textBox1.Focus();
         }
 
-        private void textBox1_Enter(object sender, EventArgs e) {
-            if (textBox1.Text == "Kullanıcı Adı") {
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "Kullanıcı Adı")
+            {
                 textBox1.Text = "";
                 textBox1.ForeColor = Color.Black;
             }
         }
 
-        private void textBox1_Leave(object sender, EventArgs e) {
-            if (string.IsNullOrWhiteSpace(textBox1.Text)) {
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
                 textBox1.Text = "Kullanıcı Adı";
                 textBox1.ForeColor = Color.Gray;
             }
         }
 
-        private void loginpsw_Enter(object sender, EventArgs e) {
-            if (loginpsw.Text == "Şifre") {
+        private void loginpsw_Enter(object sender, EventArgs e)
+        {
+            if (loginpsw.Text == "Şifre")
+            {
                 loginpsw.Text = "";
                 loginpsw.ForeColor = Color.Black;
                 loginpsw.PasswordChar = '*';
             }
         }
 
-        private void loginpsw_Leave(object sender, EventArgs e) {
-            if (string.IsNullOrWhiteSpace(loginpsw.Text)) {
+        private void loginpsw_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(loginpsw.Text))
+            {
                 loginpsw.Text = "Şifre";
                 loginpsw.ForeColor = Color.Gray;
                 loginpsw.PasswordChar = '\0';
             }
         }
 
-        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
+        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
             linkLabel1_LinkClicked();
         }
+
+        // ----- Yeni eklenen KeyDown handler'ları -----
+        private void TextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                loginpsw.Focus();
+            }
+        }
+
+        private void Loginpsw_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnGiris.Focus();
+            }
+        }
+
+        private void BtnGiris_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnGiris.PerformClick();
+            }
+        }
     }
-} 
+}

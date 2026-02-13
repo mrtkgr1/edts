@@ -35,7 +35,7 @@ namespace edts {
             pictureBox1 = new PictureBox();
             loginpsw = new TextBox();
             textBox1 = new TextBox();
-            kavisliButon1 = new KavisliButon();
+            btnGiris = new KavisliButon();
             loginForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -66,7 +66,7 @@ namespace edts {
             loginForm.Controls.Add(pictureBox1);
             loginForm.Controls.Add(loginpsw);
             loginForm.Controls.Add(textBox1);
-            loginForm.Controls.Add(kavisliButon1);
+            loginForm.Controls.Add(btnGiris);
             loginForm.Location = new Point(486, 0);
             loginForm.Margin = new Padding(3, 4, 3, 4);
             loginForm.Name = "loginForm";
@@ -126,22 +126,22 @@ namespace edts {
             textBox1.Enter += textBox1_Enter;
             textBox1.Leave += textBox1_Leave;
             // 
-            // kavisliButon1
+            // btnGiris
             // 
-            kavisliButon1.BackColor = Color.LightSlateGray;
-            kavisliButon1.BorderRadius = 30;
-            kavisliButon1.FlatAppearance.BorderSize = 0;
-            kavisliButon1.FlatStyle = FlatStyle.Flat;
-            kavisliButon1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            kavisliButon1.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon1.Location = new Point(107, 338);
-            kavisliButon1.Margin = new Padding(3, 4, 3, 4);
-            kavisliButon1.Name = "kavisliButon1";
-            kavisliButon1.Size = new Size(107, 42);
-            kavisliButon1.TabIndex = 0;
-            kavisliButon1.Text = "Giriş Yap";
-            kavisliButon1.UseVisualStyleBackColor = false;
-            kavisliButon1.Click += btnGiris_Click;
+            btnGiris.BackColor = Color.LightSlateGray;
+            btnGiris.BorderRadius = 30;
+            btnGiris.FlatAppearance.BorderSize = 0;
+            btnGiris.FlatStyle = FlatStyle.Flat;
+            btnGiris.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            btnGiris.ForeColor = SystemColors.ControlLightLight;
+            btnGiris.Location = new Point(107, 338);
+            btnGiris.Margin = new Padding(3, 4, 3, 4);
+            btnGiris.Name = "btnGiris";
+            btnGiris.Size = new Size(107, 42);
+            btnGiris.TabIndex = 0;
+            btnGiris.Text = "Giriş Yap";
+            btnGiris.UseVisualStyleBackColor = false;
+            btnGiris.Click += btnGiris_Click;
             // 
             // GirişForm
             // 
@@ -174,6 +174,6 @@ namespace edts {
         private PictureBox pictureBox1;
         private TextBox loginpsw;
         private TextBox textBox1;
-        private KavisliButon kavisliButon1;
+        private KavisliButon btnGiris;
     }
 }
