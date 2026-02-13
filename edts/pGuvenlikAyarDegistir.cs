@@ -45,6 +45,13 @@ namespace edts {
                 btnPPSec.Enabled = false;
                 btnResimKaldir.Enabled = false;
             }
+
+            Image? profilResmi = GorselYonetim.Yukle(AktifKullanici.ID, "profil_resmi");
+            if (profilResmi != null) {
+                pictureBoxPP.Image = profilResmi;
+            } else {
+                pictureBoxPP.Image = Properties.Resources.var_pp;
+            }
         }
 
         private void buttonKad_Click(object sender, EventArgs e) {
@@ -117,7 +124,42 @@ namespace edts {
         }
 
         private void btnPPSec_Click(object sender, EventArgs e) {
+            using (OpenFileDialog ofd = new OpenFileDialog()) {
+                ofd.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp";
+                ofd.Title = "Görsel Seç";
 
+                if (ofd.ShowDialog() == DialogResult.OK) {
+                    try {
+                        using (Image hamResim = Image.FromFile(ofd.FileName)) {
+                            Image islenmisResim = GorselArac.KesveBoyutla(hamResim, 250, 250);
+
+                            pictureBoxPP.Image = islenmisResim;
+
+                            GorselYonetim.Kaydet(AktifKullanici.ID, "profil_resmi", islenmisResim);
+                            VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, Sabitler.IslemTuru.Kullanini_Degisiklik, "tblKullanicilar", "Kullanıcı profil resmini değiştirdi.");
+
+                        }
+                    } catch (OutOfMemoryException) {
+                        MessageBox.Show("Seçilen dosya geçerli bir resim formatında değil veya çok büyük.");
+                    } catch (Exception ex) {
+                        MessageBox.Show("Resim yüklenirken hata oluştu: " + ex.Message);
+                    }
+                }
+            }
+            AyarKurulum();
+        }
+
+        private void btnResimKaldir_Click(object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show(
+                "Resmi silmeyi onaylıyor musunuz?",
+                "Onay",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (result == DialogResult.Yes) {
+                GorselYonetim.Kaydet(AktifKullanici.ID, "profil_resmi", null);
+                VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, Sabitler.IslemTuru.Kullanini_Degisiklik, "tblKullanicilar", "Kullanıcı profil resmini sildi.");
+            }
+            AyarKurulum();
         }
     }
 }
