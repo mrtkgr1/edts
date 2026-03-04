@@ -1,4 +1,6 @@
-﻿using edts;
+﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
+using edts;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -7,11 +9,13 @@ using System.Configuration;
 using System.Data;
 using System.Diagnostics.Metrics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using static edts.Sabitler;
 namespace edts {
     public partial class frmKullaniciYonetimi : Form {
@@ -287,12 +291,101 @@ namespace edts {
 
        
         private void resizableButtonyenile_Click(object sender, EventArgs e) {
-            KullanicilariListele();
+            if (dgvKullaniciListesi.Rows.Count == 0 || dgvKullaniciListesi.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow || r.Visible == false))
+            {
+                MessageBox.Show("Aktarılacak kayıt bulunmamaktadır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Dosyaları (*.xlsx)|*.xlsx";
+            saveFileDialog.FileName = "KullaniciYonetimi_" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataTable dt = new DataTable();
+
+                    foreach (DataGridViewColumn column in dgvKullaniciListesi.Columns)
+                    {
+                        if (column.Visible)
+                        {
+                            dt.Columns.Add(column.HeaderText);
+                        }
+                    }
+
+                    foreach (DataGridViewRow row in dgvKullaniciListesi.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+                            DataRow newRow = dt.NewRow();
+                            int dtColumnIndex = 0;
+
+                            for (int i = 0; i < dgvKullaniciListesi.Columns.Count; i++)
+                            {
+                                if (dgvKullaniciListesi.Columns[i].Visible)
+                                {
+                                    newRow[dtColumnIndex] = row.Cells[i].Value;
+                                    dtColumnIndex++;
+                                }
+                            }
+                            dt.Rows.Add(newRow);
+                        }
+                    }
+
+                    using (var wb = new XLWorkbook())
+                    {
+                        var ws = wb.Worksheets.Add(dt, "Kullanıcı Yönetimi");
+                        ws.Row(1).Style.Font.Bold = true;
+                        ws.Columns().AdjustToContents();
+                        wb.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("Kayıtlar başarıyla XLSX formatında Excel dosyasına aktarıldı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Excel'e aktarım sırasında hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
 
         
         private void resizableButton4_Click(object sender, EventArgs e) {
+            if (dgvKullaniciListesi.Rows.Count == 0)
+            {
+                MessageBox.Show("Yazdırılacak kayıt bulunmamaktadır.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += (s, ev) =>
+            {
+                // Basit tablo çizimi
+                int y = 20;
+                foreach (DataGridViewRow row in dgvKullaniciListesi.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        string line = "";
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            line += cell.Value?.ToString() + "\t";
+                        }
+                        y += 20;
+                    }
+                }
+            };
+
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = pd;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                pd.Print();
+            }
         }
 
         private void textBoxArama_TextChanged(object sender, EventArgs e) {
