@@ -19,7 +19,7 @@ namespace edts
             // Klavye ile adım adım gezinme için KeyDown event'leri kaydediliyor
             textBox1.KeyDown += TextBox1_KeyDown;
             loginpsw.KeyDown += Loginpsw_KeyDown;
-            btnGiris.KeyDown += BtnGiris_KeyDown;
+            kavisliButon1.KeyDown += BtnGiris_KeyDown;
         }
         public GirişForm(int gelenRolID)
         {
@@ -358,7 +358,7 @@ namespace edts
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                btnGiris.Focus();
+                kavisliButon1.Focus();
             }
         }
 
@@ -367,7 +367,7 @@ namespace edts
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                btnGiris.PerformClick();
+                kavisliButon1.PerformClick();
             }
         }
     }

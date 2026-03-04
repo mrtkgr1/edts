@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static edts.Sabitler;
 
 namespace edts {
     public partial class KullaniciBilgi : Form {
@@ -56,6 +57,13 @@ namespace edts {
                     }
                 }
             }
+
+            Image? profilResmi = GorselYonetim.Yukle(kullaniciID, "profil_resmi");
+            if (profilResmi != null) {
+                pictureBox1.Image = profilResmi;
+            } else {
+                pictureBox1.Image = Properties.Resources.var_pp;
+            }
         }
 
         private void kullaniciStringKurulum(string id) {
@@ -80,7 +88,11 @@ namespace edts {
 
         private void butonOlustur() {
             if (AktifKullanici.RolID == (int)Sabitler.Rol.Admin) {
-                if (AktifKullanici.ID != kullaniciID) panelAdminAyar.Visible = true;
+                if (AktifKullanici.ID != kullaniciID) {
+                    panelAdminAyar.Visible = true;
+                    btnPPSec.Visible = true;
+                    btnResimKaldir.Visible = true;
+                }
             }
             if (AktifKullanici.ID == kullaniciID) {
                 panelKullaniciAyar.Visible = true;
@@ -104,5 +116,49 @@ namespace edts {
 
             kullaniciBilgileriDoldur(kullaniciID);
         }
+
+        private void resizableButton1_Click(object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show(
+                "Resmi silmeyi onaylıyor musunuz?",
+                "Onay",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (result == DialogResult.Yes) {
+                GorselYonetim.Kaydet(kullaniciID, "profil_resmi", null);
+                VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, IslemTuru.Kullanini_Degisiklik, "tblKullanicilar",
+                kullaniciID + " kullanıcının profil resmi silindi.");
+            }
+            kullaniciBilgileriDoldur(kullaniciID);
+
+        }
+
+        private void btnPPSec_Click(object sender, EventArgs e) {
+            using (OpenFileDialog ofd = new OpenFileDialog()) {
+                ofd.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp";
+                ofd.Title = "Görsel Seç";
+
+                if (ofd.ShowDialog() == DialogResult.OK) {
+                    try {
+                        using (Image hamResim = Image.FromFile(ofd.FileName)) {
+                            Image islenmisResim = GorselArac.KesveBoyutla(hamResim, 250, 250);
+
+                            pictureBox1.Image = islenmisResim;
+
+                            GorselYonetim.Kaydet(kullaniciID, "profil_resmi", islenmisResim);
+                            VeritabaniYardimcisi.LogKaydet(AktifKullanici.ID, IslemTuru.Kullanini_Degisiklik, "tblKullanicilar",
+                               kullaniciID +"  kullanıcının profil resmi güncelledi.");
+                        }
+                    } catch (OutOfMemoryException) {
+                        MessageBox.Show("Seçilen dosya geçerli bir resim formatında değil veya çok büyük.");
+                    } catch (Exception ex) {
+                        MessageBox.Show("Resim yüklenirken hata oluştu: " + ex.Message);
+                    }
+                }
+            }
+
+            kullaniciBilgileriDoldur(kullaniciID);
+
+        }
+
     }
 }

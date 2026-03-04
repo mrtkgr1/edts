@@ -34,6 +34,8 @@
             panelAdminAyar = new Panel();
             button1 = new Button();
             panelBildirim = new Panel();
+            btnResimKaldir = new ResizableButton();
+            btnPPSec = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
             panelKullaniciAyar.SuspendLayout();
@@ -45,8 +47,8 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(124, 124);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Size = new Size(150, 150);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -54,7 +56,7 @@
             // 
             lblAd.AutoSize = true;
             lblAd.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblAd.Location = new Point(142, 12);
+            lblAd.Location = new Point(168, 12);
             lblAd.Name = "lblAd";
             lblAd.Size = new Size(37, 30);
             lblAd.TabIndex = 1;
@@ -63,7 +65,7 @@
             // lblKullanici
             // 
             lblKullanici.AutoSize = true;
-            lblKullanici.Location = new Point(142, 42);
+            lblKullanici.Location = new Point(168, 42);
             lblKullanici.Name = "lblKullanici";
             lblKullanici.Size = new Size(69, 17);
             lblKullanici.TabIndex = 2;
@@ -72,7 +74,7 @@
             // lblYetki
             // 
             lblYetki.AutoSize = true;
-            lblYetki.Location = new Point(142, 59);
+            lblYetki.Location = new Point(168, 59);
             lblYetki.Name = "lblYetki";
             lblYetki.Size = new Size(43, 17);
             lblYetki.TabIndex = 3;
@@ -86,9 +88,9 @@
             flowLayoutPanel1.Controls.Add(panelBildirim);
             flowLayoutPanel1.Dock = DockStyle.Bottom;
             flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
-            flowLayoutPanel1.Location = new Point(0, 328);
+            flowLayoutPanel1.Location = new Point(0, 235);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(379, 34);
+            flowLayoutPanel1.Size = new Size(417, 34);
             flowLayoutPanel1.TabIndex = 4;
             // 
             // panelKullaniciAyar
@@ -96,7 +98,7 @@
             panelKullaniciAyar.AutoSize = true;
             panelKullaniciAyar.BorderStyle = BorderStyle.FixedSingle;
             panelKullaniciAyar.Controls.Add(buttonKullaniciAyar);
-            panelKullaniciAyar.Location = new Point(262, 0);
+            panelKullaniciAyar.Location = new Point(300, 0);
             panelKullaniciAyar.Margin = new Padding(0, 0, 3, 2);
             panelKullaniciAyar.Name = "panelKullaniciAyar";
             panelKullaniciAyar.Size = new Size(114, 31);
@@ -122,7 +124,7 @@
             panelAdminAyar.AutoSize = true;
             panelAdminAyar.BorderStyle = BorderStyle.FixedSingle;
             panelAdminAyar.Controls.Add(button1);
-            panelAdminAyar.Location = new Point(154, 0);
+            panelAdminAyar.Location = new Point(192, 0);
             panelAdminAyar.Margin = new Padding(0, 0, 3, 2);
             panelAdminAyar.Name = "panelAdminAyar";
             panelAdminAyar.Size = new Size(105, 32);
@@ -147,26 +149,52 @@
             // 
             panelBildirim.AutoSize = true;
             panelBildirim.BorderStyle = BorderStyle.FixedSingle;
-            panelBildirim.Location = new Point(149, 0);
+            panelBildirim.Location = new Point(187, 0);
             panelBildirim.Margin = new Padding(0, 0, 3, 2);
             panelBildirim.Name = "panelBildirim";
             panelBildirim.Size = new Size(2, 2);
             panelBildirim.TabIndex = 7;
             panelBildirim.Visible = false;
             // 
+            // btnResimKaldir
+            // 
+            btnResimKaldir.Image = (Image)resources.GetObject("btnResimKaldir.Image");
+            btnResimKaldir.KaynakResim = (Image)resources.GetObject("btnResimKaldir.KaynakResim");
+            btnResimKaldir.Location = new Point(128, 168);
+            btnResimKaldir.Name = "btnResimKaldir";
+            btnResimKaldir.ResimBoyutu = 24;
+            btnResimKaldir.Size = new Size(33, 33);
+            btnResimKaldir.TabIndex = 15;
+            btnResimKaldir.UseVisualStyleBackColor = true;
+            btnResimKaldir.Visible = false;
+            btnResimKaldir.Click += resizableButton1_Click;
+            // 
+            // btnPPSec
+            // 
+            btnPPSec.Location = new Point(12, 168);
+            btnPPSec.Name = "btnPPSec";
+            btnPPSec.Size = new Size(111, 33);
+            btnPPSec.TabIndex = 14;
+            btnPPSec.Text = "Profil Resmi Seç";
+            btnPPSec.UseVisualStyleBackColor = true;
+            btnPPSec.Visible = false;
+            btnPPSec.Click += btnPPSec_Click;
+            // 
             // KullaniciBilgi
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(379, 362);
+            ClientSize = new Size(417, 269);
+            Controls.Add(btnResimKaldir);
+            Controls.Add(btnPPSec);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(lblYetki);
             Controls.Add(lblKullanici);
             Controls.Add(lblAd);
             Controls.Add(pictureBox1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "KullaniciBilgi";
-            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "Profil";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -192,5 +220,7 @@
         private Panel panelAdminAyar;
         private Button button1;
         private Panel panelBildirim;
+        private ResizableButton btnResimKaldir;
+        private Button btnPPSec;
     }
 }

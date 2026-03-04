@@ -25,13 +25,13 @@
         private void InitializeComponent() {
             ıconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             ıconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            ıconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             fullAd = new Label();
             userAd = new Label();
             rolAd = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)ıconPictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ıconPictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ıconPictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // ıconPictureBox1
@@ -64,26 +64,11 @@
             ıconPictureBox2.TabStop = false;
             ıconPictureBox2.Click += btnAyarlar_Click;
             // 
-            // ıconPictureBox3
-            // 
-            ıconPictureBox3.BackColor = SystemColors.Control;
-            ıconPictureBox3.ForeColor = SystemColors.ControlText;
-            ıconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.User;
-            ıconPictureBox3.IconColor = SystemColors.ControlText;
-            ıconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            ıconPictureBox3.IconSize = 71;
-            ıconPictureBox3.Location = new Point(3, 3);
-            ıconPictureBox3.Name = "ıconPictureBox3";
-            ıconPictureBox3.Size = new Size(71, 76);
-            ıconPictureBox3.TabIndex = 2;
-            ıconPictureBox3.TabStop = false;
-            ıconPictureBox3.Click += btnProfile_Click;
-            // 
             // fullAd
             // 
             fullAd.AutoSize = true;
             fullAd.Font = new Font("Segoe UI", 11F);
-            fullAd.Location = new Point(80, 3);
+            fullAd.Location = new Point(87, 3);
             fullAd.Name = "fullAd";
             fullAd.Size = new Size(55, 23);
             fullAd.TabIndex = 3;
@@ -92,7 +77,7 @@
             // userAd
             // 
             userAd.AutoSize = true;
-            userAd.Location = new Point(80, 32);
+            userAd.Location = new Point(87, 32);
             userAd.Name = "userAd";
             userAd.Size = new Size(43, 17);
             userAd.TabIndex = 4;
@@ -101,27 +86,38 @@
             // rolAd
             // 
             rolAd.AutoSize = true;
-            rolAd.Location = new Point(80, 54);
+            rolAd.Location = new Point(87, 54);
             rolAd.Name = "rolAd";
             rolAd.Size = new Size(43, 17);
             rolAd.TabIndex = 5;
             rolAd.Text = "label3";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.var_pp;
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(76, 76);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += btnProfile_Click;
+            // 
             // ProfilMenuControl
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(pictureBox1);
             Controls.Add(rolAd);
             Controls.Add(userAd);
             Controls.Add(fullAd);
-            Controls.Add(ıconPictureBox3);
             Controls.Add(ıconPictureBox2);
             Controls.Add(ıconPictureBox1);
             Name = "ProfilMenuControl";
             Size = new Size(320, 84);
             ((System.ComponentModel.ISupportInitialize)ıconPictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)ıconPictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ıconPictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -130,9 +126,9 @@
 
         private FontAwesome.Sharp.IconPictureBox ıconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox ıconPictureBox2;
-        private FontAwesome.Sharp.IconPictureBox ıconPictureBox3;
         private Label fullAd;
         private Label userAd;
         private Label rolAd;
+        private PictureBox pictureBox1;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,29 @@ namespace edts {
             byte[] imageBytes = Convert.FromBase64String(base64String);
             MemoryStream ms = new MemoryStream(imageBytes);
             return Image.FromStream(ms);
+        }
+        public static Image KesveBoyutla(Image gorsel, int w, int h) {
+            double ratioX = (double)w / gorsel.Width;
+            double ratioY = (double)h / gorsel.Height;
+            double ratio = Math.Max(ratioX, ratioY);
+
+            int nw = (int)(gorsel.Width * ratio);
+            int nh = (int)(gorsel.Height * ratio);
+
+            Bitmap n = new Bitmap(w, h);
+
+            using (Graphics g = Graphics.FromImage(n)) {
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                int posX = (w - nw) / 2;
+                int posY = (h - nh) / 2;
+
+                g.DrawImage(gorsel, posX, posY, nw, nh);
+            }
+
+            return n;
         }
     }
 }
