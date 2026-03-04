@@ -25,148 +25,166 @@ namespace edts {
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GirişForm));
-            button2 = new Button();
-            loginForm = new Panel();
+            rightPanel = new Panel();
+            linkLabel2 = new LinkLabel();
+            chkRemember = new CheckBox();
+            kavisliButon1 = new ResizableButton();
             label2 = new Label();
             label1 = new Label();
-            pictureBox1 = new PictureBox();
             loginpsw = new TextBox();
-            textBox1 = new TextBox();
-            kavisliButon1 = new KavisliButon();
-            loginForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            txtSifre = new TextBox();
+            leftPanel = new Panel();
+            rightPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // button2
+            // rightPanel
             // 
-            button2.BackColor = Color.White;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(200, 422);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(26, 21);
-            button2.TabIndex = 6;
-            button2.TabStop = false;
-            button2.UseVisualStyleBackColor = false;
-            button2.Visible = false;
-            button2.Click += button2_Click;
+            rightPanel.BackColor = Color.LightBlue;
+            rightPanel.Controls.Add(linkLabel2);
+            rightPanel.Controls.Add(chkRemember);
+            rightPanel.Controls.Add(kavisliButon1);
+            rightPanel.Controls.Add(label2);
+            rightPanel.Controls.Add(label1);
+            rightPanel.Controls.Add(loginpsw);
+            rightPanel.Controls.Add(txtSifre);
+            rightPanel.Dock = DockStyle.Fill;
+            rightPanel.Location = new Point(600, 0);
+            rightPanel.Name = "rightPanel";
+            rightPanel.Size = new Size(707, 738);
+            rightPanel.TabIndex = 3;
+            rightPanel.Paint += rightPanel_Paint;
             // 
-            // loginForm
+            // linkLabel2
             // 
-            loginForm.BackColor = Color.Gainsboro;
-            loginForm.Controls.Add(label2);
-            loginForm.Controls.Add(button2);
-            loginForm.Controls.Add(label1);
-            loginForm.Controls.Add(pictureBox1);
-            loginForm.Controls.Add(loginpsw);
-            loginForm.Controls.Add(textBox1);
-            loginForm.Controls.Add(kavisliButon1);
-            loginForm.Location = new Point(425, 0);
-            loginForm.Name = "loginForm";
-            loginForm.Size = new Size(295, 626);
-            loginForm.TabIndex = 7;
+            linkLabel2.AutoSize = true;
+            linkLabel2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            linkLabel2.LinkColor = Color.WhiteSmoke;
+            linkLabel2.Location = new Point(238, 650);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(202, 20);
+            linkLabel2.TabIndex = 26;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "Bir sorun mu yaşıyorsunuz?";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
+            // chkRemember
+            // 
+            chkRemember.AutoSize = true;
+            chkRemember.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            chkRemember.ForeColor = SystemColors.ControlLightLight;
+            chkRemember.Location = new Point(344, 318);
+            chkRemember.Name = "chkRemember";
+            chkRemember.Size = new Size(113, 24);
+            chkRemember.TabIndex = 25;
+            chkRemember.Text = "Beni Hatırla";
+            chkRemember.UseVisualStyleBackColor = true;
+            // 
+            // kavisliButon1
+            // 
+            kavisliButon1.BackColor = Color.DarkSlateGray;
+            kavisliButon1.FlatAppearance.BorderSize = 0;
+            kavisliButon1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            kavisliButon1.ForeColor = SystemColors.ButtonFace;
+            kavisliButon1.Image = null;
+            kavisliButon1.KaynakResim = null;
+            kavisliButon1.Location = new Point(269, 384);
+            kavisliButon1.Name = "kavisliButon1";
+            kavisliButon1.ResimBoyutu = 24;
+            kavisliButon1.Size = new Size(126, 42);
+            kavisliButon1.TabIndex = 23;
+            kavisliButon1.Text = "Giriş Yap";
+            kavisliButon1.UseVisualStyleBackColor = false;
+            kavisliButon1.Click += kavisliButon1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(30, 297);
+            label2.Location = new Point(177, 269);
             label2.Name = "label2";
-            label2.Size = new Size(26, 17);
-            label2.TabIndex = 7;
+            label2.Size = new Size(30, 20);
+            label2.TabIndex = 22;
             label2.Text = "🔒";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(30, 257);
+            label1.Location = new Point(177, 207);
             label1.Name = "label1";
-            label1.Size = new Size(26, 17);
-            label1.TabIndex = 6;
+            label1.Size = new Size(30, 20);
+            label1.TabIndex = 21;
             label1.Text = "👤";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(60, 11);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(165, 111);
-            pictureBox1.TabIndex = 5;
-            pictureBox1.TabStop = false;
             // 
             // loginpsw
             // 
             loginpsw.BorderStyle = BorderStyle.FixedSingle;
-            loginpsw.Location = new Point(61, 295);
+            loginpsw.Location = new Point(215, 267);
+            loginpsw.Margin = new Padding(3, 4, 3, 4);
             loginpsw.Name = "loginpsw";
             loginpsw.PasswordChar = '*';
-            loginpsw.Size = new Size(166, 25);
-            loginpsw.TabIndex = 4;
-            loginpsw.Enter += loginpsw_Enter;
-            loginpsw.Leave += loginpsw_Leave;
+            loginpsw.Size = new Size(242, 27);
+            loginpsw.TabIndex = 20;
+            loginpsw.TextChanged += loginpsw_TextChanged;
+            loginpsw.Enter += loginpsw_Enter_1;
+            loginpsw.Leave += loginpsw_Leave_1;
             // 
-            // textBox1
+            // txtSifre
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Location = new Point(61, 256);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(166, 25);
-            textBox1.TabIndex = 3;
-            textBox1.Enter += textBox1_Enter;
-            textBox1.Leave += textBox1_Leave;
+            txtSifre.BorderStyle = BorderStyle.FixedSingle;
+            txtSifre.Location = new Point(213, 207);
+            txtSifre.Margin = new Padding(3, 4, 3, 4);
+            txtSifre.Name = "txtSifre";
+            txtSifre.Size = new Size(242, 27);
+            txtSifre.TabIndex = 19;
+            txtSifre.TextChanged += txtSifre_TextChanged;
+            txtSifre.Enter += txtSifre_Enter;
+            txtSifre.Leave += txtSifre_Leave;
             // 
-            // kavisliButon1
+            // leftPanel
             // 
-            kavisliButon1.BackColor = Color.LightSlateGray;
-            kavisliButon1.BorderRadius = 30;
-            kavisliButon1.FlatAppearance.BorderSize = 0;
-            kavisliButon1.FlatStyle = FlatStyle.Flat;
-            kavisliButon1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            kavisliButon1.ForeColor = SystemColors.ControlLightLight;
-            kavisliButon1.Location = new Point(95, 336);
-            kavisliButon1.Name = "kavisliButon1";
-            kavisliButon1.Size = new Size(94, 36);
-            kavisliButon1.TabIndex = 0;
-            kavisliButon1.Text = "Giriş Yap";
-            kavisliButon1.UseVisualStyleBackColor = false;
-            kavisliButon1.Click += btnGiris_Click;
+            leftPanel.BackColor = SystemColors.ControlLightLight;
+            leftPanel.BackgroundImage = (Image)resources.GetObject("leftPanel.BackgroundImage");
+            leftPanel.BackgroundImageLayout = ImageLayout.Zoom;
+            leftPanel.Dock = DockStyle.Left;
+            leftPanel.Location = new Point(0, 0);
+            leftPanel.Name = "leftPanel";
+            leftPanel.Size = new Size(600, 738);
+            leftPanel.TabIndex = 2;
             // 
             // GirişForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(31, 41, 55);
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1144, 627);
-            Controls.Add(loginForm);
+            ClientSize = new Size(1307, 738);
+            Controls.Add(rightPanel);
+            Controls.Add(leftPanel);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             KeyPreview = true;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
-            MinimumSize = new Size(387, 404);
+            MinimumSize = new Size(440, 467);
             Name = "GirişForm";
             Text = "EDTS - Giriş Ekranı";
             Load += GirişForm_Load;
-            loginForm.ResumeLayout(false);
-            loginForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            rightPanel.ResumeLayout(false);
+            rightPanel.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private Button button2;
-        private Panel loginForm;
+
+        private Panel rightPanel;
+        private CheckBox chkRemember;
+        private ResizableButton kavisliButon1;
         private Label label2;
         private Label label1;
-        private PictureBox pictureBox1;
         private TextBox loginpsw;
-        private TextBox textBox1;
-        private KavisliButon kavisliButon1;
+        private TextBox txtSifre;
+        private Panel leftPanel;
+        private LinkLabel linkLabel2;
     }
 }

@@ -3,21 +3,23 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Configuration;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+
 namespace edts
 {
     public partial class GirişForm : Form
     {
         private int aktifRolID;
         private int denemeSayisi = 0;
+
         public GirişForm()
         {
             InitializeComponent();
-            button2.Image = Properties.Resources.eyek;
             SistemAyarYonetim.AyarlariSenkronizeEt();
 
-            // Klavye ile adım adım gezinme için KeyDown event'leri kaydediliyor
-            textBox1.KeyDown += TextBox1_KeyDown;
+            txtSifre.KeyDown += TextBox1_KeyDown;
             loginpsw.KeyDown += Loginpsw_KeyDown;
             kavisliButon1.KeyDown += BtnGiris_KeyDown;
         }
@@ -25,25 +27,25 @@ namespace edts
         {
             InitializeComponent();
             aktifRolID = gelenRolID;
-
             this.Load += AnaMenuForm_Load;
             this.Visible = false;
         }
 
+        private string appFolder =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "edts");
+
+        private string loginFile => Path.Combine(appFolder, "remember.txt");
+
         private void AnaMenuForm_Load(object sender, EventArgs e)
         {
-            // Form açıldığında kullanıcı adı kutusuna odaklan
-            textBox1.Focus();
+            txtSifre.Focus();
 
             Form? acilacakForm = null;
-
-
             switch (aktifRolID)
             {
                 case 1:
                     acilacakForm = new frmAdminAnaMenu();
                     break;
-                // ...
                 default:
                     MessageBox.Show("Yetkiniz bulunmamaktadır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Application.Exit();
@@ -59,175 +61,7 @@ namespace edts
         }
         private void btnGiris_Click(object sender, EventArgs e)
         {
-
-            string kullaniciAdi = (textBox1.Text ?? "").Trim();
-            string sifre = (loginpsw.Text ?? "").Trim();
-
-            // Placeholder kontrolleri eklendi: kullanıcı gerçek değer girmediyse deneme sayısı artmamalı
-            bool kullaniciAdiPlaceholder = string.Equals(kullaniciAdi, "Kullanıcı Adı", StringComparison.OrdinalIgnoreCase);
-            bool sifrePlaceholder = string.Equals(sifre, "Şifre", StringComparison.OrdinalIgnoreCase);
-
-            if (string.IsNullOrEmpty(kullaniciAdi) || string.IsNullOrEmpty(sifre) || kullaniciAdiPlaceholder || sifrePlaceholder)
-            {
-                MessageBox.Show("Kullanıcı adı ve şifre boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                string girisHash = GuvenlikYardimcisi.HashSifre(sifre);
-                string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-
-
-                string sorgu = "SELECT KullaniciID, RolID, AdSoyad, SifreHash FROM tblKullanicilar WHERE KullaniciAdi=@pKullaniciAdi AND AktifMi=1";
-
-                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
-                {
-                    using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
-                    {
-                        komut.Parameters.AddWithValue("@pKullaniciAdi", kullaniciAdi);
-
-                        baglanti.Open();
-                        SqlDataReader okuyucu = komut.ExecuteReader();
-
-                        if (okuyucu.Read())
-                        {
-
-                            int kullaniciID = (int)okuyucu["KullaniciID"];
-                            int rolID = (int)okuyucu["RolID"];
-                            string adSoyad = okuyucu["AdSoyad"].ToString();
-                            string sifreHash = okuyucu["SifreHash"].ToString();
-
-                            GuvenlikKullaniciKontrol(kullaniciID);
-
-                            TimeSpan? kalanZaman = null;
-
-                            using (var connection = new SqlConnection(baglantiDizesi))
-                            {
-                                string query = "SELECT kilit_acilma_tarih FROM tblKullaniciGuvenlik WHERE userId = @UserId";
-                                using (var command = new SqlCommand(query, connection))
-                                {
-                                    command.Parameters.Add("@UserId", SqlDbType.Int).Value = kullaniciID;
-                                    connection.Open();
-                                    object result = command.ExecuteScalar();
-
-                                    if (result != null && result != DBNull.Value)
-                                    {
-                                        DateTime unlockDate = Convert.ToDateTime(result);
-                                        if (unlockDate > DateTime.Now)
-                                        {
-                                            kalanZaman = unlockDate - DateTime.Now;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (kalanZaman != null)
-                            {
-                                MessageBox.Show("Çok fazla hatalı giriş yapma denemesi yapıldı. " + kalanZaman.Value.Hours + "saat " + kalanZaman.Value.Minutes + "dakika " + kalanZaman.Value.Seconds + "saniye" + " sonra tekrar deneyin.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
-                            if (girisHash != sifreHash)
-                            {
-
-                                VeritabaniYardimcisi.LogKaydet(
-                                     kullaniciID,
-                                     Sabitler.IslemTuru.Oturum_Basarisiz,
-                                     "tblKullanicilar",
-                                     "\n" + kullaniciAdi + "\n hatalı şifre girildi. Oturum açma başarısız."
-                                );
-
-                                GuvenlikKullanici.SetDate(kullaniciID, "son_basarisiz_giris", DateTime.Now);
-
-                                int hata_sayi = GuvenlikKullanici.GetInt(kullaniciID, "basarisiz_giris_sayi") + 1;
-                                GuvenlikKullanici.SetInt(kullaniciID, "basarisiz_giris_sayi", hata_sayi);
-                                int denemeHak = SistemAyarYonetim.AyarIntGetir("giris_sure_denemesi");
-                                int denemeHak2 = SistemAyarYonetim.AyarIntGetir("giris_denemesi");
-
-                                if (SistemAyarYonetim.AyarBoolGetir("hesabi_kilitleme"))
-                                {
-                                    if (hata_sayi >= denemeHak2)
-                                    {
-
-                                        using (var connection = new SqlConnection(baglantiDizesi))
-                                        {
-                                            string sorguIc = "UPDATE tblKullanicilar SET AktifMi = @aa WHERE KullaniciID = @UserId";
-                                            using (var command = new SqlCommand(sorguIc, connection))
-                                            {
-                                                command.Parameters.AddWithValue("@UserId", kullaniciID);
-                                                command.Parameters.AddWithValue("@aa", 0);
-                                                connection.Open();
-                                                command.ExecuteNonQuery();
-                                            }
-                                        }
-                                        MessageBox.Show("Çok fazla hatalı giriş yapıldığı için hesap kalıcı kilitlenmiştir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                        VeritabaniYardimcisi.LogKaydet(
-                                             kullaniciID,
-                                             Sabitler.IslemTuru.Oturum_Basarisiz,
-                                             "tblKullanicilar",
-                                             "\n" + kullaniciAdi + "\n hesabı çok fazla hatalı giriş denemesi nedeniyle kalıcı olarak kilitlendi."
-                                        );
-                                        return;
-                                    }
-                                }
-
-                                if (SistemAyarYonetim.AyarBoolGetir("giri_sure_engel"))
-                                {
-                                    if (hata_sayi >= denemeHak)
-                                    {
-                                        GuvenlikKullanici.SetDate(kullaniciID, "kilit_acilma_tarih", DateTime.Now.AddMinutes(SistemAyarYonetim.AyarIntGetir("girs_sure_zaman")));
-
-                                    }
-                                    MessageBox.Show("Hatalı şifre girildi. " + ((denemeHak - hata_sayi) > 0 ? (denemeHak - hata_sayi) + " deneme hakkınız kaldı." : " Çok fazla hatalı giriş yapıldığı için hesap geçici süre kilitlendi."), "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Kullanıcı Adı veya Şifre Hatalı.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-
-                                return;
-                            }
-
-                            //----------- Başarılı giriş işlemleri -----------
-
-                            AktifKullanici.ID = kullaniciID;
-                            AktifKullanici.KullaniciAdi = kullaniciAdi;
-                            AktifKullanici.RolID = rolID;
-                            AktifKullanici.TamAd = adSoyad;
-
-                            int girisHareketID = 1;
-
-                            VeritabaniYardimcisi.LogKaydet(
-                                kullaniciID: AktifKullanici.ID,
-                                hareketID: girisHareketID,
-                                tabloAdi: "tblKullanicilar",
-                                aciklama: adSoyad + " (" + kullaniciAdi + ") başarılı bir şekilde sisteme giriş yaptı."
-                            );
-
-
-                            AnaMenuForm anaForm = new AnaMenuForm(rolID);
-
-                            this.Visible = false;
-
-                            anaForm.ShowDialog();
-
-                            this.Close();
-
-                            return;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Kullanıcı Adı veya Şifre Hatalı.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Veritabanı Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            GirisIslemi();
         }
 
 
@@ -267,27 +101,15 @@ namespace edts
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (loginpsw.PasswordChar == '*')
-            {
-                button2.Image = Properties.Resources.eye;
-                loginpsw.PasswordChar = '\0';
-            }
-            else
-            {
-                button2.Image = Properties.Resources.eyek;
-                loginpsw.PasswordChar = '*';
-            }
+
         }
 
         private void GirişForm_Load(object sender, EventArgs e)
         {
-
-            loginForm.BackColor = Color.FromArgb(100, 255, 255, 255);
-
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrWhiteSpace(txtSifre.Text))
             {
-                textBox1.Text = "Kullanıcı Adı";
-                textBox1.ForeColor = Color.Gray;
+                txtSifre.Text = "Kullanıcı Adı";
+                txtSifre.ForeColor = Color.Gray;
             }
             if (string.IsNullOrWhiteSpace(loginpsw.Text))
             {
@@ -296,25 +118,62 @@ namespace edts
                 loginpsw.PasswordChar = '\0';
             }
 
-            // Form açıldığında kullanıcı adı alanına odaklan
-            textBox1.Focus();
+            chkRemember.Checked = File.Exists(loginFile);
+
+            if (File.Exists(loginFile))
+            {
+                try
+                {
+                    int savedUserId = int.Parse(File.ReadAllText(loginFile));
+                    string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+
+                    using (SqlConnection con = new SqlConnection(baglantiDizesi))
+                    {
+                        string query = "SELECT KullaniciID, RolID, AdSoyad, KullaniciAdi FROM tblKullanicilar WHERE KullaniciID=@UserId AND AktifMi=1";
+                        using (SqlCommand cmd = new SqlCommand(query, con))
+                        {
+                            cmd.Parameters.AddWithValue("@UserId", savedUserId);
+                            con.Open();
+
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            if (dr.Read())
+                            {
+                                AktifKullanici.ID = (int)dr["KullaniciID"];
+                                AktifKullanici.KullaniciAdi = dr["KullaniciAdi"].ToString();
+                                AktifKullanici.RolID = (int)dr["RolID"];
+                                AktifKullanici.TamAd = dr["AdSoyad"].ToString();
+
+                                AnaMenuForm anaForm = new AnaMenuForm(AktifKullanici.RolID);
+                                anaForm.Show();
+
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            txtSifre.Focus();
         }
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
-            if (textBox1.Text == "Kullanıcı Adı")
+            if (txtSifre.Text == "Kullanıcı Adı")
             {
-                textBox1.Text = "";
-                textBox1.ForeColor = Color.Black;
+                txtSifre.Text = "";
+                txtSifre.ForeColor = Color.Black;
             }
         }
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrWhiteSpace(txtSifre.Text))
             {
-                textBox1.Text = "Kullanıcı Adı";
-                textBox1.ForeColor = Color.Gray;
+                txtSifre.Text = "Kullanıcı Adı";
+                txtSifre.ForeColor = Color.Gray;
             }
         }
 
@@ -343,7 +202,6 @@ namespace edts
             linkLabel1_LinkClicked();
         }
 
-        // ----- Yeni eklenen KeyDown handler'ları -----
         private void TextBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -368,6 +226,223 @@ namespace edts
             {
                 e.SuppressKeyPress = true;
                 kavisliButon1.PerformClick();
+            }
+        }
+
+        private void txtSifre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rightPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void loginpsw_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kavisliButon1_Click(object sender, EventArgs e)
+        {
+            GirisIslemi();
+        }
+        private void GirisIslemi()
+        {
+            string kullaniciAdi = (txtSifre.Text ?? "").Trim();
+            string sifre = (loginpsw.Text ?? "").Trim();
+
+            bool kullaniciAdiPlaceholder = string.Equals(kullaniciAdi, "Kullanıcı Adı", StringComparison.OrdinalIgnoreCase);
+            bool sifrePlaceholder = string.Equals(sifre, "Şifre", StringComparison.OrdinalIgnoreCase);
+
+            if (string.IsNullOrEmpty(kullaniciAdi) || string.IsNullOrEmpty(sifre) || kullaniciAdiPlaceholder || sifrePlaceholder)
+            {
+                MessageBox.Show("Kullanıcı adı ve şifre boş bırakılamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                string girisHash = GuvenlikYardimcisi.HashSifre(sifre);
+                string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+                string sorgu = "SELECT KullaniciID, RolID, AdSoyad, SifreHash FROM tblKullanicilar WHERE KullaniciAdi=@pKullaniciAdi AND AktifMi=1";
+
+                using (SqlConnection baglanti = new SqlConnection(baglantiDizesi))
+                using (SqlCommand komut = new SqlCommand(sorgu, baglanti))
+                {
+                    komut.Parameters.AddWithValue("@pKullaniciAdi", kullaniciAdi);
+                    baglanti.Open();
+
+                    SqlDataReader okuyucu = komut.ExecuteReader();
+                    if (okuyucu.Read())
+                    {
+                        int kullaniciID = (int)okuyucu["KullaniciID"];
+                        int rolID = (int)okuyucu["RolID"];
+                        string adSoyad = okuyucu["AdSoyad"].ToString();
+                        string sifreHash = okuyucu["SifreHash"].ToString();
+
+                        GuvenlikKullaniciKontrol(kullaniciID);
+
+                        if (GirisKilidiKontrol(kullaniciID))
+                            return;
+
+                        if (girisHash != sifreHash)
+                        {
+                            HatalıGirisIslemleri(kullaniciID, kullaniciAdi);
+                            return;
+                        }
+
+
+                        if (chkRemember.Checked)
+                        {
+                            if (!Directory.Exists(appFolder))
+                                Directory.CreateDirectory(appFolder);
+
+                            File.WriteAllText(loginFile, kullaniciID.ToString());
+                        }
+                        else
+                        {
+                            if (File.Exists(loginFile))
+                                File.Delete(loginFile);
+                        }
+
+                        AktifKullanici.ID = kullaniciID;
+                        AktifKullanici.KullaniciAdi = kullaniciAdi;
+                        AktifKullanici.RolID = rolID;
+                        AktifKullanici.TamAd = adSoyad;
+
+                        VeritabaniYardimcisi.LogKaydet(
+                            kullaniciID: AktifKullanici.ID,
+                            hareketID: 1,
+                            tabloAdi: "tblKullanicilar",
+                            aciklama: adSoyad + " (" + kullaniciAdi + ") başarılı bir şekilde sisteme giriş yaptı."
+                        );
+
+                        AnaMenuForm anaForm = new AnaMenuForm(rolID);
+                        this.Visible = false;
+                        anaForm.ShowDialog();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kullanıcı Adı veya Şifre Hatalı.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Veritabanı Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private bool GirisKilidiKontrol(int kullaniciID)
+        {
+            string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+            using (var connection = new SqlConnection(baglantiDizesi))
+            {
+                string query = "SELECT kilit_acilma_tarih FROM tblKullaniciGuvenlik WHERE userId = @UserId";
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", kullaniciID);
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        DateTime unlockDate = Convert.ToDateTime(result);
+                        if (unlockDate > DateTime.Now)
+                        {
+                            TimeSpan kalanZaman = unlockDate - DateTime.Now;
+                            MessageBox.Show($"Çok fazla hatalı giriş yapıldı. {kalanZaman.Hours} saat {kalanZaman.Minutes} dakika {kalanZaman.Seconds} saniye sonra tekrar deneyin.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        private void HatalıGirisIslemleri(int kullaniciID, string kullaniciAdi)
+        {
+            VeritabaniYardimcisi.LogKaydet(kullaniciID, Sabitler.IslemTuru.Oturum_Basarisiz, "tblKullanicilar", $"{kullaniciAdi} hatalı şifre girildi. Oturum açma başarısız.");
+
+            GuvenlikKullanici.SetDate(kullaniciID, "son_basarisiz_giris", DateTime.Now);
+            int hata_sayi = GuvenlikKullanici.GetInt(kullaniciID, "basarisiz_giris_sayi") + 1;
+            GuvenlikKullanici.SetInt(kullaniciID, "basarisiz_giris_sayi", hata_sayi);
+
+            int denemeHak = SistemAyarYonetim.AyarIntGetir("giris_sure_denemesi");
+            int denemeHak2 = SistemAyarYonetim.AyarIntGetir("giris_denemesi");
+
+            if (SistemAyarYonetim.AyarBoolGetir("hesabi_kilitleme") && hata_sayi >= denemeHak2)
+            {
+                string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+                using SqlConnection connection = new SqlConnection(baglantiDizesi);
+                string sorguIc = "UPDATE tblKullanicilar SET AktifMi = 0 WHERE KullaniciID = @UserId";
+                using SqlCommand command = new SqlCommand(sorguIc, connection);
+                command.Parameters.AddWithValue("@UserId", kullaniciID);
+                connection.Open();
+                command.ExecuteNonQuery();
+
+                MessageBox.Show("Çok fazla hatalı giriş yapıldığı için hesap kalıcı kilitlenmiştir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (SistemAyarYonetim.AyarBoolGetir("giri_sure_engel") && hata_sayi >= denemeHak)
+            {
+                GuvenlikKullanici.SetDate(kullaniciID, "kilit_acilma_tarih", DateTime.Now.AddMinutes(SistemAyarYonetim.AyarIntGetir("girs_sure_zaman")));
+                MessageBox.Show(
+                    $"Hatalı şifre girildi. {((denemeHak - hata_sayi) > 0 ? (denemeHak - hata_sayi).ToString() + " deneme hakkınız kaldı." : "Hesap geçici süre kilitlendi.")}",
+                    "Giriş Başarısız",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            else
+            {
+                MessageBox.Show("Kullanıcı Adı veya Şifre Hatalı.", "Giriş Başarısız", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmSupport registerForm = new frmSupport();
+            registerForm.ShowDialog();
+        }
+
+        private void txtSifre_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSifre.Text))
+            {
+                txtSifre.Text = "Kullanıcı Adı";
+                txtSifre.ForeColor = Color.Gray;
+            }
+        }
+
+        private void loginpsw_Leave_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(loginpsw.Text))
+            {
+                loginpsw.Text = "Şifre";
+                loginpsw.ForeColor = Color.Gray;
+                loginpsw.PasswordChar = '\0';
+            }
+        }
+
+        private void txtSifre_Enter(object sender, EventArgs e)
+        {
+            if (txtSifre.Text == "Kullanıcı Adı")
+            {
+                txtSifre.Text = "";
+                txtSifre.ForeColor = Color.Black;
+            }
+        }
+
+        private void loginpsw_Enter_1(object sender, EventArgs e)
+        {
+            if (loginpsw.Text == "Şifre")
+            {
+                loginpsw.Text = "";
+                loginpsw.ForeColor = Color.Black;
+                loginpsw.PasswordChar = '*';
             }
         }
     }
