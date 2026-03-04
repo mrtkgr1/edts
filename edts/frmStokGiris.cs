@@ -203,7 +203,7 @@ namespace EnvanterDepoSistemitaslak2
 
                         string sql = @"INSERT INTO tblStokHareketleri 
                                      (UrunID, HareketID, KullaniciID, Miktar, Tarih, Aciklama, DepoID, TedarikciID, FaturaNo) 
-                                     VALUES (@u, (SELECT TOP 1 HareketID FROM tblHareketTipleri WHERE CarpimFaktoru > 0), 55, @m, GETDATE(), @a, 1, @t, @f)";
+                                     VALUES (@u, (SELECT TOP 1 HareketID FROM tblHareketTipleri WHERE CarpimFaktoru > 0), @k, @m, GETDATE(), @a, 1, @t, @f)";
 
                         using (SqlCommand cmd = new SqlCommand(sql, baglanti, trans))
                         {
@@ -212,6 +212,8 @@ namespace EnvanterDepoSistemitaslak2
                             cmd.Parameters.AddWithValue("@a", row["GirisNedeni"]);
                             cmd.Parameters.AddWithValue("@t", cmbTedarikci.SelectedValue);
                             cmd.Parameters.AddWithValue("@f", row["FaturaNo"]);
+                            cmd.Parameters.AddWithValue("@k", AktifKullanici.ID);
+
                             cmd.ExecuteNonQuery();
                         }
 
