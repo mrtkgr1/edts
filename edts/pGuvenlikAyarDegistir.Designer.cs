@@ -39,7 +39,7 @@
             panel4 = new Panel();
             label4 = new Label();
             pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
+            pictureBoxPP = new PictureBox();
             panelSagUst = new Panel();
             btnPPSec = new Button();
             btnResimKaldir = new ResizableButton();
@@ -50,7 +50,7 @@
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPP).BeginInit();
             panelSagUst.SuspendLayout();
             panel5.SuspendLayout();
             SuspendLayout();
@@ -207,13 +207,15 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // pictureBoxPP
             // 
-            pictureBox2.Location = new Point(0, -1);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(191, 191);
-            pictureBox2.TabIndex = 10;
-            pictureBox2.TabStop = false;
+            pictureBoxPP.Location = new Point(0, -1);
+            pictureBoxPP.Margin = new Padding(3, 3, 0, 3);
+            pictureBoxPP.Name = "pictureBoxPP";
+            pictureBoxPP.Size = new Size(191, 191);
+            pictureBoxPP.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxPP.TabIndex = 10;
+            pictureBoxPP.TabStop = false;
             // 
             // panelSagUst
             // 
@@ -242,24 +244,26 @@
             // 
             btnResimKaldir.Image = (Image)resources.GetObject("btnResimKaldir.Image");
             btnResimKaldir.KaynakResim = (Image)resources.GetObject("btnResimKaldir.KaynakResim");
-            btnResimKaldir.Location = new Point(157, 196);
+            btnResimKaldir.Location = new Point(156, 196);
+            btnResimKaldir.Margin = new Padding(3, 3, 0, 3);
             btnResimKaldir.Name = "btnResimKaldir";
             btnResimKaldir.ResimBoyutu = 24;
             btnResimKaldir.Size = new Size(33, 33);
             btnResimKaldir.TabIndex = 13;
             btnResimKaldir.UseVisualStyleBackColor = true;
+            btnResimKaldir.Click += btnResimKaldir_Click;
             // 
             // panel5
             // 
             panel5.AutoSize = true;
             panel5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(pictureBox2);
+            panel5.Controls.Add(pictureBoxPP);
             panel5.Controls.Add(btnResimKaldir);
             panel5.Controls.Add(btnPPSec);
             panel5.Location = new Point(12, 9);
             panel5.Name = "panel5";
-            panel5.Size = new Size(196, 234);
+            panel5.Size = new Size(193, 234);
             panel5.TabIndex = 14;
             // 
             // pGuvenlikAyarDegistir
@@ -284,7 +288,7 @@
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPP).EndInit();
             panelSagUst.ResumeLayout(false);
             panelSagUst.PerformLayout();
             panel5.ResumeLayout(false);
@@ -307,7 +311,7 @@
         private Button buttonSfr;
         private Button buttonKad;
         private Button buttonTad;
-        private PictureBox pictureBox2;
+        private PictureBox pictureBoxPP;
         private Panel panelSagUst;
         private TextBox textBoxKAd;
         private TextBox textBoxTad;
