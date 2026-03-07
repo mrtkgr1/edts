@@ -23,54 +23,12 @@ namespace edts
             loginpsw.KeyDown += Loginpsw_KeyDown;
             kavisliButon1.KeyDown += BtnGiris_KeyDown;
         }
-        public GirişForm(int gelenRolID)
-        {
-            InitializeComponent();
-            aktifRolID = gelenRolID;
-            this.Load += AnaMenuForm_Load;
-            this.Visible = false;
-        }
 
         private string appFolder =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "edts");
 
         private string loginFile => Path.Combine(appFolder, "remember.txt");
 
-        private void AnaMenuForm_Load(object sender, EventArgs e)
-        {
-            txtSifre.Focus();
-
-            Form? acilacakForm = null;
-            switch (aktifRolID)
-            {
-                case 1:
-                    acilacakForm = new frmAdminAnaMenu();
-                    break;
-                default:
-                    MessageBox.Show("Yetkiniz bulunmamaktadır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    Application.Exit();
-                    return;
-            }
-
-            if (acilacakForm != null)
-            {
-                acilacakForm.Show();
-            }
-
-            this.Close();
-        }
-        private void btnGiris_Click(object sender, EventArgs e)
-        {
-            GirisIslemi();
-        }
-
-
-        private void linkLabel1_LinkClicked()
-        {
-            frmSupport supportForm = new frmSupport();
-
-            supportForm.Show();
-        }
 
         public void GuvenlikKullaniciKontrol(int userId)
         {
@@ -97,13 +55,6 @@ namespace edts
             }
         }
 
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void GirişForm_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtSifre.Text))
@@ -120,7 +71,7 @@ namespace edts
 
             chkRemember.Checked = File.Exists(loginFile);
 
-            if (File.Exists(loginFile))
+            if (File.Exists(loginFile) && false)
             {
                 try
                 {
@@ -159,48 +110,6 @@ namespace edts
             txtSifre.Focus();
         }
 
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            if (txtSifre.Text == "Kullanıcı Adı")
-            {
-                txtSifre.Text = "";
-                txtSifre.ForeColor = Color.Black;
-            }
-        }
-
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtSifre.Text))
-            {
-                txtSifre.Text = "Kullanıcı Adı";
-                txtSifre.ForeColor = Color.Gray;
-            }
-        }
-
-        private void loginpsw_Enter(object sender, EventArgs e)
-        {
-            if (loginpsw.Text == "Şifre")
-            {
-                loginpsw.Text = "";
-                loginpsw.ForeColor = Color.Black;
-                loginpsw.PasswordChar = '*';
-            }
-        }
-
-        private void loginpsw_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(loginpsw.Text))
-            {
-                loginpsw.Text = "Şifre";
-                loginpsw.ForeColor = Color.Gray;
-                loginpsw.PasswordChar = '\0';
-            }
-        }
-
-        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            linkLabel1_LinkClicked();
-        }
 
         private void TextBox1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -230,11 +139,6 @@ namespace edts
         }
 
         private void txtSifre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rightPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
