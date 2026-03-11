@@ -8,6 +8,68 @@ using edts;
 
 public static class VeritabaniYardimcisi
 {
+    public static bool BaglantiyiTestEt(string test, out string hataMesaji) {
+        hataMesaji = string.Empty;
+
+        try {
+            using (SqlConnection baglanti = new SqlConnection(test)) {
+                baglanti.Open();
+                return true;
+            }
+        } catch (SqlException sqlEx) {
+            hataMesaji = "Veritabanı reddetti:\n" + sqlEx.Message;
+            return false;
+        } catch (Exception ex) {
+            hataMesaji = "Bağlantı kurulamadı:\n" + ex.Message;
+            return false;
+        }
+    }
+
+    public static bool BaglantiyiGuncelle(string yeniBaglantiDizesi) {
+        try {
+            string mevcutKlasor = AppDomain.CurrentDomain.BaseDirectory;
+            string hedefExeYolu = Path.Combine(mevcutKlasor, "EDTS.exe");
+            Configuration config = ConfigurationManager.OpenExeConfiguration(hedefExeYolu);
+            ConnectionStringsSection section = config.ConnectionStrings;
+
+            if (section.ConnectionStrings["baglanti"] != null) {
+                section.ConnectionStrings["baglanti"].ConnectionString = yeniBaglantiDizesi;
+            } else {
+                section.ConnectionStrings.Add(new ConnectionStringSettings("baglanti", yeniBaglantiDizesi, "System.Data.SqlClient"));
+            }
+
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("connectionStrings");
+            return true;
+        } catch (Exception ex) {
+            MessageBox.Show("Bağlantı Dizesi Güncellenirken Hata: " + ex.Message);
+            return false;
+        }
+    }
+
+    public static string SunucuyuGetir() {
+        string tamBaglanti = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(tamBaglanti);
+        return builder.DataSource;
+    }
+
+    public static string SunucuyuGetir(string tamBaglanti) {
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(tamBaglanti);
+        return builder.DataSource;
+    }
+
+    public static string VeritabaniAdiniGetir() {
+        string tamBaglanti = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(tamBaglanti);
+        return builder.InitialCatalog;
+    }
+
+    public static string VeritabaniAdiniGetir(string tamBaglanti) {
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(tamBaglanti);
+        return builder.InitialCatalog;
+    }
+
+    //Standat
 
     public static void LogKaydet(int kullaniciID, Sabitler.IslemTuru hareket, string tabloAdi, string aciklama)
     {
