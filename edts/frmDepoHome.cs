@@ -77,7 +77,7 @@ namespace edts
             this.Close();
 
             
-            GirişForm loginFormu = new GirişForm();
+            GirisForm loginFormu = new GirisForm();
             loginFormu.Show();
         }
 
