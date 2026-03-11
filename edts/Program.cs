@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.Windows.Forms; 
 using SQLitePCL; 
 
@@ -12,7 +13,11 @@ namespace edts
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new GirisForm());
+            if (VeritabaniYardimcisi.BaglantiyiTestEt(ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString, out String hataMesaji)) {
+                Application.Run(new GirisForm());
+            } else {
+                Application.Run(new VeriTabaniAyar());
+            }
         }
     }
 }
