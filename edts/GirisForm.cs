@@ -9,17 +9,15 @@ using System.Windows.Forms;
 
 namespace edts
 {
-    public partial class GirişForm : Form
+    public partial class GirisForm : Form
     {
-        private int aktifRolID;
-        private int denemeSayisi = 0;
 
-        public GirişForm()
+        public GirisForm()
         {
             InitializeComponent();
             SistemAyarYonetim.AyarlariSenkronizeEt();
 
-            txtSifre.KeyDown += TextBox1_KeyDown;
+            txtKullaniciAdi.KeyDown += TextBox1_KeyDown;
             loginpsw.KeyDown += Loginpsw_KeyDown;
             kavisliButon1.KeyDown += BtnGiris_KeyDown;
         }
@@ -28,7 +26,6 @@ namespace edts
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "edts");
 
         private string loginFile => Path.Combine(appFolder, "remember.txt");
-
 
         public void GuvenlikKullaniciKontrol(int userId)
         {
@@ -57,10 +54,10 @@ namespace edts
 
         private void GirişForm_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSifre.Text))
+            if (string.IsNullOrWhiteSpace(txtKullaniciAdi.Text))
             {
-                txtSifre.Text = "Kullanıcı Adı";
-                txtSifre.ForeColor = Color.Gray;
+                txtKullaniciAdi.Text = "Kullanıcı Adı";
+                txtKullaniciAdi.ForeColor = Color.Gray;
             }
             if (string.IsNullOrWhiteSpace(loginpsw.Text))
             {
@@ -107,7 +104,7 @@ namespace edts
                 }
             }
 
-            txtSifre.Focus();
+            txtKullaniciAdi.Focus();
         }
 
 
@@ -154,7 +151,8 @@ namespace edts
         }
         private void GirisIslemi()
         {
-            string kullaniciAdi = (txtSifre.Text ?? "").Trim();
+
+            string kullaniciAdi = (txtKullaniciAdi.Text ?? "").Trim();
             string sifre = (loginpsw.Text ?? "").Trim();
 
             bool kullaniciAdiPlaceholder = string.Equals(kullaniciAdi, "Kullanıcı Adı", StringComparison.OrdinalIgnoreCase);
@@ -239,6 +237,38 @@ namespace edts
                 MessageBox.Show("Veritabanı Hatası: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+        /*
+         * 1 = Başarılı
+         * 0 = Hatalı
+         * -1 = Hesap kilitli
+         * null = Veritabanı hatası
+         * diğer = Bilinmeyen hata
+         */
+        private String? SifreKontrol() {
+            string baglantiCumlesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+
+            using (SqlConnection baglantı = new SqlConnection(baglantiCumlesi)) {
+
+                using (SqlCommand komut = new SqlCommand("sp_KullaniciGirisi", baglantı)) {
+                    komut.CommandType = CommandType.StoredProcedure;
+
+                    komut.Parameters.AddWithValue("@KullaniciAdi", txtKullaniciAdi.Text.Trim());
+                    komut.Parameters.AddWithValue("@Sifre", GuvenlikYardimcisi.HashSifre(loginpsw.Text));
+
+                    baglantı.Open();
+                    using (SqlDataReader okuyucu = komut.ExecuteReader()) {
+                        if (okuyucu.Read()) {
+                            return okuyucu["Sonuc"].ToString();
+                        }
+                    }
+                }
+
+            }
+            return null;
+        }
         private bool GirisKilidiKontrol(int kullaniciID)
         {
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
@@ -314,10 +344,10 @@ namespace edts
 
         private void txtSifre_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSifre.Text))
+            if (string.IsNullOrWhiteSpace(txtKullaniciAdi.Text))
             {
-                txtSifre.Text = "Kullanıcı Adı";
-                txtSifre.ForeColor = Color.Gray;
+                txtKullaniciAdi.Text = "Kullanıcı Adı";
+                txtKullaniciAdi.ForeColor = Color.Gray;
             }
         }
 
@@ -333,10 +363,10 @@ namespace edts
 
         private void txtSifre_Enter(object sender, EventArgs e)
         {
-            if (txtSifre.Text == "Kullanıcı Adı")
+            if (txtKullaniciAdi.Text == "Kullanıcı Adı")
             {
-                txtSifre.Text = "";
-                txtSifre.ForeColor = Color.Black;
+                txtKullaniciAdi.Text = "";
+                txtKullaniciAdi.ForeColor = Color.Black;
             }
         }
 

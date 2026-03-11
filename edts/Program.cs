@@ -12,7 +12,7 @@ namespace edts
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new GiriþForm());
+            Application.Run(new GirisForm());
         }
     }
 }

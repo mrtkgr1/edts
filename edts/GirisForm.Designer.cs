@@ -2,7 +2,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient; // SQL Server ile iletişim için
 using System.Configuration;
 namespace edts {
-    partial class GirişForm {
+    partial class GirisForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -26,7 +26,7 @@ namespace edts {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GirişForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GirisForm));
             rightPanel = new Panel();
             linkLabel2 = new LinkLabel();
             chkRemember = new CheckBox();
@@ -34,7 +34,7 @@ namespace edts {
             label2 = new Label();
             label1 = new Label();
             loginpsw = new TextBox();
-            txtSifre = new TextBox();
+            txtKullaniciAdi = new TextBox();
             leftPanel = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             rightPanel.SuspendLayout();
@@ -52,7 +52,7 @@ namespace edts {
             rightPanel.Controls.Add(label2);
             rightPanel.Controls.Add(label1);
             rightPanel.Controls.Add(loginpsw);
-            rightPanel.Controls.Add(txtSifre);
+            rightPanel.Controls.Add(txtKullaniciAdi);
             rightPanel.Dock = DockStyle.Fill;
             rightPanel.Location = new Point(449, 0);
             rightPanel.Margin = new Padding(0);
@@ -132,16 +132,16 @@ namespace edts {
             loginpsw.Enter += loginpsw_Enter_1;
             loginpsw.Leave += loginpsw_Leave_1;
             // 
-            // txtSifre
+            // txtKullaniciAdi
             // 
-            txtSifre.BorderStyle = BorderStyle.FixedSingle;
-            txtSifre.Location = new Point(125, 144);
-            txtSifre.Name = "txtSifre";
-            txtSifre.Size = new Size(212, 25);
-            txtSifre.TabIndex = 19;
-            txtSifre.TextChanged += txtSifre_TextChanged;
-            txtSifre.Enter += txtSifre_Enter;
-            txtSifre.Leave += txtSifre_Leave;
+            txtKullaniciAdi.BorderStyle = BorderStyle.FixedSingle;
+            txtKullaniciAdi.Location = new Point(125, 144);
+            txtKullaniciAdi.Name = "txtKullaniciAdi";
+            txtKullaniciAdi.Size = new Size(212, 25);
+            txtKullaniciAdi.TabIndex = 19;
+            txtKullaniciAdi.TextChanged += txtSifre_TextChanged;
+            txtKullaniciAdi.Enter += txtSifre_Enter;
+            txtKullaniciAdi.Leave += txtSifre_Leave;
             // 
             // leftPanel
             // 
@@ -172,7 +172,7 @@ namespace edts {
             tableLayoutPanel1.Size = new Size(898, 491);
             tableLayoutPanel1.TabIndex = 0;
             // 
-            // GirişForm
+            // GirisForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -184,7 +184,7 @@ namespace edts {
             KeyPreview = true;
             MaximizeBox = false;
             MinimumSize = new Size(387, 403);
-            Name = "GirişForm";
+            Name = "GirisForm";
             Text = "EDTS - Giriş Ekranı";
             Load += GirişForm_Load;
             rightPanel.ResumeLayout(false);
@@ -202,7 +202,7 @@ namespace edts {
         private Label label2;
         private Label label1;
         private TextBox loginpsw;
-        private TextBox txtSifre;
+        private TextBox txtKullaniciAdi;
         private Panel leftPanel;
         private LinkLabel linkLabel2;
         private TableLayoutPanel tableLayoutPanel1;

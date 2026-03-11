@@ -112,7 +112,7 @@ namespace edts
             }
 
             this.Close();
-            edts.GirişForm girisFormu = new edts.GirişForm();
+            edts.GirisForm girisFormu = new edts.GirisForm();
             girisFormu.Show();
         }
 
