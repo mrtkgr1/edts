@@ -149,7 +149,7 @@ namespace edts
             }
 
             this.ParentForm?.Close();
-            edts.GirişForm girisFormu = new edts.GirişForm();
+            edts.GirisForm girisFormu = new edts.GirisForm();
             girisFormu.Show();
         }
 
@@ -232,7 +232,7 @@ namespace edts
             }
 
             this.ParentForm?.Close();
-            edts.GirişForm girisFormu = new edts.GirişForm();
+            edts.GirisForm girisFormu = new edts.GirisForm();
             girisFormu.Show();
         }
 

@@ -279,6 +279,14 @@ namespace edts {
             SayfaGoster(new frmKullaniciAyarlari());
         }
 
+        private void hesapKapat_Tiklandi() {
+            bool cevap = MessageBox.Show("Çıkış yapılsın mı?", "Çıkış yap", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+            
+            if (cevap) {
+                Application.Restart();  
+            }
+        }
+
         private void hesapDuzenle_Tiklandi() {
             KullaniciBilgi tmp = new KullaniciBilgi(AktifKullanici.ID);
             tmp.ShowDialog(this);
