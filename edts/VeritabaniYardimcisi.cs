@@ -25,11 +25,19 @@ public static class VeritabaniYardimcisi
         }
     }
 
+    public static string BaglaniOlustur(string mevcutBaglantiCumlesi, string yeniSunucu, string yeniVeritabaniAdi) {
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(mevcutBaglantiCumlesi);
+
+        builder.DataSource = yeniSunucu;
+        builder.InitialCatalog = yeniVeritabaniAdi;
+
+        return builder.ConnectionString;
+    }
+
     public static bool BaglantiyiGuncelle(string yeniBaglantiDizesi) {
+
         try {
-            string mevcutKlasor = AppDomain.CurrentDomain.BaseDirectory;
-            string hedefExeYolu = Path.Combine(mevcutKlasor, "EDTS.exe");
-            Configuration config = ConfigurationManager.OpenExeConfiguration(hedefExeYolu);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             ConnectionStringsSection section = config.ConnectionStrings;
 
             if (section.ConnectionStrings["baglanti"] != null) {
@@ -46,6 +54,8 @@ public static class VeritabaniYardimcisi
             return false;
         }
     }
+
+    //db bilgisi alma
 
     public static string SunucuyuGetir() {
         string tamBaglanti = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
