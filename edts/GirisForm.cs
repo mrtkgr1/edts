@@ -66,9 +66,9 @@ namespace edts
                 loginpsw.PasswordChar = '\0';
             }
 
-            chkRemember.Checked = File.Exists(loginFile);
+            //chkRemember.Checked = File.Exists(loginFile);
 
-            if (File.Exists(loginFile) && false)
+            if (false && File.Exists(loginFile))
             {
                 try
                 {

@@ -78,12 +78,13 @@ namespace edts {
             chkRemember.AutoSize = true;
             chkRemember.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
             chkRemember.ForeColor = SystemColors.ControlLightLight;
-            chkRemember.Location = new Point(221, 226);
+            chkRemember.Location = new Point(289, 49);
             chkRemember.Name = "chkRemember";
             chkRemember.Size = new Size(107, 23);
             chkRemember.TabIndex = 25;
             chkRemember.Text = "Beni Hatırla";
             chkRemember.UseVisualStyleBackColor = true;
+            chkRemember.Visible = false;
             // 
             // kavisliButon1
             // 
@@ -105,7 +106,7 @@ namespace edts {
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(93, 197);
+            label2.Location = new Point(93, 207);
             label2.Name = "label2";
             label2.Size = new Size(26, 17);
             label2.TabIndex = 22;
@@ -114,7 +115,7 @@ namespace edts {
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(93, 146);
+            label1.Location = new Point(93, 156);
             label1.Name = "label1";
             label1.Size = new Size(26, 17);
             label1.TabIndex = 21;
@@ -123,7 +124,7 @@ namespace edts {
             // loginpsw
             // 
             loginpsw.BorderStyle = BorderStyle.FixedSingle;
-            loginpsw.Location = new Point(125, 195);
+            loginpsw.Location = new Point(125, 205);
             loginpsw.Name = "loginpsw";
             loginpsw.PasswordChar = '*';
             loginpsw.Size = new Size(212, 25);
@@ -135,7 +136,7 @@ namespace edts {
             // txtKullaniciAdi
             // 
             txtKullaniciAdi.BorderStyle = BorderStyle.FixedSingle;
-            txtKullaniciAdi.Location = new Point(125, 144);
+            txtKullaniciAdi.Location = new Point(125, 154);
             txtKullaniciAdi.Name = "txtKullaniciAdi";
             txtKullaniciAdi.Size = new Size(212, 25);
             txtKullaniciAdi.TabIndex = 19;

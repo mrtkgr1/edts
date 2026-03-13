@@ -60,7 +60,7 @@ namespace edts {
                 MessageBox.Show(this,"Lütfen en az bir değer girin.");
                 return;
             }
-            this.Text = _baslık + " - Önizleme hesaplanıyor...";
+            this.Text = _baslık + " - Bağlantı önizlemesi oluşturuluyor...";
             buttonKayit.Enabled = true;
 
             string tmpDizi = textBoxYeniDizi.Text.Trim();
