@@ -22,11 +22,11 @@ namespace edts {
         private void VeriTabaniAyar_Load(object sender, EventArgs e) {
             veriTabaniBilgi.Text = "Mevcut Veri Tabanı Bağlantısı: " + VeritabaniYardimcisi.SunucuyuGetir();
             mevcutAd.Text = "Mevcut Veritabanı Adı: " + VeritabaniYardimcisi.VeritabaniAdiniGetir();
-            mevcutTest.Text = VeritabaniYardimcisi.BaglantiyiTestEt(mevcutBaglantiDizesi, out string hataMesaji) ? "Mevcut bağlantı geçerli." : "Mevcut bağlantı geçersiz: " + hataMesaji;
+           // mevcutTest.Text = VeritabaniYardimcisi.BaglantiyiTestEt(mevcutBaglantiDizesi, out string hataMesaji) ? "Mevcut bağlantı geçerli." : "Mevcut bağlantı geçersiz: " + hataMesaji;
 
         }
 
-        //mevcut test
+        //test
 
         private void buttonMevcutTest_Click(object sender, EventArgs e) {
             mevcutTest.Text = "Test yapılıyor...";
@@ -36,20 +36,34 @@ namespace edts {
 
         private void buttonYeniTest_Click(object sender, EventArgs e) {
             if (string.IsNullOrWhiteSpace(yeniBaglantiDizesi)) {
-                yeniTest.Text = "Lütfen yeni bağlantı dizesini girin.";
+                yeniTest.Text = "Bağlantı dizesi oluşturulamadı.";
                 return;
             }
 
+            yeniTest.Text = "Test yapılıyor...";
+            yeniTest.Update();
             yeniTest.Text = VeritabaniYardimcisi.BaglantiyiTestEt(yeniBaglantiDizesi, out string hataMesaji) ? "Yeni bağlantı geçerli." : "Yeni bağlantı geçersiz: " + hataMesaji;
         }
 
+        //değiştir kısa süreli yeni bağlantı bilgilerini gösterir 
+
         private void buttonDegistir_Click(object sender, EventArgs e) {
-            if (string.IsNullOrWhiteSpace(textBoxYeniDizi.Text.Trim())) {
-                MessageBox.Show("Lütfen yeni bağlantı dizesini girin.");
+            if (string.IsNullOrWhiteSpace(textBoxYeniDizi.Text.Trim()) && string.IsNullOrEmpty(textBoxYeniAd.Text.Trim())){
+                MessageBox.Show(this,"Lütfen en az bir değer girin.");
                 return;
             }
 
-            yeniBaglantiDizesi = textBoxYeniDizi.Text.Trim();
+            string tmpDizi = textBoxYeniDizi.Text.Trim();
+            string tmpAd = textBoxYeniAd.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(tmpDizi)) {
+                tmpDizi = VeritabaniYardimcisi.SunucuyuGetir();
+            }
+            if (string.IsNullOrWhiteSpace(tmpAd)) {
+                tmpAd = VeritabaniYardimcisi.VeritabaniAdiniGetir();
+            }
+
+            yeniBaglantiDizesi = VeritabaniYardimcisi.BaglaniOlustur(mevcutBaglantiDizesi, tmpDizi, tmpAd);
             yeniVeriTabaniBilgi.Text = "Yeni Veri Tabanı Bağlantısı: " + VeritabaniYardimcisi.SunucuyuGetir(yeniBaglantiDizesi);
             yeniAd.Text = "Yeni Veritabanı Adı: " + VeritabaniYardimcisi.VeritabaniAdiniGetir(yeniBaglantiDizesi);
 
@@ -65,8 +79,8 @@ namespace edts {
                 }
                 VeritabaniYardimcisi.BaglantiyiGuncelle(yeniBaglantiDizesi);
             }
-            MessageBox.Show("Değişiklikler kaydedildi. Uygulama kapanacak ve yeni bağlantı ile yeniden başlatılacak.");
-            Application.Exit();
+            MessageBox.Show("Değişiklikler kaydedildi. Uygulama kapanacak ve yeni bağlantı ayarları ile yeniden başlatılacak.");
+            Application.Restart();
         }
 
         private void label3_Click(object sender, EventArgs e) {
