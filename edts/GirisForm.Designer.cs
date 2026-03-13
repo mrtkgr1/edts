@@ -37,8 +37,10 @@ namespace edts {
             txtKullaniciAdi = new TextBox();
             leftPanel = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
+            pictureBox1 = new PictureBox();
             rightPanel.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // rightPanel
@@ -46,6 +48,7 @@ namespace edts {
             rightPanel.AutoSize = true;
             rightPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             rightPanel.BackColor = Color.LightBlue;
+            rightPanel.Controls.Add(pictureBox1);
             rightPanel.Controls.Add(linkLabel2);
             rightPanel.Controls.Add(chkRemember);
             rightPanel.Controls.Add(kavisliButon1);
@@ -173,6 +176,17 @@ namespace edts {
             tableLayoutPanel1.Size = new Size(898, 491);
             tableLayoutPanel1.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, 453);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(38, 38);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.TabIndex = 27;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // GirisForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -192,6 +206,7 @@ namespace edts {
             rightPanel.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -207,5 +222,6 @@ namespace edts {
         private Panel leftPanel;
         private LinkLabel linkLabel2;
         private TableLayoutPanel tableLayoutPanel1;
+        private PictureBox pictureBox1;
     }
 }
