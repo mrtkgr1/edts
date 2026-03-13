@@ -47,7 +47,7 @@
             ıconPictureBox1.Size = new Size(35, 35);
             ıconPictureBox1.TabIndex = 0;
             ıconPictureBox1.TabStop = false;
-            ıconPictureBox1.Visible = false;
+            ıconPictureBox1.Click += ıconPictureBox1_Click;
             // 
             // ıconPictureBox2
             // 

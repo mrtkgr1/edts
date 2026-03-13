@@ -201,37 +201,6 @@ namespace edts
             }
         }
 
-
-
-        /*
-         * 1 = Başarılı
-         * 0 = Hatalı
-         * -1 = Hesap kilitli
-         * null = Veritabanı hatası
-         * diğer = Bilinmeyen hata
-         */
-        private String? SifreKontrol() {
-            string baglantiCumlesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
-
-            using (SqlConnection baglantı = new SqlConnection(baglantiCumlesi)) {
-
-                using (SqlCommand komut = new SqlCommand("sp_KullaniciGirisi", baglantı)) {
-                    komut.CommandType = CommandType.StoredProcedure;
-
-                    komut.Parameters.AddWithValue("@KullaniciAdi", txtKullaniciAdi.Text.Trim());
-                    komut.Parameters.AddWithValue("@Sifre", GuvenlikYardimcisi.HashSifre(loginpsw.Text));
-
-                    baglantı.Open();
-                    using (SqlDataReader okuyucu = komut.ExecuteReader()) {
-                        if (okuyucu.Read()) {
-                            return okuyucu["Sonuc"].ToString();
-                        }
-                    }
-                }
-
-            }
-            return null;
-        }
         private bool GirisKilidiKontrol(int kullaniciID) {
             string baglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
             using (var connection = new SqlConnection(baglantiDizesi)) {
