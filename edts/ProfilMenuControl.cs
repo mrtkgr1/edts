@@ -12,11 +12,12 @@ namespace edts {
     public partial class ProfilMenuControl : UserControl {
         public event EventHandler ProfilDuzenleTiklandi;
         public event EventHandler AyarlarTiklandi;
+        public event EventHandler HesapKapamaTiklandi;
 
         public ProfilMenuControl() {
             InitializeComponent();
             AdlariYaz();
-            
+
         }
 
         private void AdlariYaz() {
@@ -39,6 +40,10 @@ namespace edts {
         private void btnAyarlar_Click(object sender, EventArgs e) {
             AyarlarTiklandi?.Invoke(this, EventArgs.Empty);
             AdlariYaz();
+        }
+
+        private void ıconPictureBox1_Click(object sender, EventArgs e) {
+            HesapKapamaTiklandi?.Invoke(this, EventArgs.Empty);
         }
     }
 

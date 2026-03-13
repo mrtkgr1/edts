@@ -786,6 +786,12 @@
                 popupHesap.Close(); 
             };
 
+            profilMControl.HesapKapamaTiklandi += (s, e) =>
+            {
+                hesapKapat_Tiklandi();
+                popupHesap.Close(); 
+            };
+
             ToolStripControlHost host = new ToolStripControlHost(profilMControl);
 
             host.Margin = Padding.Empty;
