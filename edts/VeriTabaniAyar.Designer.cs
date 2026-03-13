@@ -94,7 +94,7 @@
             // 
             mevcutTest.Location = new Point(81, 78);
             mevcutTest.Name = "mevcutTest";
-            mevcutTest.Size = new Size(446, 48);
+            mevcutTest.Size = new Size(446, 69);
             mevcutTest.TabIndex = 9;
             mevcutTest.Text = "Test Daha başlatılmadı";
             // 
@@ -102,7 +102,7 @@
             // 
             yeniTest.Location = new Point(88, 281);
             yeniTest.Name = "yeniTest";
-            yeniTest.Size = new Size(446, 50);
+            yeniTest.Size = new Size(446, 71);
             yeniTest.TabIndex = 10;
             yeniTest.Text = "Test Daha başlatılmadı";
             // 
@@ -134,6 +134,7 @@
             // 
             // buttonKayit
             // 
+            buttonKayit.Enabled = false;
             buttonKayit.Location = new Point(407, 355);
             buttonKayit.Name = "buttonKayit";
             buttonKayit.Size = new Size(127, 33);
@@ -222,7 +223,7 @@
             MaximizeBox = false;
             Name = "VeriTabaniAyar";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "VeriTabaniAyar";
+            Text = "Veri Tabanı Ayarları";
             Load += VeriTabaniAyar_Load;
             ResumeLayout(false);
             PerformLayout();
