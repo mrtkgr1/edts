@@ -11,12 +11,20 @@ using System.Windows.Forms;
 
 namespace edts {
     public partial class VeriTabaniAyar : Form {
+
+        private readonly string _baslık = "Veri Tabanı Ayarları";
+
         public VeriTabaniAyar() {
             InitializeComponent();
         }
 
-        string mevcutBaglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
+        public VeriTabaniAyar(string hata) {
+            InitializeComponent();
+            mevcutTest.Text = hata;
+            this.Text = _baslık + " - Hata";
+        }
 
+        string mevcutBaglantiDizesi = ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString;
         string yeniBaglantiDizesi = string.Empty;
 
         private void VeriTabaniAyar_Load(object sender, EventArgs e) {
@@ -52,6 +60,8 @@ namespace edts {
                 MessageBox.Show(this,"Lütfen en az bir değer girin.");
                 return;
             }
+            this.Text = _baslık + " - Önizleme hesaplanıyor...";
+            buttonKayit.Enabled = true;
 
             string tmpDizi = textBoxYeniDizi.Text.Trim();
             string tmpAd = textBoxYeniAd.Text.Trim();
@@ -68,6 +78,7 @@ namespace edts {
             yeniAd.Text = "Yeni Veritabanı Adı: " + VeritabaniYardimcisi.VeritabaniAdiniGetir(yeniBaglantiDizesi);
 
             buttonYeniTest.PerformClick();
+            this.Text = _baslık;
         }
 
         //kaydet

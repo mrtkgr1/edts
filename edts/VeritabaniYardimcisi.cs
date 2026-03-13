@@ -17,10 +17,10 @@ public static class VeritabaniYardimcisi
                 return true;
             }
         } catch (SqlException sqlEx) {
-            hataMesaji = "Veritabanı reddetti:\n" + sqlEx.Message;
+            hataMesaji = "Veritabanı reddetti: " + sqlEx.Message;
             return false;
         } catch (Exception ex) {
-            hataMesaji = "Bağlantı kurulamadı:\n" + ex.Message;
+            hataMesaji = "Bağlantı kurulamadı: " + ex.Message;
             return false;
         }
     }

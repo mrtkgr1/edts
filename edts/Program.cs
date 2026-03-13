@@ -16,7 +16,7 @@ namespace edts
             if (VeritabaniYardimcisi.BaglantiyiTestEt(ConfigurationManager.ConnectionStrings["baglanti"].ConnectionString, out String hataMesaji)) {
                 Application.Run(new GirisForm());
             } else {
-                Application.Run(new VeriTabaniAyar());
+                Application.Run(new VeriTabaniAyar(hataMesaji));
             }
         }
     }
