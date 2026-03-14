@@ -12,8 +12,11 @@ using System.Windows.Forms;
 namespace edts {
     public partial class VeriTabaniAyar : Form {
 
-        private readonly string _baslık = "Veri Tabanı Ayarları";
+        //Bağlantı yapısı
+        //Data Source=192.168.1.50\SQLEXPRESS; Initial Catalog=StokYonetimDB;   değişir
+        //User ID=edts_sistem; Password=hash; TrustServerCertificate=True;      sabit 
 
+        private readonly string _baslık = "Veri Tabanı Ayarları";
         public VeriTabaniAyar() {
             InitializeComponent();
         }
@@ -83,13 +86,16 @@ namespace edts {
 
         //kaydet
         private void button1_Click(object sender, EventArgs e) {
+            buttonKayit.Enabled = false;    
             if (!string.IsNullOrEmpty(yeniBaglantiDizesi)) {
                 if (!VeritabaniYardimcisi.BaglantiyiTestEt(yeniBaglantiDizesi, out string hataMesaji)) {
                     MessageBox.Show("Yeni bağlantı geçersiz: \n" + hataMesaji);
+                    buttonKayit.Enabled = true;
                     return;
                 }
                 VeritabaniYardimcisi.BaglantiyiGuncelle(yeniBaglantiDizesi);
             }
+            buttonKayit.Enabled = true;
             MessageBox.Show("Değişiklikler kaydedildi. Uygulama kapanacak ve yeni bağlantı ayarları ile yeniden başlatılacak.");
             Application.Restart();
         }
