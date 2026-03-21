@@ -7,6 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <PackageIcon>supply-chain.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,6 +46,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="rsm\supply-chain.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
