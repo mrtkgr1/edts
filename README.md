@@ -1,6 +1,6 @@
 # EDTS - Stok Takip ve Yönetim Sistemi 📦
 
-EDTS, yerel ağ (LAN) üzerinde İstemci-Sunucu (Client-Server) mimarisiyle çalışan, çok kullanıcılı ve yüksek performanslı bir masaüstü otomasyon yazılımıdır. İşletmelerin stok ve veri yönetimini merkezi bir sunucu üzerinden, pürüzsüz ve güvenli bir şekilde yapmasını sağlar.
+EDTS, ağ üzerinde İstemci-Sunucu (Client-Server) mimarisiyle çalışan, çok kullanıcılı ve yüksek performanslı bir masaüstü otomasyon yazılımıdır. İşletmelerin stok ve veri yönetimini merkezi bir sunucu üzerinden, pürüzsüz ve güvenli bir şekilde yapmasını sağlar.
 
 ## 🚀 Öne Çıkan Özellikler
 
